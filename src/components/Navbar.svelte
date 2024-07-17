@@ -35,6 +35,7 @@
               <a href="https://github.com/k9crypt" class="block px-4 py-2 text-sm text-gray-600 hover:text-black"><i class="ri-github-fill mr-1"></i> Github</a>
               <a href="/create" class="block px-4 py-2 text-sm text-gray-600 hover:text-black"><i class="ri-message-3-line mr-1"></i> Create</a>
               <a href="/privacy" class="block px-4 py-2 text-sm text-gray-600 hover:text-black"><i class="ri-lock-2-line mr-1"></i> Privacy</a>
+              <a href="https://status.k9crypt.xyz/" class="block px-4 py-2 text-sm text-gray-600 hover:text-black"><i class="ri-signal-tower-line mr-1"></i> System Status</a>
               <hr class="border-t border-gray-300/30">
               <a href="mailto:hi@k9crypt.xyz" class="block px-4 py-2 text-sm text-gray-600 hover:text-black"><i class="ri-mail-line mr-1"></i> hi@k9crypt.xyz</a>
             </div>

@@ -1,7 +1,25 @@
+<script lang="ts">
+  import { checkLink } from "$lib/check";
+  import { onMount } from "svelte";
+
+  let status: boolean = false;
+
+  onMount(async () => {
+    await checkLink("https://api.k9crypt.xyz").then((data) => {
+      status = data;
+    });
+  });
+</script>
+
 <footer class="mt-36 py-10">
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid gap-8 md:grid-cols-3">
       <div>
+        {#if status}
+        <span class="text-xs text-green-600"><span class="animate-pulse">●</span> All Systems Online</span>
+        {:else}
+        <span class="text-xs text-red-500"><span class="animate-pulse">●</span> System Offline</span>
+        {/if}
         <h3 class="text-lg font-bold text-gray-800 mb-4">K9Crypt</h3>
         <p class="text-sm text-gray-600 mb-4">Secure and anonymous messaging platform for everyone.</p>
         <div class="flex space-x-4">
@@ -18,7 +36,8 @@
         <ul class="space-y-2">
           <li><a href="https://github.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-github-fill mr-1"></i> Github</a></li>
           <li><a href="https://twitter.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-twitter-fill mr-1"></i> Twitter</a></li>
-          <li><a href="/privacy" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-lock-2-line mr-1"></i> Privacy Policy</a></li>
+          <li><a href="/privacy" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-lock-2-fill mr-1"></i> Privacy Policy</a></li>
+          <li><a href="https://status.k9crypt.xyz/" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-signal-tower-fill mr-1"></i> System Status</a></li>
         </ul>
       </div>
       <div>

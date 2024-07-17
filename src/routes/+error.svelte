@@ -6,7 +6,7 @@
       The page you're looking for doesn't exist or has been moved.
     </p>
     <a href="/" class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
-      Go Back Home
+      <i class="ri-home-4-fill mr-1"></i> Go Back Home
     </a>
   </div>
 </section>
