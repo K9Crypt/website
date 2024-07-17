@@ -6,6 +6,6 @@
     All messages are automatically deleted every 2 hours for your security.
   </p>
   <a href="/create" class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
-    Create Message
+    <i class="ri-message-3-fill mr-1"></i> Create Message
   </a>
 </header>

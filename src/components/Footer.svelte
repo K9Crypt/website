@@ -16,15 +16,15 @@
       <div>
         <h3 class="text-lg font-bold text-gray-800 mb-4">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="https://github.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800">Github</a></li>
-          <li><a href="https://twitter.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800">Twitter</a></li>
-          <li><a href="/privacy" class="text-sm text-gray-600 hover:text-gray-800">Privacy Policy</a></li>
+          <li><a href="https://github.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-github-fill mr-1"></i> Github</a></li>
+          <li><a href="https://twitter.com/k9crypt" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-twitter-fill mr-1"></i> Twitter</a></li>
+          <li><a href="/privacy" class="text-sm text-gray-600 hover:text-gray-800"><i class="ri-lock-2-line mr-1"></i> Privacy Policy</a></li>
         </ul>
       </div>
       <div>
         <h3 class="text-lg font-bold text-gray-800 mb-4">Contact Us</h3>
         <p class="text-sm text-gray-600 mb-2">Have questions? Reach out to us.</p>
-        <a href="mailto:support@k9crypt.com" class="text-sm text-gray-600 hover:underline">hi@k9crypt.xyz</a>
+        <a href="mailto:support@k9crypt.com" class="text-sm text-gray-600 hover:underline"><i class="ri-mail-line mr-1"></i> hi@k9crypt.xyz</a>
       </div>
     </div>
     <div class="mt-8 pt-8 border-t border-gray-200 text-center">

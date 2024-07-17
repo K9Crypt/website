@@ -13,7 +13,7 @@
         <div class="w-full md:w-1/4 px-2 mb-8 md:mb-0">
           <div class="relative">
             <div class="bg-white p-4 rounded shadow relative">
-              <h3 class="text-base font-semibold mb-2">Write Your Message</h3>
+              <h3 class="text-base font-semibold mb-2"><i class="ri-message-3-line mr-1"></i> Write Your Message</h3>
               <p class="text-sm mb-6">Enter the message you want to send securely.</p>
               <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">1.</p>
             </div>
@@ -23,7 +23,7 @@
         <div class="w-full md:w-1/4 px-2 mb-8 md:mb-0">
           <div class="relative">
             <div class="bg-white p-4 rounded shadow relative">
-              <h3 class="text-base font-semibold mb-2">Get Random Password</h3>
+              <h3 class="text-base font-semibold mb-2"><i class="ri-shield-keyhole-line mr-1"></i> Get Random Password</h3>
               <p class="text-sm mb-6">System generates a random password for your message.</p>
               <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">2.</p>
             </div>
@@ -33,7 +33,7 @@
         <div class="w-full md:w-1/4 px-2 mb-8 md:mb-0">
           <div class="relative">
             <div class="bg-white p-4 rounded shadow relative">
-              <h3 class="text-base font-semibold mb-2">Share the Link</h3>
+              <h3 class="text-base font-semibold mb-2"><i class="ri-share-line mr-1"></i> Share the Link</h3>
               <p class="text-sm mb-6">Share the generated secure link with the recipient.</p>
               <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">3.</p>
             </div>
@@ -43,7 +43,7 @@
         <div class="w-full md:w-1/4 px-2 mb-8 md:mb-0">
           <div class="relative">
             <div class="bg-white p-4 rounded shadow relative">
-              <h3 class="text-base font-semibold mb-2">Recipient Access</h3>
+              <h3 class="text-base font-semibold mb-2"><i class="ri-lock-2-line mr-1"></i> Recipient Access</h3>
               <p class="text-sm mb-6">Recipient uses the link and password to access the message.</p>
               <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">4.</p>
             </div>

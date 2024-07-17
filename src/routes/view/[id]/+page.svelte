@@ -98,19 +98,17 @@
       {:else if error}
         <p class="text-center">{error}</p>
       {:else}
-        <div class="p-4 bg-gray-100 rounded">
-          <h3 class="text-lg font-semibold mb-2">Decrypted Message:</h3>
-          <p class="text-gray-700 break-all whitespace-pre-wrap">{message}</p>
-          <div class="mt-4 flex space-x-4">
-            <button on:click={copyToClipboard} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 text-sm">
-              Copy Message
-            </button>
-            <button on:click={saveMessage} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
-              Save Message
-            </button>
-          </div>
-          <p class="mt-2 text-sm text-gray-600">This message will be automatically deleted soon. Make sure to save it if needed.</p>
-        </div>
+      <h3 class="text-lg font-semibold mb-2">Decrypted Message:</h3>
+      <p class="text-gray-700 break-all whitespace-pre-wrap bg-gray-100 p-4 rounded">{message}</p>
+      <div class="mt-4 flex space-x-4">
+        <button on:click={copyToClipboard} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 text-sm">
+          <i class="ri-clipboard-fill mr-1"></i> Copy Message
+        </button>
+        <button on:click={saveMessage} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
+          <i class="ri-save-line mr-1"></i> Save Message
+        </button>
+      </div>
+      <p class="mt-2 text-sm text-gray-600">This message will be automatically deleted soon. Make sure to save it if needed.</p>
       {/if}
     </div>
   </div>
@@ -120,7 +118,7 @@
 <section class="flex items-center justify-center min-h-screen py-12 px-4">
   <div class="w-full max-w-lg">
     <div class="bg-red-100 p-3 rounded-full">
-        <p class="text-center text-red-600">System is currently offline. Please check back later.</p>
+        <p class="text-center text-red-600"><i class="ri-error-warning-fill mr-1"></i> System is currently offline. Please check back later.</p>
     </div>
   </div>
 </section>

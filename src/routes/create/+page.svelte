@@ -86,7 +86,7 @@
           <textarea id="message" bind:value={message} rows="4" class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none" placeholder="Enter your message here..."></textarea>
         </div>
         <button type="submit" class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm disabled:opacity-50" disabled={!message || isLoading}>
-          {isLoading ? 'Creating...' : 'Create'}
+          <i class="ri-send-plane-fill mr-1"></i> {isLoading ? 'Creating...' : 'Create'}
         </button>
       </form>
 
@@ -100,10 +100,10 @@
           <p class="text-gray-700 break-all">{result}</p>
           <div class="mt-4 flex space-x-2">
             <a href={viewUrl} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 text-sm disabled:opacity-50">
-              View
+              <i class="ri-eye-fill mr-1"></i> View
             </a>
             <button on:click={copyToClipboard} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
-              Copy
+              <i class="ri-clipboard-line mr-1"></i> Copy
             </button>
           </div>
           <p class="mt-2 text-sm text-gray-600">Share this link with the recipient. The message will be automatically deleted after 2 hours.</p>
@@ -117,7 +117,7 @@
 <section class="flex items-center justify-center min-h-screen py-12 px-4">
   <div class="w-full max-w-lg">
     <div class="bg-red-100 p-3 rounded-full">
-        <p class="text-center text-red-600">System is currently offline. Please check back later.</p>
+        <p class="text-center text-red-600"><i class="ri-error-warning-fill mr-1"></i> System is currently offline. Please check back later.</p>
     </div>
   </div>
 </section>

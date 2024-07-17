@@ -3,22 +3,22 @@
     <h2 class="text-xl font-bold text-center mb-6">Why Choose K9Crypt?</h2>
     <div class="grid gap-6 sm:grid-cols-2">
       <div class="bg-white p-4 rounded shadow relative">
-        <h3 class="text-base font-semibold mb-2">No Account Needed</h3>
+        <h3 class="text-base font-semibold mb-2"><i class="ri-user-forbid-line mr-1"></i> No Account Needed</h3>
         <p class="text-sm mb-6">Start sending secure messages instantly.</p>
         <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">1.</p>
       </div>
       <div class="bg-white p-4 rounded shadow relative">
-        <h3 class="text-base font-semibold mb-2">E2E Encryption</h3>
+        <h3 class="text-base font-semibold mb-2"><i class="ri-lock-2-line mr-1"></i> E2E Encryption</h3>
         <p class="text-sm mb-6">Messages only readable by the recipient.</p>
         <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">2.</p>
       </div>
       <div class="bg-white p-4 rounded shadow relative">
-        <h3 class="text-base font-semibold mb-2">Auto-Delete</h3>
+        <h3 class="text-base font-semibold mb-2"><i class="ri-time-line mr-1"></i> Auto-Delete</h3>
         <p class="text-sm mb-6">Messages delete after 2 hours for security.</p>
         <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">3.</p>
       </div>
       <div class="bg-white p-4 rounded shadow relative">
-        <h3 class="text-base font-semibold mb-2">Open Source</h3>
+        <h3 class="text-base font-semibold mb-2"><i class="ri-github-line mr-1"></i> Open Source</h3>
         <p class="text-sm mb-6">K9Crypt is open source and free to use.</p>
         <p class="absolute top-2 right-2 text-2xl font-bold opacity-20">4.</p>
       </div>
