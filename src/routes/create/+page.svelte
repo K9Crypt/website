@@ -40,7 +40,7 @@
   }
   
   function copyToClipboard() {
-    navigator.clipboard.writeText(result).then(() => {
+    navigator.clipboard.writeText(`https://k9crypt.xyz/view/${result}`).then(() => {
       toast.success('Link copied to clipboard!', {
         duration: 3000,
         position: "top-right",
@@ -103,7 +103,7 @@
               <i class="ri-eye-fill mr-1"></i> View
             </a>
             <button on:click={copyToClipboard} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
-              <i class="ri-clipboard-line mr-1"></i> Copy
+              <i class="ri-clipboard-line mr-1"></i> Copy URL
             </button>
           </div>
           <p class="mt-2 text-sm text-gray-600">Share this link with the recipient. The message will be automatically deleted after 2 hours.</p>
