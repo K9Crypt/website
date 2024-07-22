@@ -5,13 +5,14 @@
  * @return {Promise<string>} A Promise that resolves with the content of the message as a string.
  * @throws {Error} If the API request fails or the response is not successful.
  */
-export async function viewMessage(id: string): Promise<string> {
+export async function viewMessage(message: string): Promise<string> {
   try {
-    const response = await fetch(`https://api.k9crypt.xyz/view/${id}`, {
-      method: "GET",
+    const response = await fetch("https://api.k9crypt.xyz/view", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ message }),
     });
 
     if (!response.ok) {

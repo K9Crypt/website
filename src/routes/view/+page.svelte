@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
-  import { createMessage } from '$lib/create';
+  import { viewMessage } from '$lib/view';
   import toast, { Toaster } from 'svelte-french-toast';
   import Footer from '../../components/Footer.svelte';
   import { checkLink } from "$lib/check";
@@ -32,7 +31,7 @@
     error = '';
 
     try {
-      result = await createMessage(message);
+      result = await viewMessage(message);
     } catch (err) {
       error = 'Failed to create message. Please try again.';
     } finally {
@@ -40,18 +39,34 @@
     }
   }
 
-  function copyToClipboard() {
+  async function copyToClipboard() {
     navigator.clipboard.writeText(`${result}`).then(() => {
-      toast.success('Encrypted message copied to clipboard.', {
+      toast.success('Decrypted message copied to clipboard.', {
         duration: 3000,
         position: "top-right",
       });
     }, (err) => {
       console.error('Could not copy text: ', err);
-      toast.error('Failed to copy encrypted message. Please try again.', {
+      toast.error('Failed to copy decrypted message. Please try again.', {
         duration: 3000,
         position: "top-right",
       });
+    });
+  }
+
+  function downloadResult() {
+    const blob = new Blob([result], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'encrypted.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast.success('File downloaded successfully.', {
+      duration: 3000,
+      position: "top-right",
     });
   }
 </script>
@@ -77,15 +92,15 @@
 <Toaster />
 <section class="flex items-center justify-center min-h-screen py-12 px-4">
   <div class="w-full max-w-3xl">
-    <h2 class="text-2xl font-bold text-center mb-6">Create Encrypted Message</h2>
+    <h2 class="text-2xl font-bold text-center mb-6">Decrypt Encrypted Message</h2>
     <div class="bg-white p-6 rounded shadow">
       <form on:submit|preventDefault={handleSubmit} class="space-y-4">
         <div>
-          <label for="message" class="block text-sm font-medium text-gray-700 mb-3">Your Message</label>
+          <label for="message" class="block text-sm font-medium text-gray-700 mb-3">Encrypted Message</label>
           <textarea id="message" bind:value={message} rows="4" class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none" placeholder="Enter your message here..."></textarea>
         </div>
         <button type="submit" class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm disabled:opacity-50" disabled={!message || isLoading}>
-          <i class="ri-send-plane-fill mr-1"></i> {isLoading ? 'Creating...' : 'Create'}
+          <i class="ri-send-plane-fill mr-1"></i> {isLoading ? 'Decrypting...' : 'Decrypt'}
         </button>
       </form>
 
@@ -95,7 +110,7 @@
 
       {#if result}
         <div class="mt-6 p-4 bg-gray-100 rounded">
-          <h3 class="text-lg font-semibold mb-2">Your Encrypted Message Link:</h3>
+          <h3 class="text-lg font-semibold mb-2">Your Decrypted Message Link:</h3>
           <div class="flex items-center space-x-2 mb-2">
             <div class="flex-grow p-2 border border-gray-300 rounded-md bg-white overflow-x-auto">
               {result}
@@ -103,10 +118,10 @@
           </div>
           <div class="mt-4 flex space-x-2">
             <button on:click={copyToClipboard} class="bg-gray-800 py-2 px-4 rounded transition duration-300 text-sm text-white">
-              <i class="ri-clipboard-line mr-1"></i> Copy Encrypted Message
+              <i class="ri-clipboard-line mr-1"></i> Copy Decrypted Message
             </button>
-            <button on:click={() => goto(`/view`)} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
-              <i class="ri-eye-fill mr-1"></i> View Encrypted Message
+            <button on:click={downloadResult} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
+              <i class="ri-download-2-fill mr-1"></i> Download Decrypted Message
             </button>
           </div>
           <p class="mt-2 text-sm text-gray-600">The message will be automatically deleted after 2 hours.</p>
