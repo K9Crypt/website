@@ -24,6 +24,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@types/node": "^20.14.11",
     "axios": "^1.7.2",
     "svelte-french-toast": "^1.2.0"
   }

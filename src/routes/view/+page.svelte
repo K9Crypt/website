@@ -5,7 +5,7 @@
   import { checkLink } from "$lib/check";
   import { onMount } from "svelte";
 
-  let status: boolean = false;
+  let status = false;
   let message = '';
   let result = '';
   let isLoading = false;
@@ -13,12 +13,8 @@
   let isPageLoading = true;
 
   onMount(async () => {
-    await checkLink("https://api.k9crypt.xyz").then((data) => {
-      status = data;
-    });
-    setTimeout(() => {
-      isPageLoading = false;
-    }, 1000);
+    status = await checkLink("https://api.k9crypt.xyz");
+    setTimeout(() => isPageLoading = false, 1000);
   });
 
   async function handleSubmit() {
@@ -32,26 +28,21 @@
 
     try {
       result = await viewMessage(message);
-    } catch (err) {
-      error = 'Failed to create message. Please try again.';
+    } catch {
+      error = 'Failed to decrypt message. Please try again.';
     } finally {
       isLoading = false;
     }
   }
 
-  async function copyToClipboard() {
-    navigator.clipboard.writeText(`${result}`).then(() => {
-      toast.success('Decrypted message copied to clipboard.', {
-        duration: 3000,
-        position: "top-right",
-      });
-    }, (err) => {
-      console.error('Could not copy text: ', err);
-      toast.error('Failed to copy decrypted message. Please try again.', {
-        duration: 3000,
-        position: "top-right",
-      });
-    });
+  function copyToClipboard() {
+    navigator.clipboard.writeText(result).then(
+      () => toast.success('Decrypted message copied to clipboard.', { duration: 3000, position: "top-right" }),
+      err => {
+        console.error('Could not copy text: ', err);
+        toast.error('Failed to copy decrypted message. Please try again.', { duration: 3000, position: "top-right" });
+      }
+    );
   }
 
   function downloadResult() {
@@ -59,15 +50,10 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'encrypted.txt';
-    document.body.appendChild(a);
+    a.download = 'decrypted.txt';
     a.click();
-    document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    toast.success('File downloaded successfully.', {
-      duration: 3000,
-      position: "top-right",
-    });
+    toast.success('File downloaded successfully.', { duration: 3000, position: "top-right" });
   }
 </script>
 
@@ -80,12 +66,8 @@
 
 <style>
   @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>
 {:else if status}
@@ -110,17 +92,17 @@
 
       {#if result}
         <div class="mt-6 p-4 bg-gray-100 rounded">
-          <h3 class="text-lg font-semibold mb-2">Your Decrypted Message Link:</h3>
+          <h3 class="text-lg font-semibold mb-2">Your Decrypted Message:</h3>
           <div class="flex items-center space-x-2 mb-2">
             <div class="flex-grow p-2 border border-gray-300 rounded-md bg-white overflow-x-auto">
               {result}
             </div>
           </div>
-          <div class="mt-4 flex space-x-2">
-            <button on:click={copyToClipboard} class="bg-gray-800 py-2 px-4 rounded transition duration-300 text-sm text-white">
+          <div class="mt-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+            <button on:click={copyToClipboard} class="w-full sm:w-auto bg-gray-800 py-2 px-4 rounded transition duration-300 text-sm text-white">
               <i class="ri-clipboard-line mr-1"></i> Copy Decrypted Message
             </button>
-            <button on:click={downloadResult} class="border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
+            <button on:click={downloadResult} class="w-full sm:w-auto border border-gray-800 bg-transparent py-2 px-4 rounded transition duration-300 text-sm">
               <i class="ri-download-2-fill mr-1"></i> Download Decrypted Message
             </button>
           </div>
