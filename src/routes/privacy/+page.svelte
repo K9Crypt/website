@@ -31,7 +31,7 @@
 <section class="py-12 bg-gray-50">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-2xl font-bold text-center mb-3">Privacy Policy</h2>
-    <p class="text-sm text-gray-600 mb-6 text-center">Last updated: July 17, 2024</p>
+    <p class="text-sm text-gray-600 mb-6 text-center">Last updated: July 29, 2024</p>
     <div class="bg-white p-6 rounded shadow">
       <h3 class="text-xl font-semibold mb-4">Our Commitment to Your Privacy</h3>
       <p class="mb-4">
@@ -78,17 +78,22 @@
         <li>Any metadata related to your messages</li>
       </ul>
 
-      <h4 class="text-lg font-semibold mb-2">6. Unlimited Message Creation</h4>
+      <h4 class="text-lg font-semibold mb-2">6. Unlimited Message and Room Creation</h4> <!-- Güncellenmiş Başlık -->
       <p class="mb-4">
-        There are no restrictions on the number of messages you can create. You're free to use our service as often as you need, always with the same level of privacy and security.
+        There are no restrictions on the number of messages or rooms you can create. You're free to use our service as often as you need, always with the same level of privacy and security.
       </p>
 
-      <h4 class="text-lg font-semibold mb-2">7. Your Responsibility</h4>
+      <h4 class="text-lg font-semibold mb-2">7. Room Privacy</h4> <!-- Yeni Başlık -->
       <p class="mb-4">
-        While we take every measure to ensure the security of our platform, the security of the shared links and passwords is your responsibility. Please ensure you share these securely with your intended recipients.
+        When you create a room, no personal data is collected. Room IDs and user IDs are used solely for the purpose of facilitating the messaging service. These identifiers are not stored beyond the session and are not used for tracking or profiling users.
       </p>
 
-      <h4 class="text-lg font-semibold mb-2">8. Open Source Transparency</h4>
+      <h4 class="text-lg font-semibold mb-2">8. Your Responsibility</h4>
+      <p class="mb-4">
+        While we take every measure to ensure the security of our platform, the security of the shared links, passwords, room IDs, and user IDs is your responsibility. Please ensure you share these securely with your intended recipients.
+      </p>
+
+      <h4 class="text-lg font-semibold mb-2">9. Open Source Transparency</h4>
       <p class="mb-4">
         K9Crypt is an open-source project. Our commitment to transparency means that anyone can review, audit, and contribute to our codebase. You can find our source code on our GitHub repository:
       </p>

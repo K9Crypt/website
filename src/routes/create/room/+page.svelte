@@ -3,15 +3,20 @@
   import { createRoom } from '$lib/room';
   import toast, { Toaster } from 'svelte-french-toast';
   import Footer from '../../../components/Footer.svelte';
+  import { checkLink } from '$lib/check';
   import { onMount } from 'svelte';
 
   let userId = '';
   let roomId = '';
+  let status = false;
   let isLoading = false;
   let error = '';
+  let isPageLoading = true;
 
-  onMount(() => {
+  onMount(async () => {
+    status = await checkLink('https://api.k9crypt.xyz');
     userId = localStorage.getItem('userId') || '';
+    setTimeout(() => isPageLoading = false, 1000);
   });
 
   async function copyToClipboard() {
@@ -44,6 +49,20 @@
   }
 </script>
 
+{#if isPageLoading}
+<section class="flex items-center justify-center min-h-screen py-12 px-4">
+  <div class="w-full max-w-lg flex items-center justify-center">
+    <i class="ri-loader-3-line text-6xl animate-spin" style="animation: rotate 1s linear infinite;"></i>
+  </div>
+</section>
+
+<style>
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+{:else if status}
 <Toaster />
 <section class="flex items-center justify-center min-h-screen py-12 px-4">
   <div class="w-full max-w-lg">
@@ -77,3 +96,12 @@
   </div>
 </section>
 <Footer />
+{:else}
+<section class="flex items-center justify-center min-h-screen py-12 px-4">
+  <div class="w-full max-w-lg">
+    <div class="bg-red-100 p-3 rounded-full">
+        <p class="text-center text-red-600"><i class="ri-error-warning-fill mr-1"></i> System is currently offline. Please check back later.</p>
+    </div>
+  </div>
+</section>
+{/if}
