@@ -9,15 +9,15 @@
     Create and share encrypted messages without an account. 
     All messages are automatically deleted every 2 hours for your security.
   </p>
-  <button on:click={() => goto('/create')} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
-    <i class="ri-message-3-fill mr-1"></i> Create Message
-  </button>
-  <div class="relative inline-block">
-    <span class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-[0.60rem] font-bold text-white bg-gradient-to-r from-yellow-400 via-red-500 to-pink-600 p-1 px-3 rounded">
-      NEW
-    </span>
-    <button on:click={() => goto('/create/room')} class="bg-gray-300 py-2 px-6 rounded text-sm">
-      <i class="ri-ancient-gate-fill"></i> Create Room
+  <div class="flex flex-col md:flex-row justify-center gap-4">
+    <button on:click={() => goto('/create')} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
+      <i class="ri-message-3-fill mr-1"></i> Create Message
+    </button>
+    <button on:click={() => goto('/create/room')} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
+      <i class="ri-add-fill mr-1"></i> Create Room
+    </button>
+    <button on:click={() => goto('/join/room')} class="bg-gray-800 text-white py-2 px-6 rounded transition duration-300 hover:bg-gray-900 text-sm">
+      <i class="ri-door-fill mr-1"></i> Join Room
     </button>
   </div>
 </header>
