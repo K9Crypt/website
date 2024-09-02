@@ -321,7 +321,7 @@
         {/each}
       </ul>
       {#if replyingTo}
-      <div class="mb-2 p-3 border-l-2 border-gray-500 bg-gray-50 rounded-lg flex justify-between items-center">
+      <div class="mb-2 p-3 border-l-2 border-gray-500 dark:border-white bg-gray-50 dark:bg-[#1c1c1c] rounded-lg flex justify-between items-center">
         <p class="text-sm">
           Replying to: "{replyingTo.message.substring(0, 50)}..."
         </p>
