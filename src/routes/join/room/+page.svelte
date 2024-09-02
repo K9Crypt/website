@@ -5,6 +5,7 @@
   import Footer from '../../../components/Footer.svelte';
   import { checkLink } from '$lib/check';
   import { onMount } from 'svelte';
+  import Error from '../../../components/Error.svelte';
 
   let userId = '';
   let status = false;
@@ -110,11 +111,5 @@
 </section>
 <Footer />
 {:else}
-<section class="flex items-center justify-center min-h-screen py-12 px-4">
-  <div class="w-full max-w-lg">
-    <div class="bg-red-100 p-3 rounded-full">
-        <p class="text-center text-red-600">System is currently offline. Please check back later.</p>
-    </div>
-  </div>
-</section>
+<Error />
 {/if}
