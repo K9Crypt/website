@@ -90,16 +90,16 @@
     <h2 class="text-2xl font-bold text-center mb-6">Join Room</h2>
     <div>
       <p class="mb-2 text-sm">Enter your User ID to join a room.</p>
-      <input bind:value={userId} type="text" placeholder="User ID" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green focus:outline-none" />
+      <input bind:value={userId} type="text" placeholder="User ID" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green dark:border-white focus:outline-none bg-transparent placeholder:text-black/50 placeholder:dark:text-white/50" />
       <p class="mb-2 text-sm">Enter the Room ID to join a room.</p>
-      <input bind:value={joinRoomId} type="text" placeholder="Room ID" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green focus:outline-none" on:input={checkRoomType} />
+      <input bind:value={joinRoomId} type="text" placeholder="Room ID" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green dark:border-white focus:outline-none bg-transparent placeholder:text-black/50 placeholder:dark:text-white/50" on:input={checkRoomType} />
       
       {#if joinRoomId && roomType === 'private' && !error}
         <p class="mb-2 text-sm">Enter the Room Password (required for private rooms).</p>
-        <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green focus:outline-none" />
+        <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 rounded-lg border-2 border-dark-green dark:border-white focus:outline-none bg-transparent placeholder:text-black/50 placeholder:dark:text-white/50" />
       {/if}
 
-      <button on:click={handleJoinRoom} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50" disabled={userId === '' || joinRoomId === '' || (roomType === 'private' && roomPassword === '') || isLoading || isCheckingRoom}>
+      <button on:click={handleJoinRoom} class="px-6 py-2 border-2 border-light-green text-[#090f00] bg-light-green rounded-lg disabled:opacity-50" disabled={userId === '' || joinRoomId === '' || (roomType === 'private' && roomPassword === '') || isLoading || isCheckingRoom}>
         <i class="ri-door-line mr-1"></i> {isCheckingRoom ? 'Checking room...' : (isLoading ? 'Joining...' : 'Join Room')}
       </button>
 

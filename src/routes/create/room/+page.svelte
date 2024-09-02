@@ -126,32 +126,32 @@
     <h2 class="text-2xl font-bold text-center mb-6">Create Room</h2>
     <div>
       <p class="mb-2 text-sm">Enter your User ID to create a room.</p>
-      <input bind:value={userId} type="text" placeholder="User ID" class="w-full mb-4 p-2 border-2 border-dark-green rounded-lg focus:outline-none" />
+      <input bind:value={userId} type="text" placeholder="User ID" class="w-full mb-4 p-2 border-2 border-dark-green dark:border-white rounded-lg focus:outline-none bg-transparent placeholder:text-black/50 placeholder:dark:text-white/50" />
       
       <p class="mb-2 text-sm">Enter a room type.</p>
-      <select bind:value={roomType} class="w-full mb-4 p-2 border-2 border-dark-green rounded-lg focus:outline-none">
+      <select bind:value={roomType} class="w-full mb-4 p-2 border-2 border-dark-green dark:border-white rounded-lg focus:outline-none bg-transparent">
         <option value="public">Public</option>
         <option value="private">Private</option>
       </select>
 
       {#if roomType === 'private'}
       <p class="mb-2 text-sm">Enter a room password.</p>
-      <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 border-2 border-dark-green rounded-lg focus:outline-none" />
+      <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 border-2 border-dark-green dark:border-white rounded-lg focus:outline-none bg-transparent placeholder:text-black/50 placeholder:dark:text-white/50" />
       {/if}
 
-      <button on:click={handleCreateRoom} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50" disabled={isLoading}>
+      <button on:click={handleCreateRoom} class="px-6 py-2 border-2 border-light-green bg-light-green dark:text-dark-green rounded-lg disabled:opacity-50" disabled={isLoading}>
         <i class="ri-add-circle-line  mr-1"></i> {isLoading ? 'Creating...' : 'Create Room'}
       </button>
 
       {#if roomId}
       <h3 class="text-lg font-bold mb-4 mt-4">Your Room ID:</h3>
-      <input bind:value={roomId} readonly type="text" placeholder="Room ID" class="w-full p-2 rounded-lg border-2 border-dark-green focus:outline-none" />
+      <input bind:value={roomId} readonly type="text" placeholder="Room ID" class="w-full p-2 rounded-lg border-2 border-dark-green dark:border-white focus:outline-none bg-transparent" />
 
       <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <button on:click={copyToClipboard} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50">
+        <button on:click={copyToClipboard} class="px-6 py-2 border-2 border-light-green bg-light-green dark:text-dark-green rounded-lg disabled:opacity-50">
           <i class="ri-clipboard-line  mr-1"></i> Copy Room ID
         </button>
-        <button on:click={handleJoinRoom} class="px-6 py-2 border-2 border-dark-green rounded-lg">
+        <button on:click={handleJoinRoom} class="px-6 py-2 border-2 border-dark-green dark:border-white rounded-lg">
           <i class="ri-door-line  mr-1"></i> Join Room
         </button>
       </div>

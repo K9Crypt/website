@@ -8,7 +8,7 @@
     <p class="text-lg mb-6">Securely share your thoughts with the world, knowing that your messages are only accessible to you.</p>
   </div>
   <div class="flex justify-center space-x-4">
-    <button on:click={() => goto("/create")} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg">Get Started</button>
-    <button on:click={() => goto("/support")} class="px-6 py-2 border-2 border-dark-green rounded-lg">Support</button>
+    <button on:click={() => goto("/create")} class="px-6 py-2 border-2 border-light-green dark:text-[#090f00] bg-light-green rounded-lg">Get Started</button>
+    <button on:click={() => goto("/support")} class="px-6 py-2 border-2 border-dark-green dark:border-white rounded-lg">Support</button>
   </div>
 </header>

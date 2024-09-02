@@ -12,13 +12,13 @@
     <p class="text-base text-center mb-6">We're a team of passionate developers who are dedicated to providing secure and reliable messaging solutions.</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
       {#each teamMembers as member}
-        <div class="p-4 rounded-lg border-2 border-dark-green hover:shadow-lg transition-shadow duration-300 relative">
+        <div class="p-4 rounded-lg border-2 border-dark-green dark:border-white hover:shadow-lg transition-shadow duration-300 relative">
           <h3 class="text-lg font-bold">{member.name}</h3>
           <p class="text-sm mb-2">@{member.username}</p>
           <p class="text-sm mb-2">{member.role}</p>
           <div class="flex space-x-3">
             {#if member.social.mail}
-              <a href="mailto:{member.social.mail}"><i class="ri-mail-line"></i></a>
+              <a href="mailto:{member.social.mail}"><i class="ri-mail-fill"></i></a>
             {:else}
               <span class="w-6"></span>
             {/if}

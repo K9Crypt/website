@@ -260,8 +260,8 @@
   <div class="w-full max-w-lg">
     <div class="p-3 rounded-lg">
       <p class="mb-2 text-sm">Enter a room password.</p>
-      <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 border-2 border-dark-green rounded-lg focus:outline-none" />
-      <button on:click={handlePasswordSubmit} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50 w-full" disabled={isLoading || !roomPassword} style="opacity: {isLoading || !roomPassword ? 0.5 : 1}">
+      <input bind:value={roomPassword} type="password" placeholder="Room Password" class="w-full mb-4 p-2 border-2 border-dark-green dark:border-white bg-transparent rounded-lg focus:outline-none placeholder:text-black/50 placeholder:dark:text-white/50" />
+      <button on:click={handlePasswordSubmit} class="px-6 py-2 border-2 border-light-green dark:text-[#090f00] bg-light-green rounded-lg disabled:opacity-50 w-full" disabled={isLoading || !roomPassword} style="opacity: {isLoading || !roomPassword ? 0.5 : 1}">
         <i class="ri-lock-line mr-1"></i> Submit Password
       </button>
       {#if error === 'Invalid password'}
@@ -282,7 +282,7 @@
       <hr class="mb-2 mt-2" />
       <ul class="mb-4 max-h-[calc(100vh-250px)] sm:max-h-[calc(100vh-300px)] md:max-h-[calc(100vh-350px)] lg:max-h-[calc(100vh-400px)] xl:max-h-[calc(100vh-450px)] overflow-y-auto">
         {#each messages as msg (msg.id)}
-          <li class="mb-4 p-3 bg-gray-50 rounded-lg relative group">
+          <li class="mb-4 p-3 bg-gray-50 dark:bg-transparent dark:border-2 dark:border-white rounded-lg relative group">
             {#if msg.userId === "System"}
             <strong class="mr-1 text-red-500"><i class="ri-information-line"></i> {msg.userId}</strong>
             {:else}
@@ -291,9 +291,9 @@
             <p>
               {#each msg.message.split(/(\s+)/) as part}
                 {#if part.trim().startsWith('@') && part.trim().length > 1}
-                <span class="bg-light-green p-1 rounded">{part}</span>
+                <span class="bg-light-green dark:bg-dark-green p-1 rounded">{part}</span>
                 {:else if part.trim().startsWith('http://') || part.trim().startsWith('https://')}
-                <a href={part.trim()} target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">
+                <a href={part.trim()} target="_blank" rel="noopener noreferrer" class="text-blue-500 dark:text-blue-400 hover:underline">
                   {part}
                 </a>
                 {:else}
@@ -302,18 +302,18 @@
               {/each}
             </p>
             <div class="flex justify-end mt-2 space-x-2 md:hidden">
-              <button on:click={() => handleReply(msg)} class="text-sm text-dark-green/70">
+              <button on:click={() => handleReply(msg)} class="text-sm">
                 <i class="ri-reply-line"></i> Reply
               </button>
-              <button on:click={() => copyMessage(msg.message)} class="text-sm text-dark-green/70">
+              <button on:click={() => copyMessage(msg.message)} class="text-sm">
                 <i class="ri-file-copy-line"></i> Copy
               </button>
             </div>
             <div class="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex">
-              <button on:click={() => handleReply(msg)} class="text-sm text-dark-green/70 mr-2">
+              <button on:click={() => handleReply(msg)} class="text-sm mr-2">
                 <i class="ri-reply-line"></i> Reply
               </button>
-              <button on:click={() => copyMessage(msg.message)} class="text-sm text-dark-green/70">
+              <button on:click={() => copyMessage(msg.message)} class="text-sm">
                 <i class="ri-file-copy-line"></i> Copy
               </button>
             </div>
@@ -331,13 +331,13 @@
       </div>
       {/if}
       <div class="relative">
-        <textarea id="message-input" bind:value={message} placeholder="Tag a user with @ or send a normal message..." class="w-full mb-4 p-2 rounded-lg border border-dark-green focus:outline-none" rows="4" on:input={handleInput} on:keydown={handleKeyDown}></textarea>
+        <textarea id="message-input" bind:value={message} placeholder="Tag a user with @ or send a normal message..." class="w-full mb-4 p-2 rounded-lg border border-dark-green dark:border-white bg-transparent focus:outline-none placeholder:text-black/50 placeholder:dark:text-white/50" rows="4" on:input={handleInput} on:keydown={handleKeyDown}></textarea>
         {#if showUserDropdown}
-        <div class="absolute z-10 w-full bg-white border border-dark-green rounded-lg shadow-lg max-h-40 overflow-y-auto">
+        <div class="absolute z-10 w-full bg-white dark:bg-[#131313] border border-dark-green dark:border-white rounded-lg shadow-lg max-h-40 overflow-y-auto">
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           {#each filteredUsers as user, index}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="px-4 py-2 cursor-pointer hover:bg-gray-50 {userDropdownIndex === index ? 'bg-gray-50' : ''}" on:click={() => selectUser(user)} on:mouseenter={() => userDropdownIndex = index}>
+            <div class="px-4 py-2 cursor-pointer {userDropdownIndex === index ? '' : ''}" on:click={() => selectUser(user)} on:mouseenter={() => userDropdownIndex = index}>
               {user}
             </div>
           {/each}
@@ -345,7 +345,7 @@
         {/if}
       </div>
       <div class="flex flex-col sm:flex-row sm:justify-between items-center space-y-2 sm:space-y-0 sm:space-x-2">
-        <button on:click={handleSendMessage} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50 w-full sm:w-auto" disabled={isSendButtonDisabled} style="opacity: {isSendButtonDisabled ? 0.5 : 1}">
+        <button on:click={handleSendMessage} class="px-6 py-2 border-2 border-light-green text-[#090f00] bg-light-green rounded-lg disabled:opacity-50 w-full sm:w-auto" disabled={isSendButtonDisabled} style="opacity: {isSendButtonDisabled ? 0.5 : 1}">
           <i class="ri-message-line mr-1"></i> {isLoading ? 'Sending...' : 'Send Message'}
         </button>
         <button on:click={handleLeaveRoom} class="bg-red-500 px-6 py-2 border-2 border-red-500 rounded-lg disabled:opacity-50 text-white w-full sm:w-auto" disabled={isLeaveButtonDisabled} style="opacity: {isLeaveButtonDisabled ? 0.5 : 1}">

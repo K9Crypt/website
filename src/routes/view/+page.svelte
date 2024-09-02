@@ -80,9 +80,9 @@
       <form on:submit|preventDefault={handleSubmit} class="space-y-4">
         <div>
           <label for="message" class="block text-sm font-medium  mb-3">Encrypted Message</label>
-          <textarea id="message" bind:value={message} rows="4" class="w-full px-3 py-2 rounded-lg border-2 border-dark-green focus:outline-none" placeholder="Enter your message here..."></textarea>
+          <textarea id="message" bind:value={message} rows="4" class="w-full px-3 py-2 rounded-lg border-2 border-dark-green bg-transparent dark:border-white focus:outline-none placeholder:text-black/50 placeholder:dark:text-white/50" placeholder="Enter your message here..."></textarea>
         </div>
-        <button type="submit" class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg disabled:opacity-50" disabled={!message || isLoading}>
+        <button type="submit" class="px-6 py-2 border-2 border-light-green bg-light-green text-[#090f00] rounded-lg disabled:opacity-50" disabled={!message || isLoading}>
           <i class="ri-send-plane-fill  mr-1"></i> {isLoading ? 'Decrypting...' : 'Decrypt'}
         </button>
       </form>
@@ -92,22 +92,22 @@
       {/if}
 
       {#if result}
-        <div class="mt-6 p-4 rounded-lg border-2 border-dark-green">
+        <div class="mt-6 p-4 rounded-lg border-2 border-dark-green dark:border-white">
           <h3 class="text-lg font-semibold mb-2">Your Decrypted Message:</h3>
           <div class="flex items-center space-x-2 mb-2">
-            <div class="flex-grow p-2 border border-dark-green rounded-lg overflow-x-auto">
+            <div class="flex-grow p-2 border border-dark-green dark:border-white rounded-lg overflow-x-auto">
               {result}
             </div>
           </div>
           <div class="mt-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-            <button on:click={copyToClipboard} class="px-6 py-2 border-2 border-light-green bg-light-green rounded-lg">
+            <button on:click={copyToClipboard} class="px-6 py-2 border-2 border-light-green text-[#090f00] bg-light-green rounded-lg">
               <i class="ri-clipboard-line  mr-1"></i> Copy Decrypted Message
             </button>
-            <button on:click={downloadResult} class="px-6 py-2 border-2 border-dark-green rounded-lg">
+            <button on:click={downloadResult} class="px-6 py-2 border-2 border-dark-green dark:border-white rounded-lg">
               <i class="ri-download-2-fill  mr-1"></i> Download Decrypted Message
             </button>
           </div>
-          <p class="mt-2 text-sm text-dark-green/70">The message will be automatically deleted after 2 hours.</p>
+          <p class="mt-2 text-sm">The message will be automatically deleted after 2 hours.</p>
         </div>
       {/if}
     </div>

@@ -24,10 +24,10 @@
     <p class="text-base text-center mb-6">Here are some common questions about K9Crypt.</p>
     <div class="flex flex-col space-y-4">
       {#each faqs as faq, index}
-        <div class="p-4 rounded-lg border-2 border-dark-green hover:shadow-lg transition-shadow duration-300 relative">
+        <div class="p-4 rounded-lg border-2 border-dark-green dark:border-white hover:shadow-lg transition-shadow duration-300 relative">
           <button class="w-full text-left" on:click={() => toggleAnswer(index)}>
             <h3 class="text-lg font-bold mb-2 flex justify-between items-center">
-              <span>{faq.question}</span>
+              <span><i class="ri-question-fill mr-1"></i> {faq.question}</span>
               <span class="ml-2">{activeIndex === index ? '-' : '+'}</span>
             </h3>
           </button>

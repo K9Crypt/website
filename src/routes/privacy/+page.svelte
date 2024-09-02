@@ -32,8 +32,8 @@
 <section class="py-12">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-2xl font-bold text-center mb-3">Privacy Policy</h2>
-    <p class="text-sm text-dark-green/70 mb-6 text-center">Last updated: July 29, 2024</p>
-    <div class="p-6 rounded-lg border-2 border-dark-green">
+    <p class="text-sm mb-6 text-center">Last updated: July 29, 2024</p>
+    <div class="p-6 rounded-lg border-2 border-dark-green dark:border-white">
       <h3 class="text-xl font-semibold mb-4">Our Commitment to Your Privacy</h3>
       <p class="mb-4">
         At K9Crypt, we are committed to providing a secure and anonymous messaging platform. Our service is designed with your privacy as the top priority.
@@ -99,7 +99,7 @@
         K9Crypt is an open-source project. Our commitment to transparency means that anyone can review, audit, and contribute to our codebase. You can find our source code on our GitHub repository:
       </p>
       <p class="mb-4">
-        <a href="https://github.com/k9crypt" class="text-dark-green/70 underline" target="_blank" rel="noopener noreferrer">https://github.com/k9crypt</a>
+        <a href="https://github.com/k9crypt" class="text-white/70 underline" target="_blank" rel="noopener noreferrer">https://github.com/k9crypt</a>
       </p>
       <p class="mb-4">
         This open-source approach allows for:
@@ -114,7 +114,7 @@
         We encourage users to review our code and contribute to the project if they wish. This level of transparency further underscores our commitment to providing a secure and private messaging service.
       </p>
 
-      <p class="text-sm text-dark-green/70 mt-6">
+      <p class="text-sm text-white/50 mt-6">
         By using K9Crypt, you agree to this privacy policy. If you have any questions or concerns, please contact us.
       </p>
     </div>
