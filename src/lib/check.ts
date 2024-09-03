@@ -11,7 +11,6 @@ export async function checkLink(url: string): Promise<boolean> {
     const response = await axios.get(url);
     return response.status >= 200 && response.status < 300;
   } catch (error) {
-    console.error("Error checking link:", error);
     return false;
   }
 }

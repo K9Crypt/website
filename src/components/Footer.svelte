@@ -45,7 +45,8 @@
         <a href="mailto:support@k9crypt.com" class="text-sm hover:text-white/70 hover:underline"><i class="ri-mail-line mr-1"></i> hi@k9crypt.xyz</a>
       </div>
     </div>
-    <div class="mt-8 pt-8 border-t text-center">
+    <hr class="my-8 border-black/10 dark:border-white/10">
+    <div class="text-center">
       <p class="text-sm">&copy; {new Date().getFullYear()} K9Crypt. All rights reserved.</p>
       <span class="text-xs text-black/70 dark:text-white/70">Developed and designed by <a href="https://github.com/unoxdevs" class="underline">UnoxDevs</a></span>
     </div>

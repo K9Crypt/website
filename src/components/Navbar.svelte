@@ -79,12 +79,12 @@
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex justify-between items-center py-4">
       <div class="flex items-center">
-        <h1 class="font-semibold text-lg">K9Crypt</h1>
+        <a href="/" class="font-semibold text-lg">K9Crypt</a>
         <div class="ml-2 px-2 py-1 text-xs bg-light-green text-[#090f00] rounded-lg uppercase">Beta</div>
       </div>
       <div class="hidden md:flex space-x-4 text-sm">
         <a href="/"><i class="ri-home-4-fill mr-1"></i> Home</a>
-        <a href="/create"><i class="ri-message-3-fill mr-1"></i> Create</a>
+        <a href="/blog"><i class="ri-message-3-fill mr-1"></i> Blog</a>
         <a href="https://github.com/k9crypt"><i class="ri-github-fill mr-1"></i> Github</a>
         <a href="https://twitter.com/k9crypt"><i class="ri-twitter-fill mr-1"></i> Twitter</a>
         <div class="relative notifications-menu">
@@ -154,12 +154,12 @@
               </button>
             </div>
             <div class="py-2 text-sm">
-              <a href="/" class="block px-4 py-2"><i class="ri-home-4-line mr-1"></i> Home</a>
-              <a href="/create" class="block px-4 py-2"><i class="ri-message-3-line mr-1"></i> Create</a>
+              <a href="/" class="block px-4 py-2"><i class="ri-home-4-fill mr-1"></i> Home</a>
+              <a href="/blog" class="block px-4 py-2"><i class="ri-message-3-fill mr-1"></i> Blog</a>
               <a href="https://github.com/k9crypt" class="block px-4 py-2"><i class="ri-github-fill mr-1"></i> Github</a>
               <a href="https://twitter.com/k9crypt" class="block px-4 py-2"><i class="ri-twitter-fill mr-1"></i> Twitter</a>
               <button on:click={toggleNotifications} class="block px-4 py-2">
-                <i class="ri-notification-line mr-1"></i>
+                <i class="ri-notification-fill mr-1"></i>
                 <span class="text-sm">{notifications.length}</span>
               </button>
               {#if showNotifications}
@@ -185,7 +185,7 @@
                 </div>
               {/if}
               <button on:click={toggleSettings} class="block px-4 py-2">
-                <i class="ri-settings-3-line mr-1"></i> Settings
+                <i class="ri-settings-3-fill mr-1"></i> Settings
               </button>
               {#if showSettings}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
