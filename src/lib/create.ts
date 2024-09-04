@@ -16,7 +16,6 @@ export async function createMessage(message: string): Promise<string> {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("API Error:", errorText);
       throw new Error(
         `Failed to create message: ${response.status} ${response.statusText}`
       );
@@ -25,7 +24,6 @@ export async function createMessage(message: string): Promise<string> {
     const data = await response.text();
     return data;
   } catch (error) {
-    console.error("Error creating message:", error);
     throw error;
   }
 }

@@ -13,7 +13,6 @@
     onMount(async () => {
         await loadPosts();
     });
-
     
     async function loadPosts() {
       isLoading = true;

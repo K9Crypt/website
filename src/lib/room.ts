@@ -17,16 +17,9 @@ export async function createRoom(userId: string, type: "public" | "private", pas
       body: JSON.stringify({ userId, type, password }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("API Error:", errorText);
-      throw new Error(`Failed to create room: ${response.status} ${response.statusText}`);
-    }
-
     const data = await response.json();
     return data.roomId;
   } catch (error) {
-    console.error("Error creating room:", error);
     throw error;
   }
 }
@@ -50,16 +43,9 @@ export async function joinRoom(roomId: string, userId: string, password?: string
       body: JSON.stringify({ roomId, userId, password }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("API Error:", errorText);
-      throw new Error(`Failed to join room: ${response.status} ${response.statusText}`);
-    }
-
     const data = await response.json();
     return data.message;
   } catch (error) {
-    console.error("Error joining room:", error);
     throw error;
   }
 }
@@ -80,16 +66,9 @@ export async function checkRoom(roomId: string): Promise<any> {
       },
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("API Error:", errorText);
-      throw new Error(`Failed to check room: ${response.status} ${response.statusText}`);
-    }
-
     const data = await response.json();
     return data.room;
   } catch (error) {
-    console.error("Error checking room:", error);
     throw error;
   }
 }
@@ -112,16 +91,9 @@ export async function leaveRoom(roomId: string, userId: string): Promise<string>
       body: JSON.stringify({ roomId, userId }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("API Error:", errorText);
-      throw new Error(`Failed to leave room: ${response.status} ${response.statusText}`);
-    }
-
     const data = await response.json();
     return data.message;
   } catch (error) {
-    console.error("Error leaving room:", error);
     throw error;
   }
 }

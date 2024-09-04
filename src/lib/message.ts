@@ -19,7 +19,6 @@ export async function sendMessage(roomId: string, userId: string, message: strin
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("API Error:", errorText);
       throw new Error(
         `Failed to send message: ${response.status} ${response.statusText} - ${errorText}`
       );
@@ -56,14 +55,12 @@ export async function getMessages(roomId: string): Promise<Array<{ sender: strin
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("API Error:", errorText);
       throw new Error(`Failed to get messages: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
     return data.messages || [];
   } catch (error) {
-    console.error("Error getting messages:", error);
     throw error;
   }
 }

@@ -15,18 +15,9 @@ export async function viewMessage(message: string): Promise<string> {
       body: JSON.stringify({ message }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("API Error:", errorText);
-      throw new Error(
-        `Failed to view message: ${response.status} ${response.statusText}`
-      );
-    }
-
     const data = await response.text();
     return data;
   } catch (error) {
-    console.error("Error viewing message:", error);
     throw error;
   }
 }

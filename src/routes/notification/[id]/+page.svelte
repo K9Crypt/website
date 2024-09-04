@@ -1,8 +1,10 @@
 <script lang="ts">
+  import Navbar from '../../../components/Navbar.svelte';
   import { page } from '$app/stores';
   import { getNotification } from '$lib/notifications';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
+  import Footer from '../../../components/Footer.svelte';
 
   let notification = $page.params.id;
   let notificationData: any = {};
@@ -12,6 +14,7 @@
   });
 </script>
 
+<Navbar />
 <section class="py-12">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-2xl font-bold text-center mb-3">Notification</h2>
@@ -26,3 +29,4 @@
     {/if}
   </div>
 </section>
+<Footer />
