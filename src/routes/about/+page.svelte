@@ -15,7 +15,7 @@
             }
         },
         {
-            name: "Muhemmed Emin Bıyıkçı",
+            name: "Emin Bıyıkcı",
             role: "CEO & Front-end Developer",
             description: "Emin, experienced front-end developer with a passion for creating visually appealing and user-friendly interfaces.",
             socials: {
