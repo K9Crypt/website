@@ -123,11 +123,11 @@
         <div class="bg-cWhiteGray border border-white/5 rounded p-6 hover:bg-cWhiteGray transition-all duration-300">
             <h3 class="text-lg font-semibold mb-4">Ready to Get Started?</h3>
             <p class="text-white/50 text-sm mb-6">Experience the most secure messaging platform today.</p>
-            <div class="flex gap-4">
-                <a href="/start" class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="/start" class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center">
                     Get Started
                 </a>
-                <a href="/contact" class="flex items-center border-2 bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium">
+                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium justify-center">
                     Learn More
                 </a>
             </div>

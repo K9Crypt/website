@@ -34,7 +34,7 @@ test();`
             }
         },
         {
-            title: "Creating & Managing Rooms",
+            title: "Rooms Management",
             description: "Learn how to create and manage secure chat rooms.",
             icon: "ri-group-fill",
             steps: [
@@ -130,8 +130,8 @@ test();`
                     
                     <div>
                         <h3 class="text-lg font-medium mb-2">Basic Usage</h3>
-                        <div class="bg-black/30 rounded p-3">
-                            <pre><code class="text-white/50">{sections[0].content.basicUsage}</code></pre>
+                        <div class="bg-black/30 rounded p-2 sm:p-3 overflow-x-auto">
+                            <pre class="text-xs sm:text-sm md:text-base whitespace-pre-wrap sm:whitespace-pre"><code class="text-white/50">{sections[0].content.basicUsage}</code></pre>
                         </div>
                     </div>
                 </div>
@@ -171,20 +171,20 @@ test();`
                 </div>
             </div>
 
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 hover:bg-cWhiteGray transition-all duration-300">
-                <h3 class="text-lg font-semibold mb-4">Need More Help?</h3>
-                <p class="text-white/50 text-sm mb-4">If you need additional assistance or have questions, feel free to reach out:</p>
-                <div class="flex gap-4">
-                    <a href="https://github.com/k9crypt" class="flex items-center text-sm text-white/50 hover:text-white transition-colors duration-300">
-                        <i class="ri-github-fill mr-2"></i>
+            <div class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 hover:bg-cWhiteGray transition-all duration-300">
+                <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Need More Help?</h3>
+                <p class="text-white/50 text-xs sm:text-sm mb-3 sm:mb-4">If you need additional assistance or have questions, feel free to reach out:</p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <a href="https://github.com/k9crypt" class="flex items-center justify-center sm:justify-start text-xs sm:text-sm text-white/50 hover:text-white transition-colors duration-300 bg-black/20 sm:bg-transparent p-3 sm:p-0 rounded sm:rounded-none">
+                        <i class="ri-github-fill mr-2 text-base sm:text-sm"></i>
                         GitHub Issues
                     </a>
-                    <a href="mailto:support@k9crypt.xyz" class="flex items-center text-sm text-white/50 hover:text-white transition-colors duration-300">
-                        <i class="ri-mail-fill mr-2"></i>
+                    <a href="mailto:support@k9crypt.xyz" class="flex items-center justify-center sm:justify-start text-xs sm:text-sm text-white/50 hover:text-white transition-colors duration-300 bg-black/20 sm:bg-transparent p-3 sm:p-0 rounded sm:rounded-none">
+                        <i class="ri-mail-fill mr-2 text-base sm:text-sm"></i>
                         Email Support
                     </a>
-                    <a href="https://discord.gg/k9crypt" class="flex items-center text-sm text-white/50 hover:text-white transition-colors duration-300">
-                        <i class="ri-discord-fill mr-2"></i>
+                    <a href="https://discord.gg/k9crypt" class="flex items-center justify-center sm:justify-start text-xs sm:text-sm text-white/50 hover:text-white transition-colors duration-300 bg-black/20 sm:bg-transparent p-3 sm:p-0 rounded sm:rounded-none">
+                        <i class="ri-discord-fill mr-2 text-base sm:text-sm"></i>
                         Discord Community
                     </a>
                 </div>

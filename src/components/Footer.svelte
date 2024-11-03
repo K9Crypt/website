@@ -83,7 +83,6 @@
             <div>
                 <h4 class="text-base font-semibold mb-4 text-white/80">Support</h4>
                 <ul class="space-y-2">
-                    <li><a href="#faq" class="text-white/50 hover:text-white text-sm transition-colors duration-300">FAQ</a></li>
                     <li><a href="/privacy" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a></li>
                     <li><a href="/terms" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Terms of Service</a></li>
                     <li><a href="/docs" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Documentation</a></li>
