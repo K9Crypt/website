@@ -135,7 +135,7 @@
                 <button class="w-full bg-cYellow text-black py-2 px-4 rounded font-medium" on:click={copyToClipboard}>
                     <i class="ri-file-copy-fill mr-1"></i> Copy
                 </button>
-                <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-2 px-4 rounded font-medium" on:click={() => goto('/view')}>
+                <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-2 px-4 rounded font-medium" on:click={() => goto('/view/message')}>
                     <i class="ri-eye-fill mr-1"></i> View Message
                 </button>
             </div>

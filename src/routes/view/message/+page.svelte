@@ -68,42 +68,23 @@
 {#if status === false && status !== null}
 <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
     <div class="w-full max-w-2xl mx-auto">
-        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">
-            Connection Error
-        </h1>
-        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">
-            Unable to connect to the server. Please check your connection and try again.
-        </p>
+        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
+        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
                 
         <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
                 <i class="ri-error-warning-line text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
-            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">
-                Server Status: Offline
-            </h2>
-            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">
-                The server is currently unavailable. Our team has been notified and is working on resolving the issue.
-            </p>
+            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
+            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">The server is currently unavailable. Our team has been notified and is working on resolving the issue.</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button 
-                class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" 
-                on:click={() => window.location.reload()}
-            >
-                Try Again
-            </button>
-            <button 
-                class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" 
-                on:click={routeSupport}
-            >
-                Support
-            </button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
         </div>
     </div>
 </div>
-
 {:else}
 {#if isPageLoading}
 <section class="py-8 sm:py-12 md:py-16 px-4 flex items-center justify-center min-h-screen">
