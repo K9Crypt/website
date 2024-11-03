@@ -10,7 +10,7 @@
     let userId: string = '';
     let message: string = '';
     let isLoading = false;
-    let status = false;
+    let status: boolean | null = null;;
     let error = '';
     let isPageLoading = true;
     let messages: any[] = [];
@@ -220,8 +220,7 @@
 </script>
 
 <Toaster />
-
-{#if status === false}
+{#if status === false && status !== null}
 <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4 sm:px-6">
     <div class="max-w-2xl mx-auto mb-12">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-red-500 text-center">Connection Error</h1>
@@ -248,16 +247,16 @@
         <div class="bg-cWhiteGray border border-white/5 rounded h-[calc(100vh-200px)] flex flex-col">
             <div class="p-4 border-b border-white/5 flex items-center justify-between animate-pulse">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-cWhiteGray rounded-full"></div>
+                    <div class="w-10 h-10 bg-[#2C2C2C] rounded-full"></div>
                     <div>
-                        <div class="h-4 bg-cWhiteGray rounded w-24 mb-2"></div>
-                        <div class="h-3 bg-cWhiteGray rounded w-16"></div>
+                        <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
+                        <div class="h-3 bg-[#2C2C2C] rounded w-16"></div>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-cWhiteGray rounded"></div>
-                    <div class="w-24 h-8 bg-cWhiteGray rounded"></div>
+                    <div class="w-8 h-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="w-24 h-8 bg-[#2C2C2C] rounded"></div>
                 </div>
             </div>
 
@@ -265,13 +264,13 @@
                 {#each Array(5) as _, i}
                 <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'}">
                     <div class="animate-pulse">
-                        <div class="relative {i % 2 === 0 ? 'bg-cWhiteGray' : 'bg-cWhiteGray'} rounded p-3 max-w-md">
+                        <div class="relative {i % 2 === 0 ? 'bg-[#2C2C2C]' : 'bg-[#2C2C2C]'} rounded p-3 max-w-md">
                             {#if i % 2 !== 0}
-                            <div class="h-4 bg-cWhiteGray rounded w-24 mb-2"></div>
+                            <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
                             {/if}
                             <div class="space-y-2">
-                                <div class="h-3 bg-cWhiteGray rounded w-full"></div>
-                                <div class="h-3 bg-cWhiteGray rounded w-3/4"></div>
+                                <div class="h-3 bg-[#2C2C2C] rounded w-full"></div>
+                                <div class="h-3 bg-[#2C2C2C] rounded w-3/4"></div>
                             </div>
                         </div>
                     </div>
@@ -281,8 +280,8 @@
 
             <div class="p-4 border-t border-white/5 animate-pulse">
                 <div class="flex items-center gap-2">
-                    <div class="flex-1 h-10 bg-cWhiteGray rounded"></div>
-                    <div class="w-10 h-10 bg-cWhiteGray rounded"></div>
+                    <div class="flex-1 h-10 bg-[#2C2C2C] rounded"></div>
+                    <div class="w-10 h-10 bg-[#2C2C2C] rounded"></div>
                 </div>
             </div>
         </div>
@@ -335,13 +334,13 @@
                 {#each messages as message (message.id)}
                 <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group">
                     {#if message.replyTo}
-                        <div class="bg-cWhiteGray rounded p-2 mb-2 max-w-full sm:max-w-md text-sm text-white/50">
+                        <div class="bg-[#2C2C2C] rounded p-2 mb-2 max-w-full sm:max-w-md text-sm text-white/50">
                             <div class="font-semibold text-cYellow">{message.replyTo.sender}</div>
                             <div>{message.replyTo.content}</div>
                         </div>
                     {/if}
 
-                    <div class="relative {message.userId === userId ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white'} rounded p-3 max-w-full sm:max-w-md">
+                    <div class="relative {message.userId === userId ? 'bg-cYellow text-black' : 'bg-[#2C2C2C] text-white'} rounded p-3 max-w-full sm:max-w-md">
                         <div class="absolute top-0 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-2 px-3">
                             <button on:click={() => handleReply(message)} class="text-white/50 hover:text-white transition-all duration-300">
                                 <i class="ri-reply-fill"></i>
@@ -353,7 +352,12 @@
 
                         <div class="flex flex-col gap-1">
                             {#if message.userId !== userId}
-                            <span class="text-sm font-semibold">{message.sender}</span>
+                            <span class="text-sm text-white/50">
+                                {#if message.userId === 'System'}
+                                <i class="ri-shield-star-fill"></i>
+                                {/if}
+                                {message.userId}
+                            </span>
                             {/if}
                             <p>{message.message}</p>
                         </div>
@@ -364,7 +368,7 @@
 
             <div class="p-4 border-t border-white/5">
                 {#if replyingTo}
-                <div class="bg-cWhiteGray rounded p-2 mb-2 flex items-center justify-between">
+                <div class="bg-[#2C2C2C] rounded p-2 mb-2 flex items-center justify-between">
                     <div class="text-sm text-white/50 truncate">
                         <span class="text-cYellow">Replying to message</span>
                         <p class="truncate">{replyingTo.message}</p>
@@ -376,16 +380,16 @@
                 {/if}
 
                 <div class="flex flex-col sm:flex-row gap-2">
-                    <input type="text" id="message-input" bind:value={message} placeholder="Type a message..." on:input={handleInput} on:keydown={handleKeyDown} class="flex-1 bg-cWhiteGray border border-white/5 rounded px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:border-cYellow placeholder-white/30" />
+                    <input type="text" id="message-input" bind:value={message} placeholder="Type a message..." on:input={handleInput} on:keydown={handleKeyDown} class="flex-1 bg-[#2C2C2C] border border-white/5 rounded px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:border-cYellow placeholder-white/30" />
                     <button on:click={handleSendMessage} disabled={isSendButtonDisabled} class="bg-cYellow text-black px-3 py-1.5 rounded font-medium hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-h-[40px] sm:min-h-[unset]">
                         <i class="ri-send-plane-2-fill text-lg sm:text-xl"></i>
                     </button>
                 </div>
 
                 {#if showUserDropdown && filteredUsers.length > 0}
-                <div class="flex flex-col bg-cWhiteGray border border-white/5 rounded overflow-hidden mt-4">
+                <div class="flex flex-col bg-[#2C2C2C] border border-white/5 rounded overflow-hidden mt-4">
                     {#each filteredUsers as user, index}
-                    <button class="w-full px-4 py-2 text-left hover:bg-cWhiteGray {index === userDropdownIndex ? 'bg-cWhiteGray' : ''}" on:click={() => selectUser(user)}>{user}</button>
+                    <button class="w-full px-4 py-2 text-left hover:bg-[#2C2C2C] {index === userDropdownIndex ? 'bg-[#2C2C2C]' : ''}" on:click={() => selectUser(user)}>{user}</button>
                     {/each}
                 </div>
                 {/if}

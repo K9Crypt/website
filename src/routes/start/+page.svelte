@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
+    import Navbar from "../../components/Navbar.svelte";
+    import Footer from "../../components/Footer.svelte";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { checkLink } from "$lib/check";
 
-    let status = false;
+    let status: boolean | null = null;
     let isLoaded = false;
 
     onMount(async () => {
@@ -41,7 +43,8 @@
     ];
 </script>
 
-{#if status === false}
+<Navbar />
+{#if status === false && status !== null}
 <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4 sm:px-6">
     <div class="max-w-2xl mx-auto mb-12">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-red-500 text-center">Connection Error</h1>
@@ -100,3 +103,5 @@
     </div>
 </section>
 {/if}
+
+<Footer />

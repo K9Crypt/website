@@ -1,0 +1,148 @@
+<script lang="ts">
+    import Navbar from '../../../components/Navbar.svelte';
+    import Footer from '../../../components/Footer.svelte';
+    import { viewMessage } from '$lib/view';
+    import toast, { Toaster } from 'svelte-french-toast';
+    import { onMount } from "svelte";
+
+    let message = '';
+    let result = '';
+    let isLoading = false;
+    let error = '';
+    let isPageLoading = true;
+
+    onMount(async () => {
+        setTimeout(() => isPageLoading = false, 1000);
+    });
+
+    async function handleSubmit() {
+        if (!message.trim()) {
+            error = 'Please enter a message';
+            return;
+        }
+
+        isLoading = true;
+        error = '';
+
+        try {
+            result = await viewMessage(message);
+        } catch {
+            error = 'Failed to decrypt message. Please try again.';
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    function copyToClipboard() {
+        navigator.clipboard.writeText(result).then(
+        () => toast.success('Decrypted message copied to clipboard.', { duration: 3000, position: "top-right", style: 'background-color: #1B1B1B; color: #fff;' }),
+        err => {
+            console.error('Could not copy text: ', err);
+            toast.error('Failed to copy decrypted message. Please try again.', { duration: 3000, position: "top-right", style: 'background-color: #1B1B1B; color: #fff;' });
+        }
+        );
+    }
+
+    function downloadResult() {
+        const blob = new Blob([result], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'decrypted.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast.success('File downloaded successfully.', { duration: 3000, position: "top-right", style: 'background-color: #1B1B1B; color: #fff;' });
+    }
+</script>
+
+<Toaster />
+<Navbar />
+{#if isPageLoading}
+<section class="py-8 sm:py-12 md:py-16 px-4 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
+        <div class="mb-8 animate-pulse">
+            <div class="h-8 bg-cWhiteGray rounded w-64 mb-3"></div>
+            <div class="h-4 bg-cWhiteGray rounded w-96"></div>
+        </div>
+
+        <div class="bg-cWhiteGray border border-white/5 rounded p-6 space-y-6 animate-pulse">
+            <div class="space-y-2">
+                <div class="h-4 bg-cWhiteGray rounded w-24"></div>
+                <div class="h-32 bg-cWhiteGray rounded w-full"></div>
+            </div>
+
+            <div class="h-12 bg-cWhiteGray rounded w-full"></div>
+        </div>
+
+        <div class="mt-8 bg-cWhiteGray rounded border border-white/5 p-4">
+            <div class="flex items-start gap-3">
+                <div class="w-4 h-4 bg-cWhiteGray rounded mt-1"></div>
+                <div class="space-y-2 flex-1">
+                    <div class="h-4 bg-cWhiteGray rounded w-32"></div>
+                    <div class="h-3 bg-cWhiteGray rounded w-full"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{:else}
+<section class="flex items-center justify-center min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-3 text-white/80">Decrypt Message</h2>
+            <p class="text-white/50 text-sm">View your encrypted message securely.</p>
+        </div>
+
+        <div class="bg-cWhiteGray border border-white/5 rounded p-6 space-y-6">
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-white/80">Encrypted Message</label>
+                <textarea 
+                    bind:value={message} 
+                    rows="4" 
+                    placeholder="Enter encrypted message here..." 
+                    class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"
+                ></textarea>
+            </div>
+
+            {#if error}
+            <p class="text-red-500 text-sm">{error}</p>
+            {/if}
+
+            <button 
+                on:click={handleSubmit}
+                class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50"
+                disabled={!message || isLoading}
+            >
+                <i class="ri-lock-unlock-fill mr-1"></i> {isLoading ? 'Decrypting...' : 'Decrypt Message'}
+            </button>
+        </div>
+
+        {#if result}
+        <div class="mt-6 bg-cWhiteGray rounded p-4 border border-white/5">
+            <h3 class="text-lg font-semibold text-white/80 mb-4">Decrypted Message:</h3>
+            <p class="text-white/70 bg-black/20 p-3 rounded border border-white/5 mb-4 break-all">{result}</p>
+            <div class="flex gap-4">
+                <button class="w-full bg-cYellow text-black py-2 px-4 rounded font-medium" on:click={copyToClipboard}>
+                    <i class="ri-file-copy-fill mr-1"></i> Copy
+                </button>
+                <button class="w-full bg-cYellow/10 border-2 border-cYellow text-cYellow py-2 px-4 rounded font-medium" on:click={downloadResult}>
+                    <i class="ri-download-2-fill mr-1"></i> Download
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-cWhiteGray rounded border border-white/5 p-4">
+            <div class="flex items-start gap-3">
+                <i class="ri-information-fill text-cYellow mt-1"></i>
+                <div>
+                    <h4 class="text-sm font-medium text-white/80 mb-1">Security Information</h4>
+                    <p class="text-xs text-white/50">The decrypted message will be automatically deleted after 2 hours.</p>
+                </div>
+            </div>
+        </div>
+        {/if}
+    </div>
+</section>
+{/if}
+
+<Footer />

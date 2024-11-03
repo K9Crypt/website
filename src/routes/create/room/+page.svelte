@@ -1,4 +1,6 @@
 <script lang="ts">
+    import Navbar from '../../../components/Navbar.svelte';
+    import Footer from '../../../components/Footer.svelte';
     import { goto } from '$app/navigation';
     import { createRoom } from '$lib/room';
     import { onMount } from 'svelte';
@@ -8,7 +10,7 @@
     let isLoaded = false;
     let selectedType: "public" | "private" = 'public';
     let showPassword = false;
-    let status = false;
+    let status: boolean | null = null;;
     let userId = '';
     let roomId = '';
     let roomPassword = '';
@@ -80,7 +82,9 @@
     }
 </script>
 
-{#if status === false}
+<Toaster />
+<Navbar />
+{#if status === false && status !== null}
 <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4 sm:px-6">
     <div class="max-w-2xl mx-auto mb-12">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-red-500 text-center">Connection Error</h1>
@@ -149,7 +153,6 @@
     </div>
 </section>
 {:else}
-<Toaster />
 <section class="flex items-center justify-center min-h-screen">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
         <div class="mb-8">
@@ -227,3 +230,5 @@
 </section>
 {/if}
 {/if}
+
+<Footer />

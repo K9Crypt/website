@@ -15,7 +15,7 @@
             }
         },
         {
-            name: "Emin Bıyıkcı",
+            name: "Emin Bıyıkçı",
             role: "CEO & Front-end Developer",
             description: "Emin, experienced front-end developer with a passion for creating visually appealing and user-friendly interfaces.",
             socials: {
@@ -43,8 +43,6 @@
         }, 1500);
     });
 </script>
-
-<Navbar/>
 
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
