@@ -1,5 +1,8 @@
 <script>
+    import Navbar from "../../components/Navbar.svelte";
+    import Footer from "../../components/Footer.svelte";
     import { onMount } from "svelte";
+
     let isLoaded = false;
 
     onMount(() => {
@@ -32,6 +35,7 @@
     ];
 </script>
 
+<Navbar />
 <section class="min-h-screen flex items-center justify-center px-4 py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 text-center">
         {#if !isLoaded}
@@ -69,3 +73,5 @@
         {/if}
     </div>
 </section>
+
+<Footer />

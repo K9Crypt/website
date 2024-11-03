@@ -1,5 +1,8 @@
 <script lang="ts">
+    import Navbar from '../../components/Navbar.svelte';
+    import Footer from '../../components/Footer.svelte';
     import { onMount } from 'svelte';
+
     let isLoaded = false;
 
     const teamMembers = [
@@ -44,6 +47,7 @@
     });
 </script>
 
+<Navbar />
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         {#if !isLoaded}
@@ -188,3 +192,5 @@
         {/if}
     </div>
 </section>
+
+<Footer />
