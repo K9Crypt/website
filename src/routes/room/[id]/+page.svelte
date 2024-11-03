@@ -50,7 +50,7 @@
             }
         } catch {
             error = 'Failed to load room data';
-            toast.error(error);
+            toast.error(`${error}`, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         }
     }
 
@@ -98,7 +98,7 @@
             startPolling();
         } catch {
             error = 'Failed to load room data';
-            toast.error(error);
+            toast.error(`${error}`, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         } finally {
             isPageLoading = false;
         }
@@ -125,7 +125,7 @@
             await loadRoomData();
         } catch {
             error = 'Failed to send message';
-            toast.error(error);
+            toast.error(`${error}`, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         } finally {
             isLoading = false;
         }
@@ -142,7 +142,7 @@
             goto('/start');
         } catch {
             error = 'Failed to leave room';
-            toast.error(error);
+            toast.error(`${error}`, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         } finally {
             isLoading = false;
         }
@@ -161,7 +161,7 @@
             startPolling();
         } catch {
             error = 'Invalid password';
-            toast.error(error);
+            toast.error(`${error}`, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
             isPasswordRequired = true;
             hasJoinedRoom = false;
         } finally {
