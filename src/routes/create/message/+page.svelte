@@ -105,7 +105,7 @@
     </div>
 </section>
 {:else}
-<section class="flex items-center justify-center min-h-screen">
+<section class="min-h-screen flex items-center justify-center py-10 md:py-0">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
         <div class="mb-8">
             <h2 class="text-3xl font-bold mb-3 text-white/80">Create Encrypted Message</h2>
@@ -131,14 +131,14 @@
         <div class="mt-6 bg-cWhiteGray rounded p-4 border border-white/5">
             <h3 class="text-lg font-semibold text-white/80 mb-4">Encrypted Message:</h3>
             <p class="text-white/70 bg-black/20 p-3 rounded border border-white/5 mb-4 break-all">{result}</p>
-            <div class="flex gap-4">
-                <button class="w-full bg-cYellow text-black py-2 px-4 rounded font-medium" on:click={copyToClipboard}>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button class="w-full bg-cYellow text-black py-3 sm:py-2 px-4 rounded font-medium text-sm sm:text-base" on:click={copyToClipboard}>
                     <i class="ri-file-copy-fill mr-1"></i> Copy
                 </button>
-                <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-2 px-4 rounded font-medium" on:click={() => goto('/view/message')}>
+                <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-3 sm:py-2 px-4 rounded font-medium text-sm sm:text-base" on:click={() => goto('/view/message')}>
                     <i class="ri-eye-fill mr-1"></i> View Message
                 </button>
-            </div>
+            </div>            
         </div>
         {/if}
         <div class="mt-8 bg-cWhiteGray rounded border border-white/5 p-4">

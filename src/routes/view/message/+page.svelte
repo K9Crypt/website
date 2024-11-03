@@ -115,7 +115,7 @@
     </div>
 </section>
 {:else}
-<section class="flex items-center justify-center min-h-screen">
+<section class="min-h-screen flex items-center justify-center py-10 md:py-0">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
         <div class="mb-8">
             <h2 class="text-3xl font-bold mb-3 text-white/80">Decrypt Message</h2>
@@ -125,11 +125,7 @@
         <div class="bg-cWhiteGray border border-white/5 rounded p-6 space-y-6">
             <div class="space-y-2">
                 <label class="block text-sm font-medium text-white/80">Encrypted Message</label>
-                <textarea 
-                    bind:value={message} 
-                    rows="4" 
-                    placeholder="Enter encrypted message here..." 
-                    class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"
+                <textarea bind:value={message} rows="4" placeholder="Enter encrypted message here..." class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"
                 ></textarea>
             </div>
 
@@ -156,6 +152,7 @@
             </div>
         </div>
 
+        {/if}
         <div class="mt-8 bg-cWhiteGray rounded border border-white/5 p-4">
             <div class="flex items-start gap-3">
                 <i class="ri-information-fill text-cYellow mt-1"></i>
@@ -165,7 +162,6 @@
                 </div>
             </div>
         </div>
-        {/if}
     </div>
 </section>
 {/if}
