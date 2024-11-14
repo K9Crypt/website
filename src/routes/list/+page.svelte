@@ -24,6 +24,7 @@ $: canGoPrev = currentPage > 1;
 onMount(async () => {
     try {
         rooms = await listRooms();
+        console.log(rooms);
         totalRoomsCount = rooms.length;
     } catch (err) {
         error = 'Failed to fetch rooms';
@@ -111,18 +112,30 @@ function prevPage() {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {#each displayedRooms as room}
-            <button on:click={() => openJoinModal(room.ID)} class="bg-cWhiteGray border border-white/5 rounded p-6 text-left transition-all duration-300 hover:bg-opacity-75">
+            <button on:click={() => openJoinModal(room.ID)} class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left transition-all duration-300 hover:bg-opacity-75">
                 <div class="relative z-10">
-                    <h4 class="text-lg font-semibold mb-2 text-white/80">{room.ID}</h4>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between mb-3 sm:mb-2">
+                        <h4 class="text-base sm:text-lg font-semibold text-white/80 truncate">{room.ID}</h4>
+                        <div class="flex items-center gap-3">
+                            <span class="flex items-center gap-1.5 text-white/50 text-xs sm:text-sm">
+                                <i class="ri-user-fill text-base sm:text-lg"></i>
+                                {room.userCount || 0}
+                            </span>
+                            <span class="flex items-center gap-1.5 text-white/50 text-xs sm:text-sm">
+                                <i class="{room.type === 'private' ? 'ri-lock-fill' : 'ri-lock-unlock-fill'} text-base sm:text-lg"></i>
+                                {room.type.charAt(0).toUpperCase() + room.type.slice(1)}
+                            </span>
+                        </div>
+                    </div>
                     <div class="space-y-2">
                         <div class="flex items-center gap-2 text-white/50">
-                            <i class="ri-calendar-event-fill"></i>
-                            <p class="text-sm">{new Date(room.createdAt).toLocaleString()}</p>
+                            <i class="ri-calendar-event-fill text-base sm:text-lg"></i>
+                            <p class="text-xs sm:text-sm">{new Date(room.createdAt).toLocaleString()}</p>
                         </div>
                         {#if room.lastActivity}
                         <div class="flex items-center gap-2 text-white/50">
-                            <i class="ri-timer-fill"></i>
-                            <p class="text-sm">{new Date(room.lastActivity).toLocaleString()}</p>
+                            <i class="ri-timer-fill text-base sm:text-lg"></i>
+                            <p class="text-xs sm:text-sm">{new Date(room.lastActivity).toLocaleString()}</p>
                         </div>
                         {/if}
                     </div>
