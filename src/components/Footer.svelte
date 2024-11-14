@@ -18,9 +18,9 @@
                 <div class="h-8 bg-[#2C2C2C] rounded w-32"></div>
                 <div class="h-20 bg-[#2C2C2C] rounded"></div>
                 <div class="flex space-x-4">
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-full"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-full"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-full"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                 </div>
             </div>
 

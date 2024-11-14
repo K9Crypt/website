@@ -118,7 +118,7 @@
                 <div class="relative h-48 overflow-hidden">
                     <img src={getImageUrl(post)} alt={titleShortener(post.title)} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     <div class="absolute top-4 left-4">
-                        <span class="bg-cYellow text-black px-3 py-1 rounded-full text-xs font-medium">
+                        <span class="bg-cYellow text-black px-3 py-1 rounded text-xs font-medium">
                             {post.category}
                         </span>
                     </div>
