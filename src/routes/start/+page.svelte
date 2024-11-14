@@ -39,6 +39,11 @@
             title: "Decrypt Message",
             description: "Decrypt the message you encrypted or the encrypted message.",
             link: "/view/message"
+        },
+        {
+            title: "List of Rooms",
+            description: "View all the rooms.",
+            link: "/list"
         }
     ];
 </script>
@@ -75,7 +80,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {#each Array(4) as _, i}
+                {#each Array(5) as _, i}
                 <div class="bg-cWhiteGray border border-white/5 rounded p-6 h-40"></div>
                 {/each}
             </div>
