@@ -45,8 +45,7 @@ async function handleJoinRoom() {
         toast.success(message, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         goto(`/room/${selectedRoomId}`);
     } catch (error) {
-        console.error('Failed to join room:', error);
-        alert('Failed to join room. Please try again.');
+        toast.error('Failed to join room', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
     }
 }
 
@@ -97,12 +96,38 @@ function prevPage() {
             </div>
         </div>
         {:else if error}
-        <div class="text-center py-12">
-            <p class="text-red-500">{error}</p>
+        <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
+            <div class="w-full max-w-2xl mx-auto">
+                <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
+                <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
+                
+                <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
+                    <div class="flex justify-center mb-3 sm:mb-4">
+                        <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
+                    </div>
+                    <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
+                    <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">{error}</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+                    <a href="/contact" class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20">Support</a>
+                </div>
+            </div>
         </div>
         {:else if rooms.length === 0}
-        <div class="text-center py-12">
-            <p class="text-white/50">No rooms available.</p>
+        <div class="flex flex-col items-center justify-center min-h-screen">
+            <div class="text-center bg-white/5 p-8 rounded mb-6 w-96">
+                <div class="mb-4 text-white/30">
+                    <i class="ri-team-fill text-6xl"></i>
+                </div>
+                <p class="text-white/50 text-xl font-medium">No rooms available</p>
+                <p class="text-white/30 text-sm mt-2">Create a new room to start chatting</p>
+            </div>
+            <div class="flex justify-between gap-4 w-96">
+                <a href="/start" class="flex-1 flex items-center bg-cYellow text-black py-2 rounded font-medium justify-center">Create Room</a>
+                <a href="/" class="flex-1 flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 rounded font-medium justify-center">Go Back</a>
+            </div>
         </div>
         {:else}
         <div class="mb-8">
@@ -147,13 +172,13 @@ function prevPage() {
         {#if totalPages > 1}
         <div class="mt-8 flex justify-center items-center gap-4">
             <button on:click={prevPage} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded px-4 py-2 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoPrev}>
-                <i class="ri-arrow-left-line"></i>
+                <i class="ri-arrow-left-fill"></i>
                 Previous
             </button>
             <span class="text-white/50">Page {currentPage} of {totalPages}</span>
             <button on:click={() => nextPage(1)} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded px-4 py-2 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoNext}>
                 Next
-                <i class="ri-arrow-right-line"></i>
+                <i class="ri-arrow-right-fill"></i>
             </button>
         </div>
         {/if}

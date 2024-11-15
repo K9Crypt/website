@@ -319,7 +319,7 @@
                 
         <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
-                <i class="ri-error-warning-line text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
+                <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
             <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
             <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">The server is currently unavailable. Our team has been notified and is working on resolving the issue.</p>
@@ -431,14 +431,14 @@
                                 </button>
                             </h3>
                             <span class="text-white/50 text-xs sm:text-sm flex items-center gap-1">
-                                <i class="ri-shield-keyhole-line"></i>
+                                <i class="ri-shield-keyhole-fill"></i>
                                 {roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room
                             </span>
                         </div>
                     </div>
                     
                     <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 sm:px-6 py-2 sm:py-2.5 rounded text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center sm:justify-start gap-2 font-medium w-full sm:w-auto">
-                        <i class="ri-door-open-line"></i>
+                        <i class="ri-door-open-fill"></i>
                         Leave Room
                     </button>
                 </div>
@@ -450,16 +450,16 @@
                 {#each messages as message (message.id)}
                 <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn">
                     {#if message.replyTo}
-                        <div class="bg-[#2C2C2C]/80 rounded p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-4 border-l-cYellow border border-white/5 shadow-lg">
+                        <div class="bg-[#2C2C2C]/80 rounded p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-4 border-l-cYellow border border-white/5 ">
                             <div class="font-semibold text-cYellow flex items-center gap-2 mb-1">
-                                <i class="ri-reply-line"></i>
+                                <i class="ri-reply-fill"></i>
                                 <span class="text-white/90">{message.replyTo.sender}</span>
                             </div>
                             <div class="pl-6 border-l border-white/10">{message.replyTo.content}</div>
                         </div>
                     {/if}
 
-                    <div class="relative {message.userId === userId ? 'bg-cYellow text-black' : 'bg-[#2C2C2C]/80 text-white'} rounded p-4 max-w-[85%] shadow-lg border border-white/5 transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="relative {message.userId === userId ? 'bg-cYellow text-black' : 'bg-[#2C2C2C]/80 text-white'} rounded p-4 max-w-[85%]  border border-white/5 transform hover:scale-[1.02] transition-all duration-300">
                         <div class="absolute top-2 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-2 px-3 animate-fadeIn">
                             <button on:click={() => handleReply(message)} class="p-2 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300">
                                 <i class="ri-reply-fill"></i>
@@ -491,9 +491,9 @@
         <div class="bg-cWhiteGray border-t border-white/10 fixed bottom-0 left-0 right-0 sm:relative z-10">
             <div class="px-4 sm:px-6 py-3 sm:py-4">
                 {#if replyingTo}
-                <div class="bg-[#2C2C2C]/90 rounded p-3 mb-3 flex items-center justify-between border-l-4 border-l-cYellow border border-white/5 shadow-lg">
+                <div class="bg-[#2C2C2C]/90 rounded p-3 mb-3 flex items-center justify-between border-l-4 border-l-cYellow border border-white/5 ">
                     <div class="text-sm text-white/50 truncate flex items-center gap-2">
-                        <i class="ri-reply-line text-cYellow text-lg"></i>
+                        <i class="ri-reply-fill text-cYellow text-lg"></i>
                         <div>
                             <span class="text-cYellow font-medium">Replying to message</span>
                             <p class="truncate text-white/80">{replyingTo.message}</p>
@@ -527,7 +527,7 @@
                             <button class="w-full px-4 py-2.5 text-left hover:bg-white/10 transition-all duration-300
                                 {index === userDropdownIndex ? 'bg-white/10 text-cYellow' : 'text-white'} flex items-center gap-2" 
                                 on:click={() => selectUser(user)}>
-                                <i class="ri-at-line"></i>
+                                <i class="ri-at-fill"></i>
                                 {user}
                             </button>
                             {/each}
