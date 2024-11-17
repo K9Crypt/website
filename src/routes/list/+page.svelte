@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { listRooms, joinRoom } from '../../lib/room';
+import { listRooms, joinRoom, checkPassword } from '../../lib/room';
 import { goto } from '$app/navigation';
 import Navbar from '../../components/Navbar.svelte';
 import Footer from '../../components/Footer.svelte';
@@ -10,7 +10,10 @@ let rooms: any[] = [];
 let error: string | null = null;
 let showModal = false;
 let selectedRoomId: string | null = null;
+let selectedRoomType: string | null = null;
 let username = '';
+let password = '';
+let passwordError = '';
 let isLoaded = false;
 let totalRoomsCount = 0;
 let currentPage = 1;
@@ -34,12 +37,38 @@ onMount(async () => {
 
 async function handleJoinRoom() {
     try {
+        passwordError = '';
         if (!username.trim()) {
             toast.error('Please enter a username', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
             return;
         }
+
+        if (selectedRoomType === 'private') {
+            if (!password.trim()) {
+                toast.error('Please enter room password', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
+                return;
+            }
+
+            if (password.length < 6) {
+                passwordError = 'Password must be at least 6 characters';
+                return;
+            }
+
+            const isPasswordValid = await checkPassword(selectedRoomId, password);
+            if (!isPasswordValid) {
+                passwordError = 'Wrong Password';
+                return;
+            }
+        }
         
-        const message = await joinRoom(selectedRoomId, username);
+        const message = await joinRoom(selectedRoomId, username, password);
+        if (message === 'Failed to join room') {
+            toast.error(message, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
+            return;
+        }
+
+        localStorage.setItem('userId', username);
+        localStorage.setItem('hasJoinedRoom', 'true');
         showModal = false;
         toast.success(message, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
         goto(`/room/${selectedRoomId}`);
@@ -48,8 +77,10 @@ async function handleJoinRoom() {
     }
 }
 
-function openJoinModal(roomId: string) {
+function openJoinModal(roomId: string, roomType: string) {
     selectedRoomId = roomId;
+    selectedRoomType = roomType;
+    password = '';
     showModal = true;
 }
 
@@ -136,7 +167,7 @@ function prevPage() {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {#each displayedRooms as room}
-            <button on:click={() => openJoinModal(room.id)} class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left transition-all duration-300 hover:bg-opacity-75">
+            <button on:click={() => openJoinModal(room.id, room.type)} class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left transition-all duration-300 hover:bg-opacity-75">
                 <div class="relative z-10">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between mb-3 sm:mb-2">
                         <h4 class="text-base sm:text-lg font-semibold text-white/80 truncate">{room.id}</h4>
@@ -190,10 +221,38 @@ function prevPage() {
 {#if showModal}
 <div class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
     <div class="bg-cWhiteGray p-6 rounded w-96">
-        <h3 class="text-xl font-semibold mb-4 text-white/80">Enter Username</h3>
-        <input type="text" bind:value={username} placeholder="Enter your username" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+        <h3 class="text-xl font-semibold mb-4 text-white/80">Enter Room</h3>
+        <div class="space-y-4">
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-white/80">Username</label>
+                <input 
+                    type="text" 
+                    bind:value={username} 
+                    placeholder="Enter your username" 
+                    class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" 
+                />
+            </div>
+
+            {#if selectedRoomType === 'private'}
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-white/80">Room Password</label>
+                <input 
+                    type="password" 
+                    bind:value={password} 
+                    minlength="6"
+                    placeholder="Enter room password (min. 6 characters)" 
+                    class="w-full px-4 py-2 bg-black/20 border {passwordError ? 'border-red-500' : 'border-white/5'} rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" 
+                />
+            </div>
+            {/if}
+        </div>
+
+        {#if passwordError}
+        <div class="mt-4 text-red-500 text-sm font-medium">{passwordError}</div>
+        {/if}
+
         <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center w-full">
-            <button on:click={handleJoinRoom} class="flex-1 flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center w-full">Join</button>
+            <button on:click={handleJoinRoom} class="flex-1 flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center w-full disabled:opacity-50 disabled:cursor-not-allowed" disabled={!username || (selectedRoomType === 'private' && !password)}>Join</button>
             <button on:click={closeJoinModal} class="flex-1 flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium justify-center w-full">Cancel</button>
         </div>
     </div>
