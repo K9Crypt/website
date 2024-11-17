@@ -8,10 +8,14 @@ export async function createRoom(userId: string, type: "public" | "private", pas
             body: JSON.stringify({ userId, type, password }),
         });
 
+        if (!response.ok) {
+            return '';
+        }
+
         const data = await response.json();
-        return data.roomId;
+        return data.roomId || '';
     } catch (error) {
-        throw error;
+        return '';
     }
 }
 
@@ -25,10 +29,14 @@ export async function joinRoom(roomId: string, userId: string, password?: string
             body: JSON.stringify({ roomId, userId, password }),
         });
 
+        if (!response.ok) {
+            return 'Failed to join room';
+        }
+
         const data = await response.json();
-        return data.message;
+        return data.message || 'Joined room successfully';
     } catch (error) {
-        throw error;
+        return 'Failed to join room';
     }
 }
 
@@ -41,10 +49,14 @@ export async function checkRoom(roomId: string): Promise<any> {
             },
         });
 
+        if (!response.ok) {
+            return { type: 'public', users: [] };
+        }
+
         const data = await response.json();
-        return data.room;
+        return data.room || { type: 'public', users: [] };
     } catch (error) {
-        throw error;
+        return { type: 'public', users: [] };
     }
 }
 
@@ -58,10 +70,14 @@ export async function leaveRoom(roomId: string, userId: string): Promise<string>
             body: JSON.stringify({ roomId, userId }),
         });
 
+        if (!response.ok) {
+            return 'Failed to leave room';
+        }
+
         const data = await response.json();
-        return data.message;
+        return data.message || 'Left room successfully';
     } catch (error) {
-        throw error;
+        return 'Failed to leave room';
     }
 }
 
@@ -74,9 +90,34 @@ export async function listRooms(): Promise<any> {
             },
         });
 
+        if (!response.ok) {
+            return [];
+        }
+
         const data = await response.json();
-        return data.rooms;
+        return data.rooms || [];
     } catch (error) {
-        throw error;
+        return [];
+    }
+}
+
+export async function checkPassword(roomId: string, password: string): Promise<boolean> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/join`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ roomId, userId: "temp-check", password }),
+        });
+
+        if (!response.ok) {
+            return false;
+        }
+
+        const data = await response.json();
+        return !data.error;
+    } catch (error) {
+        return false;
     }
 }

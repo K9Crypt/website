@@ -24,7 +24,6 @@ $: canGoPrev = currentPage > 1;
 onMount(async () => {
     try {
         rooms = await listRooms();
-        console.log(rooms);
         totalRoomsCount = rooms.length;
     } catch (err) {
         error = 'Failed to fetch rooms';
@@ -137,10 +136,10 @@ function prevPage() {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {#each displayedRooms as room}
-            <button on:click={() => openJoinModal(room.ID)} class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left transition-all duration-300 hover:bg-opacity-75">
+            <button on:click={() => openJoinModal(room.id)} class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left transition-all duration-300 hover:bg-opacity-75">
                 <div class="relative z-10">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between mb-3 sm:mb-2">
-                        <h4 class="text-base sm:text-lg font-semibold text-white/80 truncate">{room.ID}</h4>
+                        <h4 class="text-base sm:text-lg font-semibold text-white/80 truncate">{room.id}</h4>
                         <div class="flex items-center gap-3">
                             <span class="flex items-center gap-1.5 text-white/50 text-xs sm:text-sm">
                                 <i class="ri-user-fill text-base sm:text-lg"></i>

@@ -2,7 +2,7 @@
     import Navbar from '../../../components/Navbar.svelte';
     import Footer from '../../../components/Footer.svelte';
     import { goto } from '$app/navigation';
-    import { joinRoom, checkRoom } from '$lib/room';
+    import { joinRoom, checkRoom, checkPassword } from '$lib/room';
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount } from 'svelte';
     import { checkLink } from '$lib/check';
@@ -29,18 +29,35 @@
             error = 'Please enter a User ID and Room ID';
             return;
         }
+
+        if (roomType === 'private' && !roomPassword) {
+            error = 'Please enter the room password';
+            return;
+        }
+
         isLoading = true;
         error = '';
 
         try {
+            if (roomType === 'private') {
+                const isPasswordValid = await checkPassword(joinRoomId, roomPassword);
+                if (!isPasswordValid) {
+                    error = 'Invalid password. Please try again.';
+                    isLoading = false;
+                    return;
+                }
+            }
+
             await joinRoom(joinRoomId, userId, roomPassword);
             localStorage.setItem('userId', userId);
-            toast.success('Joined the room successfully!', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
+            toast.success('Joined the room successfully!', { 
+                duration: 3000, 
+                position: 'top-right', 
+                style: 'background-color: #1B1B1B; color: #fff;' 
+            });
             goto(`/room/${joinRoomId}`);
         } catch (err) {
-            if (err.message === 'Invalid password') {
-                error = 'Invalid password. Please try again.';
-            } else if (err.message === 'Room not found') {
+            if (err.message === 'Room not found') {
                 error = 'Room not found. Please check the Room ID.';
             } else {
                 error = 'Failed to join the room. Please try again.';

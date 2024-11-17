@@ -51,8 +51,8 @@
             error = 'Please enter a User ID';
             return;
         }
-        if (selectedType === 'private' && !roomPassword) {
-            error = 'Please enter a room password for private rooms';
+        if (selectedType === 'private' && (!roomPassword || roomPassword.length < 6)) {
+            error = 'Please enter a room password with at least 6 characters for private rooms';
             return;
         }
         
@@ -184,9 +184,9 @@
             <div class="space-y-2">
                 <label class="block text-sm font-medium text-white/80">Room Password</label>
                 <div class="relative">
-                    <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"/>
+                    <input type="password" bind:value={roomPassword} placeholder="Enter room password (min. 6 characters)" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"/>
                 </div>
-                <p class="text-xs text-white/50">Leave blank for public rooms.</p>
+                <p class="text-xs text-white/50">Password must be at least 6 characters long.</p>
             </div>
             {/if}
 
@@ -195,7 +195,7 @@
             {/if}
 
             <div class="flex justify-center">
-                <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleCreateRoom} disabled={isLoading || !userId || (selectedType === 'private' && !roomPassword)}>{isLoading ? 'Creating...' : 'Create Room'}</button>
+                <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleCreateRoom} disabled={isLoading || !userId || (selectedType === 'private' && (!roomPassword || roomPassword.length < 6))}>{isLoading ? 'Creating...' : 'Create Room'}</button>
             </div>
         </div>
 

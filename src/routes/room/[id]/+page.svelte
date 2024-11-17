@@ -1,6 +1,6 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import { leaveRoom, joinRoom, checkRoom } from '$lib/room';
+    import { leaveRoom, joinRoom, checkRoom, checkPassword } from '$lib/room';
     import { sendMessage, getMessages } from '$lib/message';
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount, onDestroy } from 'svelte';
@@ -194,7 +194,6 @@
         isLoading = true;
         try {
             await leaveRoom(roomId, userId);
-            await sendMessage(roomId, "System", `${userId} has left the room.`);
             localStorage.removeItem('hasJoinedRoom');
             toast.success('Left the room successfully', { 
                 duration: 3000, 
@@ -218,6 +217,20 @@
         
         isLoading = true;
         try {
+            const isPasswordValid = await checkPassword(roomId, roomPassword);
+            if (!isPasswordValid) {
+                error = 'Invalid password';
+                toast.error(error, { 
+                    duration: 3000, 
+                    position: 'top-right', 
+                    style: 'background-color: #1B1B1B; color: #fff;' 
+                });
+                isPasswordRequired = true;
+                hasJoinedRoom = false;
+                isLoading = false;
+                return;
+            }
+
             await joinRoom(roomId, userId, roomPassword);
             toast.success('Joined the room', { 
                 duration: 3000, 
@@ -231,7 +244,7 @@
             await loadRoomData();
             startPolling();
         } catch (err) {
-            error = 'Invalid password';
+            error = 'Failed to join room';
             toast.error(error, { 
                 duration: 3000, 
                 position: 'top-right', 
