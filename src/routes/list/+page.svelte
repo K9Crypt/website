@@ -53,15 +53,15 @@ async function handleJoinRoom() {
                 passwordError = 'Password must be at least 6 characters';
                 return;
             }
-
-            const isPasswordValid = await checkPassword(selectedRoomId, password);
-            if (!isPasswordValid) {
-                passwordError = 'Wrong Password';
-                return;
-            }
         }
         
-        const message = await joinRoom(selectedRoomId, username, password);
+        const message = await joinRoom(selectedRoomId, username, selectedRoomType === 'private' ? password : undefined);
+        
+        if (message.includes('Invalid password')) {
+            passwordError = 'Wrong Password';
+            return;
+        }
+
         if (message === 'Failed to join room') {
             toast.error(message, { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
             return;
