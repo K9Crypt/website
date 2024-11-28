@@ -56,12 +56,8 @@
                 style: 'background-color: #1B1B1B; color: #fff;' 
             });
             goto(`/room/${joinRoomId}`);
-        } catch (err) {
-            if (err.message === 'Room not found') {
-                error = 'Room not found. Please check the Room ID.';
-            } else {
-                error = 'Failed to join the room. Please try again.';
-            }
+        } catch (err: any) {
+            error = err.message || 'Failed to join the room. Please try again.';
         } finally {
             isLoading = false;
         }

@@ -1,11 +1,11 @@
-export async function sendMessage(roomId: string, userId: string, message: string): Promise<string> {
+export async function sendMessage(roomId: string, userId: string, message: string): Promise<any> {
     try {
         const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/message`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ roomId, userId, message }),
+            },
+            body: JSON.stringify({ roomId, userId, message }),
         });
 
         if (!response.ok) {
@@ -46,4 +46,62 @@ export async function getMessages(roomId: string): Promise<Array<{ sender: strin
     } catch (error) {
         throw error;
     }
+}
+
+export async function markMessageAsRead(roomId: string, userId: string, messageId: string): Promise<void> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/read`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ roomId, userId, messageId }),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(
+                `Failed to mark message as read: ${response.status} ${response.statusText} - ${errorText}`
+            );
+        }
+    } catch (error) {
+        console.error("Error marking message as read:", error);
+        throw new Error(`Error marking message as read: ${error}`);
+    }
+}
+
+export async function reactToMessage(roomId: string, userId: string, messageId: string, emoji: string): Promise<void> {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/react`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ roomId, userId, messageId, emoji }),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(
+                `Failed to react to message: ${response.status} ${response.statusText} - ${errorText}`
+            );
+        }
+    } catch (error) {
+        console.error("Error reacting to message:", error);
+        throw new Error(`Error reacting to message: ${error}`);
+    }
+}
+
+export interface MessageReadEvent {
+    messageId: string;
+    userId: string;
+    readBy: string[];
+}
+
+export interface MessageReactionEvent {
+    messageId: string;
+    userId: string;
+    emoji: string;
+    action: 'added' | 'removed';
+    reactions: Record<string, string[]>;
 }

@@ -8,13 +8,6 @@ export async function createMessage(message: string): Promise<string> {
             body: JSON.stringify({ message }),
         });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(
-                `Failed to create message: ${response.status} ${response.statusText}`
-            );
-        }
-
         const data = await response.text();
         return data;
     } catch (error) {

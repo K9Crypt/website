@@ -20,24 +20,21 @@ export async function createRoom(userId: string, type: "public" | "private", pas
 }
 
 export async function joinRoom(roomId: string, userId: string, password?: string): Promise<string> {
-    try {
-        const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/join`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ roomId, userId, password }),
-        });
+    const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/join`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ roomId, userId, password }),
+    });
 
-        if (!response.ok) {
-            return 'Failed to join room';
-        }
-
-        const data = await response.json();
-        return data.message || 'Joined room successfully';
-    } catch (error) {
-        return 'Failed to join room';
+    const data = await response.json();
+    
+    if (!response.ok) {
+        throw new Error(data.error);
     }
+    
+    return data.message || 'Joined room successfully';
 }
 
 export async function checkRoom(roomId: string): Promise<any> {
@@ -70,14 +67,10 @@ export async function leaveRoom(roomId: string, userId: string): Promise<string>
             body: JSON.stringify({ roomId, userId }),
         });
 
-        if (!response.ok) {
-            return 'Failed to leave room';
-        }
-
         const data = await response.json();
         return data.message || 'Left room successfully';
     } catch (error) {
-        return 'Failed to leave room';
+        throw error;
     }
 }
 

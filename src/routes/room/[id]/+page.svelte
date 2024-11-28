@@ -1,7 +1,7 @@
 <script lang="ts">
     import { page } from '$app/stores';
     import { leaveRoom, joinRoom, checkRoom, checkPassword } from '$lib/room';
-    import { sendMessage, getMessages } from '$lib/message';
+    import { sendMessage, getMessages, markMessageAsRead, reactToMessage } from '$lib/message';
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
@@ -13,7 +13,14 @@
     let status: boolean | null = null;
     let error = '';
     let isPageLoading = true;
-    let messages: Array<{ id: string; userId: string; message: string; replyTo?: { sender: string; content: string } }> = [];
+    let messages: Array<{ 
+        id: string; 
+        userId: string; 
+        message: string; 
+        replyTo?: { sender: string; content: string };
+        readBy?: string[];
+        reactions?: Record<string, string[]>;
+    }> = [];
     let pollingInterval: NodeJS.Timeout;
     let replyingTo: { message: string } | null = null;
     let roomType = '';
@@ -25,6 +32,11 @@
     let showUserDropdown = false;
     let userDropdownIndex = -1;
     let messageInput: HTMLTextAreaElement;
+    let commonEmojis = ['👍', '❤️', '😂', '🎉', '🤔', '👀'];
+    let showEmojiPicker = false;
+    let activeMessageId: string | null = null;
+    let emojiPickerRef: HTMLDivElement;
+    let emojiButtonRef: HTMLButtonElement;
 
     $: roomId = $page.params.id;
     $: isSendButtonDisabled = isLoading || !message.trim();
@@ -70,12 +82,26 @@
             loadTimeout = setTimeout(async () => {
                 const newMessages = await getMessages(roomId);
                 if (JSON.stringify(newMessages) !== JSON.stringify(messages)) {
-                    messages = newMessages.map((msg, index) => ({ 
-                        ...msg, 
-                        id: `msg-${index}-${Date.now()}` 
-                    }));
+                    messages = newMessages.map((msg, index) => {
+                        const existingMessage = messages.find(m => m.id === msg.id);
+                        let readBy = msg.readBy || [];
+                        
+                        if (!readBy.includes(userId) && msg.userId !== userId) {
+                            markMessageAsRead(roomId, userId, msg.id).catch(err => {
+                                console.error('Error marking message as read:', err);
+                            });
+                            readBy.push(userId);
+                        }
+                        
+                        return { 
+                            ...msg, 
+                            id: msg.id || `msg-${index}-${Date.now()}`,
+                            readBy: readBy,
+                            reactions: msg.reactions || existingMessage?.reactions || {}
+                        };
+                    });
                 }
-            }, 300);
+            }, 1);
         } catch (err) {
             error = 'Failed to load room data';
             toast.error(error, { 
@@ -86,7 +112,63 @@
         }
     }
 
-    function startPolling() {
+    async function handleReaction(messageId: string, emoji: string) {
+        try {
+            await reactToMessage(roomId, userId, messageId, emoji);
+            messages = messages.map(msg => {
+                if (msg.id === messageId) {
+                    const reactions = msg.reactions || {};
+                    if (!reactions[emoji]) {
+                        reactions[emoji] = [userId];
+                    } else if (reactions[emoji].includes(userId)) {
+                        reactions[emoji] = reactions[emoji].filter(id => id !== userId);
+                        if (reactions[emoji].length === 0) {
+                            delete reactions[emoji];
+                        }
+                    } else {
+                        reactions[emoji] = [...reactions[emoji], userId];
+                    }
+                    return { ...msg, reactions };
+                }
+                return msg;
+            });
+            
+            showEmojiPicker = false;
+            activeMessageId = null;
+            
+            await loadRoomData();
+        } catch (err) {
+            toast.error('Failed to react to message', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
+        }
+    }
+
+    function handleClickOutside(event: MouseEvent) {
+        if (showEmojiPicker && 
+            emojiPickerRef && 
+            emojiButtonRef && 
+            !emojiPickerRef.contains(event.target as Node) && 
+            !emojiButtonRef.contains(event.target as Node)) {
+            showEmojiPicker = false;
+            activeMessageId = null;
+        }
+    }
+
+    function toggleEmojiPicker(messageId: string, event: MouseEvent) {
+        event.stopPropagation();
+        if (activeMessageId === messageId) {
+            activeMessageId = null;
+            showEmojiPicker = false;
+        } else {
+            activeMessageId = messageId;
+            showEmojiPicker = true;
+        }
+    }
+
+    async function startPolling() {
         stopPolling();
         pollingInterval = setInterval(loadRoomData, 5000);
     }
@@ -118,6 +200,7 @@
     }
 
     onMount(async () => {
+        document.addEventListener('click', handleClickOutside);
         try {
             userId = localStorage.getItem('userId') || '';
             hasJoinedRoom = localStorage.getItem('hasJoinedRoom') === 'true';
@@ -160,6 +243,7 @@
     onDestroy(() => {
         stopPolling();
         clearTimeout(loadTimeout);
+        document.removeEventListener('click', handleClickOutside);
     });
 
     async function handleSendMessage() {
@@ -365,18 +449,18 @@
         </div>
 
         <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50">
-            <div class="px-6 py-6 space-y-6">
+            <div class="px-6 py-6 space-y-6 min-h-full">
                 {#each Array(5) as _, i}
                 <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'}">
                     <div class="animate-pulse w-full sm:w-auto">
                         {#if i % 3 === 0}
-                        <div class="bg-[#2C2C2C]/80 rounded p-3 mb-2 max-w-[85%] border border-white/5">
+                        <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] border-l-2 border-l-cYellow border border-white/5">
                             <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
                             <div class="h-3 bg-[#2C2C2C] rounded w-48"></div>
                         </div>
                         {/if}
                         
-                        <div class="relative bg-[#2C2C2C]/80 rounded p-4 max-w-[85%] border border-white/5">
+                        <div class="relative bg-[#2C2C2C]/80 rounded p-4 max-w-[85%]  border border-white/5 transform hover:scale-[1.02] transition-all duration-300">
                             {#if i % 2 !== 0}
                             <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
                             {/if}
@@ -394,7 +478,7 @@
             </div>
         </div>
 
-        <div class="bg-cWhiteGray/50 backdrop-blur-md border-t border-white/10">
+        <div class="bg-cWhiteGray border-t border-white/10">
             <div class="px-6 py-4">
                 <div class="flex gap-3">
                     <div class="flex-1 h-[52px] bg-[#2C2C2C] rounded animate-pulse"></div>
@@ -415,7 +499,7 @@
             <div class="space-y-2">
                 <label class="block text-sm font-medium text-white/80">Password</label>
                 <div class="relative">
-                    <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                    <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white" />
                 </div>
                 {#if error}
                 <p class="text-xs text-red-500">{error}</p>
@@ -430,27 +514,27 @@
 <div class="fixed inset-0">
     <div class="h-screen flex flex-col">
         <div class="bg-cWhiteGray border-b border-white/10">
-            <div class="px-3 sm:px-6 py-3 sm:py-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <div class="px-4 sm:px-6 py-3 sm:py-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div class="flex items-center gap-3 sm:gap-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-cYellow rounded flex items-center justify-center text-black font-bold transition-all duration-300 text-sm sm:text-base">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-cYellow rounded-lg flex items-center justify-center text-black font-bold transition-all duration-300 text-sm sm:text-base">
                             {userId?.slice(0, 2).toUpperCase()}
                         </div>
                         <div class="min-w-0 flex-1">
                             <h3 class="font-semibold flex items-center gap-2 text-base sm:text-lg truncate">
                                 <span class="truncate">Room ID: {roomId}</span>
-                                <button on:click={copyRoomId} class="flex-shrink-0">
-                                    <i class="ri-file-copy-fill text-white/50 hover:text-cYellow transition-all duration-300 p-2 rounded hover:bg-white/10"></i>
+                                <button on:click={copyRoomId} class="flex-shrink-0 hover:scale-105 active:scale-95">
+                                    <i class="ri-file-copy-fill text-white/50 hover:text-cYellow transition-all duration-300 p-1.5 rounded hover:bg-white/10"></i>
                                 </button>
                             </h3>
-                            <span class="text-white/50 text-xs sm:text-sm flex items-center gap-1">
+                            <span class="text-white/50 text-xs sm:text-sm flex items-center gap-1.5">
                                 <i class="ri-shield-keyhole-fill"></i>
                                 {roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room
                             </span>
                         </div>
                     </div>
                     
-                    <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 sm:px-6 py-2 sm:py-2.5 rounded text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center sm:justify-start gap-2 font-medium w-full sm:w-auto">
+                    <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto hover:bg-red-500/20 active:scale-95 transition-all duration-300">
                         <i class="ri-door-open-fill"></i>
                         Leave Room
                     </button>
@@ -459,43 +543,76 @@
         </div>
 
         <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50 pb-[120px] sm:pb-0">
-            <div class="px-6 py-6 space-y-6 min-h-full">
+            <div class="px-4 sm:px-6 py-6 space-y-6 min-h-full">
                 {#each messages as message (message.id)}
                 <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn">
                     {#if message.replyTo}
-                        <div class="bg-[#2C2C2C]/80 rounded p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-4 border-l-cYellow border border-white/5 ">
-                            <div class="font-semibold text-cYellow flex items-center gap-2 mb-1">
-                                <i class="ri-reply-fill"></i>
-                                <span class="text-white/90">{message.replyTo.sender}</span>
-                            </div>
-                            <div class="pl-6 border-l border-white/10">{message.replyTo.content}</div>
+                    <div class="bg-[#2C2C2C]/80 rounded-lg p-2 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
+                        <div class="font-medium text-cYellow flex items-center gap-1.5 mb-1">
+                            <i class="ri-reply-fill text-sm"></i>
+                            <span class="text-white/90 text-sm">{message.replyTo.sender}</span>
                         </div>
+                        <div class="pl-4 border-l border-white/10 text-sm opacity-75">{message.replyTo.content}</div>
+                    </div>
                     {/if}
 
-                    <div class="relative {message.userId === userId ? 'bg-cYellow text-black' : 'bg-[#2C2C2C]/80 text-white'} rounded p-4 max-w-[85%]  border border-white/5 transform hover:scale-[1.02] transition-all duration-300">
-                        <div class="absolute top-2 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-2 px-3 animate-fadeIn">
-                            <button on:click={() => handleReply(message)} class="p-2 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300">
-                                <i class="ri-reply-fill"></i>
+                    <div class="relative group">
+                        <div class="{message.userId === userId ? 'bg-cYellow text-black rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} py-2 px-3.5 relative max-w-[350px] w-fit shadow-sm">
+                            <div class="flex flex-col gap-1.5">
+                                {#if message.userId !== userId}
+                                <span class="text-xs font-medium flex items-center gap-1.5 {message.userId === 'System' ? 'text-cYellow' : 'opacity-75'}">
+                                    {#if message.userId === 'System'}
+                                    <i class="ri-shield-star-fill text-sm"></i>
+                                    {/if}
+                                    {message.userId}
+                                </span>
+                                {/if}
+                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html message.message.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')}</p>
+                                
+                                {#if message.readBy && message.readBy.length > 1}
+                                <div class="text-[10px] opacity-50 flex items-center gap-0.5 mt-0.5">
+                                    <i class="ri-check-double-fill"></i> 
+                                    Read by {message.readBy.filter(id => id !== message.userId).length} users
+                                </div>
+                                {/if}
+                            </div>
+                        </div>
+
+                        <div class="absolute top-1/2 -translate-y-1/2 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-1 px-1.5 animate-fadeIn">
+                            <button on:click={() => handleReply(message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                                <i class="ri-reply-fill text-sm"></i>
                             </button>
-                            <button on:click={() => copyMessage(message.message)} class="p-2 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300">
-                                <i class="ri-file-copy-fill"></i>
+                            <button on:click={() => copyMessage(message.message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                                <i class="ri-file-copy-fill text-sm"></i>
+                            </button>
+                            <button bind:this={emojiButtonRef} on:click={(e) => toggleEmojiPicker(message.id, e)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                                <i class="ri-emotion-line text-sm"></i>
                             </button>
                         </div>
 
-                        <div class="flex flex-col gap-1.5">
-                            {#if message.userId !== userId}
-                            <span class="text-sm font-medium flex items-center gap-1 {message.userId === 'System' ? 'text-cYellow' : 'text-white/70'}">
-                                {#if message.userId === 'System'}
-                                <i class="ri-shield-star-fill"></i>
-                                {/if}
-                                {message.userId}
-                            </span>
-                            {/if}
-                            <p class="leading-relaxed whitespace-pre-wrap break-words">
-                                {@html message.message.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')}
-                            </p>
+                        {#if showEmojiPicker && activeMessageId === message.id}
+                        <div bind:this={emojiPickerRef} class="absolute {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} bg-[#2C2C2C]/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/10 p-2.5 z-50 animate-fadeIn">
+                            <div class="flex gap-1">
+                                {#each commonEmojis as emoji}
+                                <button on:click={() => handleReaction(message.id, emoji)} class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 {message.reactions?.[emoji]?.includes(userId) ? message.userId === userId ? 'bg-cYellow text-black' : 'bg-white/10' : ''}">
+                                    {emoji}
+                                </button>
+                                {/each}
+                            </div>
                         </div>
+                        {/if}
                     </div>
+
+                    {#if Object.keys(message.reactions || {}).length > 0}
+                    <div class="flex flex-wrap gap-1 mt-1.5 {message.userId === userId ? 'justify-end' : 'justify-start'}" style="width: {message.message.length > 100 ? '350px' : 'fit-content'}">
+                        {#each Object.entries(message.reactions || {}) as [emoji, users]}
+                        <div class="flex items-center gap-1 bg-[#2C2C2C] rounded-lg px-2 py-0.5 text-sm hover:bg-[#363636] transition-colors duration-200">
+                            <span>{emoji}</span>
+                            <span class="text-xs opacity-70">{users.length}</span>
+                        </div>
+                        {/each}
+                    </div>
+                    {/if}
                 </div>
                 {/each}
             </div>
@@ -504,7 +621,7 @@
         <div class="bg-cWhiteGray border-t border-white/10 fixed bottom-0 left-0 right-0 sm:relative z-10">
             <div class="px-4 sm:px-6 py-3 sm:py-4">
                 {#if replyingTo}
-                <div class="bg-[#2C2C2C]/90 rounded p-3 mb-3 flex items-center justify-between border-l-4 border-l-cYellow border border-white/5 ">
+                <div class="bg-[#2C2C2C]/90 rounded-lg p-3 mb-3 flex items-center justify-between border-l-2 border-l-cYellow border border-white/5">
                     <div class="text-sm text-white/50 truncate flex items-center gap-2">
                         <i class="ri-reply-fill text-cYellow text-lg"></i>
                         <div>
@@ -512,13 +629,13 @@
                             <p class="truncate text-white/80">{replyingTo.message}</p>
                         </div>
                     </div>
-                    <button on:click={cancelReply} class="p-2 hover:bg-white/10 rounded text-white/50 hover:text-white transition-all duration-300">
-                        <i class="ri-close-fill"></i>
+                    <button on:click={cancelReply} class="p-1.5 hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                        <i class="ri-close-fill text-lg"></i>
                     </button>
                 </div>
                 {/if}
 
-                <div class="flex gap-3 max-w-[100vw] sm:max-w-none">
+                <div class="flex gap-2 max-w-[100vw] sm:max-w-none">
                     <div class="flex-1 relative">
                         <input type="text" 
                             id="message-input" 
@@ -532,12 +649,12 @@
                                     handleSendMessage();
                                 }
                             }} 
-                            class="w-full bg-[#2C2C2C]/90 border border-white/10 rounded px-6 py-3.5 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white" />
+                            class="w-full bg-[#2C2C2C]/90 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white text-sm" />
                         
                         {#if showUserDropdown && filteredUsers.length > 0}
-                        <div class="absolute bottom-full left-0 w-full bg-[#2C2C2C]/90 border border-white/10 rounded overflow-hidden mb-2 -xl animate-fadeIn">
+                        <div class="absolute bottom-full left-0 w-full bg-[#2C2C2C]/90 border border-white/10 rounded-lg overflow-hidden mb-2 shadow-xl animate-fadeIn">
                             {#each filteredUsers as user, index}
-                            <button class="w-full px-4 py-2.5 text-left hover:bg-white/10 transition-all duration-300
+                            <button class="w-full px-4 py-2.5 text-left hover:bg-white/10 transition-all duration-300 text-sm
                                 {index === userDropdownIndex ? 'bg-white/10 text-cYellow' : 'text-white'} flex items-center gap-2" 
                                 on:click={() => selectUser(user)}>
                                 <i class="ri-at-fill"></i>
@@ -548,7 +665,7 @@
                         {/if}
                     </div>
                     
-                    <button on:click={handleSendMessage} disabled={isSendButtonDisabled} class="bg-cYellow text-black px-6 rounded font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transform">
+                    <button on:click={handleSendMessage} disabled={isSendButtonDisabled} class="bg-cYellow text-black px-4 rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center hover:scale-105 active:scale-95 disabled:hover:scale-100">
                         <i class="ri-send-plane-2-fill text-xl"></i>
                     </button>
                 </div>
