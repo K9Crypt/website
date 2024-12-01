@@ -64,6 +64,7 @@
             localStorage.setItem('userId', userId);
             isRoomCreated = true;
             toast.success('Room created successfully!', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
+            await goto(`/room/${roomId}`);
         } catch (err) {
             if (err.message === 'Invalid user ID') {
                 error = 'Invalid User ID. Please try again.';

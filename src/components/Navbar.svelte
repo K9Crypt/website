@@ -1,9 +1,13 @@
 <script>
     import { onMount } from "svelte";
     import { fade, slide } from "svelte/transition";
+    import { page } from "$app/stores";
     
     let isLoaded = false;
     let isMenuOpen = false;
+    let currentPath;
+    
+    $: currentPath = $page.url.pathname;
     
     onMount(() => {
         setTimeout(() => {
@@ -32,7 +36,7 @@
 <nav class="px-8 py-4 flex items-center justify-between relative z-50">
     <div class="flex items-center space-x-8">
         {#if isLoaded}
-        <img src="https://www.upload.ee/image/17339414/k9crypt-rb.png" alt="Logo" class="w-10 h-10" transition:fade={{ duration: 300 }}/>
+        <a href="/"><img src="https://www.upload.ee/image/17339414/k9crypt-rb.png" alt="Logo" class="w-10 h-10" transition:fade={{ duration: 300 }}/></a>
         {:else}
         <div class="w-10 h-10 bg-cWhiteGray rounded animate-pulse"></div>
         {/if}
@@ -40,9 +44,9 @@
         {#if isLoaded}
         <div class="hidden md:flex space-x-6 text-white/50">
             {#each menuItems as item}
-            <a href={item.href} class="relative px-3 py-1 group hover:text-white/100 transition-all duration-300 {item.href === '/' ? 'text-white/100' : ''}">
+            <a href={item.href} class="relative px-3 py-1 group hover:text-white/100 transition-all duration-300 {item.href === currentPath ? 'text-white/100' : ''}">
                 <span class="relative z-10">{item.label}</span>
-                {#if item.href === '/'}
+                {#if item.href === currentPath}
                 <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-cYellow/10 to-transparent" transition:fade={{ duration: 800, delay: 200 }}></span>
                 <span class="absolute left-0 bottom-0 w-full h-0.5 bg-cYellow" transition:fade={{ duration: 800, delay: 200 }}></span>
                 {/if}
@@ -100,7 +104,7 @@
         <div class="flex-1 overflow-y-auto py-6">
             <div class="px-3 space-y-1">
                 {#each menuItems as item}
-                <a href={item.href} class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:text-white hover:bg-white/5 transition-all duration-300" on:click={toggleMenu}>
+                <a href={item.href} class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:text-white hover:bg-white/5 transition-all duration-300 {item.href === currentPath ? 'text-white bg-white/5' : ''}" on:click={toggleMenu}>
                     <i class="{item.icon} text-lg"></i>
                     <span>{item.label}</span>
                 </a>

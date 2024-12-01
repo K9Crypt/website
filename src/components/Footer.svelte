@@ -31,6 +31,7 @@
                     <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
                     <div class="h-4 bg-[#2C2C2C] rounded w-20"></div>
                     <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
                 </div>
             </div>
 
@@ -77,6 +78,7 @@
                     <li><a href="/about" class="text-white/50 hover:text-white text-sm transition-colors duration-300">About</a></li>
                     <li><a href="/features" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Features</a></li>
                     <li><a href="/contact" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Contact</a></li>
+                    <li><a href="https://status.k9crypt.xyz/" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Status</a></li>
                 </ul>
             </div>
 

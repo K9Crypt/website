@@ -451,26 +451,27 @@
         <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50">
             <div class="px-6 py-6 space-y-6 min-h-full">
                 {#each Array(5) as _, i}
-                <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'}">
-                    <div class="animate-pulse w-full sm:w-auto">
-                        {#if i % 3 === 0}
-                        <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] border-l-2 border-l-cYellow border border-white/5">
-                            <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
-                            <div class="h-3 bg-[#2C2C2C] rounded w-48"></div>
-                        </div>
+                <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'} animate-pulse">
+                    {#if i % 3 === 0}
+                    <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] border-l-2 border-l-cYellow border border-white/5">
+                        <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
+                        <div class="h-3 bg-[#2C2C2C] rounded w-48"></div>
+                    </div>
+                    {/if}
+                    
+                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
+                        {#if i % 2 !== 0}
+                        <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
                         {/if}
-                        
-                        <div class="relative bg-[#2C2C2C]/80 rounded p-4 max-w-[85%]  border border-white/5 transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="flex flex-col gap-2">
                             {#if i % 2 !== 0}
-                            <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded w-24 opacity-50"></div>
                             {/if}
-                            <div class="space-y-2">
-                                <div class="h-3 bg-[#2C2C2C] rounded w-full"></div>
-                                <div class="h-3 bg-[#2C2C2C] rounded w-3/4"></div>
-                                {#if i % 2 === 0}
-                                <div class="h-3 bg-[#2C2C2C] rounded w-1/2"></div>
-                                {/if}
-                            </div>
+                            <div class="h-3 bg-[#2C2C2C] rounded w-full"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded w-3/4"></div>
+                            {#if i % 2 === 0}
+                            <div class="h-3 bg-[#2C2C2C] rounded w-1/2"></div>
+                            {/if}
                         </div>
                     </div>
                 </div>
