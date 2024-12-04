@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
-    import { fade, slide } from "svelte/transition";
+    import { fade, fly } from "svelte/transition";
+    import { quintOut } from 'svelte/easing';
     import { page } from "$app/stores";
     
     let isLoaded = false;
@@ -23,7 +24,8 @@
         { href: "/", label: "Home", icon: "ri-home-5-line" },
         { href: "/about", label: "About", icon: "ri-information-line" },
         { href: "/blog", label: "Blog", icon: "ri-article-line" },
-        { href: "/contact", label: "Support", icon: "ri-customer-service-line" },
+        { href: "/updates", label: "Updates", icon: "ri-history-line" },
+        { href: "/contact", label: "Support", icon: "ri-customer-service-line" }
     ];
 
     const socialLinks = [
@@ -90,37 +92,46 @@
 </nav>
 
 {#if isMenuOpen}
-<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40" transition:fade={{ duration: 300 }} on:click={toggleMenu}></div>
+<div class="fixed inset-0 bg-[#121212] flex flex-col items-center justify-between z-[100] pb-12 pt-16" transition:fade={{ duration: 300, easing: quintOut }} on:click|self={toggleMenu}>
+    <div class="absolute top-4 right-4 z-[101]" transition:fly={{ x: 20, duration: 500, easing: quintOut }}>
+        <button class="text-white" on:click={toggleMenu}>
+            <i class="ri-close-line text-2xl"></i>
+        </button>
+    </div>
 
-<div class="fixed inset-y-0 right-0 w-64 bg-cWhiteGray z-50 md:hidden" transition:slide={{ duration: 300, axis: 'x' }}>
-    <div class="flex flex-col h-full">
-        <div class="flex items-center justify-between p-6 border-b border-white/5">
-            <span class="text-lg font-medium">Menu</span>
-            <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/5 transition-all duration-300" on:click={toggleMenu}>
-                <i class="ri-close-line text-lg"></i>
-            </button>
-        </div>
+    <div></div>
 
-        <div class="flex-1 overflow-y-auto py-6">
-            <div class="px-3 space-y-1">
-                {#each menuItems as item}
-                <a href={item.href} class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:text-white hover:bg-white/5 transition-all duration-300 {item.href === currentPath ? 'text-white bg-white/5' : ''}" on:click={toggleMenu}>
-                    <i class="{item.icon} text-lg"></i>
-                    <span>{item.label}</span>
-                </a>
-                {/each}
-            </div>
-        </div>
+    <div class="flex flex-col space-y-4 relative z-[101]" transition:fly={{ y: -20, duration: 500, easing: quintOut }}>
+        {#each menuItems as item, index}
+        <a href={item.href} class="text-white text-2xl text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn" style="animation-delay: {index * 100}ms; animation-fill-mode: forwards;" on:click={toggleMenu}>
+            {item.label}
+        </a>
+        {/each}
+    </div>
 
-        <div class="p-6 border-t border-white/5">
-            <div class="flex justify-center gap-4">
-                {#each socialLinks as link}
-                <a href={link.href} class="w-10 h-10 flex items-center justify-center rounded bg-white/5 hover:bg-white/10 transition-all duration-300" title={link.label}>
-                    <i class="{link.icon} text-lg"></i>
-                </a>
-                {/each}
-            </div>
-        </div>
+    <div class="flex justify-center space-x-4 relative z-[50]" transition:fly={{ y: 20, duration: 500, easing: quintOut }}>
+        {#each socialLinks as link, index}
+        <a href={link.href} class="text-white text-xl hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn bg-cWhiteGray py-1.5 px-2.5 rounded" style="animation-delay: {(menuItems.length + index) * 100}ms; animation-fill-mode: forwards;">
+            <i class="{link.icon}"></i>
+        </a>
+        {/each}
     </div>
 </div>
 {/if}
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fadeIn {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
