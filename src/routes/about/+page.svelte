@@ -26,6 +26,15 @@
                 github: "https://github.com/eminexedev",
                 mail: "mailto:emin@k9crypt.xyz",
             }
+        },
+        {
+            name: "Patrick H.",
+            role: "Full-Stack Developer",
+            description: "Patrick is a skilled full-stack developer with expertise in both front-end and back-end technologies.",
+            socials: {
+                github: "https://github.com/dracho",
+                mail: "mailto:patrick@k9crypt.xyz",
+            }
         }
     ];
 
