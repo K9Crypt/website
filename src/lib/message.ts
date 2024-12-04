@@ -42,8 +42,24 @@ export async function getMessages(roomId: string): Promise<Array<{ sender: strin
         }
 
         const data = await response.json();
-        return data.messages || [];
+        const encryptedMessages = data.messages || [];
+
+        const decryptResponse = await fetch('/api/decrypt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ messages: encryptedMessages }),
+        });
+
+        if (!decryptResponse.ok) {
+            throw new Error('Failed to decrypt messages');
+        }
+
+        const decryptedData = await decryptResponse.json();
+        return decryptedData.messages || [];
     } catch (error) {
+        console.error('Error getting messages:', error);
         throw error;
     }
 }

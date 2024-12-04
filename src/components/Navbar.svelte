@@ -23,7 +23,7 @@
         { href: "/", label: "Home", icon: "ri-home-5-line" },
         { href: "/about", label: "About", icon: "ri-information-line" },
         { href: "/blog", label: "Blog", icon: "ri-article-line" },
-        { href: "/contact", label: "Support", icon: "ri-customer-service-line" }
+        { href: "/contact", label: "Support", icon: "ri-customer-service-line" },
     ];
 
     const socialLinks = [
@@ -55,7 +55,7 @@
         </div>
         {:else}
         <div class="hidden md:flex space-x-6 text-white/50 animate-pulse">
-            {#each Array(4) as _}
+            {#each Array(5) as _}
             <div class="h-6 bg-cWhiteGray rounded w-24"></div>
             {/each}
         </div>

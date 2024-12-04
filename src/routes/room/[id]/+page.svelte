@@ -146,6 +146,8 @@
         }
     }
 
+    let clickOutsideHandler: ((event: MouseEvent) => void) | null = null;
+
     function handleClickOutside(event: MouseEvent) {
         if (showEmojiPicker && 
             emojiPickerRef && 
@@ -200,7 +202,8 @@
     }
 
     onMount(async () => {
-        document.addEventListener('click', handleClickOutside);
+        clickOutsideHandler = (event) => handleClickOutside(event);
+        document.addEventListener('click', clickOutsideHandler);
         try {
             userId = localStorage.getItem('userId') || '';
             hasJoinedRoom = localStorage.getItem('hasJoinedRoom') === 'true';
@@ -243,7 +246,9 @@
     onDestroy(() => {
         stopPolling();
         clearTimeout(loadTimeout);
-        document.removeEventListener('click', handleClickOutside);
+        if (clickOutsideHandler) {
+            document.removeEventListener('click', clickOutsideHandler);
+        }
     });
 
     async function handleSendMessage() {
