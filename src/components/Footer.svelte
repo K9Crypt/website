@@ -21,6 +21,10 @@
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                </div>
+                <div class="mt-2">
+                    <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded-md"></div>
                 </div>
             </div>
 
@@ -58,7 +62,7 @@
             <div class="col-span-1 md:col-span-2">
                 <h3 class="text-xl font-bold mb-4 text-white/80">K9Crypt</h3>
                 <p class="text-white/50 text-sm mb-4 max-w-md">Secure, fast and reliable messaging platform. Send encrypted messages with confidence.</p>
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 mb-4">
                     <a href="https://github.com/k9crypt" class="text-white/50 hover:text-white transition-colors duration-300">
                         <i class="ri-github-fill text-xl"></i>
                     </a>
@@ -68,6 +72,12 @@
                     <a href="https://discord.gg/8jyeQV7Wyd" class="text-white/50 hover:text-white transition-colors duration-300">
                         <i class="ri-discord-fill text-xl"></i>
                     </a>
+                    <a href="https://www.linkedin.com/company/k9crypt" class="text-white/50 hover:text-white transition-colors duration-300">
+                        <i class="ri-linkedin-fill text-xl"></i>
+                    </a>
+                </div>
+                <div class="mt-2">
+                    <iframe src="https://status.k9crypt.xyz/badge?theme=dark" width="250"  height="30" frameborder="0" scrolling="no" class="rounded-md bg-cWhiteGray" title="K9Crypt Status Badge"></iframe>
                 </div>
             </div>
 
@@ -78,7 +88,7 @@
                     <li><a href="/about" class="text-white/50 hover:text-white text-sm transition-colors duration-300">About</a></li>
                     <li><a href="/features" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Features</a></li>
                     <li><a href="/contact" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Contact</a></li>
-                    <li><a href="https://status.k9crypt.xyz/" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Status</a></li>
+                    <li><a href="/brand" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Brand Assets</a></li>
                 </ul>
             </div>
 

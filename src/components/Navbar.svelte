@@ -25,13 +25,13 @@
         { href: "/about", label: "About", icon: "ri-information-line" },
         { href: "/blog", label: "Blog", icon: "ri-article-line" },
         { href: "/updates", label: "Updates", icon: "ri-history-line" },
-        { href: "/contact", label: "Support", icon: "ri-customer-service-line" }
     ];
 
     const socialLinks = [
         { href: "https://github.com/k9crypt", icon: "ri-github-fill", label: "GitHub" },
         { href: "https://x.com/k9crypt", icon: "ri-twitter-x-fill", label: "Twitter" },
-        { href: "https://discord.gg/8jyeQV7Wyd", icon: "ri-discord-fill", label: "Discord" }
+        { href: "https://discord.gg/8jyeQV7Wyd", icon: "ri-discord-fill", label: "Discord" },
+        { href: "https://www.linkedin.com/company/k9crypt", icon: "ri-linkedin-fill", label: "LinkedIn" }
     ];
 </script>
 
@@ -57,7 +57,7 @@
         </div>
         {:else}
         <div class="hidden md:flex space-x-6 text-white/50 animate-pulse">
-            {#each Array(5) as _}
+            {#each Array(4) as _}
             <div class="h-6 bg-cWhiteGray rounded w-24"></div>
             {/each}
         </div>
@@ -75,7 +75,7 @@
         </div>
         {:else}
         <div class="hidden md:flex space-x-2 animate-pulse">
-            {#each Array(3) as _}
+            {#each Array(4) as _}
             <div class="h-10 w-10 bg-cWhiteGray rounded"></div>
             {/each}
         </div>
