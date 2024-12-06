@@ -2,13 +2,13 @@
     import Navbar from '../../../components/Navbar.svelte';
     import Footer from '../../../components/Footer.svelte';
     import { goto } from '$app/navigation';
-    import { joinRoom, checkRoom, checkPassword } from '$lib/room';
+    import { joinRoom, checkRoom } from '$lib/room';
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount } from 'svelte';
     import { checkLink } from '$lib/check';
 
     let userId = '';
-    let status: boolean | null = null;;
+    let status: boolean | null = null;
     let joinRoomId = '';
     let roomPassword = '';
     let isLoading = false;
@@ -16,22 +16,22 @@
     let isPageLoading = true;
     let roomType: 'public' | 'private' = 'public';
     let isCheckingRoom = false;
+    let roomDetails: any = null;
 
-    onMount(() => {
+    onMount(async () => {
         userId = localStorage.getItem('userId') || '';
-        status = checkLink(`${import.meta.env.VITE_APP_APIURL}`);
-
+        status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
         setTimeout(() => isPageLoading = false, 1500);
     });
 
     async function handleJoinRoom() {
-        if (!userId || !joinRoomId) {
-            error = 'Please enter a User ID and Room ID';
+        if (!userId?.trim()) {
+            error = 'Please enter a username';
             return;
         }
 
-        if (roomType === 'private' && !roomPassword) {
-            error = 'Please enter the room password';
+        if (!joinRoomId?.trim()) {
+            error = 'Please enter a room ID';
             return;
         }
 
@@ -39,25 +39,47 @@
         error = '';
 
         try {
-            if (roomType === 'private') {
-                const isPasswordValid = await checkPassword(joinRoomId, roomPassword);
-                if (!isPasswordValid) {
-                    error = 'Invalid password. Please try again.';
-                    isLoading = false;
-                    return;
-                }
+            roomDetails = await checkRoom(joinRoomId);
+            if (!roomDetails) {
+                error = 'Room not found. Please check the Room ID.';
+                return;
             }
 
-            await joinRoom(joinRoomId, userId, roomPassword);
+            roomType = roomDetails.type;
+
+            if (roomDetails.users?.includes(userId)) {
+                error = 'Username is already taken in this room. Please choose a different username.';
+                return;
+            }
+
+            if (roomType === 'private' && !roomPassword?.trim()) {
+                error = 'Please enter the room password';
+                return;
+            }
+
+            await joinRoom(joinRoomId, userId, roomType === 'private' ? roomPassword : undefined);
+            
             localStorage.setItem('userId', userId);
+            localStorage.setItem(`hasJoinedRoom_${joinRoomId}`, 'true');
+            
             toast.success('Joined the room successfully!', { 
                 duration: 3000, 
                 position: 'top-right', 
                 style: 'background-color: #1B1B1B; color: #fff;' 
             });
+            
             goto(`/room/${joinRoomId}`);
         } catch (err: any) {
-            error = err.message || 'Failed to join the room. Please try again.';
+            console.error('Join room error:', err);
+            if (err.message?.includes('already taken')) {
+                error = 'Username is already taken in this room. Please choose a different username.';
+            } else if (err.message?.includes('password')) {
+                error = 'Invalid password. Please try again.';
+            } else if (err.message?.includes('not found')) {
+                error = 'Room not found. Please check the Room ID.';
+            } else {
+                error = err.message || 'Failed to join the room. Please try again.';
+            }
         } finally {
             isLoading = false;
         }
@@ -68,20 +90,36 @@
     }
 
     async function checkRoomType() {
-        if (!joinRoomId) return;
+        if (!joinRoomId?.trim()) {
+            roomType = 'public';
+            roomDetails = null;
+            error = '';
+            return;
+        }
+
         isCheckingRoom = true;
         error = '';
 
         try {
-            const roomDetails = await checkRoom(joinRoomId);
-            roomType = roomDetails.type;
-        } catch (err) {
-            if (err.message === 'Room not found') {
+            roomDetails = await checkRoom(joinRoomId);
+            if (!roomDetails) {
                 error = 'Room not found. Please check the Room ID.';
                 roomType = 'public';
+                return;
+            }
+            roomType = roomDetails.type;
+            
+            if (roomType === 'public') {
+                roomPassword = '';
+            }
+        } catch (err: any) {
+            console.error('Check room error:', err);
+            if (err.message === 'Room not found') {
+                error = 'Room not found. Please check the Room ID.';
             } else {
                 error = 'Failed to check room type. Please try again.';
             }
+            roomType = 'public';
         } finally {
             isCheckingRoom = false;
         }
@@ -182,7 +220,7 @@
             <p class="text-red-500 text-sm">{error}</p>
             {/if}
 
-            <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleJoinRoom} disabled={userId === '' || joinRoomId === '' || (roomType === 'private' && roomPassword === '') || isLoading || isCheckingRoom}>
+            <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleJoinRoom} disabled={userId === '' || joinRoomId === '' || (roomType === 'private' && (!roomPassword || roomPassword.length < 6)) || isLoading || isCheckingRoom }>
                 {isCheckingRoom ? 'Checking room...' : (isLoading ? 'Joining...' : 'Join Room')}
             </button>
         </div>

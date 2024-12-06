@@ -205,18 +205,27 @@
         clickOutsideHandler = (event) => handleClickOutside(event);
         document.addEventListener('click', clickOutsideHandler);
         try {
+            const roomId = $page.params.id;
             userId = localStorage.getItem('userId') || '';
-            hasJoinedRoom = localStorage.getItem('hasJoinedRoom') === 'true';
-            status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
-
-            if (!userId) {
-                error = 'Please enter a User ID.';
-                toast.error(error, {
+            const hasJoinedRoomStorage = localStorage.getItem(`hasJoinedRoom_${roomId}`);
+            
+            if (!hasJoinedRoomStorage) {
+                toast.error('Please join the room first.', {
                     duration: 3000,
                     position: 'top-right',
                     style: 'background-color: #1B1B1B; color: #fff;'
                 });
-                await goto('/start');
+                goto('/join/room');
+                return;
+            }
+
+            if (!userId) {
+                toast.error('Please enter a username.', {
+                    duration: 3000,
+                    position: 'top-right',
+                    style: 'background-color: #1B1B1B; color: #fff;'
+                });
+                goto('/join/room');
                 return;
             }
 
@@ -224,20 +233,19 @@
             roomType = roomDetails.type;
             roomUsers = roomDetails.users || [];
 
-            if (roomType === 'private' && !hasJoinedRoom) {
+            if (roomType === 'private' && !hasJoinedRoomStorage) {
                 isPasswordRequired = true;
                 isPageLoading = false;
                 return;
             }
 
             hasJoinedRoom = true;
-            localStorage.setItem('hasJoinedRoom', 'true');
             await loadRoomData();
             startPolling();
         } catch (err) {
             error = 'Failed to initialize room';
             toast.error(error);
-            await goto('/start');
+            await goto('/join/room');
         } finally {
             isPageLoading = false;
         }
@@ -278,26 +286,23 @@
     }
 
     async function handleLeaveRoom() {
-        if (isLoading) return;
-        
-        isLoading = true;
         try {
+            const roomId = $page.params.id;
+            localStorage.removeItem(`hasJoinedRoom_${roomId}`);
             await leaveRoom(roomId, userId);
-            localStorage.removeItem('hasJoinedRoom');
-            toast.success('Left the room successfully', { 
-                duration: 3000, 
-                position: 'top-right', 
-                style: 'background-color: #1B1B1B; color: #fff;' 
+            toast.success('Left the room successfully!', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
             });
-            await goto('/start');
+            goto('/join/room');
         } catch (err) {
-            error = 'Failed to leave room';
-            toast.error(error, { 
-                duration: 3000, 
-                position: 'top-right', 
-                style: 'background-color: #1B1B1B; color: #fff;' 
+            console.error('Error leaving room:', err);
+            toast.error('Failed to leave room. Please try again.', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
             });
-            isLoading = false;
         }
     }
 
@@ -328,7 +333,7 @@
             });
             isPasswordRequired = false;
             hasJoinedRoom = true;
-            localStorage.setItem('hasJoinedRoom', 'true');
+            localStorage.setItem(`hasJoinedRoom_${roomId}`, 'true');
             roomPassword = '';
             await loadRoomData();
             startPolling();
@@ -458,7 +463,7 @@
                 {#each Array(5) as _, i}
                 <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'} animate-pulse">
                     {#if i % 3 === 0}
-                    <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] border-l-2 border-l-cYellow border border-white/5">
+                    <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
                         <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
                         <div class="h-3 bg-[#2C2C2C] rounded w-48"></div>
                     </div>

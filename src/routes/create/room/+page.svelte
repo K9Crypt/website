@@ -10,76 +10,138 @@
     let isLoaded = false;
     let selectedType: "public" | "private" = 'public';
     let showPassword = false;
-    let status: boolean | null = null;;
+    let status: boolean | null = null;
     let userId = '';
     let roomId = '';
     let roomPassword = '';
     let isLoading = false;
     let error = '';
     let isRoomCreated = false;
+    let isValidating = false;
 
     onMount(async () => {
-        userId = localStorage.getItem('userId') || '';
-        status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
-
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
+        try {
+            isValidating = true;
+            userId = (localStorage.getItem('userId') || '').trim();
+            status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
+        } catch (err) {
+            console.error('Error during initialization:', err);
+            status = false;
+        } finally {
+            isValidating = false;
+            setTimeout(() => {
+                isLoaded = true;
+            }, 1000);
+        }
     });
 
     function selectRoomType(type: "public" | "private") {
         selectedType = type;
         showPassword = type === 'private';
+        if (type === 'public') {
+            roomPassword = '';
+            error = '';
+        }
     }
 
     async function copyToClipboard() {
-        navigator.clipboard.writeText(roomId).then(
-            () => toast.success('Room ID copied to clipboard.', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' }),
-            err => {
-                console.error('Could not copy text: ', err);
-                toast.error('Failed to copy room ID. Please try again.', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
-            }
-        );
+        try {
+            await navigator.clipboard.writeText(roomId);
+            toast.success('Room ID copied to clipboard.', { 
+                duration: 3000, 
+                position: 'top-right', 
+                style: 'background-color: #1B1B1B; color: #fff;' 
+            });
+        } catch (err) {
+            console.error('Could not copy text: ', err);
+            toast.error('Failed to copy room ID. Please try again.', { 
+                duration: 3000, 
+                position: 'top-right', 
+                style: 'background-color: #1B1B1B; color: #fff;' 
+            });
+        }
     }
 
     async function routeSupport() {
         await goto("/contact");
     }
 
-    async function handleCreateRoom() {
+    function validateInputs(): boolean {
+        userId = userId.trim();
+        roomPassword = roomPassword.trim();
+
         if (!userId) {
-            error = 'Please enter a User ID';
-            return;
+            error = 'Please enter a username';
+            return false;
         }
-        if (selectedType === 'private' && (!roomPassword || roomPassword.length < 6)) {
-            error = 'Please enter a room password with at least 6 characters for private rooms';
-            return;
+
+        if (userId.length < 3) {
+            error = 'Username must be at least 3 characters long';
+            return false;
         }
+
+        if (selectedType === 'private') {
+            if (!roomPassword) {
+                error = 'Please enter a room password';
+                return false;
+            }
+            if (roomPassword.length < 6) {
+                error = 'Room password must be at least 6 characters long';
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    async function handleCreateRoom() {
+        if (isLoading) return;
         
-        isLoading = true;
         error = '';
+        
+        if (!validateInputs()) {
+            return;
+        }
+
+        isLoading = true;
 
         try {
             roomId = await createRoom(userId, selectedType, roomPassword);
+            
             localStorage.setItem('userId', userId);
+            localStorage.setItem(`hasJoinedRoom_${roomId}`, 'true');
+            
             isRoomCreated = true;
-            toast.success('Room created successfully!', { duration: 3000, position: 'top-right', style: 'background-color: #1B1B1B; color: #fff;' });
+            error = '';
+            
+            toast.success('Room created successfully!', { 
+                duration: 3000, 
+                position: 'top-right', 
+                style: 'background-color: #1B1B1B; color: #fff;' 
+            });
+            
             await goto(`/room/${roomId}`);
         } catch (err) {
+            console.error('Room creation error:', err);
+            
             if (err.message === 'Invalid user ID') {
-                error = 'Invalid User ID. Please try again.';
+                error = 'Invalid username. Please try a different one.';
+            } else if (err.message === 'Username already taken') {
+                error = 'This username is already taken. Please choose another.';
             } else if (err.message === 'Room creation failed') {
                 error = 'Failed to create room. Please try again.';
             } else {
                 error = 'An unexpected error occurred. Please try again.';
             }
+            
+            isRoomCreated = false;
         } finally {
             isLoading = false;
         }
     }
 
     async function handleJoinRoom() {
-        goto(`/join/room`);
+        await goto(`/join/room`);
     }
 </script>
 
