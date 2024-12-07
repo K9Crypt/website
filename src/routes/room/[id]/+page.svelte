@@ -456,6 +456,7 @@
         replyingTo = null;
         
         await loadRoomData();
+        isLoading = false;
     }
 
     async function handleLeaveRoom() {
