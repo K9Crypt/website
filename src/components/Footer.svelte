@@ -24,7 +24,7 @@
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                 </div>
                 <div class="mt-2">
-                    <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded-md"></div>
+                    <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded"></div>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
                     </a>
                 </div>
                 <div class="mt-2">
-                    <iframe src="https://status.k9crypt.xyz/badge?theme=dark" width="250"  height="30" frameborder="0" scrolling="no" class="rounded-md bg-cWhiteGray" title="K9Crypt Status Badge"></iframe>
+                    <iframe src="https://status.k9crypt.xyz/badge?theme=dark" width="250"  height="30" frameborder="0" scrolling="no" class="rounded bg-cWhiteGray" title="K9Crypt Status Badge"></iframe>
                 </div>
             </div>
 
