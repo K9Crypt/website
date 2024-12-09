@@ -22,6 +22,7 @@
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                     <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
                 </div>
                 <div class="mt-2">
                     <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded"></div>
@@ -74,6 +75,9 @@
                     </a>
                     <a href="https://www.linkedin.com/company/k9crypt" class="text-white/50 hover:text-white transition-colors duration-300">
                         <i class="ri-linkedin-fill text-xl"></i>
+                    </a>
+                    <a href="https://bsky.app/profile/k9crypt.bsky.social" class="text-white/50 hover:text-white transition-colors duration-300">
+                        <i class="ri-bluesky-fill text-xl"></i>
                     </a>
                 </div>
                 <div class="mt-2">
