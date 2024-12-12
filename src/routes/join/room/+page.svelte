@@ -17,6 +17,9 @@
     let roomType: 'public' | 'private' = 'public';
     let isCheckingRoom = false;
     let roomDetails: any = null;
+    const restrictedUsernames = ['K9Crypt', 'Admin', 'UnoxDevs', 'System'].map(name => 
+        name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    );
 
     onMount(async () => {
         userId = localStorage.getItem('userId') || '';
@@ -25,8 +28,15 @@
     });
 
     async function handleJoinRoom() {
+        const normalizedUserId = userId.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
         if (!userId?.trim()) {
             error = 'Please enter a username';
+            return;
+        }
+
+        if (restrictedUsernames.includes(normalizedUserId)) {
+            error = 'This username is restricted. Please choose another one.';
             return;
         }
 
@@ -220,7 +230,7 @@
             <p class="text-red-500 text-sm">{error}</p>
             {/if}
 
-            <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleJoinRoom} disabled={userId === '' || joinRoomId === '' || (roomType === 'private' && (!roomPassword || roomPassword.length < 6)) || isLoading || isCheckingRoom }>
+            <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleJoinRoom} disabled={userId === '' || joinRoomId === '' || restrictedUsernames.includes(userId.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')) || (roomType === 'private' && (!roomPassword || roomPassword.length < 6)) || isLoading || isCheckingRoom }>
                 {isCheckingRoom ? 'Checking room...' : (isLoading ? 'Joining...' : 'Join Room')}
             </button>
         </div>

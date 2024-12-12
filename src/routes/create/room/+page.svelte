@@ -18,6 +18,9 @@
     let error = '';
     let isRoomCreated = false;
     let isValidating = false;
+    const restrictedUsernames = ['K9Crypt', 'Admin', 'UnoxDevs', 'System'].map(name => 
+        name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    );
 
     onMount(async () => {
         try {
@@ -69,6 +72,8 @@
     function validateInputs(): boolean {
         userId = userId.trim();
         roomPassword = roomPassword.trim();
+        
+        const normalizedUserId = userId.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
         if (!userId) {
             error = 'Please enter a username';
@@ -77,6 +82,11 @@
 
         if (userId.length < 3) {
             error = 'Username must be at least 3 characters long';
+            return false;
+        }
+
+        if (restrictedUsernames.includes(normalizedUserId)) {
+            error = 'This username is restricted. Please choose another one.';
             return false;
         }
 
@@ -258,7 +268,7 @@
             {/if}
 
             <div class="flex justify-center">
-                <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleCreateRoom} disabled={isLoading || !userId || (selectedType === 'private' && (!roomPassword || roomPassword.length < 6))}>{isLoading ? 'Creating...' : 'Create Room'}</button>
+                <button class="w-full bg-cYellow text-black py-3 rounded font-medium disabled:opacity-50" on:click={handleCreateRoom} disabled={isLoading || !userId || restrictedUsernames.includes(userId.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')) || (selectedType === 'private' && (!roomPassword  || roomPassword.length < 6))}>{isLoading ? 'Creating...' : 'Create Room'}</button>
             </div>
         </div>
 
