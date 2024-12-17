@@ -80,6 +80,50 @@
     let messagesContainer: HTMLDivElement;
     let shouldAutoScroll = true;
     let showCopyPopup = false;
+    let fileInput: HTMLInputElement;
+    let fileInputButtonRef: HTMLButtonElement;
+    let selectedImage: string | null = null;
+    let imageUploadProgress: number = 0;
+
+    async function handleFileSelect(event: Event) {
+        const file = (event.target as HTMLInputElement).files?.[0];
+        if (!file) return;
+        
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error('Image size must be less than 5MB', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
+            return;
+        }
+
+        try {
+            imageUploadProgress = 0;
+            const base64 = await new Promise<string>((resolve) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result as string);
+                reader.onprogress = (event) => {
+                    if (event.lengthComputable) {
+                        imageUploadProgress = (event.loaded / event.total) * 100;
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            selectedImage = base64;
+            await handleSendMessage(true);
+            selectedImage = null;
+        } catch (err) {
+            toast.error('Failed to process image', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
+        } finally {
+            imageUploadProgress = 0;
+        }
+    }
 
     function levenshteinDistance(str1: string, str2: string): number {
         const track = Array(str2.length + 1).fill(null).map(() =>
@@ -345,9 +389,11 @@
     }
 
     function handleReply(msg: { message: string }) {
-        replyingTo = msg;
-        message = '';
-        focusMessageInput();
+        if (!msg.message.startsWith('[IMAGE]')) {
+            replyingTo = msg;
+            message = '';
+            focusMessageInput();
+        }
     }
 
     function focusMessageInput() {
@@ -449,21 +495,39 @@
         }
     });
 
-    async function handleSendMessage() {
-        if (isSendButtonDisabled) return;
+    async function handleSendMessage(isImage = false) {
+        if ((!isImage && isSendButtonDisabled) || (isImage && !selectedImage)) return;
         
         isLoading = true;
-        const fullMessage = replyingTo
-            ? `Replying to "${replyingTo.message}": \n\n${message.trim()}`
-            : message.trim();
+        const fullMessage = isImage 
+            ? `[IMAGE]${selectedImage}`
+            : replyingTo
+                ? `Replying to "${replyingTo.message}": \n\n${message.trim()}`
+                : message.trim();
 
-        await sendMessage(roomId, userId, fullMessage);
-        
-        message = '';
-        replyingTo = null;
-        
-        await loadRoomData();
-        isLoading = false;
+        try {
+            await sendMessage(roomId, userId, fullMessage);
+            message = '';
+            replyingTo = null;
+            await loadRoomData();
+        } catch (err) {
+            toast.error('Failed to send message', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    function decodeBase64Image(encodedString: string): string {
+        return encodedString
+            .replace(/&#x2F;/g, '/')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"');
     }
 
     async function handleLeaveRoom() {
@@ -768,7 +832,29 @@
                             <i class="ri-reply-fill text-sm"></i>
                             <span class="text-white/90 text-sm">{message.replyTo.sender}</span>
                         </div>
-                        <div class="pl-4 border-l border-white/10 text-sm opacity-75">{message.replyTo.content}</div>
+                        <div class="pl-4 border-l border-white/10">
+                            {#if message.replyTo.content.startsWith('[IMAGE]')}
+                                <div class="relative">
+                                    <img 
+                                        src={decodeBase64Image(message.replyTo.content.slice(7))} 
+                                        alt="Replied image" 
+                                        class="max-w-full w-[100px] rounded-lg object-contain"
+                                        on:error={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[50px]">
+                                        <div class="flex flex-col items-center gap-2">
+                                            <i class="ri-error-warning-line text-xl"></i>
+                                            <span class="text-xs">Image failed to load</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {:else}
+                                <span class="text-sm opacity-75">{message.replyTo.content}</span>
+                            {/if}
+                        </div>
                     </div>
                     {/if}
 
@@ -783,21 +869,37 @@
                                     {message.userId}
                                 </span>
                                 {/if}
-                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>') || ''}</p>
                                 
-                                {#if message.readBy && message.readBy.length > 1}
-                                <div class="text-[10px] opacity-50 flex items-center gap-0.5 mt-0.5">
-                                    <i class="ri-check-double-fill"></i> 
-                                    Read by {message.readBy.filter(id => id !== message.userId).length} users
+                                {#if message?.message?.startsWith('[IMAGE]')}
+                                <div class="relative">
+                                    <img 
+                                        src={decodeBase64Image(message.message.slice(7))} 
+                                        alt="Shared image" 
+                                        class="max-w-full w-[200px] rounded-lg object-contain"
+                                        on:error={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[100px]">
+                                        <div class="flex flex-col items-center gap-2">
+                                            <i class="ri-error-warning-line text-2xl"></i>
+                                            <span class="text-sm">Image failed to load</span>
+                                        </div>
+                                    </div>
                                 </div>
+                                {:else}
+                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>') || ''}</p>
                                 {/if}
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="absolute top-1/2 -translate-y-1/2 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-1 px-1.5 animate-fadeIn">
+                            {#if !message.message.startsWith('[IMAGE]')}
                             <button on:click={() => handleReply(message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-reply-fill text-sm"></i>
                             </button>
+                            {/if}
                             <button on:click={() => copyMessage(message.message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-file-copy-fill text-sm"></i>
                             </button>
@@ -954,6 +1056,35 @@
                         </div>
                         {/if}
                     </div>
+
+                    <div class="relative">
+                        <button bind:this={fileInputButtonRef} on:click={() => fileInput.click()} class="w-12 h-12 bg-[#2C2C2C]/90 border border-white/10 rounded focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 transition-all duration-300 text-white hover:bg-[#2C2C2C] flex items-center justify-center flex-shrink-0">
+                            <i class="ri-image-line text-xl"></i>
+                        </button>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            bind:this={fileInput}
+                            class="hidden"
+                            on:change={handleFileSelect}
+                        />
+                        
+                        {#if imageUploadProgress > 0}
+                        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
+                            <div class="bg-[#2C2C2C] p-8 rounded-lg shadow-xl border border-white/10 max-w-sm w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
+                                <div class="flex flex-col items-center gap-4">
+                                    <div class="flex items-center gap-3 w-full">
+                                        <div class="w-full bg-black/20 rounded-full h-2 overflow-hidden">
+                                            <div class="h-full bg-cYellow transition-all duration-300 rounded-full" style="width: {imageUploadProgress}%"></div>
+                                        </div>
+                                        <div class="text-sm font-medium text-white/90 min-w-[40px]">{Math.round(imageUploadProgress)}%</div>
+                                    </div>
+                                    <p class="text-white/70 text-sm text-center">Uploading your image...</p>
+                                </div>
+                            </div>
+                        </div>                        
+                        {/if}
+                    </div>             
 
                     <div class="flex-1 relative">
                         <textarea 
