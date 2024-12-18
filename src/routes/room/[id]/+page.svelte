@@ -6,7 +6,7 @@
     import { onMount, onDestroy } from 'svelte';
     import { goto } from '$app/navigation';
     import { emojis } from '$lib/emojis';
-    import { fade, scale } from 'svelte/transition';
+    import { fade, scale, slide } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
 
     let userId: string = '';
@@ -84,6 +84,58 @@
     let fileInputButtonRef: HTMLButtonElement;
     let selectedImage: string | null = null;
     let imageUploadProgress: number = 0;
+    let bookmarks: Array<{
+        messageId: string;
+        message: string;
+        userId: string;
+        timestamp: number;
+    }> = [];
+    let showBookmarkPanel = false;
+    let showSearchPanel = false;
+    let messageSearchQuery = '';
+    let searchResults: Array<{
+        id: string;
+        message: string;
+        userId: string;
+        timestamp: number;
+    }> = [];
+
+    $: {
+        if (messageSearchQuery.length > 0) {
+            const query = messageSearchQuery.toLowerCase();
+            searchResults = messages
+                .filter(msg => 
+                    msg.message.toLowerCase().includes(query) ||
+                    msg.userId.toLowerCase().includes(query)
+                )
+                .map(msg => ({
+                    id: msg.id,
+                    message: msg.message,
+                    userId: msg.userId,
+                    timestamp: Date.now()
+                }));
+        } else {
+            searchResults = [];
+        }
+    }
+
+    function parseMarkdown(text: string): string {
+        return text
+            .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mb-2">$1</h1>')
+            .replace(/^## (.*$)/gm, '<h2 class="text-xl font-bold mb-2">$1</h2>')
+            .replace(/^### (.*$)/gm, '<h3 class="text-lg font-bold mb-2">$1</h3>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/~~(.*?)~~/g, '<del>$1</del>')
+            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
+            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded text-cYellow">$1</code>')
+            .replace(/__(.*?)__/g, '<u>$1</u>')
+            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded">$1</mark>')
+            .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-cYellow pl-3 py-1 my-2 italic text-white/80">$1</blockquote>')
+            .replace(/^\- (.*$)/gm, '<li class="ml-4 list-disc">$1</li>')
+            .replace(/^\+ (.*$)/gm, '<li class="ml-4 list-circle">$1</li>')
+            .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-500 hover:underline">$1</a>');
+    }
 
     async function handleFileSelect(event: Event) {
         const file = (event.target as HTMLInputElement).files?.[0];
@@ -164,6 +216,34 @@
                 position: 'top-right', 
                 style: 'background-color: #1B1B1B; color: #fff;' 
             });
+        }
+    }
+
+    function toggleBookmark(message: any) {
+        const existingIndex = bookmarks.findIndex(b => b.messageId === message.id);
+        
+        if (existingIndex > -1) {
+            bookmarks = bookmarks.filter(b => b.messageId !== message.id);
+        } else {
+            if (!bookmarks.some(b => b.messageId === message.id)) {
+                bookmarks = [...bookmarks, {
+                    messageId: message.id,
+                    message: message.message,
+                    userId: message.userId,
+                    timestamp: Date.now()
+                }];
+            }
+        }
+        
+        localStorage.setItem(`bookmarks_${roomId}_${userId}`, JSON.stringify(bookmarks));
+    }
+
+    function scrollToMessage(messageId: string) {
+        const messageElement = document.getElementById(`message-${messageId}`);
+        if (messageElement) {
+            messageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            messageElement.classList.add('highlight-message');
+            setTimeout(() => messageElement.classList.remove('highlight-message'), 2000);
         }
     }
 
@@ -307,11 +387,6 @@
             }
         } catch (err) {
             error = 'Failed to load room data';
-            toast.error(error, { 
-                duration: 3000, 
-                position: 'top-right', 
-                style: 'background-color: #1B1B1B; color: #fff;' 
-            });
         }
     }
 
@@ -427,6 +502,11 @@
     }
 
     onMount(async () => {
+        const savedBookmarks = localStorage.getItem(`bookmarks_${roomId}_${userId}`);
+        if (savedBookmarks) {
+            bookmarks = JSON.parse(savedBookmarks);
+        }
+
         document.addEventListener('visibilitychange', handleVisibilityChange);
         
         clickOutsideHandler = (event: MouseEvent) => {
@@ -661,12 +741,30 @@
     }
 
     async function routeSupport() {
-        window.open('https://github.com/k9crypt/website', '_blank');
+        goto('/support');
     }
 </script>
 
 <Toaster />
 
+{#if error}
+<div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
+    <div class="bg-cWhiteGray p-8 rounded-lg shadow-xl border border-white/10 max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
+        <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4">
+                <i class="ri-error-warning-fill text-red-500 text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Room Not Found</h3>
+            <p class="text-white/50 mb-6">This room might have been deleted or never existed.</p>
+            
+            <div class="flex gap-3">
+                <a href="/create/room" class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center no-underline">Go Back</a>
+                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium justify-center no-underline">Support</a>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
 {#if status === false && status !== null}
 <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
     <div class="w-full max-w-2xl mx-auto">
@@ -793,14 +891,103 @@
                             </span>
                         </div>
                     </div>
-                    
-                    <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 sm:px-5 py-2 rounded text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto hover:bg-red-500/20 active:scale-95 transition-all duration-300">
-                        <i class="ri-door-open-fill"></i>
-                        Leave Room
-                    </button>
+
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                            <i class="ri-search-line"></i>
+                            <span>Search</span>
+                        </button>
+                        <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                            <i class="ri-bookmark-line"></i>
+                            <span>Bookmarks</span>
+                            {#if bookmarks.length > 0}
+                            <span class="text-xs bg-cYellow text-black rounded-full px-1.5">{bookmarks.length}</span>
+                            {/if}
+                        </button>
+                        <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
+                            <i class="ri-door-open-fill"></i>
+                            <span>Leave Room</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        {#if showSearchPanel}
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
+            <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
+                
+                <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                            <i class="ri-search-line text-cYellow text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold">Search Messages</h3>
+                            <p class="text-sm text-white/50">{searchResults.length} results found</p>
+                        </div>
+                        <button on:click={() => showSearchPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
+                            <i class="ri-close-line text-xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            bind:value={messageSearchQuery}
+                            placeholder="Search messages..." 
+                            class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2 pl-9 text-sm placeholder:text-white/30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
+                        >
+                        <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white/30"></i>
+                    </div>
+                </div>
+
+                <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                    {#if messageSearchQuery.length === 0}
+                    <div class="flex flex-col items-center justify-center py-16 text-white/30">
+                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                            <i class="ri-search-line text-4xl"></i>
+                        </div>
+                        <p class="text-base font-medium text-white/70">Search Messages</p>
+                        <p class="text-sm text-white/40 text-center mt-2">Type to search through messages</p>
+                    </div>
+                    {:else if searchResults.length === 0}
+                    <div class="flex flex-col items-center justify-center py-16 text-white/30">
+                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                            <i class="ri-file-search-line text-4xl"></i>
+                        </div>
+                        <p class="text-base font-medium text-white/70">No results found</p>
+                        <p class="text-sm text-white/40 text-center mt-2">Try different keywords</p>
+                    </div>
+                    {:else}
+                    {#each searchResults as result}
+                    <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 bg-cYellow rounded flex items-center justify-center text-black text-xs font-bold">
+                                    {result.userId.slice(0, 2).toUpperCase()}
+                                </div>
+                                <span class="text-sm font-medium text-white/90">{result.userId}</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-white/70 mb-2 break-words pl-8">{result.message}</p>
+                        <button 
+                            on:click={() => {
+                                scrollToMessage(result.id);
+                                showSearchPanel = false;
+                            }}
+                            class="text-xs text-cYellow hover:text-cYellow/80 transition-all duration-300 flex items-center gap-1.5 ml-8"
+                        >
+                            <i class="ri-arrow-right-line"></i>
+                            Go to message
+                        </button>
+                    </div>
+                    {/each}
+                    {/if}
+                </div>
+            </div>
+        </div>
+        {/if}
 
         {#if showCopyPopup}
         <div class="fixed inset-0 bg-black/80 flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
@@ -825,7 +1012,7 @@
         <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50 pb-[120px] sm:pb-0" bind:this={messagesContainer} on:scroll={handleScroll}>
             <div class="px-4 sm:px-6 py-6 space-y-6 min-h-full">
                 {#each messages as message (message.id)}
-                <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn">
+                <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn" id="message-{message.id}">
                     {#if message.replyTo}
                     <div class="bg-[#2C2C2C]/80 rounded p-2 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
                         <div class="font-medium text-cYellow flex items-center gap-1.5 mb-1">
@@ -889,7 +1076,7 @@
                                     </div>
                                 </div>
                                 {:else}
-                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>') || ''}</p>
+                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html parseMarkdown(message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')) || ''}</p>
                                 {/if}
                             </div>
                         </div>                        
@@ -905,6 +1092,9 @@
                             </button>
                             <button bind:this={emojiButtonRef} on:click={(e) => toggleEmojiPicker(message.id, e)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-emotion-line text-sm"></i>
+                            </button>
+                            <button on:click={() => toggleBookmark(message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                                <i class="ri-bookmark-{bookmarks.some(b => b.messageId === message.id) ? 'fill text-cYellow' : 'line'} text-sm"></i>
                             </button>
                         </div>
 
@@ -935,6 +1125,87 @@
                 {/each}
             </div>
         </div>
+
+        {#if showBookmarkPanel}
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
+            <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
+                <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                            <i class="ri-bookmark-fill text-cYellow text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold">Bookmarks</h3>
+                            <p class="text-sm text-white/50">{bookmarks.length} saved {bookmarks.length === 1 ? 'message' : 'messages'}</p>
+                        </div>
+                        <button on:click={() => showBookmarkPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
+                            <i class="ri-close-line text-xl"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-white/20 mt-5">
+                        <span class="text-white/50">
+                            Remember that only you see your bookmarks.
+                        </span>
+                    </p>
+                </div>
+
+                <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                    {#if bookmarks.length === 0}
+                    <div class="flex flex-col items-center justify-center py-12 text-white/30">
+                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
+                            <i class="ri-bookmark-line text-3xl"></i>
+                        </div>
+                        <p class="text-sm font-medium">No bookmarks yet</p>
+                        <p class="text-xs text-white/20 mt-1">Save messages to find them easily later</p>
+                    </div>
+                    {:else}
+                    {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
+                    <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 bg-cYellow rounded flex items-center justify-center text-black text-xs font-bold">
+                                    {bookmark.userId.slice(0, 2).toUpperCase()}
+                                </div>
+                                <span class="text-sm font-medium text-white/90">{bookmark.userId}</span>
+                            </div>
+                            <button on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })} class="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-white/10 rounded text-red-500/70 hover:text-red-500 transition-all duration-300">
+                                <i class="ri-delete-bin-line text-sm"></i>
+                            </button>
+                        </div>
+                        <div 
+                            class="cursor-pointer"
+                            on:click={() => {
+                                scrollToMessage(bookmark.messageId);
+                                showBookmarkPanel = false;
+                            }}
+                        >
+                            {#if bookmark.message.startsWith('[IMAGE]')}
+                                <div class="relative pl-8">
+                                    <img 
+                                        src={decodeBase64Image(bookmark.message.slice(7))} 
+                                        alt="Bookmarked image" 
+                                        class="max-w-full w-[150px] rounded-lg object-contain"
+                                        on:error={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
+                                        <i class="ri-image-line text-xl"></i>
+                                        <span class="text-xs">Image unavailable</span>
+                                    </div>
+                                </div>
+                            {:else}
+                                <p class="text-sm text-white/70 mb-2 break-words pl-8">{bookmark.message}</p>
+                            {/if}
+                        </div>
+                    </div>
+                    {/each}
+                    {/if}
+                </div>
+            </div>
+        </div>
+        {/if}
 
         <div class="bg-cWhiteGray border-t border-white/10 fixed bottom-0 left-0 right-0 sm:relative z-10">
             <div class="px-4 sm:px-6 py-3 sm:py-4">
@@ -1090,8 +1361,13 @@
                         <textarea 
                             id="message-input" 
                             bind:value={message} 
+                            bind:this={messageInput}
                             placeholder="Type a message..." 
-                            on:input={handleInput} 
+                            on:input={(e) => {
+                                handleInput(e);
+                                e.target.style.height = 'auto';
+                                e.target.style.height = `${e.target.scrollHeight}px`;
+                            }}
                             on:keydown={(e) => {
                                 handleKeyDown(e);
                                 if (e.key === 'Enter' && !e.shiftKey && !isSendButtonDisabled) {
@@ -1099,7 +1375,7 @@
                                     handleSendMessage();
                                 }
                             }} 
-                            class="w-full h-12 bg-[#2C2C2C]/90 border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white text-sm resize-none"
+                            class="w-full h-12 bg-[#2C2C2C]/90 border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white text-sm resize-none overflow-hidden"
                             rows="1"
                             style="min-height: 48px; max-height: 120px;"
                         ></textarea>
