@@ -1168,37 +1168,36 @@
                                 </div>
                                 <span class="text-sm font-medium text-white/90">{bookmark.userId}</span>
                             </div>
-                            <button on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })} class="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-white/10 rounded text-red-500/70 hover:text-red-500 transition-all duration-300">
-                                <i class="ri-delete-bin-line text-sm"></i>
-                            </button>
                         </div>
-                        <div 
-                            class="cursor-pointer"
+                        {#if bookmark.message.startsWith('[IMAGE]')}
+                        <div class="relative pl-8">
+                            <img 
+                                src={decodeBase64Image(bookmark.message.slice(7))} 
+                                alt="Bookmarked image" 
+                                class="max-w-full w-[150px] rounded-lg object-contain"
+                                on:error={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.nextElementSibling.style.display = 'flex';
+                                }}
+                            />
+                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
+                                <i class="ri-image-line text-xl"></i>
+                                <span class="text-xs">Image unavailable</span>
+                            </div>
+                        </div>
+                        {:else}
+                        <p class="text-sm text-white/70 mb-2 break-words pl-8">{bookmark.message}</p>
+                        {/if}
+                        <button 
                             on:click={() => {
                                 scrollToMessage(bookmark.messageId);
                                 showBookmarkPanel = false;
                             }}
+                            class="text-xs text-cYellow hover:text-cYellow/80 transition-all duration-300 flex items-center gap-1.5 ml-8"
                         >
-                            {#if bookmark.message.startsWith('[IMAGE]')}
-                                <div class="relative pl-8">
-                                    <img 
-                                        src={decodeBase64Image(bookmark.message.slice(7))} 
-                                        alt="Bookmarked image" 
-                                        class="max-w-full w-[150px] rounded-lg object-contain"
-                                        on:error={(e) => {
-                                            e.currentTarget.style.display = 'none';
-                                            e.currentTarget.nextElementSibling.style.display = 'flex';
-                                        }}
-                                    />
-                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
-                                        <i class="ri-image-line text-xl"></i>
-                                        <span class="text-xs">Image unavailable</span>
-                                    </div>
-                                </div>
-                            {:else}
-                                <p class="text-sm text-white/70 mb-2 break-words pl-8">{bookmark.message}</p>
-                            {/if}
-                        </div>
+                            <i class="ri-arrow-right-line"></i>
+                            Go to message
+                        </button>
                     </div>
                     {/each}
                     {/if}
