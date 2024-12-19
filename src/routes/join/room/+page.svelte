@@ -6,6 +6,7 @@
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount } from 'svelte';
     import { checkLink } from '$lib/check';
+    import { blockedNames } from '$lib/blockedNames';
 
     let userId = '';
     let status: boolean | null = null;
@@ -17,7 +18,7 @@
     let roomType: 'public' | 'private' = 'public';
     let isCheckingRoom = false;
     let roomDetails: any = null;
-    const restrictedUsernames = ['K9Crypt', 'Admin', 'UnoxDevs', 'System'].map(name => 
+    const restrictedUsernames = [...blockedNames.blockedNames, ...blockedNames.religiousTerms].map(name => 
         name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     );
 
