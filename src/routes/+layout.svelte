@@ -15,6 +15,10 @@
         color: #fff;
     }
 
+    :global(html) {
+        scroll-behavior: smooth;
+    }
+
     :global(.highlight-message) {
         animation: highlight 2s ease-out;
         position: relative;

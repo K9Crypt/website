@@ -29,8 +29,12 @@
             userId = (localStorage.getItem('userId') || '').trim();
             status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
         } catch (err) {
-            console.error('Error during initialization:', err);
             status = false;
+            toast.error('Failed to initialize. Please try again.', {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
         } finally {
             isValidating = false;
             setTimeout(() => {
@@ -57,7 +61,6 @@
                 style: 'background-color: #1B1B1B; color: #fff;' 
             });
         } catch (err) {
-            console.error('Could not copy text: ', err);
             toast.error('Failed to copy room ID. Please try again.', { 
                 duration: 3000, 
                 position: 'top-right', 
@@ -111,6 +114,11 @@
         error = '';
         
         if (!validateInputs()) {
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             return;
         }
 
@@ -133,17 +141,22 @@
             
             await goto(`/room/${roomId}`);
         } catch (err: any) {
-            console.error('Room creation error:', err);
+            let errorMessage = 'An unexpected error occurred. Please try again.';
             
             if (err.message === 'Invalid user ID') {
-                error = 'Invalid username. Please try a different one.';
+                errorMessage = 'Invalid username. Please try a different one.';
             } else if (err.message === 'Username already taken') {
-                error = 'This username is already taken. Please choose another.';
+                errorMessage = 'This username is already taken. Please choose another.';
             } else if (err.message === 'Room creation failed') {
-                error = 'Failed to create room. Please try again.';
-            } else {
-                error = 'An unexpected error occurred. Please try again.';
+                errorMessage = 'Failed to create room. Please try again.';
             }
+            
+            error = errorMessage;
+            toast.error(errorMessage, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             
             isRoomCreated = false;
         } finally {

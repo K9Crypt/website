@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    let snowflakes: HTMLDivElement[] = [];
-    const totalSnowflakes = 50;
+    const totalSnowflakes = 30;
 
     function createSnowflake() {
         const snowflake = document.createElement('div');
@@ -15,16 +14,11 @@
 
     function removeSnowflake(snowflake: HTMLDivElement) {
         snowflake.remove();
-        const index = snowflakes.indexOf(snowflake);
-        if (index > -1) {
-            snowflakes.splice(index, 1);
-        }
     }
 
     function startSnowing() {
         const snowflake = createSnowflake();
         document.body.appendChild(snowflake);
-        snowflakes.push(snowflake);
 
         snowflake.addEventListener('animationend', () => {
             removeSnowflake(snowflake);
@@ -34,10 +28,10 @@
     let interval: number;
     
     onMount(() => {
-        interval = setInterval(startSnowing, 200);
+        interval = setInterval(startSnowing, 300);
         return () => {
             clearInterval(interval);
-            snowflakes.forEach(s => s.remove());
+            document.querySelectorAll('.snowflake').forEach(s => s.remove());
         };
     });
 </script>
@@ -50,6 +44,7 @@
         background-color: white;
         pointer-events: none;
         animation: fall linear forwards;
+        will-change: transform;
     }
 
     @keyframes fall {

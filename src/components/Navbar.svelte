@@ -38,7 +38,15 @@
 <nav class="px-8 py-4 flex items-center justify-between relative z-50">
     <div class="flex items-center space-x-8">
         {#if isLoaded}
-        <a href="/"><img src="https://www.upload.ee/image/17339414/k9crypt-rb.png" alt="Logo" class="w-10 h-10" transition:fade={{ duration: 300 }}/></a>
+        <a href="/" class="relative">
+            <div class="absolute inset-0 bg-cYellow/20 blur-lg rounded-full"></div>
+            <img 
+                src="https://www.upload.ee/image/17339414/k9crypt-rb.png" 
+                alt="Logo" 
+                class="w-10 h-10 relative" 
+                transition:fade={{ duration: 300 }}
+            />
+        </a>
         {:else}
         <div class="w-10 h-10 bg-cWhiteGray rounded animate-pulse"></div>
         {/if}

@@ -33,16 +33,31 @@
 
         if (!userId?.trim()) {
             error = 'Please enter a username';
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             return;
         }
 
         if (restrictedUsernames.includes(normalizedUserId)) {
             error = 'This username is restricted. Please choose another one.';
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             return;
         }
 
         if (!joinRoomId?.trim()) {
             error = 'Please enter a room ID';
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             return;
         }
 
@@ -81,7 +96,6 @@
             
             goto(`/room/${joinRoomId}`);
         } catch (err: any) {
-            console.error('Join room error:', err);
             if (err.message?.includes('already taken')) {
                 error = 'Username is already taken in this room. Please choose a different username.';
             } else if (err.message?.includes('password')) {
@@ -91,6 +105,11 @@
             } else {
                 error = err.message || 'Failed to join the room. Please try again.';
             }
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
         } finally {
             isLoading = false;
         }
@@ -115,6 +134,11 @@
             roomDetails = await checkRoom(joinRoomId);
             if (!roomDetails) {
                 error = 'Room not found. Please check the Room ID.';
+                toast.error(error, {
+                    duration: 3000,
+                    position: 'top-right',
+                    style: 'background-color: #1B1B1B; color: #fff;'
+                });
                 roomType = 'public';
                 return;
             }
@@ -124,12 +148,16 @@
                 roomPassword = '';
             }
         } catch (err: any) {
-            console.error('Check room error:', err);
             if (err.message === 'Room not found') {
                 error = 'Room not found. Please check the Room ID.';
             } else {
                 error = 'Failed to check room type. Please try again.';
             }
+            toast.error(error, {
+                duration: 3000,
+                position: 'top-right',
+                style: 'background-color: #1B1B1B; color: #fff;'
+            });
             roomType = 'public';
         } finally {
             isCheckingRoom = false;
