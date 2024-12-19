@@ -6,7 +6,7 @@
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount } from 'svelte';
     import { checkLink } from '$lib/check';
-    import { blockedNames } from '$lib/blockedNames';
+    import { blockedNames } from '$lib/config/blockedNames';
 
     let userId = '';
     let status: boolean | null = null;

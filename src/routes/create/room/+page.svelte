@@ -6,7 +6,7 @@
     import { onMount } from 'svelte';
     import toast, { Toaster } from 'svelte-french-toast';
     import { checkLink } from '$lib/check';
-    import { blockedNames } from '$lib/blockedNames';
+    import { blockedNames } from '$lib/config/blockedNames';
 
     let isLoaded = false;
     let selectedType: "public" | "private" = 'public';
