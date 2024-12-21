@@ -112,7 +112,7 @@
                     {#each displayedUpdates as update}
                     <article class="bg-cWhiteGray border border-white/5 rounded overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                         <div class="p-6">
-                            <h2 class="text-xl font-semibold mb-3 group-hover:text-cYellow transition-colors duration-300">
+                            <h2 class="text-xl font-semibold mb-3 transition-colors duration-300">
                                 {titleShortener(update.title)}
                             </h2>
                             
@@ -123,6 +123,8 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
                                     <span class="text-sm">{update.user}</span>
+                                    <span class="text-white/50 text-sm">•</span>
+                                    <span class="text-white/50 text-sm">{new Date(update.created).toLocaleDateString()}</span>
                                 </div>
                                 
                                 <button on:click={() => goto(`/updates/${update.id}`)} class="text-cYellow">

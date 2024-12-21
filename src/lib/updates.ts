@@ -20,8 +20,6 @@ export async function getRecentUpdates() {
 }
 
 export async function getPopularUpdates() {
-    const updates = await db.collection("updates").getList(1, 5, {
-        sort: '-views',
-    });
-    return updates.items;
+    const updates = await db.collection("updates").getFullList({ sort: "-viewCount" });
+    return updates;
 }

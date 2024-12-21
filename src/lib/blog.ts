@@ -11,7 +11,9 @@ export async function getPost(id: string) {
 }
 
 export async function fetchAllPosts() {
-    const posts = await db.collection("blog").getFullList();
+    const posts = await db.collection("blog").getFullList({
+        sort: '-created',
+    });
     return posts;
 }
 

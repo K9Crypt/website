@@ -137,6 +137,8 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
                             <span class="text-sm">{post.author}</span>
+                            <span class="text-white/50 text-sm">•</span>
+                            <span class="text-white/50 text-sm">{new Date(post.created).toLocaleDateString()}</span>
                         </div>
                         
                         <button on:click={() => goto(`/blog/${post.id}`)} class="text-cYellow">
