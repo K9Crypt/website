@@ -10,7 +10,7 @@ export async function createRoom(
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId, type, password, roomName }), // Include roomName in body
+            body: JSON.stringify({ userId, type, password, roomName }),
         });
 
         if (!response.ok) {

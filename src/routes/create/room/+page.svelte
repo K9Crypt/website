@@ -153,7 +153,12 @@
             
             await goto(`/room/${roomId}`);
         } catch (err: any) {
-            // ... existing error handling ...
+            error = err.message;
+            toast.error(error, { 
+                duration: 3000, 
+                position: 'bottom-right', 
+                style: 'background-color: #1B1B1B; color: #fff;' 
+            });
         } finally {
             isLoading = false;
         }
