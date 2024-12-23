@@ -24,7 +24,12 @@
         reactions?: Record<string, string[]>;
     }> = [];
     let pollingInterval: NodeJS.Timeout;
-    let replyingTo: { message: string } | null = null;
+    let replyingTo: { 
+        message: string;
+        sender: string;
+        content: string;
+        id: string;
+    } | null = null;
     let roomType = '';
     let roomPassword = '';
     let isPasswordRequired = false;
@@ -76,6 +81,10 @@
         'Objects': emojis.slice(400, 440),
         'Symbols': emojis.slice(440)
     };
+    let lastMessageTimestamp = 0;
+    const MESSAGE_COOLDOWN = 100;
+    let messageQueue: Array<{ content: string; tempId: string; isImage: boolean }> = [];
+    let isProcessingQueue = false;
     let selectedCategory = '';
     let messagesContainer: HTMLDivElement;
     let shouldAutoScroll = true;
@@ -465,9 +474,18 @@
         }
     }
 
-    function handleReply(msg: { message: string }) {
+    function handleReply(msg: { 
+        message: string; 
+        userId: string; 
+        id: string;
+    }) {
         if (!msg.message.startsWith('[IMAGE]')) {
-            replyingTo = msg;
+            replyingTo = {
+                message: msg.message,
+                sender: msg.userId,
+                content: msg.message,
+                id: msg.id
+            };
             message = '';
             focusMessageInput();
         }
@@ -578,30 +596,85 @@
         }
     });
 
+    async function processMessageQueue() {
+        if (isProcessingQueue || messageQueue.length === 0) return;
+        
+        isProcessingQueue = true;
+        
+        while (messageQueue.length > 0) {
+            const { content, tempId, isImage } = messageQueue[0];
+            
+            try {
+                await sendMessage(roomId, userId, content);
+                await loadRoomData();
+                messageQueue.shift();
+            } catch (err) {
+                messages = messages.filter(m => m.id !== tempId);
+                toast.error('Failed to send message', {
+                    duration: 3000,
+                    position: 'bottom-right',
+                    style: 'background-color: #1B1B1B; color: #fff;'
+                });
+                messageQueue = [];
+                break;
+            }
+            
+            await new Promise(resolve => setTimeout(resolve, MESSAGE_COOLDOWN));
+        }
+        
+        isProcessingQueue = false;
+    }
+
     async function handleSendMessage(isImage = false) {
+        const now = Date.now();
+        if (now - lastMessageTimestamp < MESSAGE_COOLDOWN) {
+            return;
+        }
+        
         if ((!isImage && isSendButtonDisabled) || (isImage && !selectedImage)) return;
         
-        isLoading = true;
-        const fullMessage = isImage 
+        const messageContent = isImage 
             ? `[IMAGE]${selectedImage}`
             : replyingTo
                 ? `Replying to "${replyingTo.message}": \n\n${message.trim()}`
                 : message.trim();
-
-        try {
-            await sendMessage(roomId, userId, fullMessage);
-            message = '';
-            replyingTo = null;
-            await loadRoomData();
-        } catch (err) {
-            toast.error('Failed to send message', {
+                
+        if (!isImage && (!messageContent || messageContent.length > 2000)) {
+            toast.error('Message must be between 1 and 2000 characters', {
                 duration: 3000,
                 position: 'bottom-right',
                 style: 'background-color: #1B1B1B; color: #fff;'
             });
-        } finally {
-            isLoading = false;
+            return;
         }
+
+        const tempId = `temp-${Date.now()}`;
+        const tempMessage = {
+            id: tempId,
+            userId: userId,
+            message: messageContent,
+            readBy: [userId],
+            reactions: {},
+            replyTo: replyingTo ? {
+                sender: userId,
+                content: replyingTo.message
+            } : undefined
+        };
+        
+        messages = [...messages, tempMessage];
+        message = '';
+        replyingTo = null;
+        isLoading = true;
+        lastMessageTimestamp = now;
+
+        messageQueue.push({
+            content: messageContent,
+            tempId,
+            isImage
+        });
+
+        processMessageQueue();
+        isLoading = false;
     }
 
     function decodeBase64Image(encodedString: string): string {
@@ -1396,7 +1469,16 @@
                         {/if}
                     </div>
                     
-                    <button on:click={handleSendMessage} disabled={isSendButtonDisabled} class="w-12 h-12 bg-cYellow text-black rounded font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center hover:scale-105 active:scale-95 disabled:hover:scale-100 flex-shrink-0">
+                    <button 
+                        on:click={() => {
+                            if (!isSendButtonDisabled) {
+                                handleSendMessage();
+                                messageInput.focus();
+                            }
+                        }} 
+                        disabled={isSendButtonDisabled} 
+                        class="w-12 h-12 bg-cYellow text-black rounded font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center hover:scale-105 active:scale-95 disabled:hover:scale-100 flex-shrink-0"
+                    >
                         <i class="ri-send-plane-2-fill text-xl"></i>
                     </button>
                 </div>
