@@ -375,29 +375,35 @@
 
     async function loadRoomData() {
         try {
+            const loadingStartTime = Date.now();
             const newMessages = await getMessages(roomId);
+            
             if (JSON.stringify(newMessages) !== JSON.stringify(messages)) {
-                messages = newMessages.map(msg => {
+                const processedMessages = newMessages.map(msg => {
                     const existingMessage = messages.find(m => m.id === msg.id);
-                    let readBy = msg.readBy || [];
+                    const readBy = msg.readBy || [];
                     
                     if (!readBy.includes(userId) && msg.userId !== userId) {
-                        markMessageAsRead(roomId, userId, msg.id).catch(err => {
-                            console.error('Error marking message as read:', err);
-                        });
+                        markMessageAsRead(roomId, userId, msg.id).catch(console.error);
                         readBy.push(userId);
                     }
                     
-                    return { 
-                        ...msg, 
+                    return {
+                        ...msg,
                         id: msg.id || existingMessage?.id || `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                        readBy: readBy,
+                        readBy,
                         reactions: msg.reactions || existingMessage?.reactions || {}
                     };
                 });
+
+                messages = processedMessages;
+                
+                const responseTime = Date.now() - loadingStartTime;
+                pollingInterval = Math.max(2000, Math.min(5000, responseTime * 2));
             }
         } catch (err) {
             error = 'Failed to load room data';
+            console.error('Error loading room data:', err);
         }
     }
 
@@ -463,9 +469,10 @@
         }
     }
 
-    async function startPolling() {
+    function startPolling() {
         stopPolling();
-        pollingInterval = setInterval(loadRoomData, 5000);
+        loadRoomData();
+        pollingInterval = setInterval(loadRoomData, 3000);
     }
 
     function stopPolling() {
