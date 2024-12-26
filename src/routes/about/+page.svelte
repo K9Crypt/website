@@ -146,14 +146,14 @@
         {#if !isLoaded}
         <div class="space-y-8 animate-pulse">
             <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded w-64"></div>
-                <div class="h-4 bg-cWhiteGray rounded w-96"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
+                <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
             </div>
 
             {#each Array(4) as _}
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-48"></div>
-                <div class="h-40 bg-cWhiteGray rounded"></div>
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 space-y-4">
+                <div class="h-6 bg-cWhiteGray rounded-lg w-48"></div>
+                <div class="h-40 bg-cWhiteGray rounded-lg"></div>
             </div>
             {/each}
         </div>
@@ -165,7 +165,7 @@
 
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-8">
             {#each sections as section}
-            <button class="w-full sm:w-auto flex items-center gap-2 px-4 py-2 rounded transition-all duration-300 text-sm font-medium {activeTab === section.id ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-white/10'}" on:click={() => activeTab = section.id}>
+            <button class="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-300 text-sm font-medium {activeTab === section.id ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-white/10'}" on:click={() => activeTab = section.id}>
                 <i class={section.icon}></i>
                 {section.title}
             </button>
@@ -175,7 +175,7 @@
         <div class="space-y-8">
             {#each sections as section}
             {#if activeTab === section.id}
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 sm:p-8">
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 sm:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <i class="{section.icon} text-2xl text-cYellow"></i>
                     <div>
@@ -189,7 +189,7 @@
                     <p class="text-white/80 leading-relaxed">{section.content.introduction}</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {#each section.content.features as feature}
-                        <div class="border border-white/5 rounded p-4">
+                        <div class="border border-white/5 rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-2">{feature.title}</h3>
                             <p class="text-white/50 text-sm">{feature.description}</p>
                         </div>
@@ -203,7 +203,7 @@
                     <p class="text-white/80 leading-relaxed">{section.content.introduction}</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {#each section.content.members as member}
-                        <div class="border border-white/5 rounded p-6">
+                        <div class="border border-white/5 rounded-lg p-6">
                             <h3 class="text-xl font-semibold mb-1">{member.name}</h3>
                             <p class="text-white/70 text-sm mb-3">{member.role}</p>
                             <p class="text-white/50 text-sm mb-4">{member.description}</p>
@@ -240,7 +240,7 @@
                     <p class="text-white/80 leading-relaxed">{section.content.introduction}</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {#each section.content.contacts as contact}
-                        <a href="mailto:{contact.email}" class="flex items-center gap-3 p-4 rounded border border-white/5 hover:bg-white/5 transition-all duration-300">
+                        <a href="mailto:{contact.email}" class="flex items-center gap-3 p-4 rounded-lg border border-white/5 hover:bg-white/5 transition-all duration-300">
                             <i class="{contact.icon} text-2xl"></i>
                             <div>
                                 <h3 class="font-medium">{contact.title}</h3>

@@ -55,7 +55,7 @@
         <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
         <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
                 
-        <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
+        <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
@@ -64,8 +64,8 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
         </div>
     </div>
 </div>
@@ -75,13 +75,13 @@
         {#if !isLoaded}
         <div class="animate-pulse">
             <div class="max-w-2xl mx-auto mb-12">
-                <div class="h-12 bg-cWhiteGray rounded max-w-2xl mx-auto mb-4"></div>
-                <div class="h-6 bg-cWhiteGray rounded max-w-xl mx-auto"></div>
+                <div class="h-12 bg-cWhiteGray rounded-lg max-w-2xl mx-auto mb-4"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg max-w-xl mx-auto"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {#each Array(5) as _, i}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6 h-40"></div>
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 h-40"></div>
                 {/each}
             </div>
         </div>
@@ -93,7 +93,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {#each steps as step, index}
-            <a href={step.link} class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+            <a href={step.link} class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                 <div class="absolute -top-3 -right-3 font-bold opacity-5 text-8xl select-none transition-all duration-300 group-hover:opacity-15">
                     {index + 1}
                 </div>

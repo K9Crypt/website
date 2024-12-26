@@ -12,8 +12,8 @@
         </div>
 
        <div class="flex gap-4 justify-center">
-            <a href="/" class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium">Go Home</a>
-            <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium">Support</a>
+            <a href="/" class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium">Go Home</a>
+            <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2.5 px-10 rounded-lg font-medium">Support</a>
         </div>
     </div>
 </div>

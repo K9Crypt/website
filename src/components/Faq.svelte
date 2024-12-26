@@ -68,13 +68,13 @@
         {#if !isLoaded}
         <div class="space-y-4 animate-pulse">
             <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded max-w-md"></div>
-                <div class="h-4 bg-cWhiteGray rounded max-w-xl"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg max-w-md"></div>
+                <div class="h-4 bg-cWhiteGray rounded-lg max-w-xl"></div>
             </div>
             
             <div class="flex flex-col gap-4 mt-8">
                 {#each Array(4) as _}
-                <div class="w-full h-16 bg-cWhiteGray border border-white/5 rounded"></div>
+                <div class="w-full h-16 bg-cWhiteGray border border-white/5 rounded-lg"></div>
                 {/each}
             </div>
         </div>
@@ -86,7 +86,7 @@
         
         <div class="mx-auto flex flex-col gap-4">
             {#each faqItems as item, index}
-            <div class="w-full bg-cWhiteGray border border-white/5 rounded overflow-hidden hover:bg-cWhiteGray transition-all duration-300">
+            <div class="w-full bg-cWhiteGray border border-white/5 rounded-lg overflow-hidden hover:bg-cWhiteGray transition-all duration-300">
                 <button class="w-full p-6 flex items-center justify-between text-left" on:click={() => toggleFaq(index)}>
                     <div class="flex items-center gap-4">
                         <i class="{item.icon} text-xl"></i>

@@ -41,13 +41,13 @@
         {#if !isLoaded}
         <div class="animate-pulse">
             <div class="max-w-2xl mx-auto mb-12">
-                <div class="h-12 bg-cWhiteGray rounded max-w-2xl mx-auto mb-4"></div>
-                <div class="h-6 bg-cWhiteGray rounded max-w-xl mx-auto"></div>
+                <div class="h-12 bg-cWhiteGray rounded-lg max-w-2xl mx-auto mb-4"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg max-w-xl mx-auto"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {#each Array(4) as _, i}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6 h-40"></div>
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 h-40"></div>
                 {/each}
             </div>
         </div>
@@ -59,7 +59,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {#each contacts as contact, index}
-            <a href={contact.link} class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+            <a href={contact.link} class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                 <div class="absolute -top-3 -right-3 font-bold opacity-5 text-8xl select-none transition-all duration-300 group-hover:opacity-15">
                     {index + 1}
                 </div>

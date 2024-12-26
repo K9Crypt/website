@@ -37,16 +37,16 @@
         {#if !isLoaded}
         <div class="animate-pulse">
             <div class="mb-4 sm:mb-8">
-                <div class="h-10 bg-cWhiteGray rounded max-w-md mb-3"></div>
-                <div class="h-5 bg-cWhiteGray rounded max-w-xl"></div>
+                <div class="h-10 bg-cWhiteGray rounded-lg max-w-md mb-3"></div>
+                <div class="h-5 bg-cWhiteGray rounded-lg max-w-xl"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {#each Array(4) as _}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden">
-                    <div class="h-6 bg-cWhiteGray rounded mb-4 w-1/3"></div>
-                    <div class="h-4 bg-cWhiteGray rounded mb-2"></div>
-                    <div class="h-4 bg-cWhiteGray rounded w-2/3"></div>
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
+                    <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
+                    <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
+                    <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
                 </div>
                 {/each}
             </div>
@@ -59,7 +59,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {#each features as feature}
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                 <div class="absolute top-1 right-1 font-bold opacity-5 text-4xl select-none transition-all duration-300 group-hover:opacity-15">
                     <i class="{feature.icon}"></i>
                 </div>

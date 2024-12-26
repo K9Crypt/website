@@ -181,14 +181,14 @@ test();`,
         {#if !isLoaded}
         <div class="space-y-8 animate-pulse">
             <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded w-64"></div>
-                <div class="h-4 bg-cWhiteGray rounded w-96"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
+                <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
             </div>
 
             {#each Array(4) as _}
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-48"></div>
-                <div class="h-40 bg-cWhiteGray rounded"></div>
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 space-y-4">
+                <div class="h-6 bg-cWhiteGray rounded-lg w-48"></div>
+                <div class="h-40 bg-cWhiteGray rounded-lg"></div>
             </div>
             {/each}
         </div>
@@ -200,7 +200,7 @@ test();`,
 
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-8">
             {#each sections as section}
-            <button class="w-full sm:w-auto flex items-center gap-2 px-4 py-2 rounded transition-all duration-300 text-sm font-medium {activeTab === section.id ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-white/10'}" on:click={() => activeTab = section.id}>
+            <button class="w-full sm:w-auto flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-300 text-sm font-medium {activeTab === section.id ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-white/10'}" on:click={() => activeTab = section.id}>
                 <i class={section.icon}></i>
                 {section.title}
             </button>
@@ -210,7 +210,7 @@ test();`,
         <div class="space-y-8">
             {#each sections as section}
             {#if activeTab === section.id}
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 sm:p-8">
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 sm:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <i class="{section.icon} text-2xl text-cYellow"></i>
                     <div>
@@ -224,7 +224,7 @@ test();`,
                     <p class="text-white/80 leading-relaxed">{section.content.introduction}</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {#each section.content.features as feature}
-                        <div class="border border-white/5 rounded p-4">
+                        <div class="border border-white/5 rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-2">{feature.title}</h3>
                             <p class="text-white/50 text-sm">{feature.description}</p>
                         </div>
@@ -237,7 +237,7 @@ test();`,
                 <div class="space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold mb-3">Installation</h3>
-                        <div class="bg-black/30 rounded p-3 flex items-center justify-between">
+                        <div class="bg-black/30 rounded-lg p-3 flex items-center justify-between">
                             <code class="text-white/70">{section.content.installation}</code>
                             <button class="text-white/30 hover:text-white/50 transition-colors" title="Copy to clipboard">
                                 <i class="ri-file-copy-line"></i>
@@ -247,7 +247,7 @@ test();`,
 
                     <div>
                         <h3 class="text-lg font-semibold mb-3">Implementation Example</h3>
-                        <div class="bg-black/30 rounded p-4 overflow-x-auto">
+                        <div class="bg-black/30 rounded-lg p-4 overflow-x-auto">
                             <pre class="text-sm"><code class="text-white/70">{section.content.basicUsage}</code></pre>
                         </div>
                     </div>
@@ -256,7 +256,7 @@ test();`,
                         <h3 class="text-lg font-semibold mb-3">Key Features</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {#each section.content.features as feature}
-                            <div class="border border-white/5 rounded p-4">
+                            <div class="border border-white/5 rounded-lg p-4">
                                 <h4 class="font-medium mb-2">{feature.title}</h4>
                                 <p class="text-white/50 text-sm">{feature.description}</p>
                             </div>
@@ -269,7 +269,7 @@ test();`,
                 {#if section.id === 'rooms' || section.id === 'messages'}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {#each section.steps as step}
-                    <div class="border border-white/5 rounded p-5">
+                    <div class="border border-white/5 rounded-lg p-5">
                         <h3 class="text-lg font-semibold mb-3">{step.title}</h3>
                         <p class="text-white/70 text-sm mb-4">{step.description}</p>
                         <ul class="space-y-2">
@@ -288,7 +288,7 @@ test();`,
             {/if}
             {/each}
 
-            <div class="bg-cWhiteGray border border-white/5 rounded p-6 sm:p-8">
+            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 sm:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <i class="ri-customer-service-fill text-2xl text-cYellow"></i>
                     <div>
@@ -298,7 +298,7 @@ test();`,
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <a href="https://github.com/k9crypt" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <a href="https://github.com/k9crypt" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-lg border border-white/5 hover:bg-white/5 transition-all duration-300">
                         <i class="ri-github-fill text-2xl"></i>
                         <div>
                             <h3 class="font-medium">GitHub</h3>
@@ -306,7 +306,7 @@ test();`,
                         </div>
                     </a>
 
-                    <a href="mailto:support@k9crypt.xyz" class="flex items-center gap-3 p-4 rounded border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <a href="mailto:support@k9crypt.xyz" class="flex items-center gap-3 p-4 rounded-lg border border-white/5 hover:bg-white/5 transition-all duration-300">
                         <i class="ri-mail-fill text-2xl"></i>
                         <div>
                             <h3 class="font-medium">Email Support</h3>
@@ -314,7 +314,7 @@ test();`,
                         </div>
                     </a>
 
-                    <a href="https://discord.gg/k9crypt" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded border border-white/5 hover:bg-white/5 transition-all duration-300">
+                    <a href="https://discord.gg/k9crypt" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-lg border border-white/5 hover:bg-white/5 transition-all duration-300">
                         <i class="ri-discord-fill text-2xl"></i>
                         <div>
                             <h3 class="font-medium">Discord</h3>

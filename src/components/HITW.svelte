@@ -68,31 +68,31 @@
         {#if !isLoaded}
         <div class="space-y-8 animate-pulse">
             <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded w-64"></div>
-                <div class="h-4 bg-cWhiteGray rounded w-96"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
+                <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
             </div>
 
             <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-32"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg w-32"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {#each Array(4) as _}
-                    <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden">
-                        <div class="h-6 bg-cWhiteGray rounded mb-4 w-1/3"></div>
-                        <div class="h-4 bg-cWhiteGray rounded mb-2"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-2/3"></div>
+                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
+                        <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
+                        <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
+                        <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
                     </div>
                     {/each}
                 </div>
             </div>
 
             <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-32"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg w-32"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {#each Array(4) as _}
-                    <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden">
-                        <div class="h-6 bg-cWhiteGray rounded mb-4 w-1/3"></div>
-                        <div class="h-4 bg-cWhiteGray rounded mb-2"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-2/3"></div>
+                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
+                        <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
+                        <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
+                        <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
                     </div>
                     {/each}
                 </div>
@@ -110,7 +110,7 @@
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {#each messageSteps as step}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                     <div class="absolute -top-3 -right-3 font-bold opacity-5 text-8xl select-none transition-all duration-300 group-hover:opacity-15">
                         {step.step}
                     </div>
@@ -132,7 +132,7 @@
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {#each roomSteps as step}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                     <div class="absolute -top-3 -right-3 font-bold opacity-5 text-8xl select-none transition-all duration-300 group-hover:opacity-15">
                         {step.step}
                     </div>

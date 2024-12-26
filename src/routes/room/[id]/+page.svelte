@@ -137,10 +137,10 @@
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/~~(.*?)~~/g, '<del>$1</del>')
-            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
-            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded text-cYellow">$1</code>')
+            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded-lg text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
+            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded-lg text-cYellow">$1</code>')
             .replace(/__(.*?)__/g, '<u>$1</u>')
-            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded">$1</mark>')
+            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded-lg">$1</mark>')
             .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-cYellow pl-3 py-1 my-2 italic">$1</blockquote>')
             .replace(/^\- (.*$)/gm, '<li class="ml-4 list-disc">$1</li>')
             .replace(/^\+ (.*$)/gm, '<li class="ml-4 list-circle">$1</li>')
@@ -832,17 +832,17 @@
 
 {#if error}
 <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
-    <div class="bg-cWhiteGray p-8 rounded-lg shadow-xl border border-white/10 max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
+    <div class="bg-cWhiteGray p-8 rounded-lg-lg shadow-xl border border-white/10 max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
         <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-red-500/10 rounded-lg-full flex items-center justify-center mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold mb-2">Room Not Found</h3>
             <p class="text-white/50 mb-6">This room might have been deleted or never existed.</p>
             
             <div class="flex gap-3">
-                <a href="/create/room" class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center no-underline">Go Back</a>
-                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2 px-10 rounded font-medium justify-center no-underline">Support</a>
+                <a href="/create/room" class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center no-underline">Go Back</a>
+                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2.5 px-10 rounded-lg font-medium justify-center no-underline">Support</a>
             </div>
         </div>
     </div>
@@ -854,7 +854,7 @@
         <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
         <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
                 
-        <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
+        <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
@@ -863,8 +863,8 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
         </div>
     </div>
 </div>
@@ -873,17 +873,17 @@
 <div class="fixed inset-0">
     <div class="h-screen flex flex-col">
         <div class="bg-cWhiteGray/50 backdrop-blur-md border-b border-white/10">
-            <div class="px-3 sm:px-6 py-3 sm:py-4">
+            <div class="px-3 sm:px-6 py-2.5 sm:py-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
                     <div class="flex items-center gap-3 sm:gap-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#2C2C2C] rounded animate-pulse"></div>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#2C2C2C] rounded-lg animate-pulse"></div>
                         <div class="min-w-0 flex-1">
-                            <div class="h-5 sm:h-6 bg-[#2C2C2C] rounded w-32 sm:w-48 mb-2 animate-pulse"></div>
-                            <div class="h-4 bg-[#2C2C2C] rounded w-24 sm:w-32 animate-pulse"></div>
+                            <div class="h-5 sm:h-6 bg-[#2C2C2C] rounded-lg w-32 sm:w-48 mb-2 animate-pulse"></div>
+                            <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 sm:w-32 animate-pulse"></div>
                         </div>
                     </div>
                     
-                    <div class="w-full sm:w-auto h-10 bg-[#2C2C2C] rounded animate-pulse"></div>
+                    <div class="w-full sm:w-auto h-10 bg-[#2C2C2C] rounded-lg animate-pulse"></div>
                 </div>
             </div>
         </div>
@@ -893,24 +893,24 @@
                 {#each Array(5) as _, i}
                 <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'} animate-fadeIn">
                     {#if i % 3 === 0}
-                    <div class="bg-[#2C2C2C]/80 rounded p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
-                        <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
-                        <div class="h-3 bg-[#2C2C2C] rounded w-48"></div>
+                    <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
+                        <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 mb-2"></div>
+                        <div class="h-3 bg-[#2C2C2C] rounded-lg w-48"></div>
                     </div>
                     {/if}
                     
-                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
+                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-lg-l-lg rounded-lg-tr-lg' : 'bg-[#2C2C2C] text-white rounded-lg-r-lg rounded-lg-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
                         {#if i % 2 !== 0}
-                        <div class="h-4 bg-[#2C2C2C] rounded w-24 mb-2"></div>
+                        <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 mb-2"></div>
                         {/if}
                         <div class="flex flex-col gap-2">
                             {#if i % 2 !== 0}
-                            <div class="h-3 bg-[#2C2C2C] rounded w-24 opacity-50"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-24 opacity-50"></div>
                             {/if}
-                            <div class="h-3 bg-[#2C2C2C] rounded w-full"></div>
-                            <div class="h-3 bg-[#2C2C2C] rounded w-3/4"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-full"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-3/4"></div>
                             {#if i % 2 === 0}
-                            <div class="h-3 bg-[#2C2C2C] rounded w-1/2"></div>
+                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-1/2"></div>
                             {/if}
                         </div>
                     </div>
@@ -922,8 +922,8 @@
         <div class="bg-cWhiteGray border-t border-white/10">
             <div class="px-6 py-4">
                 <div class="flex gap-3">
-                    <div class="flex-1 h-[52px] bg-[#2C2C2C] rounded animate-pulse"></div>
-                    <div class="w-[52px] h-[52px] bg-[#2C2C2C] rounded animate-pulse"></div>
+                    <div class="flex-1 h-[52px] bg-[#2C2C2C] rounded-lg animate-pulse"></div>
+                    <div class="w-[52px] h-[52px] bg-[#2C2C2C] rounded-lg animate-pulse"></div>
                 </div>
             </div>
         </div>
@@ -932,7 +932,7 @@
 {:else}
 {#if isPasswordRequired}
 <div class="fixed inset-0 bg-black/10 flex items-center justify-center p-4 z-50">
-    <div class="bg-cWhiteGray border border-white/5 rounded p-6 w-full max-w-md">
+    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 w-full max-w-md">
         <h3 class="text-xl font-bold mb-4">Enter Room Password</h3>
         <p class="text-white/50 text-sm mb-6">This is a private room. Please enter the password to join.</p>
         
@@ -940,14 +940,13 @@
             <div class="space-y-2">
                 <label class="block text-sm font-medium">Password</label>
                 <div class="relative">
-                    <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full px-4 py-2 bg-black/20 border border-white/5 rounded focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white" />
+                    <i class="ri-lock-password-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
+                    <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white" />
                 </div>
                 {#if error}
                 <p class="text-xs text-red-500">{error}</p>
                 {/if}
             </div>
-
-            <button on:click={handlePasswordSubmit} disabled={isLoading || !roomPassword} class="w-full bg-cYellow text-black py-2 rounded font-medium hover:opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">{isLoading ? 'Joining...' : 'Join Room'}</button>
         </div>
     </div>
 </div>
@@ -955,17 +954,17 @@
 <div class="fixed inset-0">
     <div class="h-screen flex flex-col">
         <div class="bg-cWhiteGray border-b border-white/10">
-            <div class="px-4 sm:px-6 py-3 sm:py-4">
+            <div class="px-4 sm:px-6 py-2.5 sm:py-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div class="flex items-center gap-3 sm:gap-4">
-                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-cYellow rounded flex items-center justify-center text-black font-bold transition-all duration-300 text-sm sm:text-base">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 bg-cYellow rounded-lg flex items-center justify-center text-black font-bold transition-all duration-300 text-sm sm:text-base">
                             {userId?.slice(0, 2).toUpperCase()}
                         </div>
                         <div class="min-w-0 flex-1">
                             <h3 class="font-semibold flex items-center gap-2 text-base sm:text-lg truncate">
                                 <span class="truncate">Room Name: {roomName}</span>
                                 <button on:click={toggleCopyPopup} class="flex-shrink-0 hover:scale-105 active:scale-95">
-                                    <i class="ri-file-copy-fill text-white/50 hover:text-cYellow transition-all duration-300 p-1.5 rounded hover:bg-white/10"></i>
+                                    <i class="ri-file-copy-fill text-white/50 hover:text-cYellow transition-all duration-300 p-1.5 rounded-lg hover:bg-white/10"></i>
                                 </button>
                             </h3>
                             <span class="text-white/50 text-xs sm:text-sm flex items-center gap-1.5">
@@ -976,18 +975,18 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                        <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                        <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
                             <i class="ri-search-line"></i>
                             <span>Search</span>
                         </button>
-                        <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                        <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
                             <i class="ri-bookmark-line"></i>
                             <span>Bookmarks</span>
                             {#if bookmarks.length > 0}
                             <span class="text-xs bg-cYellow text-black rounded-full px-1.5">{bookmarks.length}</span>
                             {/if}
                         </button>
-                        <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 py-2 rounded text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
+                        <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
                             <i class="ri-door-open-fill"></i>
                             <span>Leave Room</span>
                         </button>
@@ -1019,7 +1018,7 @@
                             type="text" 
                             bind:value={messageSearchQuery}
                             placeholder="Search messages..." 
-                            class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2 pl-9 text-sm placeholder:text-white/30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
+                            class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2.5 pl-9 text-sm placeholder:text-white/30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
                         >
                         <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white/30"></i>
                     </div>
@@ -1047,7 +1046,7 @@
                     <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
                         <div class="flex items-start justify-between gap-2 mb-1">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 bg-cYellow rounded flex items-center justify-center text-black text-xs font-bold">
+                                <div class="w-6 h-6 bg-cYellow rounded-lg flex items-center justify-center text-black text-xs font-bold">
                                     {result.userId.slice(0, 2).toUpperCase()}
                                 </div>
                                 <span class="text-sm font-medium text-white/90">{result.userId}</span>
@@ -1082,11 +1081,13 @@
                     </button>
                 </div>
                 
-                <div class="flex flex-col gap-4 mb-4">
-                    <input type="text" value={roomId} readonly class="flex-1 px-4 py-2 bg-black/20 border border-white/5 rounded text-white" />
-                    <button on:click={copyRoomIdWithPopup} class="flex items-center bg-cYellow text-black py-2 px-10 rounded font-medium justify-center w-full">Copy</button>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="relative flex-1">
+                        <i class="ri-hashtag absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
+                        <input type="text" value={roomId} readonly class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg text-white" />
+                    </div>
                 </div>
-                
+                <button on:click={copyRoomIdWithPopup} class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center w-full mb-4">Copy</button>
                 <p class="text-white/50 text-sm">You need to enter this Room ID in the <a href="/join/room" class="underline">join/room</a> section after providing your username.</p>
             </div>
         </div>
@@ -1097,7 +1098,7 @@
                 {#each messages as message (message.id)}
                 <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn" id="message-{message.id}">
                     {#if message.replyTo}
-                    <div class="bg-[#2C2C2C]/80 rounded p-2 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
+                    <div class="bg-[#2C2C2C]/80 rounded-lg p-2 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
                         <div class="font-medium text-cYellow flex items-center gap-1.5 mb-1">
                             <i class="ri-reply-fill text-sm"></i>
                             <span class="text-white/90 text-sm">{message.replyTo.sender}</span>
@@ -1108,13 +1109,13 @@
                                     <img 
                                         src={decodeBase64Image(message.replyTo.content.slice(7))} 
                                         alt="Replied image" 
-                                        class="max-w-full w-[100px] rounded-lg object-contain"
+                                        class="max-w-full w-[100px] rounded-lg-lg object-contain"
                                         on:error={(e) => {
                                             e.currentTarget.style.display = 'none';
                                             e.currentTarget.nextElementSibling.style.display = 'flex';
                                         }}
                                     />
-                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[50px]">
+                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg-lg w-full min-h-[50px]">
                                         <div class="flex flex-col items-center gap-2">
                                             <i class="ri-error-warning-line text-xl"></i>
                                             <span class="text-xs">Image failed to load</span>
@@ -1129,7 +1130,7 @@
                     {/if}
 
                     <div class="relative group">
-                        <div class="{message.userId === userId ? 'bg-cYellow text-black rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} py-2 px-3.5 relative max-w-[350px] w-fit shadow-sm">
+                        <div class="{message.userId === userId ? 'bg-cYellow text-black rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} py-2.5 px-3.5 relative max-w-[350px] w-fit shadow-sm">
                             <div class="flex flex-col gap-1.5">
                                 {#if message.userId !== userId}
                                 <span class="text-xs font-medium flex items-center gap-1.5 {message.userId === 'System' ? 'text-cYellow' : 'opacity-75'}">
@@ -1166,26 +1167,26 @@
 
                         <div class="absolute top-1/2 -translate-y-1/2 {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} hidden group-hover:flex items-center gap-1 px-1.5 animate-fadeIn">
                             {#if !message.message.startsWith('[IMAGE]')}
-                            <button on:click={() => handleReply(message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                            <button on:click={() => handleReply(message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-reply-fill text-sm"></i>
                             </button>
                             {/if}
-                            <button on:click={() => copyMessage(message.message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                            <button on:click={() => copyMessage(message.message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-file-copy-fill text-sm"></i>
                             </button>
-                            <button bind:this={emojiButtonRef} on:click={(e) => toggleEmojiPicker(message.id, e)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                            <button bind:this={emojiButtonRef} on:click={(e) => toggleEmojiPicker(message.id, e)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-emotion-line text-sm"></i>
                             </button>
-                            <button on:click={() => toggleBookmark(message)} class="p-1.5 hover:bg-white/10 rounded text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                            <button on:click={() => toggleBookmark(message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-bookmark-{bookmarks.some(b => b.messageId === message.id) ? 'fill text-cYellow' : 'line'} text-sm"></i>
                             </button>
                         </div>
 
                         {#if showEmojiPicker && activeMessageId === message.id}
-                        <div bind:this={emojiPickerRef} class="absolute {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} bg-[#2C2C2C]/95 backdrop-blur-sm rounded shadow-xl border border-white/10 p-2.5 z-50 animate-fadeIn" style="top: 0; margin-top: 8px; margin-bottom: 10px;">
+                        <div bind:this={emojiPickerRef} class="absolute {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} bg-[#2C2C2C]/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/10 p-2.5 z-50 animate-fadeIn" style="top: 0; margin-top: 8px; margin-bottom: 10px;">
                             <div class="flex gap-1">
                                 {#each commonEmojis as emoji}
-                                <button on:click={() => handleReaction(message.id, emoji)} class="p-2 hover:bg-white/10 rounded transition-all duration-300 hover:scale-105 active:scale-95 {message.reactions?.[emoji]?.includes(userId) ? message.userId === userId ? 'bg-cYellow text-black' : 'bg-white/10' : ''}">
+                                <button on:click={() => handleReaction(message.id, emoji)} class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 {message.reactions?.[emoji]?.includes(userId) ? message.userId === userId ? 'bg-cYellow text-black' : 'bg-white/10' : ''}">
                                     {emoji}
                                 </button>
                                 {/each}
@@ -1197,7 +1198,7 @@
                     {#if Object.keys(message.reactions || {}).length > 0}
                     <div class="flex flex-wrap gap-1 mt-1.5 {message.userId === userId ? 'justify-end' : 'justify-start'}" style="width: {message.message.length > 100 ? '350px' : 'fit-content'}">
                         {#each Object.entries(message.reactions || {}) as [emoji, users]}
-                        <div class="flex items-center gap-1 bg-[#2C2C2C] rounded px-2 py-0.5 text-sm hover:bg-[#363636] transition-colors duration-200">
+                        <div class="flex items-center gap-1 bg-[#2C2C2C] rounded-lg px-2 py-0.5 text-sm hover:bg-[#363636] transition-colors duration-200">
                             <span>{emoji}</span>
                             <span class="text-xs opacity-70">{users.length}</span>
                         </div>
@@ -1246,7 +1247,7 @@
                     <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
                         <div class="flex items-start justify-between gap-2 mb-1">
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 bg-cYellow rounded flex items-center justify-center text-black text-xs font-bold">
+                                <div class="w-6 h-6 bg-cYellow rounded-lg flex items-center justify-center text-black text-xs font-bold">
                                     {bookmark.userId.slice(0, 2).toUpperCase()}
                                 </div>
                                 <span class="text-sm font-medium text-white/90">{bookmark.userId}</span>
@@ -1290,9 +1291,9 @@
         {/if}
 
         <div class="bg-cWhiteGray border-t border-white/10 fixed bottom-0 left-0 right-0 sm:relative z-10">
-            <div class="px-4 sm:px-6 py-3 sm:py-4">
+            <div class="px-4 sm:px-6 py-2.5 sm:py-4">
                 {#if replyingTo}
-                <div class="bg-[#2C2C2C]/90 rounded p-3 mb-3 flex items-center justify-between border-l-2 border-l-cYellow border border-white/5">
+                <div class="bg-[#2C2C2C]/90 rounded-lg p-3 mb-3 flex items-center justify-between border-l-2 border-l-cYellow border border-white/5">
                     <div class="text-sm text-white/50 truncate flex items-center gap-2">
                         <i class="ri-reply-fill text-cYellow text-lg"></i>
                         <div>
@@ -1300,7 +1301,7 @@
                             <p class="truncate">{replyingTo.message}</p>
                         </div>
                     </div>
-                    <button on:click={cancelReply} class="p-1.5 hover:bg-white/10 rounded text-white/50 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                    <button on:click={cancelReply} class="p-1.5 hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                         <i class="ri-close-fill text-lg"></i>
                     </button>
                 </div>
@@ -1308,20 +1309,20 @@
 
                 <div class="flex gap-2 max-w-[100vw] sm:max-w-none">
                     <div class="relative">
-                        <button bind:this={inputEmojiButtonRef} on:click={() => showInputEmojiPicker = !showInputEmojiPicker} class="w-12 h-12 bg-[#2C2C2C]/90 border border-white/10 rounded focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 transition-all duration-300 text-white hover:bg-[#2C2C2C] flex items-center justify-center flex-shrink-0">
+                        <button bind:this={inputEmojiButtonRef} on:click={() => showInputEmojiPicker = !showInputEmojiPicker} class="w-12 h-12 bg-[#2C2C2C]/90 border border-white/10 rounded-lg focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 transition-all duration-300 text-white hover:bg-[#2C2C2C] flex items-center justify-center flex-shrink-0">
                             <i class="ri-emotion-line text-xl"></i>
                         </button>
 
                         {#if showInputEmojiPicker}
-                        <div bind:this={inputEmojiPickerRef} class="absolute bottom-full left-0 mb-2 bg-[#2C2C2C]/95 backdrop-blur-sm rounded shadow-xl border border-white/10 p-3 z-50 animate-fadeIn w-[320px]">
+                        <div bind:this={inputEmojiPickerRef} class="absolute bottom-full left-0 mb-2 bg-[#2C2C2C]/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/10 p-3 z-50 animate-fadeIn w-[320px]" in:slide={{ duration: 200, axis: 'y' }} out:slide={{ duration: 200, axis: 'y' }}>
                             <div class="mb-3">
                                 <div class="relative">
-                                    <input type="text" bind:value={emojiSearchQuery} placeholder="Search emojis..." class="w-full pl-9 pr-3 py-2 bg-black/30 border border-white/10 rounded text-sm focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20 placeholder-white/30" />
+                                    <input type="text" bind:value={emojiSearchQuery} placeholder="Search emojis..." class="w-full pl-9 pr-3 py-2.5 bg-black/30 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20 placeholder-white/30" />
                                     <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white/30"></i>
                                 </div>
                             </div>
 
-                            <div class="overflow-hidden rounded">
+                            <div class="overflow-hidden rounded-lg">
                                 {#if !emojiSearchQuery}
                                     <div class="flex gap-1 mb-2 pb-2 overflow-x-auto custom-scrollbar border-b border-white/10">
                                         {#each Object.entries({
@@ -1334,7 +1335,7 @@
                                             'Objects': 'ri-lightbulb-line',
                                             'Symbols': 'ri-heart-3-line'
                                         }) as [category, icon]}
-                                        <button class="px-3 py-2 text-xs whitespace-nowrap rounded transition-all duration-300 flex items-center gap-2 {selectedCategory === category ? 'bg-cYellow text-black font-medium shadow-lg' : 'text-white/70 hover:bg-white/10'}" on:click={() => selectedCategory = category}>
+                                        <button class="px-3 py-2.5 text-xs whitespace-nowrap rounded-lg transition-all duration-300 flex items-center gap-2 {selectedCategory === category ? 'bg-cYellow text-black font-medium shadow-lg' : 'text-white/70 hover:bg-white/10'}" on:click={() => selectedCategory = category}>
                                             <i class={icon}></i>
                                             <span class="hidden sm:inline">{category}</span>
                                         </button>
@@ -1345,7 +1346,7 @@
                                         {#if selectedCategory}
                                             <div class="grid grid-cols-8 gap-1.5">
                                                 {#each emojiCategories[selectedCategory] as emoji}
-                                                    <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
+                                                    <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
                                                         {emoji}
                                                     </button>
                                                 {/each}
@@ -1371,7 +1372,7 @@
                                                     </div>
                                                     <div class="grid grid-cols-8 gap-1.5">
                                                         {#each categoryEmojis as emoji}
-                                                            <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
+                                                            <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
                                                                 {emoji}
                                                             </button>
                                                         {/each}
@@ -1385,7 +1386,7 @@
                                         {#if filteredEmojis.length > 0}
                                         <div class="grid grid-cols-8 gap-1.5">
                                             {#each filteredEmojis as emoji}
-                                            <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
+                                            <button on:click={() => handleInputEmojiClick(emoji)} class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 text-lg hover:shadow-lg hover:shadow-black/5">
                                                 {emoji}
                                             </button>
                                             {/each}
@@ -1411,7 +1412,7 @@
                     </div>
 
                     <div class="relative">
-                        <button bind:this={fileInputButtonRef} on:click={() => fileInput.click()} class="w-12 h-12 bg-[#2C2C2C]/90 border border-white/10 rounded focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 transition-all duration-300 text-white hover:bg-[#2C2C2C] flex items-center justify-center flex-shrink-0">
+                        <button bind:this={fileInputButtonRef} on:click={() => fileInput.click()} class="w-12 h-12 bg-[#2C2C2C]/90 border border-white/10 rounded-lg focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 transition-all duration-300 text-white hover:bg-[#2C2C2C] flex items-center justify-center flex-shrink-0">
                             <i class="ri-image-line text-xl"></i>
                         </button>
                         <input
@@ -1427,8 +1428,8 @@
                             <div class="bg-[#2C2C2C] p-8 rounded-lg shadow-xl border border-white/10 max-w-sm w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
                                 <div class="flex flex-col items-center gap-4">
                                     <div class="flex items-center gap-3 w-full">
-                                        <div class="w-full bg-black/20 rounded-full h-2 overflow-hidden">
-                                            <div class="h-full bg-cYellow transition-all duration-300 rounded-full" style="width: {imageUploadProgress}%"></div>
+                                        <div class="w-full bg-black/20 rounded-lg-full h-2 overflow-hidden">
+                                            <div class="h-full bg-cYellow transition-all duration-300 rounded-lg-full" style="width: {imageUploadProgress}%"></div>
                                         </div>
                                         <div class="text-sm font-medium text-white/90 min-w-[40px]">{Math.round(imageUploadProgress)}%</div>
                                     </div>
@@ -1457,15 +1458,15 @@
                                     handleSendMessage();
                                 }
                             }} 
-                            class="w-full h-12 bg-[#2C2C2C]/90 border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white text-sm resize-none overflow-hidden"
+                            class="w-full h-12 bg-[#2C2C2C]/90 border border-white/10 rounded-lg px-4 py-2.5 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white text-sm resize-none overflow-hidden"
                             rows="1"
                             style="min-height: 48px; max-height: 120px;"
                         ></textarea>
                         
                         {#if showUserDropdown && filteredUsers.length > 0}
-                        <div class="absolute bottom-full left-0 w-full bg-[#2C2C2C]/90 border border-white/10 rounded overflow-hidden mb-2 shadow-xl animate-fadeIn">
+                        <div class="absolute bottom-full left-0 w-full bg-[#2C2C2C]/90 border border-white/10 rounded-lg overflow-hidden mb-2 shadow-xl animate-fadeIn">
                             {#each filteredUsers as user, index}
-                            <button class="w-full px-4 py-2.5 text-left hover:bg-white/10 transition-all duration-300 text-sm
+                            <button class="w-full px-4 py-2.5.5 text-left hover:bg-white/10 transition-all duration-300 text-sm
                                 {index === userDropdownIndex ? 'bg-white/10 text-cYellow' : 'text-white'} flex items-center gap-2" 
                                 on:click={() => selectUser(user)}>
                                 <i class="ri-at-fill"></i>
@@ -1484,7 +1485,7 @@
                             }
                         }} 
                         disabled={isSendButtonDisabled} 
-                        class="w-12 h-12 bg-cYellow text-black rounded font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center hover:scale-105 active:scale-95 disabled:hover:scale-100 flex-shrink-0"
+                        class="w-12 h-12 bg-cYellow text-black rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center hover:scale-105 active:scale-95 disabled:hover:scale-100 flex-shrink-0"
                     >
                         <i class="ri-send-plane-2-fill text-xl"></i>
                     </button>

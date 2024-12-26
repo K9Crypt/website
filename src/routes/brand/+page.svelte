@@ -78,29 +78,29 @@
         {#if !isLoaded}
         <div class="space-y-12 animate-pulse">
             <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded w-64"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="h-64 bg-cWhiteGray rounded"></div>
-                    <div class="h-64 bg-cWhiteGray rounded"></div>
+                    <div class="h-64 bg-cWhiteGray rounded-lg"></div>
+                    <div class="h-64 bg-cWhiteGray rounded-lg"></div>
                 </div>
             </div>
 
             <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded w-40"></div>
-                <div class="h-80 bg-cWhiteGray rounded"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-40"></div>
+                <div class="h-80 bg-cWhiteGray rounded-lg"></div>
             </div>
 
             <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded w-56"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-56"></div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="h-48 bg-cWhiteGray rounded"></div>
-                    <div class="h-48 bg-cWhiteGray rounded"></div>
+                    <div class="h-48 bg-cWhiteGray rounded-lg"></div>
+                    <div class="h-48 bg-cWhiteGray rounded-lg"></div>
                 </div>
             </div>
 
             <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded w-48"></div>
-                <div class="h-64 bg-cWhiteGray rounded"></div>
+                <div class="h-8 bg-cWhiteGray rounded-lg w-48"></div>
+                <div class="h-64 bg-cWhiteGray rounded-lg"></div>
             </div>
         </div>
         {:else}
@@ -109,7 +109,7 @@
                 <h2 class="text-3xl font-bold">Brand Assets</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {#each brandAssets.logos as logo}
-                    <div class="bg-cWhiteGray border border-white/5 rounded p-6">
+                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
                         <img src={logo.path} alt={logo.name} class="w-full h-32 object-contain mb-4" />
                         <h3 class="text-xl font-semibold mb-2">{logo.name}</h3>
                         <p class="text-white/50 mb-4">{logo.description}</p>
@@ -120,8 +120,8 @@
 
             <div class="space-y-6">
                 <h2 class="text-3xl font-bold">Banner</h2>
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6">
-                    <img src={brandAssets.banner.path} alt="K9Crypt Banner" class="w-full object-cover rounded mb-4" />
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
+                    <img src={brandAssets.banner.path} alt="K9Crypt Banner" class="w-full object-cover rounded-lg mb-4" />
                     <p class="text-white/50 mb-4">{brandAssets.banner.description}</p>
                 </div>
             </div>
@@ -130,8 +130,8 @@
                 <h2 class="text-3xl font-bold">Color Palette</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {#each brandAssets.colors as color}
-                    <div class="bg-cWhiteGray border border-white/5 rounded p-6">
-                        <div class="w-full h-24 rounded mb-4 border border-white/5" style="background-color: {color.hex}"></div>
+                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
+                        <div class="w-full h-24 rounded-lg mb-4 border border-white/5" style="background-color: {color.hex}"></div>
                         <h3 class="font-semibold mb-2">{color.name}</h3>
                         <div class="space-y-1 text-sm text-white/50">
                             <p>HEX: {color.hex}</p>
@@ -145,7 +145,7 @@
 
             <div class="space-y-6">
                 <h2 class="text-3xl font-bold">Typography</h2>
-                <div class="bg-cWhiteGray border border-white/5 rounded p-6">
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
                     <div class="space-y-4">
                         <div>
                             <h3 class="text-xl mb-2">Primary Font</h3>

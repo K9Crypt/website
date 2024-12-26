@@ -56,27 +56,27 @@
                 {#if !isLoaded}
                 <div class="space-y-8 animate-pulse">
                     <div class="space-y-3">
-                        <div class="h-8 bg-cWhiteGray rounded w-64"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-96"></div>
+                        <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
+                        <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
                     </div>
                     
-                    <div class="flex gap-4 overflow-x-auto py-2">
+                    <div class="flex gap-4 overflow-x-auto py-2.5">
                         {#each Array(3) as _}
-                        <div class="h-10 w-24 bg-cWhiteGray rounded flex-shrink-0"></div>
+                        <div class="h-10 w-24 bg-cWhiteGray rounded-lg flex-shrink-0"></div>
                         {/each}
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {#each Array(6) as _}
-                        <div class="bg-cWhiteGray border border-white/5 rounded overflow-hidden">
+                        <div class="bg-cWhiteGray border border-white/5 rounded-lg overflow-hidden">
                             <div class="h-48 bg-cWhiteGray"></div>
                             <div class="p-6 space-y-4">
-                                <div class="h-4 bg-cWhiteGray rounded w-24"></div>
-                                <div class="h-6 bg-cWhiteGray rounded w-3/4"></div>
-                                <div class="h-4 bg-cWhiteGray rounded w-full"></div>
+                                <div class="h-4 bg-cWhiteGray rounded-lg w-24"></div>
+                                <div class="h-6 bg-cWhiteGray rounded-lg w-3/4"></div>
+                                <div class="h-4 bg-cWhiteGray rounded-lg w-full"></div>
                                 <div class="flex gap-2">
-                                    <div class="h-4 bg-cWhiteGray rounded w-16"></div>
-                                    <div class="h-4 bg-cWhiteGray rounded w-16"></div>
+                                    <div class="h-4 bg-cWhiteGray rounded-lg w-16"></div>
+                                    <div class="h-4 bg-cWhiteGray rounded-lg w-16"></div>
                                 </div>
                             </div>
                         </div>
@@ -90,18 +90,18 @@
                 </div>
                 
                 <div class="mb-8">
-                    <div class="flex gap-4 overflow-x-auto py-2">
+                    <div class="flex gap-4 overflow-x-auto py-2.5">
                         <div class="flex justify-center space-x-4 mt-6">
-                            <button on:click={() => filterUpdates('all')} class="px-6 py-2 rounded text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'all' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">All</button>
-                            <button on:click={() => filterUpdates('popular')} class="px-6 py-2 rounded text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'popular' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Popular</button>
-                            <button on:click={() => filterUpdates('recent')} class="px-6 py-2 rounded text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'recent' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Recent</button>
+                            <button on:click={() => filterUpdates('all')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'all' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">All</button>
+                            <button on:click={() => filterUpdates('popular')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'popular' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Popular</button>
+                            <button on:click={() => filterUpdates('recent')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'recent' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Recent</button>
                         </div>
                     </div>
                 </div>
 
                 {#if displayedUpdates.length === 0}
                 <div class="text-center py-12">
-                    <div class="bg-cWhiteGray border border-white/5 rounded p-8">
+                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-8">
                         <i class="ri-article-fill text-4xl text-white/50 mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">No Updates Found</h3>
                         <p class="text-white/50">There are no updates available at the moment. Please check back later.</p>
@@ -110,7 +110,7 @@
                 {:else}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {#each displayedUpdates as update}
-                    <article class="bg-cWhiteGray border border-white/5 rounded overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
+                    <article class="bg-cWhiteGray border border-white/5 rounded-lg overflow-hidden group hover:bg-cWhiteGray transition-all duration-300">
                         <div class="p-6">
                             <h2 class="text-xl font-semibold mb-3 transition-colors duration-300">
                                 {titleShortener(update.title)}

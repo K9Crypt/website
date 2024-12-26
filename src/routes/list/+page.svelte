@@ -59,17 +59,17 @@
             {#if !isLoaded}
             <div class="space-y-8 animate-pulse">
                 <div class="mb-8">
-                    <div class="h-8 bg-cWhiteGray rounded w-1/3 mb-3"></div>
-                    <div class="h-4 bg-cWhiteGray rounded w-1/2 mb-2"></div>
-                    <div class="h-4 bg-cWhiteGray rounded w-2/3"></div>
+                    <div class="h-8 bg-cWhiteGray rounded-lg w-1/3 mb-3"></div>
+                    <div class="h-4 bg-cWhiteGray rounded-lg w-1/2 mb-2"></div>
+                    <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {#each Array(4) as _}
-                        <div class="bg-cWhiteGray border border-white/5 rounded p-6">
-                            <div class="h-6 bg-cWhiteGray rounded w-3/4 mb-4"></div>
+                        <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
+                            <div class="h-6 bg-cWhiteGray rounded-lg w-3/4 mb-4"></div>
                             <div class="space-y-3">
-                                <div class="h-4 bg-cWhiteGray rounded w-1/2"></div>
-                                <div class="h-4 bg-cWhiteGray rounded w-2/3"></div>
+                                <div class="h-4 bg-cWhiteGray rounded-lg w-1/2"></div>
+                                <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
                             </div>
                         </div>
                     {/each}
@@ -81,7 +81,7 @@
                     <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
                     <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
                     
-                    <div class="bg-red-500/10 border border-red-500/20 rounded p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
+                    <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
                         <div class="flex justify-center mb-3 sm:mb-4">
                             <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
                         </div>
@@ -89,12 +89,12 @@
                         <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">{error}</p>
                     </div>
 
-                    <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2 px-4 sm:px-6 md:px-10 rounded font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+                    <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
                 </div>
             </div>
             {:else if rooms.length === 0}
             <div class="flex flex-col items-center justify-center min-h-[60vh]">
-                <div class="text-center bg-white/5 p-8 rounded mb-6 w-96">
+                <div class="text-center bg-white/5 p-8 rounded-lg mb-6 w-96">
                     <div class="mb-4 text-white/30">
                         <i class="ri-team-fill text-6xl"></i>
                     </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {#each displayedRooms as room}
-                <div class="bg-cWhiteGray border border-white/5 rounded p-4 sm:p-6 text-left">
+                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-4 sm:p-6 text-left">
                     <div class="relative z-10">
                         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between mb-3 sm:mb-2">
                             <div class="space-y-1">
@@ -158,12 +158,12 @@
 
             {#if totalPages > 1}
             <div class="mt-8 flex justify-center items-center gap-4">
-                <button on:click={prevPage} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded px-4 py-2 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoPrev}>
+                <button on:click={prevPage} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded-lg px-4 py-2.5 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoPrev}>
                     <i class="ri-arrow-left-fill"></i>
                     Previous
                 </button>
                 <span class="text-white/50">Page {currentPage} of {totalPages}</span>
-                <button on:click={() => nextPage(1)} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded px-4 py-2 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoNext}>
+                <button on:click={() => nextPage(1)} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded-lg px-4 py-2.5 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoNext}>
                     Next
                     <i class="ri-arrow-right-fill"></i>
                 </button>

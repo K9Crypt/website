@@ -15,44 +15,44 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 animate-pulse">
             <div class="col-span-1 md:col-span-2 space-y-4">
-                <div class="h-8 bg-[#2C2C2C] rounded w-32"></div>
-                <div class="h-20 bg-[#2C2C2C] rounded"></div>
+                <div class="h-8 bg-[#2C2C2C] rounded-lg w-32"></div>
+                <div class="h-20 bg-[#2C2C2C] rounded-lg"></div>
                 <div class="flex space-x-4">
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
-                    <div class="h-8 w-8 bg-[#2C2C2C] rounded"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-lg"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-lg"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-lg"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-lg"></div>
+                    <div class="h-8 w-8 bg-[#2C2C2C] rounded-lg"></div>
                 </div>
                 <div class="mt-2">
-                    <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded"></div>
+                    <div class="h-[30px] w-[250px] bg-[#2C2C2C] rounded-lg"></div>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-24"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg w-24"></div>
                 <div class="space-y-2">
-                    <div class="h-4 bg-[#2C2C2C] rounded w-20"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-20"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-20"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-20"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-24"></div>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded w-24"></div>
+                <div class="h-6 bg-cWhiteGray rounded-lg w-24"></div>
                 <div class="space-y-2">
-                    <div class="h-4 bg-[#2C2C2C] rounded w-20"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-20"></div>
-                    <div class="h-4 bg-[#2C2C2C] rounded w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-20"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-24"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-20"></div>
+                    <div class="h-4 bg-[#2C2C2C] rounded-lg w-24"></div>
                 </div>
             </div>
         </div>
 
         <div class="border-t border-white/5 pt-8 flex justify-center">
-            <div class="h-4 bg-[#2C2C2C] rounded w-48"></div>
+            <div class="h-4 bg-[#2C2C2C] rounded-lg w-48"></div>
         </div>
     </div>
 </footer>
@@ -81,7 +81,7 @@
                     </a>
                 </div>
                 <div class="mt-2">
-                    <iframe src="https://status.k9crypt.xyz/badge?theme=dark" width="250"  height="30" frameborder="0" scrolling="no" class="rounded bg-cWhiteGray" title="K9Crypt Status Badge"></iframe>
+                    <iframe src="https://status.k9crypt.xyz/badge?theme=dark" width="250"  height="30" frameborder="0" scrolling="no" class="rounded-lg bg-cWhiteGray" title="K9Crypt Status Badge"></iframe>
                 </div>
             </div>
 
