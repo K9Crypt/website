@@ -24,12 +24,7 @@
         reactions?: Record<string, string[]>;
     }> = [];
     let pollingInterval: NodeJS.Timeout;
-    let replyingTo: { 
-        message: string;
-        sender: string;
-        content: string;
-        id: string;
-    } | null = null;
+    let replyingTo: { message: string } | null = null;
     let roomType = '';
     let roomPassword = '';
     let isPasswordRequired = false;
@@ -81,10 +76,6 @@
         'Objects': emojis.slice(400, 440),
         'Symbols': emojis.slice(440)
     };
-    let lastMessageTimestamp = 0;
-    const MESSAGE_COOLDOWN = 100;
-    let messageQueue: Array<{ content: string; tempId: string; isImage: boolean }> = [];
-    let isProcessingQueue = false;
     let selectedCategory = '';
     let messagesContainer: HTMLDivElement;
     let shouldAutoScroll = true;
@@ -109,6 +100,8 @@
         userId: string;
         timestamp: number;
     }> = [];
+    let lastFetchTimestamp = 0;
+    const FETCH_COOLDOWN = 1000;
 
     $: {
         if (messageSearchQuery.length > 0) {
@@ -137,10 +130,10 @@
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/~~(.*?)~~/g, '<del>$1</del>')
-            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded-lg text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
-            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded-lg text-cYellow">$1</code>')
+            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
+            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded text-cYellow">$1</code>')
             .replace(/__(.*?)__/g, '<u>$1</u>')
-            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded-lg">$1</mark>')
+            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded">$1</mark>')
             .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-cYellow pl-3 py-1 my-2 italic">$1</blockquote>')
             .replace(/^\- (.*$)/gm, '<li class="ml-4 list-disc">$1</li>')
             .replace(/^\+ (.*$)/gm, '<li class="ml-4 list-circle">$1</li>')
@@ -373,37 +366,63 @@
         }
     }
 
-    async function loadRoomData() {
+    async function loadRoomData(force = false) {
+        const now = Date.now();
+        if (!force && now - lastFetchTimestamp < FETCH_COOLDOWN) return;
+
         try {
-            const loadingStartTime = Date.now();
-            const newMessages = await getMessages(roomId);
-            
-            if (JSON.stringify(newMessages) !== JSON.stringify(messages)) {
-                const processedMessages = newMessages.map(msg => {
-                    const existingMessage = messages.find(m => m.id === msg.id);
-                    const readBy = msg.readBy || [];
+            const [newMessages, roomDetails] = await Promise.all([
+                getMessages(roomId),
+                checkRoom(roomId)
+            ]);
+
+            lastFetchTimestamp = now;
+
+            if (roomDetails?.users) {
+                roomUsers = roomDetails.users;
+                roomType = roomDetails.type || roomType;
+                roomName = roomDetails.roomName || roomName;
+            }
+
+            const tempMessages = messages.filter(msg => 
+                msg.id.startsWith('temp-') && 
+                msg.status === 'sending' &&
+                Date.now() - msg.timestamp < 30000
+            );
+
+            const processedMessages = newMessages
+                .filter(msg => msg && msg.id && msg.userId && msg.message)
+                .map(msg => {
+                    const readBy = new Set([...(msg.readBy || [])]);
                     
-                    if (!readBy.includes(userId) && msg.userId !== userId) {
+                    if (!readBy.has(userId) && msg.userId !== userId) {
                         markMessageAsRead(roomId, userId, msg.id).catch(console.error);
-                        readBy.push(userId);
+                        readBy.add(userId);
                     }
-                    
+
                     return {
                         ...msg,
-                        id: msg.id || existingMessage?.id || `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                        readBy,
-                        reactions: msg.reactions || existingMessage?.reactions || {}
+                        id: msg.id,
+                        readBy: Array.from(readBy),
+                        reactions: msg.reactions || {},
+                        status: 'sent',
+                        timestamp: msg.timestamp || Date.now()
                     };
                 });
 
-                messages = processedMessages;
-                
-                const responseTime = Date.now() - loadingStartTime;
-                pollingInterval = Math.max(2000, Math.min(5000, responseTime * 2));
+            const messageIds = new Set(processedMessages.map(m => m.id));
+            const validTempMessages = tempMessages.filter(m => !messageIds.has(m.id));
+
+            messages = [...processedMessages, ...validTempMessages]
+                .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+            if (shouldAutoScroll) {
+                requestAnimationFrame(scrollToBottom);
             }
+
         } catch (err) {
+            console.error('Room data loading error:', err);
             error = 'Failed to load room data';
-            console.error('Error loading room data:', err);
         }
     }
 
@@ -469,10 +488,9 @@
         }
     }
 
-    function startPolling() {
+    async function startPolling() {
         stopPolling();
-        loadRoomData();
-        pollingInterval = setInterval(loadRoomData, 3000);
+        pollingInterval = setInterval(loadRoomData, 5000);
     }
 
     function stopPolling() {
@@ -481,18 +499,9 @@
         }
     }
 
-    function handleReply(msg: { 
-        message: string; 
-        userId: string; 
-        id: string;
-    }) {
+    function handleReply(msg: { message: string }) {
         if (!msg.message.startsWith('[IMAGE]')) {
-            replyingTo = {
-                message: msg.message,
-                sender: msg.userId,
-                content: msg.message,
-                id: msg.id
-            };
+            replyingTo = msg;
             message = '';
             focusMessageInput();
         }
@@ -603,85 +612,82 @@
         }
     });
 
-    async function processMessageQueue() {
-        if (isProcessingQueue || messageQueue.length === 0) return;
-        
-        isProcessingQueue = true;
-        
-        while (messageQueue.length > 0) {
-            const { content, tempId, isImage } = messageQueue[0];
-            
-            try {
-                await sendMessage(roomId, userId, content);
-                await loadRoomData();
-                messageQueue.shift();
-            } catch (err) {
-                messages = messages.filter(m => m.id !== tempId);
-                toast.error('Failed to send message', {
-                    duration: 3000,
-                    position: 'bottom-right',
-                    style: 'background-color: #1B1B1B; color: #fff;'
-                });
-                messageQueue = [];
-                break;
-            }
-            
-            await new Promise(resolve => setTimeout(resolve, MESSAGE_COOLDOWN));
-        }
-        
-        isProcessingQueue = false;
-    }
-
     async function handleSendMessage(isImage = false) {
-        const now = Date.now();
-        if (now - lastMessageTimestamp < MESSAGE_COOLDOWN) {
+        if (isLoading) return;
+        if ((!isImage && (!message || message.trim().length === 0)) || 
+            (isImage && !selectedImage)) return;
+        
+        if (!userId || !roomId || !hasJoinedRoom) {
+            toast.error('Please rejoin the room');
+            goto('/join/room');
             return;
         }
-        
-        if ((!isImage && isSendButtonDisabled) || (isImage && !selectedImage)) return;
-        
-        const messageContent = isImage 
+
+        const messageToSend = isImage 
             ? `[IMAGE]${selectedImage}`
             : replyingTo
-                ? `Replying to "${replyingTo.message}": \n\n${message.trim()}`
+                ? `Replying to "${replyingTo.message.substring(0, 50)}${replyingTo.message.length > 50 ? '...' : ''}": \n\n${message.trim()}`
                 : message.trim();
-                
-        if (!isImage && (!messageContent || messageContent.length > 2000)) {
-            toast.error('Message must be between 1 and 2000 characters', {
+
+        const tempMessage = {
+            id: `temp-${Date.now()}-${crypto.randomUUID()}`,
+            userId,
+            message: messageToSend,
+            readBy: [userId],
+            reactions: {},
+            status: 'sending',
+            timestamp: Date.now()
+        };
+
+        try {
+            isLoading = true;
+
+            const currentMessage = message;
+            const currentReplyTo = replyingTo;
+            const currentImage = selectedImage;
+
+            message = '';
+            replyingTo = null;
+            selectedImage = null;
+
+            if (messageInput) {
+                messageInput.style.height = '48px';
+                messageInput.value = '';
+            }
+
+            messages = [...messages.filter(msg => !msg.id.startsWith('temp-')), tempMessage];
+
+            await new Promise(resolve => setTimeout(resolve, 0));
+            shouldAutoScroll = true;
+            scrollToBottom();
+
+            const result = await sendMessage(roomId, userId, messageToSend);
+            
+            if (!result) throw new Error('Failed to send message');
+
+            messages = messages.map(msg => 
+                msg.id === tempMessage.id 
+                    ? { ...msg, status: 'sent', id: result.id || msg.id }
+                    : msg
+            );
+
+            await loadRoomData(true);
+        } catch (err) {
+            console.error('Message sending error:', err);
+
+            messages = messages.filter(msg => msg.id !== tempMessage.id);
+            message = currentMessage || '';
+            replyingTo = currentReplyTo;
+            selectedImage = currentImage;
+
+            toast.error('Failed to send message. Please try again.', {
                 duration: 3000,
                 position: 'bottom-right',
                 style: 'background-color: #1B1B1B; color: #fff;'
             });
-            return;
+        } finally {
+            isLoading = false;
         }
-
-        const tempId = `temp-${Date.now()}`;
-        const tempMessage = {
-            id: tempId,
-            userId: userId,
-            message: messageContent,
-            readBy: [userId],
-            reactions: {},
-            replyTo: replyingTo ? {
-                sender: userId,
-                content: replyingTo.message
-            } : undefined
-        };
-        
-        messages = [...messages, tempMessage];
-        message = '';
-        replyingTo = null;
-        isLoading = true;
-        lastMessageTimestamp = now;
-
-        messageQueue.push({
-            content: messageContent,
-            tempId,
-            isImage
-        });
-
-        processMessageQueue();
-        isLoading = false;
     }
 
     function decodeBase64Image(encodedString: string): string {
@@ -832,9 +838,9 @@
 
 {#if error}
 <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
-    <div class="bg-cWhiteGray p-8 rounded-lg-lg shadow-xl border border-white/10 max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
+    <div class="bg-cWhiteGray p-8 rounded-lg shadow-xl border border-white/10 max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
         <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 bg-red-500/10 rounded-lg-full flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold mb-2">Room Not Found</h3>
@@ -899,7 +905,7 @@
                     </div>
                     {/if}
                     
-                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-lg-l-lg rounded-lg-tr-lg' : 'bg-[#2C2C2C] text-white rounded-lg-r-lg rounded-lg-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
+                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
                         {#if i % 2 !== 0}
                         <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 mb-2"></div>
                         {/if}
@@ -1109,13 +1115,13 @@
                                     <img 
                                         src={decodeBase64Image(message.replyTo.content.slice(7))} 
                                         alt="Replied image" 
-                                        class="max-w-full w-[100px] rounded-lg-lg object-contain"
+                                        class="max-w-full w-[100px] rounded-lg object-contain"
                                         on:error={(e) => {
                                             e.currentTarget.style.display = 'none';
                                             e.currentTarget.nextElementSibling.style.display = 'flex';
                                         }}
                                     />
-                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg-lg w-full min-h-[50px]">
+                                    <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[50px]">
                                         <div class="flex flex-col items-center gap-2">
                                             <i class="ri-error-warning-line text-xl"></i>
                                             <span class="text-xs">Image failed to load</span>
@@ -1161,6 +1167,15 @@
                                 </div>
                                 {:else}
                                 <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html parseMarkdown(message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')) || ''}</p>
+                                <div class="message-status {message.status}">
+                                    {#if message.status === 'sending'}
+                                        <i class="ri-time-line"></i>
+                                    {:else if message.status === 'sent'}
+                                        <i class="ri-check-double-line"></i>
+                                    {:else if message.status === 'failed'}
+                                        <i class="ri-error-warning-line"></i>
+                                    {/if}
+                                </div>
                                 {/if}
                             </div>
                         </div>                        
@@ -1428,8 +1443,8 @@
                             <div class="bg-[#2C2C2C] p-8 rounded-lg shadow-xl border border-white/10 max-w-sm w-full mx-4" transition:scale={{ duration: 300, easing: quintOut }}>
                                 <div class="flex flex-col items-center gap-4">
                                     <div class="flex items-center gap-3 w-full">
-                                        <div class="w-full bg-black/20 rounded-lg-full h-2 overflow-hidden">
-                                            <div class="h-full bg-cYellow transition-all duration-300 rounded-lg-full" style="width: {imageUploadProgress}%"></div>
+                                        <div class="w-full bg-black/20 rounded-full h-2 overflow-hidden">
+                                            <div class="h-full bg-cYellow transition-all duration-300 rounded-full" style="width: {imageUploadProgress}%"></div>
                                         </div>
                                         <div class="text-sm font-medium text-white/90 min-w-[40px]">{Math.round(imageUploadProgress)}%</div>
                                     </div>
