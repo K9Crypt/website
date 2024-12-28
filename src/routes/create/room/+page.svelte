@@ -150,8 +150,6 @@
                 position: 'bottom-right', 
                 style: 'background-color: #1B1B1B; color: #fff;' 
             });
-            
-            await goto(`/room/${roomId}`);
         } catch (err: any) {
             error = err.message;
             toast.error(error, { 
