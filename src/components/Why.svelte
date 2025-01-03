@@ -1,7 +1,4 @@
 <script>
-    import { onMount } from "svelte";
-    let isLoaded = false;
-    
     const features = [
         {
             title: "No Account Needed",
@@ -24,34 +21,10 @@
             icon: "ri-code-s-slash-fill"
         }
     ];
-
-    onMount(() => {
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
-    });
 </script>
 
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-        {#if !isLoaded}
-        <div class="animate-pulse">
-            <div class="mb-4 sm:mb-8">
-                <div class="h-10 bg-cWhiteGray rounded-lg max-w-md mb-3"></div>
-                <div class="h-5 bg-cWhiteGray rounded-lg max-w-xl"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {#each Array(4) as _}
-                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
-                    <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
-                    <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
-                    <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
-                </div>
-                {/each}
-            </div>
-        </div>
-        {:else}
         <div class="mb-4 sm:mb-8">
             <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Why Choose K9Crypt?</h2>
             <p class="text-white/50 text-sm sm:text-base">Because we offer secure and reliable messaging solutions with our passionate team.</p>
@@ -70,6 +43,5 @@
             </div>
             {/each}
         </div>
-        {/if}
     </div>
 </section>

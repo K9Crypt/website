@@ -7,7 +7,6 @@
 
     let rooms: any[] = [];
     let error: string | null = null;
-    let isLoaded = false;
     let totalRoomsCount = 0;
     let currentPage = 1;
     let roomsPerPage = 10;
@@ -23,8 +22,6 @@
             totalRoomsCount = rooms.length;
         } catch (err) {
             error = 'Failed to fetch rooms';
-        } finally {
-            isLoaded = true;
         }
     });
 
@@ -56,26 +53,7 @@
 <div class="flex flex-col min-h-screen">
     <section class="flex-grow py-8 sm:py-12 md:py-16 px-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-            {#if !isLoaded}
-            <div class="space-y-8 animate-pulse">
-                <div class="mb-8">
-                    <div class="h-8 bg-cWhiteGray rounded-lg w-1/3 mb-3"></div>
-                    <div class="h-4 bg-cWhiteGray rounded-lg w-1/2 mb-2"></div>
-                    <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {#each Array(4) as _}
-                        <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
-                            <div class="h-6 bg-cWhiteGray rounded-lg w-3/4 mb-4"></div>
-                            <div class="space-y-3">
-                                <div class="h-4 bg-cWhiteGray rounded-lg w-1/2"></div>
-                                <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
-                            </div>
-                        </div>
-                    {/each}
-                </div>
-            </div>
-            {:else if error}
+            {#if error}
             <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
                 <div class="w-full max-w-2xl mx-auto">
                     <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>

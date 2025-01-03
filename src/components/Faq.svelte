@@ -1,14 +1,5 @@
 <script lang="ts">
     import { slide } from 'svelte/transition';
-    import { onMount } from 'svelte';
-
-    let isLoaded = false;
-
-    onMount(() => {
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
-    });
 
     let faqItems = [
         {
@@ -65,20 +56,6 @@
 
 <section class="py-8 sm:py-12 md:py-16 px-4" id="faq">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-        {#if !isLoaded}
-        <div class="space-y-4 animate-pulse">
-            <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded-lg max-w-md"></div>
-                <div class="h-4 bg-cWhiteGray rounded-lg max-w-xl"></div>
-            </div>
-            
-            <div class="flex flex-col gap-4 mt-8">
-                {#each Array(4) as _}
-                <div class="w-full h-16 bg-cWhiteGray border border-white/5 rounded-lg"></div>
-                {/each}
-            </div>
-        </div>
-        {:else}
         <div class="mb-4 sm:mb-8">
             <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Frequently Asked Questions</h2>
             <p class="text-white/50 text-sm sm:text-base">Find answers to common questions about K9Crypt's services and features.</p>
@@ -103,6 +80,5 @@
             </div>
             {/each}
         </div>
-        {/if}
     </div>
 </section>

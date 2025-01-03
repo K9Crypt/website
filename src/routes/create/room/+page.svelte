@@ -8,7 +8,6 @@
     import { checkLink } from '$lib/check';
     import { blockedNames } from '$lib/config/blockedNames';
 
-    let isLoaded = false;
     let selectedType: "public" | "private" = 'public';
     let showPassword = false;
     let status: boolean | null = null;
@@ -38,9 +37,6 @@
             });
         } finally {
             isValidating = false;
-            setTimeout(() => {
-                isLoaded = true;
-            }, 1000);
         }
     });
 
@@ -190,39 +186,6 @@
     </div>
 </div>
 {:else}
-{#if !isLoaded}
-<section class="py-8 sm:py-12 md:py-16 px-4 flex items-center justify-center min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
-        <div class="mb-8 animate-pulse">
-            <div class="h-8 bg-cWhiteGray rounded-lg w-64 mb-3"></div>
-            <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
-        </div>
-
-        <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 space-y-6 animate-pulse">
-            <div class="space-y-2">
-                <div class="h-4 bg-cWhiteGray rounded-lg w-24"></div>
-                <div class="h-10 bg-cWhiteGray rounded-lg w-full"></div>
-            </div>
-
-            <div class="space-y-2">
-                <div class="h-4 bg-cWhiteGray rounded-lg w-24"></div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="h-10 bg-cWhiteGray rounded-lg"></div>
-                    <div class="h-10 bg-cWhiteGray rounded-lg"></div>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <div class="h-4 bg-cWhiteGray rounded-lg w-32"></div>
-                <div class="h-10 bg-cWhiteGray rounded-lg w-full"></div>
-                <div class="h-3 bg-cWhiteGray rounded-lg w-48"></div>
-            </div>
-
-            <div class="h-12 bg-cWhiteGray rounded-lg w-full"></div>
-        </div>
-    </div>
-</section>
-{:else}
 <section class="flex items-center justify-center min-h-screen">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 max-w-2xl">
         <div class="mb-8">
@@ -294,7 +257,6 @@
         {/if}
     </div>
 </section>
-{/if}
 {/if}
 
 <Footer />

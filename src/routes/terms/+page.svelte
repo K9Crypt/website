@@ -1,9 +1,7 @@
 <script lang="ts">
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
-    import { onMount } from 'svelte';
 
-    let isLoaded = false;
     let activeTab = 'usage';
 
     const sections = [
@@ -116,33 +114,12 @@
             }
         }
     ];
-
-    onMount(() => {
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
-    });
 </script>
 
 <Navbar />
 
 <section class="min-h-screen py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-        {#if !isLoaded}
-        <div class="space-y-8 animate-pulse">
-            <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
-                <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
-            </div>
-
-            {#each Array(4) as _}
-            <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded-lg w-48"></div>
-                <div class="h-40 bg-cWhiteGray rounded-lg"></div>
-            </div>
-            {/each}
-        </div>
-        {:else}
         <div class="mb-8 sm:mb-12">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
             <p class="text-white/50 text-sm sm:text-base max-w-3xl">By using K9Crypt, you agree to these terms. Please read them carefully before using our services.</p>
@@ -213,7 +190,6 @@
                 </div>
             </div>
         </div>
-        {/if}
     </div>
 </section>
 

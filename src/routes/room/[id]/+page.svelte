@@ -14,7 +14,6 @@
     let isLoading = false;
     let status: boolean | null = null;
     let error = '';
-    let isPageLoading = true;
     let messages: Array<{ 
         id: string; 
         userId: string; 
@@ -587,7 +586,6 @@
 
             if (roomType === 'private' && !hasJoinedRoomStorage) {
                 isPasswordRequired = true;
-                isPageLoading = false;
                 return;
             }
 
@@ -600,8 +598,6 @@
             error = 'Failed to initialize room';
             toast.error(error);
             await goto('/join/room');
-        } finally {
-            isPageLoading = false;
         }
     });
 
@@ -875,67 +871,6 @@
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
             <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
-        </div>
-    </div>
-</div>
-{:else}
-{#if isPageLoading}
-<div class="fixed inset-0">
-    <div class="h-screen flex flex-col">
-        <div class="bg-cWhiteGray/50 backdrop-blur-md border-b border-white/10">
-            <div class="px-3 sm:px-6 py-2.5 sm:py-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                    <div class="flex items-center gap-3 sm:gap-4">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#2C2C2C] rounded-lg animate-pulse"></div>
-                        <div class="min-w-0 flex-1">
-                            <div class="h-5 sm:h-6 bg-[#2C2C2C] rounded-lg w-32 sm:w-48 mb-2 animate-pulse"></div>
-                            <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 sm:w-32 animate-pulse"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="w-full sm:w-auto h-10 bg-[#2C2C2C] rounded-lg animate-pulse"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50">
-            <div class="px-6 py-6 space-y-6 min-h-full">
-                {#each Array(5) as _, i}
-                <div class="flex flex-col {i % 2 === 0 ? 'items-end' : 'items-start'} animate-fadeIn">
-                    {#if i % 3 === 0}
-                    <div class="bg-[#2C2C2C]/80 rounded-lg p-3 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
-                        <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 mb-2"></div>
-                        <div class="h-3 bg-[#2C2C2C] rounded-lg w-48"></div>
-                    </div>
-                    {/if}
-                    
-                    <div class="{i % 2 === 0 ? 'bg-cYellow/20 text-white rounded-l-lg rounded-tr-lg' : 'bg-[#2C2C2C] text-white rounded-r-lg rounded-tl-lg'} p-4 max-w-[350px] w-fit border border-white/5 relative">
-                        {#if i % 2 !== 0}
-                        <div class="h-4 bg-[#2C2C2C] rounded-lg w-24 mb-2"></div>
-                        {/if}
-                        <div class="flex flex-col gap-2">
-                            {#if i % 2 !== 0}
-                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-24 opacity-50"></div>
-                            {/if}
-                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-full"></div>
-                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-3/4"></div>
-                            {#if i % 2 === 0}
-                            <div class="h-3 bg-[#2C2C2C] rounded-lg w-1/2"></div>
-                            {/if}
-                        </div>
-                    </div>
-                </div>
-                {/each}
-            </div>
-        </div>
-
-        <div class="bg-cWhiteGray border-t border-white/10">
-            <div class="px-6 py-4">
-                <div class="flex gap-3">
-                    <div class="flex-1 h-[52px] bg-[#2C2C2C] rounded-lg animate-pulse"></div>
-                    <div class="w-[52px] h-[52px] bg-[#2C2C2C] rounded-lg animate-pulse"></div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -1581,6 +1516,5 @@
         </div>
     </div>
 </div>
-{/if}
 {/if}
 {/if}

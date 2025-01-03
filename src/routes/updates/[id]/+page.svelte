@@ -5,7 +5,6 @@
     import Navbar from "../../../components/Navbar.svelte";
     import Footer from "../../../components/Footer.svelte";
     
-    let isLoaded = false;
     let updateId = $page.params.id;
     let update: { 
         title?: string, 
@@ -17,9 +16,6 @@
 
     onMount(async () => {
         await loadUpdate();
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
     });
 
     async function loadUpdate() {
@@ -48,33 +44,6 @@
     <main class="flex-grow">
         <section class="py-8 sm:py-12 md:py-16 px-4">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-                {#if !isLoaded}
-                <div class="space-y-8 animate-pulse">
-                    <div class="mb-6 border-b border-white/5 pb-6">
-                        <div class="h-12 bg-cWhiteGray rounded w-3/4 mb-4"></div>
-                        
-                        <div class="flex items-center gap-4">
-                            <div class="h-5 bg-cWhiteGray rounded w-32"></div>
-                            <div class="h-5 bg-cWhiteGray rounded w-32"></div>
-                            <div class="h-5 bg-cWhiteGray rounded w-24"></div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 mb-12">
-                        <div class="h-4 bg-cWhiteGray rounded w-full"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-5/6"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-4/5"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-full"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-3/4"></div>
-                        <div class="h-4 bg-cWhiteGray rounded w-5/6"></div>
-                    </div>
-
-                    <div class="border-t border-white/5 py-6 flex justify-between items-center">
-                        <div class="h-8 bg-cWhiteGray rounded w-8"></div>
-                        <div class="h-8 bg-cWhiteGray rounded w-32"></div>
-                    </div>
-                </div>
-                {:else}
                 <div class="mb-6 border-b border-white/5 pb-6">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                         {update.title}
@@ -112,7 +81,6 @@
                         </a>
                     </div>
                 </div>
-                {/if}
             </div>
         </section>
     </main>

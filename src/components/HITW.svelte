@@ -1,13 +1,4 @@
 <script>
-    import { onMount } from "svelte";
-    let isLoaded = false;
-
-    onMount(() => {
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
-    });
-
     const messageSteps = [
         {
             title: "Write Your Message",
@@ -65,40 +56,6 @@
 
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-        {#if !isLoaded}
-        <div class="space-y-8 animate-pulse">
-            <div class="space-y-3">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
-                <div class="h-4 bg-cWhiteGray rounded-lg w-96"></div>
-            </div>
-
-            <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded-lg w-32"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {#each Array(4) as _}
-                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
-                        <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
-                        <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
-                        <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
-                    </div>
-                    {/each}
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <div class="h-6 bg-cWhiteGray rounded-lg w-32"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {#each Array(4) as _}
-                    <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 relative overflow-hidden">
-                        <div class="h-6 bg-cWhiteGray rounded-lg mb-4 w-1/3"></div>
-                        <div class="h-4 bg-cWhiteGray rounded-lg mb-2"></div>
-                        <div class="h-4 bg-cWhiteGray rounded-lg w-2/3"></div>
-                    </div>
-                    {/each}
-                </div>
-            </div>
-        </div>
-        {:else}
         <div class="mb-4 sm:mb-8">
             <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">How It Works</h2>
             <p class="text-white/50 text-sm sm:text-base">Learn how to securely send messages and create rooms with K9Crypt.</p>
@@ -147,6 +104,5 @@
                 {/each}
             </div>
         </div>
-        {/if}
     </div>
 </section>

@@ -1,15 +1,6 @@
 <script lang="ts">
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
-    import { onMount } from 'svelte';
-
-    let isLoaded = false;
-
-    onMount(() => {
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1000);
-    });
 
     const brandAssets = {
         banner: {
@@ -75,35 +66,6 @@
 
 <section class="min-h-screen py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
-        {#if !isLoaded}
-        <div class="space-y-12 animate-pulse">
-            <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-64"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="h-64 bg-cWhiteGray rounded-lg"></div>
-                    <div class="h-64 bg-cWhiteGray rounded-lg"></div>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-40"></div>
-                <div class="h-80 bg-cWhiteGray rounded-lg"></div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-56"></div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="h-48 bg-cWhiteGray rounded-lg"></div>
-                    <div class="h-48 bg-cWhiteGray rounded-lg"></div>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="h-8 bg-cWhiteGray rounded-lg w-48"></div>
-                <div class="h-64 bg-cWhiteGray rounded-lg"></div>
-            </div>
-        </div>
-        {:else}
         <div class="space-y-12">
             <div class="space-y-6">
                 <h2 class="text-3xl font-bold">Brand Assets</h2>
@@ -161,7 +123,6 @@
                 </div>
             </div>
         </div>
-        {/if}
     </div>
 </section>
 

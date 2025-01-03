@@ -6,13 +6,9 @@
     import { checkLink } from "$lib/check";
 
     let status: boolean | null = null;
-    let isLoaded = false;
 
     onMount(async () => {
         status = await checkLink(`${import.meta.env.VITE_APP_APIURL}`);
-        setTimeout(() => {
-            isLoaded = true;
-        }, 1500);
     });
 
     async function routeSupport() {
@@ -72,20 +68,6 @@
 {:else}
 <section class="min-h-screen flex items-center justify-center px-4 py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 text-center">
-        {#if !isLoaded}
-        <div class="animate-pulse">
-            <div class="max-w-2xl mx-auto mb-12">
-                <div class="h-12 bg-cWhiteGray rounded-lg max-w-2xl mx-auto mb-4"></div>
-                <div class="h-6 bg-cWhiteGray rounded-lg max-w-xl mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {#each Array(5) as _, i}
-                <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 h-40"></div>
-                {/each}
-            </div>
-        </div>
-        {:else}
         <div class="max-w-2xl mx-auto mb-12">
             <h1 class="text-4xl font-bold mb-4">Where Do You Want to Go?</h1>
             <p class="text-white/50 text-base mb-8">Let's help you find your way back to the right destination.</p>
@@ -104,7 +86,6 @@
             </a>
             {/each}
         </div>
-        {/if}
     </div>
 </section>
 {/if}
