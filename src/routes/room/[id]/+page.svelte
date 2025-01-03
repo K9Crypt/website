@@ -102,6 +102,7 @@
     }> = [];
     let lastFetchTimestamp = 0;
     const FETCH_COOLDOWN = 1000;
+    let showMessageInfo: string | null = null;
 
     $: {
         if (messageSearchQuery.length > 0) {
@@ -120,6 +121,10 @@
         } else {
             searchResults = [];
         }
+    }
+
+    function toggleMessageInfo(messageId: string) {
+        showMessageInfo = showMessageInfo === messageId ? null : messageId;
     }
 
     function parseMarkdown(text: string): string {
@@ -371,29 +376,27 @@
         if (!force && now - lastFetchTimestamp < FETCH_COOLDOWN) return;
 
         try {
-            const [newMessages, roomDetails] = await Promise.all([
+            const [newMessages, { users = [], type = roomType, roomName: newRoomName = roomName }] = await Promise.all([
                 getMessages(roomId),
-                checkRoom(roomId)
+                checkRoom(roomId).catch(() => ({}))
             ]);
 
             lastFetchTimestamp = now;
 
-            if (roomDetails?.users) {
-                roomUsers = roomDetails.users;
-                roomType = roomDetails.type || roomType;
-                roomName = roomDetails.roomName || roomName;
-            }
+            roomUsers = users;
+            roomType = type;
+            roomName = newRoomName;
 
-            const tempMessages = messages.filter(msg => 
-                msg.id.startsWith('temp-') && 
-                msg.status === 'sending' &&
-                Date.now() - msg.timestamp < 30000
-            );
+            const messageMap = new Map(messages
+                .filter(msg => msg.id.startsWith('temp-') && 
+                            msg.status === 'sending' &&
+                            Date.now() - msg.timestamp < 30000)
+                .map(msg => [msg.id, msg]));
 
             const processedMessages = newMessages
-                .filter(msg => msg && msg.id && msg.userId && msg.message)
+                .filter(msg => msg?.id && msg?.userId && msg?.message)
                 .map(msg => {
-                    const readBy = new Set([...(msg.readBy || [])]);
+                    const readBy = new Set(msg.readBy || []);
                     
                     if (!readBy.has(userId) && msg.userId !== userId) {
                         markMessageAsRead(roomId, userId, msg.id).catch(console.error);
@@ -402,19 +405,20 @@
 
                     return {
                         ...msg,
-                        id: msg.id,
                         readBy: Array.from(readBy),
                         reactions: msg.reactions || {},
                         status: 'sent',
-                        timestamp: msg.timestamp || Date.now()
+                        timestamp: msg.timestamp || now
                     };
                 });
 
-            const messageIds = new Set(processedMessages.map(m => m.id));
-            const validTempMessages = tempMessages.filter(m => !messageIds.has(m.id));
+            const finalMessages = [
+                ...processedMessages,
+                ...Array.from(messageMap.values())
+                    .filter(msg => !processedMessages.some(p => p.id === msg.id))
+            ].sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
-            messages = [...processedMessages, ...validTempMessages]
-                .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+            messages = finalMessages;
 
             if (shouldAutoScroll) {
                 requestAnimationFrame(scrollToBottom);
@@ -981,19 +985,21 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                        <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
-                            <i class="ri-search-line"></i>
-                            <span>Search</span>
-                        </button>
-                        <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
-                            <i class="ri-bookmark-line"></i>
-                            <span>Bookmarks</span>
-                            {#if bookmarks.length > 0}
-                            <span class="text-xs bg-cYellow text-black rounded-full px-1.5">{bookmarks.length}</span>
-                            {/if}
-                        </button>
-                        <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
-                            <i class="ri-door-open-fill"></i>
+                        <div class="grid grid-cols-2 sm:flex items-stretch gap-2">
+                            <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                                <i class="ri-search-line text-lg sm:text-base"></i>
+                                <span class="hidden xs:inline">Search</span>
+                            </button>
+                            <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
+                                <i class="ri-bookmark-line text-lg sm:text-base"></i>
+                                <span class="hidden xs:inline">Bookmarks</span>
+                                {#if bookmarks.length > 0}
+                                <span class="text-xs bg-cYellow text-black rounded-full px-1.5">{bookmarks.length}</span>
+                                {/if}
+                            </button>
+                        </div>
+                        <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
+                            <i class="ri-door-open-fill text-lg sm:text-base"></i>
                             <span>Leave Room</span>
                         </button>
                     </div>
@@ -1164,6 +1170,15 @@
                                             <span class="text-sm">Image failed to load</span>
                                         </div>
                                     </div>
+                                    <div class="message-status {message.status} mt-1">
+                                        {#if message.status === 'sending'}
+                                            <i class="ri-time-line"></i>
+                                        {:else if message.status === 'sent'}
+                                            <i class="ri-check-double-line"></i>
+                                        {:else if message.status === 'failed'}
+                                            <i class="ri-error-warning-line"></i>
+                                        {/if}
+                                    </div>
                                 </div>
                                 {:else}
                                 <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html parseMarkdown(message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')) || ''}</p>
@@ -1195,7 +1210,64 @@
                             <button on:click={() => toggleBookmark(message)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
                                 <i class="ri-bookmark-{bookmarks.some(b => b.messageId === message.id) ? 'fill text-cYellow' : 'line'} text-sm"></i>
                             </button>
+                            {#if message.userId === userId}
+                            <button on:click={() => toggleMessageInfo(message.id)} class="p-1.5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-all duration-300 hover:scale-105 active:scale-95">
+                                <i class="ri-information-line text-sm"></i>
+                            </button>
+                            {/if}
                         </div>
+
+                        {#if showMessageInfo === message.id && message.userId === userId}
+                        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
+                            <div class="bg-cWhiteGray p-8 rounded-xl max-w-md w-full mx-4 shadow-2xl border border-white/10" transition:scale={{ duration: 300, easing: quintOut }}>
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                                            <i class="ri-information-line text-cYellow text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-white/90">Message Info</h3>
+                                    </div>
+                                    <button on:click={() => showMessageInfo = null} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
+                                        <i class="ri-close-line text-xl"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="space-y-6">
+                                    <div class="bg-[#2C2C2C]/50 rounded-lg p-4 border border-white/5">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span class="text-white/50 flex items-center gap-2">
+                                                <i class="ri-eye-line"></i>
+                                                Read by
+                                            </span>
+                                            <span class="font-medium bg-cYellow/10 text-cYellow px-2.5 py-1 rounded-full text-sm">
+                                                {message.readBy?.length || 0} people
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="max-h-[250px] overflow-y-auto custom-scrollbar">
+                                            {#if message.readBy?.length > 0}
+                                                <div class="space-y-2">
+                                                    {#each message.readBy as reader}
+                                                    <div class="flex items-center gap-3 p-2.5 hover:bg-white/5 rounded-lg transition-colors duration-200">
+                                                        <div class="w-9 h-9 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-lg">
+                                                            {reader.slice(0, 2).toUpperCase()}
+                                                        </div>
+                                                        <span class="text-white/90 font-medium">{reader}</span>
+                                                    </div>
+                                                    {/each}
+                                                </div>
+                                            {:else}
+                                                <div class="text-center py-8 text-white/50">
+                                                    <i class="ri-eye-off-line text-3xl mb-2"></i>
+                                                    <p>No readers yet</p>
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/if}
 
                         {#if showEmojiPicker && activeMessageId === message.id}
                         <div bind:this={emojiPickerRef} class="absolute {message.userId === userId ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'} bg-[#2C2C2C]/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/10 p-2.5 z-50 animate-fadeIn" style="top: 0; margin-top: 8px; margin-bottom: 10px;">
