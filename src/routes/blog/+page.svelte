@@ -130,7 +130,7 @@
                         <span>{post.readTime}</span>
                     </div>
                     
-                    <h2 class="text-xl font-semibold mb-3 group-hover:text-cYellow transition-colors duration-300">{titleShortener(post.title)}</h2>
+                    <h2 class="text-xl font-semibold mb-3 transition-colors duration-300">{titleShortener(post.title)}</h2>
                     
                     <p class="text-white/50 text-sm mb-4">{@html contentShortener(post.content)}</p>
                     
