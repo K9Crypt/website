@@ -9,20 +9,33 @@
     import { fade, scale, slide } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
 
+    interface Message {
+        id: string;
+        userId: string;
+        message: string;
+        replyTo?: { sender: string; content: string };
+        readBy?: string[];
+        reactions?: Record<string, string[]>;
+        status?: 'sending' | 'sent' | 'failed';
+        timestamp?: number;
+    }
+
+    interface ServerMessage {
+        id: string;
+        userId: string;
+        message: string;
+        readBy?: string[];
+        reactions?: Record<string, string[]>;
+        timestamp?: number;
+    }
+
     let userId: string = '';
     let message: string = '';
     let isLoading = false;
     let status: boolean | null = null;
     let error = '';
-    let messages: Array<{ 
-        id: string; 
-        userId: string; 
-        message: string; 
-        replyTo?: { sender: string; content: string };
-        readBy?: string[];
-        reactions?: Record<string, string[]>;
-    }> = [];
-    let pollingInterval: NodeJS.Timeout;
+    let messages: Message[] = [];
+    let pollingInterval: ReturnType<typeof setInterval>;
     let replyingTo: { message: string } | null = null;
     let roomType = '';
     let roomPassword = '';
@@ -43,38 +56,6 @@
     let inputEmojiButtonRef: HTMLButtonElement;
     let emojiSearchQuery = '';
     let filteredEmojis = emojis;
-    let emojiDescriptions = {
-        '😀': ['grinning face', 'happy', 'smile', 'joy', 'grin'],
-        '😃': ['grinning face with big eyes', 'happy', 'joy', 'smiley', 'excited'],
-        '😄': ['grinning face with smiling eyes', 'happy', 'laugh', 'joy', 'pleased'],
-        '😊': ['smiling face', 'happy', 'warm', 'sweet', 'pleasant'],
-        '❤️': ['heart', 'love', 'like', 'romance', 'affection'],
-        '👍': ['thumbs up', 'approve', 'ok', 'good', 'agree'],
-        '🎉': ['party popper', 'celebration', 'tada', 'party', 'congrats'],
-        '🔥': ['fire', 'hot', 'trending', 'lit', 'popular'],
-        '😂': ['face with tears of joy', 'laugh', 'lol', 'funny', 'haha'],
-        '🥰': ['smiling face with hearts', 'love', 'affection', 'adore', 'crush'],
-        '😍': ['heart eyes', 'love', 'crush', 'adore', 'attractive'],
-        '🤗': ['hugging face', 'hug', 'embrace', 'comfort', 'support'],
-        '🙏': ['folded hands', 'please', 'thank you', 'pray', 'grateful'],
-        '✨': ['sparkles', 'shine', 'special', 'magic', 'glitter'],
-        '💪': ['flexed biceps', 'strong', 'muscle', 'power', 'flex'],
-        '👀': ['eyes', 'look', 'see', 'watch', 'peek'],
-        '🤔': ['thinking face', 'hmm', 'wonder', 'curious', 'ponder'],
-        '😎': ['cool face', 'sunglasses', 'awesome', 'chill', 'rad'],
-        '🥺': ['pleading face', 'puppy eyes', 'cute', 'beg', 'please'],
-        '😢': ['crying face', 'sad', 'tear', 'unhappy', 'upset']
-    };
-    let emojiCategories = {
-        'Smileys & Emotion': emojis.slice(0, 72),
-        'People & Body': emojis.slice(72, 160),
-        'Animals & Nature': emojis.slice(160, 240),
-        'Food & Drink': emojis.slice(240, 320),
-        'Activities': emojis.slice(320, 360),
-        'Travel & Places': emojis.slice(360, 400),
-        'Objects': emojis.slice(400, 440),
-        'Symbols': emojis.slice(440)
-    };
     let selectedCategory = '';
     let messagesContainer: HTMLDivElement;
     let shouldAutoScroll = true;
@@ -102,6 +83,34 @@
     let lastFetchTimestamp = 0;
     const FETCH_COOLDOWN = 1000;
     let showMessageInfo: string | null = null;
+    let loadTimeout: ReturnType<typeof setTimeout>;
+    let isTabVisible = true;
+    let currentMessage = '';
+    let currentReplyTo: { message: string } | null = null;
+    let currentImage: string | null = null;
+
+    type EmojiCategories = {
+        [key: string]: string[];
+        'Smileys & Emotion': string[];
+        'People & Body': string[];
+        'Animals & Nature': string[];
+        'Food & Drink': string[];
+        'Activities': string[];
+        'Travel & Places': string[];
+        'Objects': string[];
+        'Symbols': string[];
+    };
+
+    const emojiCategories: EmojiCategories = {
+        'Smileys & Emotion': emojis.slice(0, 72),
+        'People & Body': emojis.slice(72, 160),
+        'Animals & Nature': emojis.slice(160, 240),
+        'Food & Drink': emojis.slice(240, 320),
+        'Activities': emojis.slice(320, 360),
+        'Travel & Places': emojis.slice(360, 400),
+        'Objects': emojis.slice(400, 440),
+        'Symbols': emojis.slice(440)
+    };
 
     $: {
         if (messageSearchQuery.length > 0) {
@@ -126,22 +135,120 @@
         showMessageInfo = showMessageInfo === messageId ? null : messageId;
     }
 
-    function parseMarkdown(text: string): string {
-        return text
-            .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mb-2">$1</h1>')
-            .replace(/^## (.*$)/gm, '<h2 class="text-xl font-bold mb-2">$1</h2>')
-            .replace(/^### (.*$)/gm, '<h3 class="text-lg font-bold mb-2">$1</h3>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/~~(.*?)~~/g, '<del>$1</del>')
-            .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
-            .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded text-cYellow">$1</code>')
-            .replace(/__(.*?)__/g, '<u>$1</u>')
-            .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded">$1</mark>')
-            .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-cYellow pl-3 py-1 my-2 italic">$1</blockquote>')
-            .replace(/^\- (.*$)/gm, '<li class="ml-4 list-disc">$1</li>')
-            .replace(/^\+ (.*$)/gm, '<li class="ml-4 list-circle">$1</li>')
-            .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-500 hover:underline">$1</a>');
+    const memoizedParseMarkdown = (() => {
+        const cache = new Map<string, string>();
+        return (text: string): string => {
+            if (cache.has(text)) {
+                return cache.get(text)!;
+            }
+            const result = text
+                .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mb-2">$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2 class="text-xl font-bold mb-2">$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3 class="text-lg font-bold mb-2">$1</h3>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/~~(.*?)~~/g, '<del>$1</del>')
+                .replace(/```(.*?)```/gs, '<pre class="bg-black/20 p-2 rounded text-cYellow my-2 overflow-x-auto"><code>$1</code></pre>')
+                .replace(/`([^`]+)`/g, '<code class="bg-black/20 px-1.5 py-0.5 rounded text-cYellow">$1</code>')
+                .replace(/__(.*?)__/g, '<u>$1</u>')
+                .replace(/==(.*?)==/g, '<mark class="bg-cYellow/30 px-1 rounded">$1</mark>')
+                .replace(/^> (.*$)/gm, '<blockquote class="border-l-4 border-cYellow pl-3 py-1 my-2 italic">$1</blockquote>')
+                .replace(/^\- (.*$)/gm, '<li class="ml-4 list-disc">$1</li>')
+                .replace(/^\+ (.*$)/gm, '<li class="ml-4 list-circle">$1</li>')
+                .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-500 hover:underline">$1</a>');
+            cache.set(text, result);
+            return result;
+        };
+    })();
+
+    function throttle<T extends (...args: any[]) => void>(
+        func: T,
+        limit: number
+    ): (...args: Parameters<T>) => void {
+        let inThrottle: boolean;
+        return function(this: any, ...args: Parameters<T>): void {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => (inThrottle = false), limit);
+            }
+        };
+    }
+
+    const throttledHandleScroll = throttle(() => {
+        if (messagesContainer) {
+            const { scrollTop, scrollHeight, clientHeight } = messagesContainer;
+            shouldAutoScroll = Math.abs(scrollHeight - clientHeight - scrollTop) < 100;
+        }
+    }, 100);
+
+    function debounce<T extends (...args: any[]) => void>(
+        func: T,
+        wait: number
+    ): (...args: Parameters<T>) => void {
+        let timeout: ReturnType<typeof setTimeout>;
+        return function(this: any, ...args: Parameters<T>): void {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    const debouncedHandleInput = debounce((event: Event) => {
+        handleInput(event);
+    }, 150);
+
+    let visibleMessages: Message[] = [];
+    let messageHeight = 80;
+    let visibleCount = 20;
+    let startIndex = 0;
+
+    function updateVisibleMessages() {
+        if (!messagesContainer) return;
+        
+        const scrollTop = messagesContainer.scrollTop;
+        startIndex = Math.floor(scrollTop / messageHeight);
+        startIndex = Math.max(0, startIndex - 5);
+        
+        visibleMessages = messages.slice(
+            startIndex,
+            Math.min(startIndex + visibleCount + 10, messages.length)
+        );
+    }
+
+    const throttledUpdateVisibleMessages = throttle(updateVisibleMessages, 100);
+
+    let observer: IntersectionObserver;
+
+    onMount(() => {
+        observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const messageId = entry.target.id.replace('message-', '');
+                        const message = messages.find(m => m.id === messageId);
+                        if (message && !message.readBy?.includes(userId)) {
+                            markMessageAsRead(roomId, userId, messageId).catch(console.error);
+                        }
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        return () => {
+            observer.disconnect();
+        };
+    });
+
+    $: {
+        if (messages) {
+            updateVisibleMessages();
+            setTimeout(() => {
+                if (shouldAutoScroll) {
+                    scrollToBottom();
+                }
+            }, 100);
+        }
     }
 
     async function handleFileSelect(event: Event) {
@@ -285,7 +392,7 @@
             } else {
                 selectedCategory = '';
                 
-                Object.entries(emojiDescriptions).forEach(([emoji, descriptions]) => {
+                Object.entries(emojiCategories).forEach(([emoji, descriptions]) => {
                     let score = 0;
                     
                     if (emoji === query) score += 100;
@@ -358,9 +465,6 @@
         }
     }
 
-    let loadTimeout: NodeJS.Timeout;
-    let isTabVisible = true;
-
     function handleVisibilityChange() {
         isTabVisible = document.visibilityState === 'visible';
         if (isTabVisible) {
@@ -381,7 +485,6 @@
             ]);
 
             lastFetchTimestamp = now;
-
             roomUsers = users;
             roomType = type;
             roomName = newRoomName;
@@ -389,10 +492,11 @@
             const messageMap = new Map(messages
                 .filter(msg => msg.id.startsWith('temp-') && 
                             msg.status === 'sending' &&
+                            msg.timestamp && 
                             Date.now() - msg.timestamp < 30000)
                 .map(msg => [msg.id, msg]));
 
-            const processedMessages = newMessages
+            const processedMessages = (newMessages as ServerMessage[])
                 .filter(msg => msg?.id && msg?.userId && msg?.message)
                 .map(msg => {
                     const readBy = new Set(msg.readBy || []);
@@ -406,18 +510,15 @@
                         ...msg,
                         readBy: Array.from(readBy),
                         reactions: msg.reactions || {},
-                        status: 'sent',
+                        status: 'sent' as const,
                         timestamp: msg.timestamp || now
                     };
                 });
 
-            const finalMessages = [
+            messages = [
                 ...processedMessages,
                 ...Array.from(messageMap.values())
-                    .filter(msg => !processedMessages.some(p => p.id === msg.id))
-            ].sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-            messages = finalMessages;
+            ].sort((a, b) => ((a.timestamp || 0) - (b.timestamp || 0)));
 
             if (shouldAutoScroll) {
                 requestAnimationFrame(scrollToBottom);
@@ -767,7 +868,11 @@
 
     function handleInput(event: Event) {
         const input = event.target as HTMLTextAreaElement;
+        if (!input) return;
+        
         message = input.value;
+        input.style.height = 'auto';
+        input.style.height = `${input.scrollHeight}px`;
         
         const lastWord = message.split(/\s/).pop() || '';
         if (lastWord.startsWith('@') && lastWord.length > 1) {
@@ -782,6 +887,15 @@
             showUserDropdown = false;
             filteredUsers = [];
             userDropdownIndex = -1;
+        }
+    }
+
+    function handleImageError(event: Event) {
+        const img = event.currentTarget as HTMLImageElement;
+        const nextElement = img.nextElementSibling as HTMLElement;
+        if (img && nextElement) {
+            img.style.display = 'none';
+            nextElement.style.display = 'flex';
         }
     }
 
@@ -945,7 +1059,6 @@
         {#if showSearchPanel}
         <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
             <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
-                
                 <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
@@ -999,7 +1112,22 @@
                                 <span class="text-sm font-medium text-white/90">{result.userId}</span>
                             </div>
                         </div>
+                        {#if result.message.startsWith('[IMAGE]')}
+                        <div class="relative pl-8">
+                            <img 
+                                src={decodeBase64Image(result.message.slice(7))} 
+                                alt="Search result image" 
+                                class="max-w-full w-[150px] rounded-lg object-contain"
+                                on:error={handleImageError}
+                            />
+                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
+                                <i class="ri-image-line text-xl"></i>
+                                <span class="text-xs">Image unavailable</span>
+                            </div>
+                        </div>
+                        {:else}
                         <p class="text-sm text-white/70 mb-2 break-words pl-8">{result.message}</p>
+                        {/if}
                         <button 
                             on:click={() => {
                                 scrollToMessage(result.id);
@@ -1040,10 +1168,17 @@
         </div>
         {/if}
 
-        <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50 pb-[120px] sm:pb-0" bind:this={messagesContainer} on:scroll={handleScroll}>
-            <div class="px-4 sm:px-6 py-6 space-y-6 min-h-full">
+        {#if !error && status !== false}
+        <div class="flex-1 overflow-y-auto bg-[#1B1B1B]/50 pb-[120px] sm:pb-0" 
+            bind:this={messagesContainer} 
+            on:scroll={throttledHandleScroll}
+        >
+            <div class="px-4 sm:px-6 py-6 space-y-4">
                 {#each messages as message (message.id)}
-                <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn" id="message-{message.id}">
+                <div class="flex flex-col {message.userId === userId ? 'items-end' : 'items-start'} group animate-fadeIn"
+                    id="message-{message.id}"
+                    use:observeMessage
+                >
                     {#if message.replyTo}
                     <div class="bg-[#2C2C2C]/80 rounded-lg p-2 mb-2 max-w-[85%] text-sm text-white/50 border-l-2 border-l-cYellow border border-white/5 relative">
                         <div class="font-medium text-cYellow flex items-center gap-1.5 mb-1">
@@ -1094,10 +1229,7 @@
                                         src={decodeBase64Image(message.message.slice(7))} 
                                         alt="Shared image" 
                                         class="max-w-full w-[200px] rounded-lg object-contain"
-                                        on:error={(e) => {
-                                            e.currentTarget.style.display = 'none';
-                                            e.currentTarget.nextElementSibling.style.display = 'flex';
-                                        }}
+                                        on:error={handleImageError}
                                     />
                                     <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[100px]">
                                         <div class="flex flex-col items-center gap-2">
@@ -1105,6 +1237,7 @@
                                             <span class="text-sm">Image failed to load</span>
                                         </div>
                                     </div>
+                                    {#if message.status}
                                     <div class="message-status {message.status} mt-1">
                                         {#if message.status === 'sending'}
                                             <i class="ri-time-line"></i>
@@ -1114,9 +1247,13 @@
                                             <i class="ri-error-warning-line"></i>
                                         {/if}
                                     </div>
+                                    {/if}
                                 </div>
                                 {:else}
-                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">{@html parseMarkdown(message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')) || ''}</p>
+                                <p class="leading-relaxed whitespace-pre-wrap break-words text-sm">
+                                    {@html memoizedParseMarkdown(message?.message?.replace(/@(\w+)/g, '<span class="font-bold underline">@$1</span>')) || ''}
+                                </p>
+                                {#if message.status}
                                 <div class="message-status {message.status}">
                                     {#if message.status === 'sending'}
                                         <i class="ri-time-line"></i>
@@ -1126,6 +1263,7 @@
                                         <i class="ri-error-warning-line"></i>
                                     {/if}
                                 </div>
+                                {/if}
                                 {/if}
                             </div>
                         </div>                        
@@ -1180,12 +1318,12 @@
                                         </div>
                                         
                                         <div class="max-h-[250px] overflow-y-auto custom-scrollbar">
-                                            {#if message.readBy?.length > 0}
+                                            {#if message.readBy && message.readBy.length > 0}
                                                 <div class="space-y-2">
                                                     {#each message.readBy as reader}
                                                     <div class="flex items-center gap-3 p-2.5 hover:bg-white/5 rounded-lg transition-colors duration-200">
                                                         <div class="w-9 h-9 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-lg">
-                                                            {reader.slice(0, 2).toUpperCase()}
+                                                            {(reader as string).slice(0, 2).toUpperCase()}
                                                         </div>
                                                         <span class="text-white/90 font-medium">{reader}</span>
                                                     </div>
@@ -1231,6 +1369,7 @@
                 {/each}
             </div>
         </div>
+        {/if}
 
         {#if showBookmarkPanel}
         <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
