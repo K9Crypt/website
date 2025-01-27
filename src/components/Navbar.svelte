@@ -14,29 +14,27 @@
     }
 
     const menuItems = [
-        { href: "/", label: "Home", icon: "ri-home-5-line" },
-        { href: "/about", label: "About", icon: "ri-information-line" },
-        { href: "/blog", label: "Blog", icon: "ri-article-line" },
-        { href: "/updates", label: "Updates", icon: "ri-history-line" },
+        { href: "/", label: "Home" },
+        { href: "/about", label: "About" },
+        { href: "/blog", label: "Blog" },
+        { href: "/updates", label: "Updates" },
         {
             label: "Products",
-            icon: "ri-product-hunt-line",
             isDropdown: true,
             items: [
-                { href: "/products/k9shield", label: "K9Shield", icon: "ri-shield-line" },
-                { href: "/products/k9vault", label: "K9Vault", icon: "ri-safe-2-line" }
+                { href: "/products/k9shield", label: "K9Shield" },
+                { href: "/products/k9vault", label: "K9Vault" }
             ]
         },
         {
             label: "Actions",
-            icon: "ri-menu-3-line",
             isDropdown: true,
             items: [
-                { href: "/create/room", label: "Create Room", icon: "ri-add-circle-line" },
-                { href: "/join/room", label: "Join Room", icon: "ri-door-open-line" },
-                { href: "/create/message", label: "Create Message", icon: "ri-message-2-line" },
-                { href: "/view/message", label: "View Message", icon: "ri-eye-line" },
-                { href: "/list", label: "List Rooms", icon: "ri-list-check" }
+                { href: "/create/room", label: "Create Room" },
+                { href: "/join/room", label: "Join Room" },
+                { href: "/create/message", label: "Create Message" },
+                { href: "/view/message", label: "View Message" },
+                { href: "/list", label: "List Rooms" }
             ]
         }
     ];
@@ -92,7 +90,6 @@
                 {#if item.isDropdown}
                     <div class="relative dropdown-container">
                         <button on:click={() => toggleDropdown(item.label)} class="flex items-center space-x-2 px-3 py-1 group hover:text-white/100 transition-all duration-300">
-                            <i class={item.icon}></i>
                             <span>{item.label}</span>
                             <i class="ri-arrow-down-s-line transition-transform duration-300 {activeDropdowns[item.label] ? 'rotate-180' : ''}"></i>
                         </button>
@@ -106,7 +103,6 @@
                             >
                                 {#each item.items as subItem}
                                     <a href={subItem.href} class="flex items-center space-x-2 px-4 py-2.5 hover:text-white transition-all duration-300">
-                                        <i class={subItem.icon}></i>
                                         <span>{subItem.label}</span>
                                     </a>
                                 {/each}
@@ -115,8 +111,7 @@
                     </div>
                 {:else}
                     <a href={item.href} class="relative px-3 py-1 group hover:text-white/100 transition-all duration-300 {item.href === currentPath ? 'text-white/100' : ''}">
-                        <i class={item.icon}></i>
-                        <span class="relative z-10">{item.label}</span>
+                        <span>{item.label}</span>
                         {#if item.href === currentPath}
                             <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-cYellow/10 to-transparent" transition:fade={{ duration: 800, delay: 200 }}></span>
                             <span class="absolute left-0 bottom-0 w-full h-0.5 bg-cYellow" transition:fade={{ duration: 800, delay: 200 }}></span>
@@ -159,7 +154,6 @@
                        class="text-white text-2xl text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn" 
                        style="animation-delay: {index * 100}ms; animation-fill-mode: forwards;" 
                        on:click={toggleMenu}>
-                        <i class={item.icon}></i>
                         <span>{item.label}</span>
                     </a>
                 {/if}
@@ -172,7 +166,6 @@
                            class="text-white text-2xl text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn flex items-center justify-center gap-2" 
                            style="animation-delay: {(menuItems.length + subIndex) * 100}ms; animation-fill-mode: forwards;" 
                            on:click={toggleMenu}>
-                            <i class={subItem.icon}></i>
                             <span>{subItem.label}</span>
                         </a>
                     {/each}
