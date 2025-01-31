@@ -1,34 +1,36 @@
-<script>
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+
     const shieldSteps = [
         {
-            title: "Installation",
-            description: "First, install the K9Vault application on your computer.",
+            title: $_('k9vault.steps.items.installation.title'),
+            description: $_('k9vault.steps.items.installation.description'),
             icon: "ri-download-cloud-line",
-            step: 1
+            step: $_('k9vault.steps.items.installation.step')
         },
         {
-            title: "Photo Encryption",
-            description: "Open the application and click the File Upload button and upload your photo.",
+            title: $_('k9vault.steps.items.photoEncryption.title'),
+            description: $_('k9vault.steps.items.photoEncryption.description'),
             icon: "ri-image-line",
-            step: 2
+            step: $_('k9vault.steps.items.photoEncryption.step')
         },
         {
-            title: "Copy the Key",
-            description: "After uploading your photo, copy the key provided in the console.",
+            title: $_('k9vault.steps.items.copyKey.title'),
+            description: $_('k9vault.steps.items.copyKey.description'),
             icon: "ri-key-line",
-            step: 3
+            step: $_('k9vault.steps.items.copyKey.step')
         },
         {
-            title: "Photo Decryption (Optional)",
-            description: "Make sure you have copied the key and go back to the K9Vault application and enter the key and upload your encrypted photo.",
+            title: $_('k9vault.steps.items.photoDecryption.title'),
+            description: $_('k9vault.steps.items.photoDecryption.description'),
             icon: "ri-lock-line",
-            step: 4
+            step: $_('k9vault.steps.items.photoDecryption.step')
         },
         {
-            title: "That's It",
-            description: "The K9Vault application is now installed on your computer and your photo is encrypted and stored securely.",
+            title: $_('k9vault.steps.items.complete.title'),
+            description: $_('k9vault.steps.items.complete.description'),
             icon: "ri-check-line",
-            step: 5
+            step: $_('k9vault.steps.items.complete.step')
         }
     ];
 </script>
@@ -36,8 +38,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Implementation Steps</h2>
-            <p class="text-white/50 text-sm sm:text-base">Complete guide to implementing K9Vault in your Node.js application</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('k9vault.steps.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('k9vault.steps.subtitle')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

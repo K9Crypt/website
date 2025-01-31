@@ -1,26 +1,28 @@
 <script>
+    import { _ } from 'svelte-i18n';
+
     const messageSteps = [
         {
-            title: "Write Your Message",
-            description: "Enter the message you want to send securely.",
+            title: $_('hitw.sections.messages.steps.write.title'),
+            description: $_('hitw.sections.messages.steps.write.description'),
             icon: "ri-message-2-fill",
             step: 1
         },
         {
-            title: "Get Random Password",
-            description: "System generates a random password for your message.",
+            title: $_('hitw.sections.messages.steps.password.title'),
+            description: $_('hitw.sections.messages.steps.password.description'),
             icon: "ri-lock-password-fill",
             step: 2
         },
         {
-            title: "Share the Link",
-            description: "Share the generated secure link with the recipient.",
+            title: $_('hitw.sections.messages.steps.share.title'),
+            description: $_('hitw.sections.messages.steps.share.description'),
             icon: "ri-share-fill",
             step: 3
         },
         {
-            title: "Recipient Access",
-            description: "Recipient uses the link and password to access the message.",
+            title: $_('hitw.sections.messages.steps.access.title'),
+            description: $_('hitw.sections.messages.steps.access.description'),
             icon: "ri-lock-unlock-fill",
             step: 4
         }
@@ -28,26 +30,26 @@
 
     const roomSteps = [
         {
-            title: "Create a Room",
-            description: "Set up a secure room for your conversations.",
+            title: $_('hitw.sections.rooms.steps.create.title'),
+            description: $_('hitw.sections.rooms.steps.create.description'),
             icon: "ri-home-fill",
             step: 1
         },
         {
-            title: "Invite Members",
-            description: "Invite members to join your room with a unique link.",
+            title: $_('hitw.sections.rooms.steps.invite.title'),
+            description: $_('hitw.sections.rooms.steps.invite.description'),
             icon: "ri-user-add-fill",
             step: 2
         },
         {
-            title: "Start Chatting",
-            description: "Begin secure conversations within your room.",
+            title: $_('hitw.sections.rooms.steps.chat.title'),
+            description: $_('hitw.sections.rooms.steps.chat.description'),
             icon: "ri-chat-3-fill",
             step: 3
         },
         {
-            title: "Auto-Delete",
-            description: "Messages in the room are automatically deleted after a set time.",
+            title: $_('hitw.sections.rooms.steps.delete.title'),
+            description: $_('hitw.sections.rooms.steps.delete.description'),
             icon: "ri-timer-flash-fill",
             step: 4
         }
@@ -57,13 +59,13 @@
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">How It Works</h2>
-            <p class="text-white/50 text-sm sm:text-base">Learn how to securely send messages and create rooms with K9Crypt.</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('hitw.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('hitw.subtitle')}</p>
         </div>
 
         <div class="mb-12">
             <h3 class="mb-3 flex items-center gap-2 text-white/50">
-                <i class="ri-corner-up-right-fill"></i>Messages
+                <i class="ri-corner-up-right-fill"></i>{$_('hitw.sections.messages.title')}
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {#each messageSteps as step}
@@ -85,7 +87,7 @@
 
         <div class="mb-12">
             <h3 class="mb-3 flex items-center gap-2 text-white/50">
-                <i class="ri-corner-up-right-fill"></i>Rooms
+                <i class="ri-corner-up-right-fill"></i>{$_('hitw.sections.rooms.title')}
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {#each roomSteps as step}

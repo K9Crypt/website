@@ -1,23 +1,25 @@
-<script>
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+
     const shieldFeatures = [
         {
-            title: "Free",
-            description: "K9Vault allows users to encrypt their photos for free.",
+            title: $_('k9vault.features.items.free.title'),
+            description: $_('k9vault.features.items.free.description'),
             icon: "ri-user-unfollow-fill"
         },
         {
-            title: "End-to-End Encryption",
-            description: "User photos are end-to-end encrypted.",
+            title: $_('k9vault.features.items.encryption.title'),
+            description: $_('k9vault.features.items.encryption.description'),
             icon: "ri-lock-2-fill"
         },
         {
-            title: "Local Operation",
-            description: "K9Vault operates entirely on users' computers, never communicating with a 3rd party server.",
+            title: $_('k9vault.features.items.local.title'),
+            description: $_('k9vault.features.items.local.description'),
             icon: "ri-code-s-slash-fill"
         },
         {
-            title: "Open Source",
-            description: "K9Vault is an open source project and is published on GitHub.",
+            title: $_('k9vault.features.items.openSource.title'),
+            description: $_('k9vault.features.items.openSource.description'),
             icon: "ri-github-fill"
         }
     ];
@@ -26,8 +28,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Comprehensive Security Features</h2>
-            <p class="text-white/50 text-sm sm:text-base">Advanced security middleware providing robust protection for Node.js applications</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('k9vault.features.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('k9vault.features.subtitle')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

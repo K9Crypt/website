@@ -1,6 +1,14 @@
 <script lang="ts">
 	import '../app.css';
+    import { onMount } from 'svelte';
+    import "$lib/i18n";
+    import { waitLocale } from 'svelte-i18n';
+
 	let { children } = $props();
+
+    onMount(async () => {
+        await waitLocale();
+    });
 </script>
 
 {@render children()}

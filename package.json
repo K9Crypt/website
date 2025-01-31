@@ -30,6 +30,7 @@
 		"axios": "^1.7.9",
 		"k9crypt": "^1.0.8",
 		"pocketbase": "^0.24.0",
-		"svelte-french-toast": "^1.2.0"
+		"svelte-french-toast": "^1.2.0",
+		"svelte-i18n": "^4.0.1"
 	}
 }

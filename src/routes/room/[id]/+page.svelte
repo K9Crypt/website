@@ -8,6 +8,7 @@
     import { emojis } from '$lib/emojis';
     import { fade, scale, slide } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
+    import { _ } from 'svelte-i18n';
 
     interface Message {
         id: string;
@@ -256,7 +257,7 @@
         if (!file) return;
         
         if (file.size > 5 * 1024 * 1024) {
-            toast.error('Image size must be less than 5MB');
+            toast.error($_('room.chat.imageUpload.error.sizeLimit'));
             return;
         }
 
@@ -286,7 +287,7 @@
             await handleSendMessage(true);
             selectedImage = null;
         } catch (err) {
-            toast.error('Failed to process image');
+            toast.error($_('room.chat.imageUpload.error.uploadFailed'));
         } finally {
             imageUploadProgress = 0;
         }
@@ -957,12 +958,12 @@
             <div class="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-3xl"></i>
             </div>
-            <h3 class="text-xl font-bold mb-2">Room Not Found</h3>
-            <p class="text-white/50 mb-6">This room might have been deleted or never existed.</p>
+            <h3 class="text-xl font-bold mb-2">{$_("room.chat.error.notFoundTitle")}</h3>
+            <p class="text-white/50 mb-6">{$_("room.chat.error.notFoundDesc")}</p>
             
             <div class="flex gap-3">
-                <a href="/create/room" class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center no-underline">Go Back</a>
-                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2.5 px-10 rounded-lg font-medium justify-center no-underline">Support</a>
+                <a href="/create/room" class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center no-underline">{$_("room.chat.error.goBack")}</a>
+                <a href="/contact" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2.5 px-10 rounded-lg font-medium justify-center no-underline">{$_("room.chat.error.support")}</a>
             </div>
         </div>
     </div>
@@ -971,20 +972,20 @@
 {#if status === false && status !== null}
 <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
     <div class="w-full max-w-2xl mx-auto">
-        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
-        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
+        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">{$_("room.create.error.connectionTitle")}</h1>
+        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">{$_("room.create.error.connectionDesc")}</p>
                 
         <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
-            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
-            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">The server is currently unavailable. Our team has been notified and is working on resolving the issue.</p>
+            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">{$_("room.create.error.serverStatus")}</h2>
+            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">{$_("room.create.error.serverDesc")}</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>{$_("room.create.error.tryAgain")}</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>{$_("room.create.error.support")}</button>
         </div>
     </div>
 </div>
@@ -992,12 +993,12 @@
 {#if isPasswordRequired}
 <div class="fixed inset-0 bg-black/10 flex items-center justify-center p-4 z-50">
     <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 w-full max-w-md">
-        <h3 class="text-xl font-bold mb-4">Enter Room Password</h3>
-        <p class="text-white/50 text-sm mb-6">This is a private room. Please enter the password to join.</p>
+        <h3 class="text-xl font-bold mb-4">{$_("room.chat.passReq.title")}</h3>
+        <p class="text-white/50 text-sm mb-6">{$_("room.chat.passReq.description")}</p>
         
         <div class="space-y-4">
             <div class="space-y-2">
-                <label class="block text-sm font-medium">Password</label>
+                <label class="block text-sm font-medium">{$_("room.chat.passReq.password")}</label>
                 <div class="relative">
                     <i class="ri-lock-password-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
                     <input type="password" bind:value={roomPassword} placeholder="Enter room password" class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white/30 transition-all duration-300 text-white" />
@@ -1021,14 +1022,14 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <h3 class="font-semibold flex items-center gap-2 text-base sm:text-lg truncate">
-                                <span class="truncate">Room Name: {roomName}</span>
+                                <span class="truncate">{$_("room.chat.roomName")}: {roomName}</span>
                                 <button on:click={toggleCopyPopup} class="flex-shrink-0 hover:scale-105 active:scale-95">
                                     <i class="ri-file-copy-fill text-white/50 hover:text-cYellow transition-all duration-300 p-1.5 rounded-lg hover:bg-white/10"></i>
                                 </button>
                             </h3>
                             <span class="text-white/50 text-xs sm:text-sm flex items-center gap-1.5">
                                 <i class="ri-shield-keyhole-fill"></i>
-                                {roomType.charAt(0).toUpperCase() + roomType.slice(1)} Room
+                                {$_("room.chat.roomType")}: {roomType.charAt(0).toUpperCase() + roomType.slice(1)}
                             </span>
                         </div>
                     </div>
@@ -1037,11 +1038,11 @@
                         <div class="grid grid-cols-2 sm:flex items-stretch gap-2">
                             <button on:click={() => showSearchPanel = !showSearchPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
                                 <i class="ri-search-line text-lg sm:text-base"></i>
-                                <span class="hidden xs:inline">Search</span>
+                                <span class="hidden xs:inline">{$_("room.chat.searchButton")}</span>
                             </button>
                             <button on:click={() => showBookmarkPanel = !showBookmarkPanel} class="bg-[#2C2C2C]/90 text-white/70 hover:text-cYellow px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-[#2C2C2C] active:scale-95 transition-all duration-300">
                                 <i class="ri-bookmark-line text-lg sm:text-base"></i>
-                                <span class="hidden xs:inline">Bookmarks</span>
+                                <span class="hidden xs:inline">{$_("room.chat.bookmarksButton")}</span>
                                 {#if bookmarks.length > 0}
                                 <span class="text-xs bg-cYellow text-black rounded-full px-1.5">{bookmarks.length}</span>
                                 {/if}
@@ -1049,7 +1050,7 @@
                         </div>
                         <button on:click={handleLeaveRoom} class="bg-red-500/10 text-red-500 px-3 sm:px-4 py-2.5 rounded-lg text-sm sm:text-base flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-red-500/20 active:scale-95 transition-all duration-300">
                             <i class="ri-door-open-fill text-lg sm:text-base"></i>
-                            <span>Leave Room</span>
+                            <span>{$_("room.chat.leaveButton")}</span>
                         </button>
                     </div>
                 </div>
@@ -1065,8 +1066,7 @@
                             <i class="ri-search-line text-cYellow text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-lg font-semibold">Search Messages</h3>
-                            <p class="text-sm text-white/50">{searchResults.length} results found</p>
+                            <h3 class="text-lg font-semibold">{$_("room.chat.searchMessage")}</h3>
                         </div>
                         <button on:click={() => showSearchPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
                             <i class="ri-close-line text-xl"></i>
@@ -1090,16 +1090,16 @@
                         <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
                             <i class="ri-search-line text-4xl"></i>
                         </div>
-                        <p class="text-base font-medium text-white/70">Search Messages</p>
-                        <p class="text-sm text-white/40 text-center mt-2">Type to search through messages</p>
+                        <p class="text-base font-medium text-white/70">{$_("room.chat.searchMessage")}</p>
+                        <p class="text-sm text-white/40 text-center mt-2">{$_("room.chat.searchMessageDescription")}</p>
                     </div>
                     {:else if searchResults.length === 0}
                     <div class="flex flex-col items-center justify-center py-16 text-white/30">
                         <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
                             <i class="ri-file-search-line text-4xl"></i>
                         </div>
-                        <p class="text-base font-medium text-white/70">No results found</p>
-                        <p class="text-sm text-white/40 text-center mt-2">Try different keywords</p>
+                        <p class="text-base font-medium text-white/70">{$_("room.chat.messageNotFound")}</p>
+                        <p class="text-sm text-white/40 text-center mt-2">{$_("room.chat.searchNotFoundDescription")}</p>
                     </div>
                     {:else}
                     {#each searchResults as result}
@@ -1122,7 +1122,7 @@
                             />
                             <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
                                 <i class="ri-image-line text-xl"></i>
-                                <span class="text-xs">Image unavailable</span>
+                                <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
                             </div>
                         </div>
                         {:else}
@@ -1136,7 +1136,7 @@
                             class="text-xs text-cYellow hover:text-cYellow/80 transition-all duration-300 flex items-center gap-1.5 ml-8"
                         >
                             <i class="ri-arrow-right-line"></i>
-                            Go to message
+                            {$_("room.chat.gotoMessage")}
                         </button>
                     </div>
                     {/each}
@@ -1150,7 +1150,7 @@
         <div class="fixed inset-0 bg-black/80 flex items-center justify-center z-50" transition:fade={{ duration: 200 }}>
             <div class="bg-cWhiteGray p-6 rounded-lg max-w-md w-full mx-4" transition:scale={{ duration: 300, easing: quintOut, start: 0.95 }}>
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-white/90">Copy Room ID</h3>
+                    <h3 class="text-xl font-semibold text-white/90">{$_("room.chat.copyPopup.id")}</h3>
                     <button on:click={toggleCopyPopup} class="text-white/50 hover:text-white transition-all duration-300">
                         <i class="ri-close-line text-xl"></i>
                     </button>
@@ -1163,7 +1163,7 @@
                     </div>
                 </div>
                 <button on:click={copyRoomIdWithPopup} class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center w-full mb-4">Copy</button>
-                <p class="text-white/50 text-sm">You need to enter this Room ID in the <a href="/join/room" class="underline">join/room</a> section after providing your username.</p>
+                <p class="text-white/50 text-sm">{$_("room.chat.copyPopup.description")}</p>
             </div>
         </div>
         {/if}
@@ -1200,7 +1200,7 @@
                                     <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[50px]">
                                         <div class="flex flex-col items-center gap-2">
                                             <i class="ri-error-warning-line text-xl"></i>
-                                            <span class="text-xs">Image failed to load</span>
+                                            <span class="text-xs">{$_("room.chat.imageUploadFailed")}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1234,7 +1234,7 @@
                                     <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[100px]">
                                         <div class="flex flex-col items-center gap-2">
                                             <i class="ri-error-warning-line text-2xl"></i>
-                                            <span class="text-sm">Image failed to load</span>
+                                            <span class="text-sm">{$_("room.chat.imageUploadFailed")}</span>
                                         </div>
                                     </div>
                                     {#if message.status}
@@ -1298,7 +1298,7 @@
                                         <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
                                             <i class="ri-information-line text-cYellow text-xl"></i>
                                         </div>
-                                        <h3 class="text-xl font-semibold text-white/90">Message Info</h3>
+                                        <h3 class="text-xl font-semibold text-white/90">{$_("room.chat.messageInfo.title")}</h3>
                                     </div>
                                     <button on:click={() => showMessageInfo = null} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
                                         <i class="ri-close-line text-xl"></i>
@@ -1310,10 +1310,10 @@
                                         <div class="flex items-center justify-between mb-4">
                                             <span class="text-white/50 flex items-center gap-2">
                                                 <i class="ri-eye-line"></i>
-                                                Read by
+                                                {$_("room.chat.messageInfo.readBy")}
                                             </span>
                                             <span class="font-medium bg-cYellow/10 text-cYellow px-2.5 py-1 rounded-full text-sm">
-                                                {message.readBy?.length || 0} people
+                                                {message.readBy?.length || 0} {$_("room.chat.messageInfo.people")}
                                             </span>
                                         </div>
                                         
@@ -1332,7 +1332,7 @@
                                             {:else}
                                                 <div class="text-center py-8 text-white/50">
                                                     <i class="ri-eye-off-line text-3xl mb-2"></i>
-                                                    <p>No readers yet</p>
+                                                    <p>{$_("room.chat.messageInfo.noReadersYet")}</p>
                                                 </div>
                                             {/if}
                                         </div>
@@ -1380,8 +1380,7 @@
                             <i class="ri-bookmark-fill text-cYellow text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-lg font-semibold">Bookmarks</h3>
-                            <p class="text-sm text-white/50">{bookmarks.length} saved {bookmarks.length === 1 ? 'message' : 'messages'}</p>
+                            <h3 class="text-lg font-semibold">{$_("room.chat.bookmarkPanel.title")}</h3>
                         </div>
                         <button on:click={() => showBookmarkPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white/50 hover:text-white transition-all duration-300">
                             <i class="ri-close-line text-xl"></i>
@@ -1389,7 +1388,7 @@
                     </div>
                     <p class="text-xs text-white/20 mt-5">
                         <span class="text-white/50">
-                            Remember that only you see your bookmarks.
+                            {$_("room.chat.bookmarkPanel.description")}
                         </span>
                     </p>
                 </div>
@@ -1400,8 +1399,8 @@
                         <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
                             <i class="ri-bookmark-line text-3xl"></i>
                         </div>
-                        <p class="text-sm font-medium">No bookmarks yet</p>
-                        <p class="text-xs text-white/20 mt-1">Save messages to find them easily later</p>
+                        <p class="text-sm font-medium">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
+                        <p class="text-xs text-white/20 mt-1">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
                     </div>
                     {:else}
                     {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
@@ -1427,7 +1426,7 @@
                             />
                             <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
                                 <i class="ri-image-line text-xl"></i>
-                                <span class="text-xs">Image unavailable</span>
+                                <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
                             </div>
                         </div>
                         {:else}
@@ -1441,7 +1440,7 @@
                             class="text-xs text-cYellow hover:text-cYellow/80 transition-all duration-300 flex items-center gap-1.5 ml-8"
                         >
                             <i class="ri-arrow-right-line"></i>
-                            Go to message
+                            {$_("room.chat.gotoMessage")}
                         </button>
                     </div>
                     {/each}
@@ -1458,7 +1457,7 @@
                     <div class="text-sm text-white/50 truncate flex items-center gap-2">
                         <i class="ri-reply-fill text-cYellow text-lg"></i>
                         <div>
-                            <span class="text-cYellow font-medium">Replying to message</span>
+                            <span class="text-cYellow font-medium">{$_("room.chat.replyingMessage")}</span>
                             <p class="truncate">{replyingTo.message}</p>
                         </div>
                     </div>
@@ -1478,7 +1477,7 @@
                         <div bind:this={inputEmojiPickerRef} class="absolute bottom-full left-0 mb-2 bg-[#2C2C2C]/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/10 p-3 z-50 animate-fadeIn w-[320px]" in:slide={{ duration: 200, axis: 'y' }} out:slide={{ duration: 200, axis: 'y' }}>
                             <div class="mb-3">
                                 <div class="relative">
-                                    <input type="text" bind:value={emojiSearchQuery} placeholder="Search emojis..." class="w-full pl-9 pr-3 py-2.5 bg-black/30 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20 placeholder-white/30" />
+                                    <input type="text" bind:value={emojiSearchQuery} placeholder={$_("room.chat.emojiPicker.placeholder")} class="w-full pl-9 pr-3 py-2.5 bg-black/30 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20 placeholder-white/30" />
                                     <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white/30"></i>
                                 </div>
                             </div>
@@ -1487,14 +1486,14 @@
                                 {#if !emojiSearchQuery}
                                     <div class="flex gap-1 mb-2 pb-2 overflow-x-auto custom-scrollbar border-b border-white/10">
                                         {#each Object.entries({
-                                            'Smileys & Emotion': 'ri-emotion-happy-line',
-                                            'People & Body': 'ri-user-smile-line',
-                                            'Animals & Nature': 'ri-plant-line',
-                                            'Food & Drink': 'ri-cup-line',
-                                            'Activities': 'ri-basketball-line',
-                                            'Travel & Places': 'ri-map-pin-line',
-                                            'Objects': 'ri-lightbulb-line',
-                                            'Symbols': 'ri-heart-3-line'
+                                            [$_("room.chat.emojiPicker.smileysAndemotion")]: 'ri-emotion-happy-line',
+                                            [$_("room.chat.emojiPicker.peopleAndbody")]: 'ri-user-smile-line',
+                                            [$_("room.chat.emojiPicker.animalsAndnature")]: 'ri-plant-line',
+                                            [$_("room.chat.emojiPicker.foodAnddrink")]: 'ri-cup-line',
+                                            [$_("room.chat.emojiPicker.activities")]: 'ri-basketball-line',
+                                            [$_("room.chat.emojiPicker.travelAndplaces")]: 'ri-map-pin-line',
+                                            [$_("room.chat.emojiPicker.objects")]: 'ri-lightbulb-line',
+                                            [$_("room.chat.emojiPicker.symbols")]: 'ri-heart-3-line'
                                         }) as [category, icon]}
                                         <button class="px-3 py-2.5 text-xs whitespace-nowrap rounded-lg transition-all duration-300 flex items-center gap-2 {selectedCategory === category ? 'bg-cYellow text-black font-medium shadow-lg' : 'text-white/70 hover:bg-white/10'}" on:click={() => selectedCategory = category}>
                                             <i class={icon}></i>
@@ -1514,14 +1513,14 @@
                                             </div>
                                         {:else}
                                             {#each Object.entries({
-                                                'Smileys & Emotion': ['ri-emotion-happy-line', emojiCategories['Smileys & Emotion']],
-                                                'People & Body': ['ri-user-smile-line', emojiCategories['People & Body']],
-                                                'Animals & Nature': ['ri-plant-line', emojiCategories['Animals & Nature']],
-                                                'Food & Drink': ['ri-cup-line', emojiCategories['Food & Drink']],
-                                                'Activities': ['ri-basketball-line', emojiCategories['Activities']],
-                                                'Travel & Places': ['ri-map-pin-line', emojiCategories['Travel & Places']],
-                                                'Objects': ['ri-lightbulb-line', emojiCategories['Objects']],
-                                                'Symbols': ['ri-heart-3-line', emojiCategories['Symbols']]
+                                                [$_("room.chat.emojiPicker.smileysAndemotion")]: ['ri-emotion-happy-line', emojiCategories['Smileys & Emotion']],
+                                                [$_("room.chat.emojiPicker.peopleAndbody")]: ['ri-user-smile-line', emojiCategories['People & Body']],
+                                                [$_("room.chat.emojiPicker.animalsAndnature")]: ['ri-plant-line', emojiCategories['Animals & Nature']],
+                                                [$_("room.chat.emojiPicker.foodAnddrink")]: ['ri-cup-line', emojiCategories['Food & Drink']],
+                                                [$_("room.chat.emojiPicker.activities")]: ['ri-basketball-line', emojiCategories['Activities']],
+                                                [$_("room.chat.emojiPicker.travelAndplaces")]: ['ri-map-pin-line', emojiCategories['Travel & Places']],
+                                                [$_("room.chat.emojiPicker.objects")]: ['ri-lightbulb-line', emojiCategories['Objects']],
+                                                [$_("room.chat.emojiPicker.symbols")]: ['ri-heart-3-line', emojiCategories['Symbols']]
                                             }) as [category, [icon, categoryEmojis]]}
                                                 <div class="mb-4 last:mb-0">
                                                     <div class="flex items-center gap-2 mb-2">
@@ -1555,7 +1554,7 @@
                                         {:else}
                                         <div class="text-center py-8 text-white/50">
                                             <i class="ri-emotion-sad-line text-3xl mb-2 block"></i>
-                                            <p class="text-sm">No emojis found</p>
+                                            <p class="text-sm">{$_("room.chat.emojiPicker.noEmojisFound")}</p>
                                         </div>
                                         {/if}
                                     </div>
@@ -1563,9 +1562,9 @@
                             </div>
 
                             <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/40">
-                                <span>Click emoji to insert</span>
+                                <span>{$_("room.chat.emojiPicker.insert")}</span>
                                 {#if selectedCategory}
-                                <span>{emojiCategories[selectedCategory].length} emojis</span>
+                                <span>{emojiCategories[selectedCategory].length} {$_("room.chat.emojiPicker.length")}</span>
                                 {/if}
                             </div>
                         </div>
@@ -1594,7 +1593,7 @@
                                         </div>
                                         <div class="text-sm font-medium text-white/90 min-w-[40px]">{Math.round(imageUploadProgress)}%</div>
                                     </div>
-                                    <p class="text-white/70 text-sm text-center">Uploading your image...</p>
+                                    <p class="text-white/70 text-sm text-center">{$_("room.chat.imageSelector.uploading")}</p>
                                 </div>
                             </div>
                         </div>                        
@@ -1606,7 +1605,7 @@
                             id="message-input" 
                             bind:value={message} 
                             bind:this={messageInput}
-                            placeholder="Type a message..." 
+                            placeholder={$_("room.chat.messageInput.placeholder")} 
                             on:input={(e) => {
                                 handleInput(e);
                                 e.target.style.height = 'auto';

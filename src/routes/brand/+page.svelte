@@ -1,58 +1,59 @@
 <script lang="ts">
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
+    import { _ } from 'svelte-i18n';
 
     const brandAssets = {
         banner: {
             path: "https://www.upload.ee/image/17480100/K9Crypt_Banner.png",
-            description: "Official K9Crypt promotional banner showcasing our commitment to secure messaging and privacy",
+            description: $_('brand.banner.description'),
         },
         logos: [
             {
-                name: "K9Crypt Standard Logo",
+                name: $_('brand.logos.standard.name'),
                 path: "https://www.upload.ee/image/17339403/k9crypt-logo.png",
-                description: "Our flagship logo representing K9Crypt's modern approach to secure messaging and data privacy",
+                description: $_('brand.logos.standard.description'),
             },
             {
-                name: "K9Crypt Icon",
+                name: $_('brand.logos.icon.name'),
                 path: "https://www.upload.ee/image/17339414/k9crypt-rb.png",
-                description: "Compact version of our logo, perfect for app icons, favicons, and small-scale applications",
+                description: $_('brand.logos.icon.description'),
             },
             {
-                name: "K9Crypt Light Logo",
+                name: $_('brand.logos.light.name'),
                 path: "https://www.upload.ee/image/17480183/k9crypt-white.png",
-                description: "White version of our logo, optimized for dark backgrounds and maintaining brand visibility",
+                description: $_('brand.logos.light.description'),
             },
             {
-                name: "K9Crypt Dark Logo",
+                name: $_('brand.logos.dark.name'),
                 path: "https://www.upload.ee/image/17480187/k9crypt-black.png",
-                description: "Black version of our logo, designed for light backgrounds and print materials",
+                description: $_('brand.logos.dark.description'),
             }
         ],
         colors: [
             {
-                name: "Background",
+                name: $_('brand.colors.background.name'),
                 hex: "#121212",
                 rgb: "rgb(18, 18, 18)",
-                usage: "Main background color"
+                usage: $_('brand.colors.background.usage')
             },
             {
-                name: "Accent Green",
+                name: $_('brand.colors.accent.name'),
                 hex: "#b9f21b",
                 rgb: "rgb(185, 242, 27)",
-                usage: "Primary accent color"
+                usage: $_('brand.colors.accent.usage')
             },
             {
-                name: "White Gray",
+                name: $_('brand.colors.whiteGray.name'),
                 hex: "#1B1B1B",
                 rgb: "rgb(27, 27, 27)",
-                usage: "Container background color"
+                usage: $_('brand.colors.whiteGray.usage')
             },
             {
-                name: "Light Gray",
+                name: $_('brand.colors.lightGray.name'),
                 hex: "#2C2C2C",
                 rgb: "rgb(44, 44, 44)",
-                usage: "Secondary container and loading elements"
+                usage: $_('brand.colors.lightGray.usage')
             }
         ],
         typography: {
@@ -68,7 +69,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="space-y-12">
             <div class="space-y-6">
-                <h2 class="text-3xl font-bold">Brand Assets</h2>
+                <h2 class="text-3xl font-bold">{$_('brand.title')}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {#each brandAssets.logos as logo}
                     <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
@@ -81,7 +82,7 @@
             </div>
 
             <div class="space-y-6">
-                <h2 class="text-3xl font-bold">Banner</h2>
+                <h2 class="text-3xl font-bold">{$_('brand.banner.title')}</h2>
                 <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
                     <img src={brandAssets.banner.path} alt="K9Crypt Banner" class="w-full object-cover rounded-lg mb-4" />
                     <p class="text-white/50 mb-4">{brandAssets.banner.description}</p>
@@ -89,7 +90,7 @@
             </div>
 
             <div class="space-y-6">
-                <h2 class="text-3xl font-bold">Color Palette</h2>
+                <h2 class="text-3xl font-bold">{$_('brand.colors.title')}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {#each brandAssets.colors as color}
                     <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
@@ -106,18 +107,18 @@
             </div>
 
             <div class="space-y-6">
-                <h2 class="text-3xl font-bold">Typography</h2>
+                <h2 class="text-3xl font-bold">{$_('brand.typography.title')}</h2>
                 <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6">
                     <div class="space-y-4">
                         <div>
-                            <h3 class="text-xl mb-2">Primary Font</h3>
+                            <h3 class="text-xl mb-2">{$_('brand.typography.primary.title')}</h3>
                             <p class="text-4xl" style="font-family: {brandAssets.typography.primary}">{brandAssets.typography.primary}</p>
-                            <p class="text-sm text-white/50 mt-2">Main font used throughout the website for body text and headings</p>
+                            <p class="text-sm text-white/50 mt-2">{$_('brand.typography.primary.description')}</p>
                         </div>
                         <div>
-                            <h3 class="text-xl mb-2">Secondary Font</h3>
+                            <h3 class="text-xl mb-2">{$_('brand.typography.secondary.title')}</h3>
                             <p class="text-4xl" style="font-family: {brandAssets.typography.secondary}">{brandAssets.typography.secondary}</p>
-                            <p class="text-sm text-white/50 mt-2">Decorative font used in the promotional banner and special headings</p>
+                            <p class="text-sm text-white/50 mt-2">{$_('brand.typography.secondary.description')}</p>
                         </div>
                     </div>
                 </div>

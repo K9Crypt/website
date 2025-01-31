@@ -4,6 +4,7 @@
     import Navbar from "../../components/Navbar.svelte";
     import Footer from "../../components/Footer.svelte";
     import { goto } from "$app/navigation";
+    import { _ } from 'svelte-i18n';
 
     let allUpdates: any[] = [];
     let displayedUpdates: any[] = [];
@@ -47,16 +48,16 @@
         <section class="py-8 sm:py-12 md:py-16 px-4">
             <div class="container mx-auto px-4 sm:px-6 lg:px-10">
                 <div>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Updates & News</h1>
-                    <p class="text-white/50 text-sm sm:text-base max-w-3xl">Stay updated with the latest news, security tips, and feature updates from K9Crypt.</p>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{$_('updatesPage.title')}</h1>
+                    <p class="text-white/50 text-sm sm:text-base max-w-3xl">{$_('updatesPage.description')}</p>
                 </div>
                 
                 <div class="mb-8">
                     <div class="flex gap-4 overflow-x-auto py-2.5">
                         <div class="flex justify-center space-x-4 mt-6">
-                            <button on:click={() => filterUpdates('all')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'all' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">All</button>
-                            <button on:click={() => filterUpdates('popular')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'popular' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Popular</button>
-                            <button on:click={() => filterUpdates('recent')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'recent' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">Recent</button>
+                            <button on:click={() => filterUpdates('all')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'all' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">{$_('updatesPage.filters.all')}</button>
+                            <button on:click={() => filterUpdates('popular')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'popular' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">{$_('updatesPage.filters.popular')}</button>
+                            <button on:click={() => filterUpdates('recent')} class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex-shrink-0 {currentFilter === 'recent' ? 'bg-cYellow text-black' : 'bg-cWhiteGray text-white/50 hover:bg-cWhiteGray'}">{$_('updatesPage.filters.recent')}</button>
                         </div>
                     </div>
                 </div>
@@ -65,8 +66,8 @@
                 <div class="text-center py-12">
                     <div class="bg-cWhiteGray border border-white/5 rounded-lg p-8">
                         <i class="ri-article-fill text-4xl text-white/50 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">No Updates Found</h3>
-                        <p class="text-white/50">There are no updates available at the moment. Please check back later.</p>
+                        <h3 class="text-xl font-semibold mb-2">{$_('updatesPage.noUpdates.title')}</h3>
+                        <p class="text-white/50">{$_('updatesPage.noUpdates.description')}</p>
                     </div>
                 </div>
                 {:else}
@@ -90,7 +91,7 @@
                                 </div>
                                 
                                 <button on:click={() => goto(`/updates/${update.id}`)} class="text-cYellow">
-                                    Read More
+                                    {$_('updatesPage.readMore')}
                                     <i class="ri-arrow-right-fill ml-1"></i>
                                 </button>
                             </div>

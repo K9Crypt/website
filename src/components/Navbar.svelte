@@ -3,6 +3,7 @@
     import { fade, fly, slide } from "svelte/transition";
     import { quintOut } from 'svelte/easing';
     import { page } from "$app/stores";
+    import { _, locale } from "svelte-i18n";
     
     let isMenuOpen = false;
     let currentPath;
@@ -14,30 +15,42 @@
     }
 
     const menuItems = [
-        { href: "/", label: "Home" },
-        { href: "/about", label: "About" },
-        { href: "/blog", label: "Blog" },
-        { href: "/updates", label: "Updates" },
+        { href: "/", label: $_('nav.home') },
+        { href: "/about", label: $_('nav.about') },
+        { href: "/blog", label: $_('nav.blog') },
+        { href: "/updates", label: $_('nav.updates') },
         {
-            label: "Products",
+            label: $_('nav.products.title'),
             isDropdown: true,
             items: [
-                { href: "/products/k9shield", label: "K9Shield" },
-                { href: "/products/k9vault", label: "K9Vault" }
+                { href: "/products/k9shield", label: $_('nav.products.k9shield') },
+                { href: "/products/k9vault", label: $_('nav.products.k9vault') }
             ]
         },
         {
-            label: "Actions",
+            label: $_('nav.actions.title'),
             isDropdown: true,
             items: [
-                { href: "/create/room", label: "Create Room" },
-                { href: "/join/room", label: "Join Room" },
-                { href: "/create/message", label: "Create Message" },
-                { href: "/view/message", label: "View Message" },
-                { href: "/list", label: "List Rooms" }
+                { href: "/create/room", label: $_('nav.actions.createRoom') },
+                { href: "/join/room", label: $_('nav.actions.joinRoom') },
+                { href: "/create/message", label: $_('nav.actions.createMessage') },
+                { href: "/view/message", label: $_('nav.actions.viewMessage') },
+                { href: "/list", label: $_('nav.actions.listRooms') }
             ]
         }
     ];
+
+    const languages = [
+        { code: 'tr', name: 'Türkçe' },
+        { code: 'en', name: 'English' },
+        { code: 'de', name: 'Deutsch' },
+        { code: 'fr', name: 'Français' },
+    ];
+
+    function switchLanguage(langCode) {
+        locale.set(langCode);
+        localStorage.setItem('preferred-locale', langCode);
+    }
 
     let activeDropdowns = {
         Products: false,
@@ -123,12 +136,49 @@
     </div>
 
     <div class="flex items-center space-x-2 text-white/50">
-        <div class="hidden md:flex space-x-2">
+        <div class="hidden md:flex items-center space-x-3">
             {#each socialLinks as link}
-                <a href={link.href} class="group">
-                    <i class="{link.icon} p-2.5 bg-cWhiteGray rounded-lg group-hover:text-white/100 transition-all duration-300 cursor-pointer"></i>
+                <a 
+                    href={link.href} 
+                    class="group relative"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="px-3 py-2 bg-cWhiteGray rounded-lg group-hover:bg-white/10 transition-all duration-300">
+                        <i class="{link.icon} text-white/50 group-hover:text-white group-hover:scale-110 transition-all duration-300"></i>
+                    </div>
                 </a>
             {/each}
+
+            <div class="relative dropdown-container ml-1">
+                <button 
+                    on:click={() => toggleDropdown('Language')} 
+                    class="group relative flex items-center space-x-1.5 px-3 py-2 bg-cWhiteGray rounded-lg hover:bg-white/10 transition-all duration-300"
+                >
+                    <i class="ri-global-line text-white/50 group-hover:text-white transition-all duration-300"></i>
+                    <i class="ri-arrow-down-s-line text-white/50 group-hover:text-white transition-transform duration-300 {activeDropdowns['Language'] ? 'rotate-180' : ''}"></i>
+                </button>
+                
+                {#if activeDropdowns['Language']}
+                    <div 
+                        class="absolute top-full right-0 mt-2 w-36 bg-cWhiteGray border border-white/10 rounded-lg shadow-lg overflow-hidden"
+                        in:slide={{ duration: 200, delay: 0, axis: 'y' }}
+                        out:slide={{ duration: 200, axis: 'y' }}
+                    >
+                        {#each languages as lang}
+                            <button
+                                on:click={() => {
+                                    switchLanguage(lang.code);
+                                    toggleDropdown('Language');
+                                }}
+                                class="w-full text-left px-4 py-2.5 text-white/50 hover:text-white transition-all duration-300 flex items-center space-x-2"
+                            >
+                                <span class="text-sm">{lang.name}</span>
+                            </button>
+                        {/each}
+                    </div>
+                {/if}
+            </div>
         </div>
 
         <button class="md:hidden w-10 h-10 flex items-center justify-center bg-cWhiteGray rounded-lg" on:click={toggleMenu}>

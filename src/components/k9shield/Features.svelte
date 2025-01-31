@@ -1,43 +1,45 @@
-<script>
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+
     const shieldFeatures = [
         {
-            title: "DDoS Protection",
-            description: "Progressive penalty system, connection tracking, burst detection and path-based rate limiting with configurable thresholds",
+            title: $_('k9shieldFeatures.items.ddos.title'),
+            description: $_('k9shieldFeatures.items.ddos.description'),
             icon: "ri-shield-flash-line"
         },
         {
-            title: "Rate Limiting",
-            description: "Route-specific limits, flexible time windows, throttling support and distributed system compatibility",
+            title: $_('k9shieldFeatures.items.rateLimiting.title'),
+            description: $_('k9shieldFeatures.items.rateLimiting.description'),
             icon: "ri-dashboard-3-line"
         },
         {
-            title: "IP Management",
-            description: "CIDR notation, IPv6 support, private IP detection, whitelist/blacklist functionality and proxy support",
+            title: $_('k9shieldFeatures.items.ipManagement.title'),
+            description: $_('k9shieldFeatures.items.ipManagement.description'),
             icon: "ri-global-line"
         },
         {
-            title: "Request Validation",
-            description: "Method validation, payload limits, header validation and pattern detection for SQL Injection, XSS, Path Traversal",
+            title: $_('k9shieldFeatures.items.requestValidation.title'),
+            description: $_('k9shieldFeatures.items.requestValidation.description'),
             icon: "ri-scan-line"
         },
         {
-            title: "Security Headers",
-            description: "Content Security Policy (CSP), Permissions Policy, HSTS support, XSS protection and frame options",
+            title: $_('k9shieldFeatures.items.securityHeaders.title'),
+            description: $_('k9shieldFeatures.items.securityHeaders.description'),
             icon: "ri-lock-line"
         },
         {
-            title: "Pattern Detection",
-            description: "SQL Injection patterns, XSS patterns, path traversal attempts and custom pattern support",
+            title: $_('k9shieldFeatures.items.patternDetection.title'),
+            description: $_('k9shieldFeatures.items.patternDetection.description'),
             icon: "ri-radar-line"
         },
         {
-            title: "Monitoring & Logging",
-            description: "Multiple log levels, automatic rotation, archive management and security event tracking",
+            title: $_('k9shieldFeatures.items.monitoring.title'),
+            description: $_('k9shieldFeatures.items.monitoring.description'),
             icon: "ri-file-chart-line"
         },
         {
-            title: "Request Tracking",
-            description: "IP tracking, request duration, path monitoring and detailed request information",
+            title: $_('k9shieldFeatures.items.requestTracking.title'),
+            description: $_('k9shieldFeatures.items.requestTracking.description'),
             icon: "ri-route-line"
         }
     ];
@@ -46,8 +48,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Comprehensive Security Features</h2>
-            <p class="text-white/50 text-sm sm:text-base">Advanced security middleware providing robust protection for Node.js applications</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('k9shieldFeatures.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('k9shieldFeatures.subtitle')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

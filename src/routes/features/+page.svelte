@@ -1,114 +1,115 @@
 <script lang="ts">
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
+    import { _ } from 'svelte-i18n';
 
     let activeTab: 'security' | 'privacy' | 'rooms' | 'overview' = 'overview';
 
     const sections = [
         {
             id: 'overview',
-            title: "Overview",
-            description: "Key features of K9Crypt",
+            title: $_('features.overview.title'),
+            description: $_('features.overview.description'),
             icon: "ri-apps-fill",
             content: {
-                introduction: "K9Crypt combines powerful security features with ease of use to provide the most secure messaging experience.",
+                introduction: $_('features.overview.content.introduction'),
                 features: [
                     {
-                        title: "End-to-End Encryption",
-                        description: "Military-grade encryption ensures your messages remain private and secure."
+                        title: $_('features.overview.content.features.encryption.title'),
+                        description: $_('features.overview.content.features.encryption.description')
                     },
                     {
-                        title: "Message Auto-Delete",
-                        description: "Messages automatically delete after 2 hours for enhanced security."
+                        title: $_('features.overview.content.features.autoDelete.title'),
+                        description: $_('features.overview.content.features.autoDelete.description')
                     },
                     {
-                        title: "Anonymous Usage",
-                        description: "Use K9Crypt without creating an account or sharing personal information."
+                        title: $_('features.overview.content.features.anonymous.title'),
+                        description: $_('features.overview.content.features.anonymous.description')
                     },
                     {
-                        title: "Secure Rooms",
-                        description: "Create encrypted chat rooms for group conversations."
+                        title: $_('features.overview.content.features.secureRooms.title'),
+                        description: $_('features.overview.content.features.secureRooms.description')
                     }
                 ]
             }
         },
         {
             id: 'security',
-            title: "Security",
-            description: "Advanced encryption features",
+            title: $_('features.security.title'),
+            description: $_('features.security.description'),
             icon: "ri-shield-keyhole-fill",
             content: {
-                introduction: "Our security features are designed to provide the highest level of protection for your communications.",
+                introduction: $_('features.security.content.introduction'),
                 features: [
                     {
-                        title: "AES-256 Encryption",
-                        description: "Industry-standard encryption algorithm for maximum security."
+                        title: $_('features.security.content.features.aes.title'),
+                        description: $_('features.security.content.features.aes.description')
                     },
                     {
-                        title: "Zero-Knowledge Architecture",
-                        description: "We can't read your messages - only you and your recipients can."
+                        title:  $_('features.security.content.features.zeroKnowledge.title'),
+                        description: $_('features.security.content.features.zeroKnowledge.description')
                     },
                     {
-                        title: "No Plaintext Storage",
-                        description: "Messages are never stored in readable format on our servers."
+                        title: $_('features.security.content.features.noPlaintext.title'),
+                        description: $_('features.security.content.features.noPlaintext.description')
                     },
-                    {
-                        title: "Secure Key Exchange",
-                        description: "Advanced key exchange protocols ensure secure communication."
+                     {
+                        title: $_('features.security.content.features.secureKey.title'),
+                        description: $_('features.security.content.features.secureKey.description')
                     }
                 ]
             }
         },
         {
             id: 'privacy',
-            title: "Privacy",
-            description: "Your privacy is our priority",
+            title: $_('features.privacy.title'),
+            description: $_('features.privacy.description'),
             icon: "ri-user-unfollow-fill",
             content: {
-                introduction: "We've built K9Crypt with privacy at its core, ensuring your personal information stays private.",
+                introduction: $_('features.privacy.content.introduction'),
                 features: [
                     {
-                        title: "No Registration Required",
-                        description: "Use the platform without creating an account."
+                        title: $_('features.privacy.content.features.noRegistration.title'),
+                        description: $_('features.privacy.content.features.noRegistration.description')
                     },
                     {
-                        title: "No Personal Data Collection",
-                        description: "We don't collect or store any personal information."
+                        title: $_('features.privacy.content.features.noDataCollection.title'),
+                        description: $_('features.privacy.content.features.noDataCollection.description')
                     },
                     {
-                        title: "Complete Anonymity",
-                        description: "Your identity remains private throughout your usage."
+                        title: $_('features.privacy.content.features.anonymity.title'),
+                        description: $_('features.privacy.content.features.anonymity.description')
                     },
                     {
-                        title: "Auto Message Deletion",
-                        description: "Messages are automatically deleted after 2 hours."
+                        title: $_('features.privacy.content.features.autoDeletion.title'),
+                        description: $_('features.privacy.content.features.autoDeletion.description')
                     }
                 ]
             }
         },
         {
             id: 'rooms',
-            title: "Secure Rooms",
-            description: "Group messaging features",
+            title: $_('features.rooms.title'),
+            description: $_('features.rooms.description'),
             icon: "ri-group-fill",
             content: {
-                introduction: "Create and manage secure rooms for private group conversations with complete encryption.",
+                introduction: $_('features.rooms.content.introduction'),
                 features: [
                     {
-                        title: "Private Room Creation",
-                        description: "Create encrypted rooms for secure group chats."
+                        title: $_('features.rooms.content.features.privateRoom.title'),
+                        description: $_('features.rooms.content.features.privateRoom.description')
                     },
                     {
-                        title: "Secure Invitations",
-                        description: "Invite members using encrypted invitation links."
+                        title: $_('features.rooms.content.features.secureInvitations.title'),
+                        description: $_('features.rooms.content.features.secureInvitations.description')
                     },
                     {
-                        title: "Group Encryption",
-                        description: "All group messages are end-to-end encrypted."
+                        title: $_('features.rooms.content.features.groupEncryption.title'),
+                        description: $_('features.rooms.content.features.groupEncryption.description')
                     },
                     {
-                        title: "Member Privacy",
-                        description: "Group members remain anonymous to each other."
+                        title: $_('features.rooms.content.features.memberPrivacy.title'),
+                        description: $_('features.rooms.content.features.memberPrivacy.description')
                     }
                 ]
             }
@@ -121,8 +122,8 @@
 <section class="min-h-screen py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-8 sm:mb-12">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Features</h1>
-            <p class="text-white/50 text-sm sm:text-base max-w-3xl">Discover the powerful features that make K9Crypt the most secure messaging platform.</p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{$_('features.title')}</h1>
+            <p class="text-white/50 text-sm sm:text-base max-w-3xl">{$_('features.subtitle')}</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-8">
@@ -165,17 +166,17 @@
                 <div class="flex items-center gap-3 mb-6">
                     <i class="ri-rocket-fill text-2xl text-cYellow"></i>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-bold">Ready to Get Started?</h2>
-                        <p class="text-white/50 text-sm mt-1">Experience the most secure messaging platform today.</p>
+                        <h2 class="text-xl sm:text-2xl font-bold">{$_('features.readyToStart.title')}</h2>
+                        <p class="text-white/50 text-sm mt-1">{$_('features.readyToStart.description')}</p>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="/start" class="flex items-center bg-cYellow text-black py-2.5 px-10 rounded-lg font-medium justify-center">
-                        Get Started
+                        {$_('features.readyToStart.getStarted')}
                     </a>
                     <a href="/docs" class="flex items-center border bg-cYellow/10 border-cYellow text-cYellow py-2.5 px-10 rounded-lg font-medium justify-center">
-                        Learn More
+                        {$_('features.readyToStart.learnMore')}
                     </a>
                 </div>
             </div>

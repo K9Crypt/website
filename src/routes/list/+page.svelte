@@ -4,6 +4,7 @@
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
     import toast, { Toaster } from 'svelte-french-toast';
+    import { _ } from 'svelte-i18n';
 
     let rooms: any[] = [];
     let error: string | null = null;
@@ -21,7 +22,7 @@
             rooms = await listRooms();
             totalRoomsCount = rooms.length;
         } catch (err) {
-            error = 'Failed to fetch rooms';
+            error = $_('room.create.error.connectionDesc');
         }
     });
 
@@ -39,7 +40,7 @@
 
     function copy(text: string) {
         navigator.clipboard.writeText(text);
-        toast.success('Room ID copied!', { 
+        toast.success($_('room.create.copySuccess'), { 
             duration: 2000, 
             position: 'bottom-right',
             style: 'background-color: #1B1B1B; color: #fff;'
@@ -56,18 +57,24 @@
             {#if error}
             <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
                 <div class="w-full max-w-2xl mx-auto">
-                    <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
-                    <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">
+                        {$_('room.create.error.connectionTitle')}
+                    </h1>
+                    <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">
+                        {$_('room.create.error.connectionDesc')}
+                    </p>
                     
                     <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
                         <div class="flex justify-center mb-3 sm:mb-4">
                             <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
                         </div>
-                        <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
+                        <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">
+                            {$_('room.create.error.serverStatus')}
+                        </h2>
                         <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">{error}</p>
                     </div>
 
-                    <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
+                    <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>{$_('room.create.error.tryAgain')}</button>
                 </div>
             </div>
             {:else if rooms.length === 0}
@@ -76,15 +83,15 @@
                     <div class="mb-4 text-white/30">
                         <i class="ri-team-fill text-6xl"></i>
                     </div>
-                    <p class="text-white/50 text-xl font-medium">No rooms available</p>
-                    <p class="text-white/30 text-sm mt-2">No active rooms found</p>
+                    <p class="text-white/50 text-xl font-medium">{$_('list.noRooms')}</p>
+                    <p class="text-white/30 text-sm mt-2">{$_('list.noActiveRooms')}</p>
                 </div>
             </div>
             {:else}
             <div class="mb-8">
-                <h2 class="text-3xl font-bold mb-3">Available Rooms</h2>
-                <p class="text-white/50 text-sm">Currently active rooms list.</p>
-                <p class="text-white/50 text-sm mt-2">There are currently <span class="font-bold">{totalRoomsCount}</span> rooms available.</p>
+                <h2 class="text-3xl font-bold mb-3">{$_('list.availableRooms')}</h2>
+                <p class="text-white/50 text-sm">{$_('list.activeRoomsList')}</p>
+                <p class="text-white/50 text-sm mt-2">{$_('list.totalRooms', { values: { total: totalRoomsCount } })}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {#each displayedRooms as room}
@@ -121,11 +128,11 @@
                             <div class="items-center gap-3">
                                 <button on:click={() => copy(room.roomName)} class="flex items-center gap-2 text-white/50 hover:text-white/80 transition-colors">
                                     <i class="ri-file-copy-line text-base sm:text-lg"></i>
-                                    <span class="text-xs sm:text-sm">Copy Room Name</span>
+                                    <span class="text-xs sm:text-sm">{$_('list.copyRoomName')}</span>
                                 </button>
                                 <button on:click={() => copy(room.id)} class="flex items-center gap-2 text-white/50 hover:text-white/80 transition-colors">
                                     <i class="ri-file-copy-line text-base sm:text-lg"></i>
-                                    <span class="text-xs sm:text-sm">Copy Room ID</span>
+                                    <span class="text-xs sm:text-sm">{$_('list.copyRoomId')}</span>
                                 </button>
                             </div>
                         </div>
@@ -138,11 +145,11 @@
             <div class="mt-8 flex justify-center items-center gap-4">
                 <button on:click={prevPage} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded-lg px-4 py-2.5 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoPrev}>
                     <i class="ri-arrow-left-fill"></i>
-                    Previous
+                    {$_('list.previous')}
                 </button>
-                <span class="text-white/50">Page {currentPage} of {totalPages}</span>
+                <span class="text-white/50">{$_('list.page', { values: { current: currentPage, total: totalPages } })}</span>
                 <button on:click={() => nextPage(1)} class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded-lg px-4 py-2.5 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={!canGoNext}>
-                    Next
+                    {$_('list.next')}
                     <i class="ri-arrow-right-fill"></i>
                 </button>
             </div>

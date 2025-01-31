@@ -1,28 +1,29 @@
 <script lang="ts">
     import { slide } from 'svelte/transition';
+    import { _ } from 'svelte-i18n';
 
     let faqItems = [
         {
-            question: "Is K9Vault completely free?",
-            answer: "Yes, K9Vault is completely free and available for users to use.",
+            question: $_('k9vault.faq.items.isFree.question'),
+            answer: $_('k9vault.faq.items.isFree.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Is K9Vault open source?",
-            answer: "Yes, K9Vault is open source. The source code is available on Github.",
+            question: $_('k9vault.faq.items.isOpenSource.question'),
+            answer: $_('k9vault.faq.items.isOpenSource.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Where does K9Vault store data?",
-            answer: "K9Vault stores data on the user's computer. User data is only stored on the user's computer and does not communicate with any server.",
+            question: $_('k9vault.faq.items.dataStorage.question'),
+            answer: $_('k9vault.faq.items.dataStorage.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Is K9Vault end-to-end encrypted?",
-            answer: "Yes, K9Vault is end-to-end encrypted.",
+            question: $_('k9vault.faq.items.encryption.question'),
+            answer: $_('k9vault.faq.items.encryption.answer'),
             icon: "ri-question-mark",
             isOpen: false
         }
@@ -39,8 +40,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4" id="faq">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Frequently Asked Questions</h2>
-            <p class="text-white/50 text-sm sm:text-base">Detailed information about K9Vault's features and implementation.</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('k9vault.faq.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('k9vault.faq.subtitle')}</p>
         </div>
         
         <div class="mx-auto flex flex-col gap-4">

@@ -4,6 +4,7 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { checkLink } from "$lib/check";
+    import { _ } from "svelte-i18n";
 
     let status: boolean | null = null;
 
@@ -17,28 +18,28 @@
 
     let steps = [
         {
-            title: "Create Room",
-            description: "Create a new room and invite your friends to join you.",
+            title: $_('startPage.steps.0.title'),
+            description: $_('startPage.steps.0.description'),
             link: "/create/room"
         },
         {
-            title: "Join Room",
-            description: "Join an existing room and start sending messages.",
+            title: $_('startPage.steps.1.title'),
+            description: $_('startPage.steps.1.description'),
             link: "/join/room"
         },
         {
-            title: "Create Encrypted Message",
-            description: "Create an encrypted message and share it with people.",
+            title: $_('startPage.steps.2.title'),
+            description: $_('startPage.steps.2.description'),
             link: "/create/message"
         },
         {
-            title: "Decrypt Message",
-            description: "Decrypt the message you encrypted or the encrypted message.",
+            title: $_('startPage.steps.3.title'),
+            description: $_('startPage.steps.3.description'),
             link: "/view/message"
         },
         {
-            title: "List of Rooms",
-            description: "View all the rooms.",
+            title: $_('startPage.steps.4.title'),
+            description: $_('startPage.steps.4.description'),
             link: "/list"
         }
     ];
@@ -48,20 +49,20 @@
 {#if status === false && status !== null}
 <div class="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12">
     <div class="w-full max-w-2xl mx-auto">
-        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">Connection Error</h1>
-        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">Unable to connect to the server. Please check your connection and try again.</p>
+        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-red-500 text-center">{$_('startPage.connectionError.title')}</h1>
+        <p class="text-white/50 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 md:mb-8 text-center">{$_('startPage.connectionError.description')}</p>
                 
         <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8">
             <div class="flex justify-center mb-3 sm:mb-4">
                 <i class="ri-error-warning-fill text-red-500 text-2xl sm:text-3xl md:text-4xl"></i>
             </div>
-            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">Server Status: Offline</h2>
-            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">The server is currently unavailable. Our team has been notified and is working on resolving the issue.</p>
+            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-500 mb-2 text-center">{$_('startPage.connectionError.serverStatus')}</h2>
+            <p class="text-red-500 text-xs sm:text-sm md:text-base text-center">{$_('startPage.connectionError.serverDescription')}</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>Try Again</button>
-            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>Support</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-600" on:click={() => window.location.reload()}>{$_('startPage.connectionError.tryAgainButton')}</button>
+            <button class="w-full sm:w-auto flex items-center justify-center bg-red-500/10 border border-red-500 text-red-500 py-2.5 px-4 sm:px-6 md:px-10 rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-red-500/20" on:click={routeSupport}>{$_('startPage.connectionError.supportButton')}</button>
         </div>
     </div>
 </div>
@@ -69,8 +70,8 @@
 <section class="min-h-screen flex items-center justify-center px-4 py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 text-center">
         <div class="max-w-2xl mx-auto mb-12">
-            <h1 class="text-4xl font-bold mb-4">Where Do You Want to Go?</h1>
-            <p class="text-white/50 text-base mb-8">Let's help you find your way back to the right destination.</p>
+            <h1 class="text-4xl font-bold mb-4">{$_('startPage.mainContent.title')}</h1>
+            <p class="text-white/50 text-base mb-8">{$_('startPage.mainContent.description')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -89,5 +90,4 @@
     </div>
 </section>
 {/if}
-
 <Footer />

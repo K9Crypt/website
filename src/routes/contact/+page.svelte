@@ -1,26 +1,27 @@
 <script>
     import Navbar from "../../components/Navbar.svelte";
     import Footer from "../../components/Footer.svelte";
+    import { _ } from 'svelte-i18n';
 
     let contacts = [
         {
-            title: "GitHub",
-            description: "Open source code and issues.",
+            title: $_('contact.social.github.title'),
+            description: $_('contact.social.github.description'),
             link: "https://github.com/k9crypt"
         },
         {
-            title: "X (Twitter)",
-            description: "Follow us for updates and news.",
+            title: $_('contact.social.twitter.title'),
+            description: $_('contact.social.twitter.description'),
             link: "https://x.com/k9crypt"
         },
         {
-            title: "Telegram",
-            description: "Chat with us and get support.",
+            title: $_('contact.social.telegram.title'),
+            description: $_('contact.social.telegram.description'),
             link: "https://t.me/k9crypt"
         },
         {
-            title: "Discord",
-            description: "Join our community and get support.",
+            title: $_('contact.social.discord.title'),
+            description: $_('contact.social.discord.description'),
             link: "https://discord.gg/8jyeQV7Wyd"
         }
     ];
@@ -30,8 +31,8 @@
 <section class="min-h-screen flex items-center justify-center px-4 py-16">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10 text-center">
         <div class="max-w-2xl mx-auto mb-12">
-            <h1 class="text-4xl font-bold mb-4">Get in Touch</h1>
-            <p class="text-white/50 text-base mb-8">Need help or want to chat? Reach out to us.</p>
+            <h1 class="text-4xl font-bold mb-4">{$_('contact.title')}</h1>
+            <p class="text-white/50 text-base mb-8">{$_('contact.description')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -49,5 +50,3 @@
         </div>
     </div>
 </section>
-
-<Footer />

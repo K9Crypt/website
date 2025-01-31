@@ -4,6 +4,7 @@
     import { onMount } from 'svelte';
     import Navbar from "../../../components/Navbar.svelte";
     import Footer from "../../../components/Footer.svelte";
+    import { _ } from 'svelte-i18n';
     
     let postId = $page.params.id;
     let post: { 
@@ -39,7 +40,7 @@
     function calculateReadingTime() {
         if (post.content) {
             const wordCount = post.content.trim().split(/\s+/).length;
-            readingTime = Math.ceil(wordCount / 200) + " min read";
+            readingTime = Math.ceil(wordCount / 200) + "";
         }
     }
 </script>
@@ -63,7 +64,7 @@
                 </span>
                 <span class="flex items-center gap-2">
                     <i class="ri-time-fill"></i>
-                    {readingTime}
+                    {$_('blog.post.readTime', { values: { minutes: readingTime } })}
                 </span>
             </div>
         </div>
@@ -74,14 +75,14 @@
 
         <div class="border-t border-white/5 py-6 mb-12 flex justify-between items-center">
             <div class="flex gap-4">
-                <button on:click={sharePost} class="text-white/50 hover:text-white transition-colors duration-300">
+                <button on:click={sharePost} class="text-white/50 hover:text-white transition-colors duration-300" title={$_('blog.post.share')}>
                     <i class="ri-link text-xl"></i>
                 </button>
             </div>
             <div class="flex gap-4">
                 <a href="/blog" class="text-white/50 hover:text-white transition-colors duration-300 flex items-center gap-2">
                     <i class="ri-arrow-left-fill"></i>
-                    Back to Blog
+                    {$_('blog.post.backToBlog')}
                 </a>
             </div>
         </div>

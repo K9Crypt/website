@@ -1,128 +1,121 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import Navbar from '../../components/Navbar.svelte';
     import Footer from '../../components/Footer.svelte';
 
-    let activeTab: 'company' | 'values' | 'team' = 'company';
-
-    const teamMembers = [
-        {
-            name: "Fatih Yılmaz",
-            role: "Founder & CEO",
-            description: "Fatih Yilmaz, founder and CEO of K9Crypt, is a technology leader who develops innovative web solutions with the user experience at the forefront.",
-            socials: {
-                github: "https://github.com/queaxtra",
-                twitter: "https://x.com/queaxtra",
-                linkedin: "https://linkedin.com/in/queaxtra",
-                mail: "mailto:queaxtra@k9crypt.xyz",
-            }
-        },
-        {
-            name: "Emin Bıyıkçı",
-            role: "CEO & Front-end Developer",
-            description: "Emin, experienced front-end developer with a passion for creating visually appealing and user-friendly interfaces.",
-            socials: {
-                github: "https://github.com/eminexedev",
-                mail: "mailto:emin@k9crypt.xyz",
-            }
-        },
-        {
-            name: "Patrick H.",
-            role: "Full-Stack Developer",
-            description: "Patrick is a skilled full-stack developer with expertise in both front-end and back-end technologies.",
-            socials: {
-                github: "https://github.com/dracho",
-                mail: "mailto:patrick@k9crypt.xyz",
-            }
-        }
-    ];
-
-    const companyInfo = {
-        mission: "To provide the most secure and private messaging platform while maintaining simplicity and accessibility for everyone.",
-        vision: "Creating a world where private communication is a fundamental right, not a luxury.",
-        values: [
-            "Privacy First",
-            "Security by Design",
-            "User Empowerment",
-            "Transparency"
-        ],
-        story: "Founded in June 2024, K9Crypt grew out of a simple idea: communication should be private by default. Our team of developers came together to build a platform that makes secure messaging accessible to everyone."
-    };
+    let activeTab: 'company' | 'values' | 'team' | 'contact' = 'company';
 
     const sections = [
         {
             id: 'company',
-            title: "Company",
-            description: "Learn about K9Crypt's mission and vision",
+            title: $_('about.tabs.company'),
+            description: $_('about.company.description'),
             icon: "ri-building-fill",
             content: {
-                introduction: companyInfo.story,
+                introduction: $_('about.company.introduction'),
                 features: [
                     {
-                        title: "Our Mission",
-                        description: companyInfo.mission
+                        title: $_('about.company.features.mission.title'),
+                        description: $_('about.company.features.mission.description')
                     },
                     {
-                        title: "Our Vision",
-                        description: companyInfo.vision
+                        title: $_('about.company.features.vision.title'),
+                        description: $_('about.company.features.vision.description')
                     },
                     {
-                        title: "Privacy First",
-                        description: "We believe privacy is a fundamental right, not a feature."
+                        title: $_('about.company.features.privacy.title'),
+                        description: $_('about.company.features.privacy.description')
                     },
                     {
-                        title: "Security by Design",
-                        description: "Security is built into every aspect of our platform."
+                        title: $_('about.company.features.security.title'),
+                        description: $_('about.company.features.security.description')
                     }
                 ]
             }
         },
         {
             id: 'values',
-            title: "Our Values",
-            description: "The principles that guide our work",
+            title: $_('about.tabs.values'),
+            description: $_('about.values.description'),
             icon: "ri-heart-fill",
             content: {
-                introduction: "At K9Crypt, our values shape everything we do. They guide our decisions, influence our product development, and define our company culture.",
-                features: companyInfo.values.map(value => {
-                    const descriptions = {
-                        "Privacy First": "We prioritize user privacy in every decision we make.",
-                        "Security by Design": "Security is never an afterthought, but the foundation of our platform.",
-                        "User Empowerment": "We give users complete control over their communication.",
-                        "Transparency": "We maintain open and honest communication with our users."
-                    };
-                    return {
-                        title: value,
-                        description: descriptions[value]
-                    };
-                })
+                introduction: $_('about.values.introduction'),
+                features: [
+                    {
+                        title: $_('about.values.items.privacy.title'),
+                        description: $_('about.values.items.privacy.description')
+                    },
+                    {
+                        title: $_('about.values.items.security.title'),
+                        description: $_('about.values.items.security.description')
+                    },
+                    {
+                        title: $_('about.values.items.empowerment.title'),
+                        description: $_('about.values.items.empowerment.description')
+                    },
+                    {
+                        title: $_('about.values.items.transparency.title'),
+                        description: $_('about.values.items.transparency.description')
+                    }
+                ]
             }
         },
         {
             id: 'team',
-            title: "Our Team",
-            description: "Meet the people behind K9Crypt",
+            title: $_('about.tabs.team'),
+            description: $_('about.team.description'),
             icon: "ri-team-fill",
             content: {
-                introduction: "Our team consists of passionate individuals dedicated to making secure communication accessible to everyone.",
-                members: teamMembers
+                introduction: $_('about.team.introduction'),
+                members: [
+                    {
+                        name: $_('about.team.members.fatih.name'),
+                        role: $_('about.team.members.fatih.role'),
+                        description: $_('about.team.members.fatih.description'),
+                        socials: {
+                            github: "https://github.com/queaxtra",
+                            twitter: "https://x.com/queaxtra",
+                            linkedin: "https://linkedin.com/in/queaxtra",
+                            mail: "mailto:queaxtra@k9crypt.xyz",
+                        }
+                    },
+                    {
+                        name: $_('about.team.members.emin.name'),
+                        role: $_('about.team.members.emin.role'),
+                        description: $_('about.team.members.emin.description'),
+                        socials: {
+                            github: "https://github.com/eminexedev",
+                            mail: "mailto:emin@k9crypt.xyz",
+                        }
+                    },
+                    {
+                        name: $_('about.team.members.patrick.name'),
+                        role: $_('about.team.members.patrick.role'),
+                        description: $_('about.team.members.patrick.description'),
+                        socials: {
+                            github: "https://github.com/dracho",
+                            mail: "mailto:patrick@k9crypt.xyz",
+                        }
+                    }
+                ]
             }
         },
         {
             id: 'contact',
-            title: "Contact",
-            description: "Get in touch with us",
+            title: $_('about.tabs.contact'),
+            description: $_('about.contact.description'),
             icon: "ri-customer-service-fill",
             content: {
-                introduction: "Have questions, suggestions, or want to join our team? We'd love to hear from you.",
+                introduction: $_('about.contact.introduction'),
                 contacts: [
                     {
-                        title: "General Inquiries",
-                        email: "hi@k9crypt.xyz",
+                        title: $_('about.contact.types.general.title'),
+                        email: $_('about.contact.types.general.email'),
                         icon: "ri-mail-fill"
                     },
                     {
-                        title: "Support",
-                        email: "support@k9crypt.xyz",
+                        title: $_('about.contact.types.support.title'),
+                        email: $_('about.contact.types.support.email'),
                         icon: "ri-customer-service-fill"
                     }
                 ]
@@ -136,8 +129,8 @@
 <section class="min-h-screen py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-8 sm:mb-12">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">About K9Crypt</h1>
-            <p class="text-white/50 text-sm sm:text-base max-w-3xl">Dedicated to making secure communication accessible to everyone.</p>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{$_('about.title')}</h1>
+            <p class="text-white/50 text-sm sm:text-base max-w-3xl">{$_('about.subtitle')}</p>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-8">

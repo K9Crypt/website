@@ -4,6 +4,7 @@
     import { onMount } from 'svelte';
     import Navbar from "../../../components/Navbar.svelte";
     import Footer from "../../../components/Footer.svelte";
+    import { _ } from 'svelte-i18n';
     
     let updateId = $page.params.id;
     let update: { 
@@ -34,7 +35,7 @@
     function calculateReadingTime() {
         if (update.content) {
             const wordCount = update.content.trim().split(/\s+/).length;
-            readingTime = Math.ceil(wordCount / 200) + " min read";
+            readingTime = Math.ceil(wordCount / 200) + "";
         }
     }
 </script>
@@ -59,7 +60,7 @@
                         </span>
                         <span class="flex items-center gap-2">
                             <i class="ri-time-fill"></i>
-                            {readingTime}
+                            {$_('updatesPage.post.readTime'), { values: { minutes: readingTime } }}
                         </span>
                     </div>
                 </div>
@@ -77,7 +78,7 @@
                     <div class="flex gap-4">
                         <a href="/updates" class="text-white/50 hover:text-white transition-colors duration-300 flex items-center gap-2">
                             <i class="ri-arrow-left-fill"></i>
-                            Back to Updates
+                            {$_('updatesPage.post.backToBlog')}
                         </a>
                     </div>
                 </div>

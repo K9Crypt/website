@@ -1,49 +1,50 @@
 <script lang="ts">
     import { slide } from 'svelte/transition';
+    import { _ } from 'svelte-i18n';
 
     let faqItems = [
         {
-            question: "Is K9Crypt really free?",
-            answer: "Yes, K9Crypt is completely free to use and doesn't require any payment or subscription.",
+            question: $_('faq.questions.isFree.question'),
+            answer: $_('faq.questions.isFree.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "How secure is my data?", 
-            answer: "All messages are protected with end-to-end encryption and automatically deleted after 2 hours.",
+            question: $_('faq.questions.security.question'),
+            answer: $_('faq.questions.security.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Do I need to create an account?",
-            answer: "No, K9Crypt doesn't require any account creation or personal information.",
+            question: $_('faq.questions.account.question'),
+            answer: $_('faq.questions.account.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "How long are messages stored?",
-            answer: "Messages are automatically deleted after 2 hours for maximum security.",
+            question: $_('faq.questions.storage.question'),
+            answer: $_('faq.questions.storage.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Is K9Crypt open source?",
-            answer: "Yes, K9Crypt is open source and available on GitHub.",
+            question: $_('faq.questions.openSource.question'),
+            answer: $_('faq.questions.openSource.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "What happens if I lose my connection?",
-            answer: "K9Crypt automatically attempts to reconnect when your connection is restored. Any unsent messages will be preserved until connection is re-established.",
+            question: $_('faq.questions.connection.question'),
+            answer: $_('faq.questions.connection.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },
         {
-            question: "Is there a message size limit?",
-            answer: "No, chat without restrictions. Send unlimited messages in any room and communicate freely with others.",
+            question: $_('faq.questions.messageLimit.question'),
+            answer: $_('faq.questions.messageLimit.answer'),
             icon: "ri-question-mark",
             isOpen: false
-        },
+        }
     ];
 
     function toggleFaq(index: number) {
@@ -57,8 +58,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4" id="faq">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Frequently Asked Questions</h2>
-            <p class="text-white/50 text-sm sm:text-base">Find answers to common questions about K9Crypt's services and features.</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('faq.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('faq.subtitle')}</p>
         </div>
         
         <div class="mx-auto flex flex-col gap-4">

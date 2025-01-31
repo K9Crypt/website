@@ -1,52 +1,54 @@
-<script>
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+
     const shieldSteps = [
         {
-            title: "Installation",
-            description: "Install K9Shield using npm: 'npm install k9shield' and import it into your Node.js application",
+            title: $_('k9shieldSteps.items.installation.title'),
+            description: $_('k9shieldSteps.items.installation.description'),
             icon: "ri-download-cloud-line",
-            step: 1
+            step: $_('k9shieldSteps.items.installation.step')
         },
         {
-            title: "Basic Configuration",
-            description: "Configure core security settings including trustProxy, allowPrivateIPs, maxBodySize, and allowed methods",
+            title: $_('k9shieldSteps.items.basicConfig.title'),
+            description: $_('k9shieldSteps.items.basicConfig.description'),
             icon: "ri-settings-line",
-            step: 2
+            step: $_('k9shieldSteps.items.basicConfig.step')
         },
         {
-            title: "Security Headers Setup",
-            description: "Set up Content Security Policy, Permissions Policy, HSTS, and other security headers for enhanced protection",
+            title: $_('k9shieldSteps.items.securityHeaders.title'),
+            description: $_('k9shieldSteps.items.securityHeaders.description'),
             icon: "ri-shield-check-line",
-            step: 3
+            step: $_('k9shieldSteps.items.securityHeaders.step')
         },
         {
-            title: "Rate Limiting Configuration",
-            description: "Configure route-specific rate limits, time windows, and throttling settings for different endpoints",
+            title: $_('k9shieldSteps.items.rateLimiting.title'),
+            description: $_('k9shieldSteps.items.rateLimiting.description'),
             icon: "ri-dashboard-3-line",
-            step: 4
+            step: $_('k9shieldSteps.items.rateLimiting.step')
         },
         {
-            title: "DDoS Protection Setup",
-            description: "Set up connection tracking, burst detection, and path-based rate limiting with configurable thresholds",
+            title: $_('k9shieldSteps.items.ddosProtection.title'),
+            description: $_('k9shieldSteps.items.ddosProtection.description'),
             icon: "ri-shield-flash-line",
-            step: 5
+            step: $_('k9shieldSteps.items.ddosProtection.step')
         },
         {
-            title: "Pattern Detection",
-            description: "Configure SQL injection, XSS, and path traversal pattern detection with custom pattern support",
+            title: $_('k9shieldSteps.items.patternDetection.title'),
+            description: $_('k9shieldSteps.items.patternDetection.description'),
             icon: "ri-radar-line",
-            step: 6
+            step: $_('k9shieldSteps.items.patternDetection.step')
         },
         {
-            title: "Logging Configuration",
-            description: "Set up logging levels, rotation settings, and monitoring for security events and request tracking",
+            title: $_('k9shieldSteps.items.logging.title'),
+            description: $_('k9shieldSteps.items.logging.description'),
             icon: "ri-file-chart-line",
-            step: 7
+            step: $_('k9shieldSteps.items.logging.step')
         },
         {
-            title: "Error Handling",
-            description: "Configure custom error handlers and response formats for different security events",
+            title: $_('k9shieldSteps.items.errorHandling.title'),
+            description: $_('k9shieldSteps.items.errorHandling.description'),
             icon: "ri-error-warning-line",
-            step: 8
+            step: $_('k9shieldSteps.items.errorHandling.step')
         }
     ];
 </script>
@@ -54,8 +56,8 @@
 <section class="py-8 sm:py-12 md:py-16 px-4">
     <div class="container mx-auto px-4 sm:px-6 lg:px-10">
         <div class="mb-4 sm:mb-8">
-            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">Implementation Steps</h2>
-            <p class="text-white/50 text-sm sm:text-base">Complete guide to implementing K9Shield in your Node.js application</p>
+            <h2 class="py-1 text-2xl sm:text-3xl md:text-3xl font-bold mb-3 max-w-md">{$_('k9shieldSteps.title')}</h2>
+            <p class="text-white/50 text-sm sm:text-base">{$_('k9shieldSteps.subtitle')}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
