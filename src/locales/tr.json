@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Otomatik Silme",
-                "description": "Mesajlar güvenlik için 2 saat sonra silinir."
+                "description": "Mesajlar güvenlik için 4 saat sonra silinir."
             },
             "openSource": {
                 "title": "Açık Kaynak",
@@ -106,7 +106,7 @@
             },
             "security": {
                 "question": "Verilerim ne kadar güvende?",
-                "answer": "Tüm mesajlar uçtan uca şifreleme ile korunur ve 2 saat sonra otomatik olarak silinir."
+                "answer": "Tüm mesajlar uçtan uca şifreleme ile korunur ve 4 saat sonra otomatik olarak silinir."
             },
             "account": {
                 "question": "Hesap oluşturmam gerekiyor mu?",
@@ -114,7 +114,7 @@
             },
             "storage": {
                 "question": "Mesajlar ne kadar süre saklanıyor?",
-                "answer": "Mesajlar maksimum güvenlik için 2 saat sonra otomatik olarak silinir."
+                "answer": "Mesajlar maksimum güvenlik için 4 saat sonra otomatik olarak silinir."
             },
             "openSource": {
                 "question": "K9Crypt açık kaynak mı?",
@@ -517,7 +517,7 @@
                     },
                     "autoDelete": {
                         "title": "Mesaj Otomatik Silme",
-                        "description": "Mesajlar, gelişmiş güvenlik için 2 saat sonra otomatik olarak silinir."
+                        "description": "Mesajlar, gelişmiş güvenlik için 4 saat sonra otomatik olarak silinir."
                     },
                     "anonymous": {
                         "title": "Anonim Kullanım",
@@ -575,7 +575,7 @@
                     },
                     "autoDeletion": {
                         "title": "Otomatik Mesaj Silme",
-                        "description": "Mesajlar 2 saat sonra otomatik olarak silinir."
+                        "description": "Mesajlar 4 saat sonra otomatik olarak silinir."
                     }
                 }
             }
@@ -662,7 +662,7 @@
         },
         "autoDeletion": {
           "title": "Otomatik Silme",
-          "description": "Mesajlar, gelişmiş güvenlik için 2 saat sonra otomatik olarak silinir."
+          "description": "Mesajlar, gelişmiş güvenlik için 4 saat sonra otomatik olarak silinir."
         },
         "noBackups": {
           "title": "Yedekleme Yok",

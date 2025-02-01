@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Suppression automatique",
-                "description": "Les messages sont supprimés après 2 heures pour des raisons de sécurité."
+                "description": "Les messages sont supprimés après 4 heures pour des raisons de sécurité."
             },
             "openSource": {
                 "title": "Open Source",
@@ -106,7 +106,7 @@
             },
             "security": {
                 "question": "Mes données sont-elles sécurisées?",
-                "answer": "Tous les messages sont protégés par un cryptage de bout en bout et sont automatiquement supprimés après 2 heures."
+                "answer": "Tous les messages sont protégés par un cryptage de bout en bout et sont automatiquement supprimés après 4 heures."
             },
             "account": {
                 "question": "Dois-je créer un compte?",
@@ -114,7 +114,7 @@
             },
             "storage": {
                 "question": "Combien de temps les messages sont-ils stockés?",
-                "answer": "Les messages sont automatiquement supprimés après 2 heures pour une sécurité maximale."
+                "answer": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité maximale."
             },
             "openSource": {
                 "question": "K9Crypt est-il open source?",
@@ -517,7 +517,7 @@
                     },
                     "autoDelete": {
                         "title": "Suppression automatique des messages",
-                        "description": "Les messages sont automatiquement supprimés après 2 heures pour une sécurité accrue."
+                        "description": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité accrue."
                     },
                     "anonymous": {
                         "title": "Utilisation anonyme",
@@ -575,7 +575,7 @@
                     },
                     "autoDeletion": {
                         "title": "Suppression automatique des messages",
-                        "description": "Les messages sont automatiquement supprimés après 2 heures."
+                        "description": "Les messages sont automatiquement supprimés après 4 heures."
                     }
                 }
             }
@@ -662,7 +662,7 @@
         },
         "autoDeletion": {
           "title": "Suppression automatique",
-          "description": "Les messages sont automatiquement supprimés après 2 heures pour une sécurité renforcée."
+          "description": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité renforcée."
         },
         "noBackups": {
           "title": "Pas de sauvegardes",

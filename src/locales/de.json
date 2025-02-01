@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Automatische Löschung",
-                "description": "Nachrichten werden aus Sicherheitsgründen nach 2 Stunden gelöscht."
+                "description": "Nachrichten werden aus Sicherheitsgründen nach 4 Stunden gelöscht."
             },
             "openSource": {
                 "title": "Open Source",
@@ -106,7 +106,7 @@
             },
             "security": {
                 "question": "Wie sicher sind meine Daten?",
-                "answer": "Alle Nachrichten sind mit End-to-End-Verschlüsselung geschützt und werden nach 2 Stunden automatisch gelöscht."
+                "answer": "Alle Nachrichten sind mit End-to-End-Verschlüsselung geschützt und werden nach 4 Stunden automatisch gelöscht."
             },
             "account": {
                 "question": "Muss ich ein Konto erstellen?",
@@ -114,7 +114,7 @@
             },
             "storage": {
                 "question": "Wie lange werden Nachrichten gespeichert?",
-                "answer": "Nachrichten werden aus Sicherheitsgründen nach 2 Stunden automatisch gelöscht."
+                "answer": "Nachrichten werden aus Sicherheitsgründen nach 4 Stunden automatisch gelöscht."
             },
             "openSource": {
                 "question": "Ist K9Crypt Open Source?",
@@ -517,7 +517,7 @@
                     },
                     "autoDelete": {
                         "title": "Automatische Nachrichtenlöschung",
-                        "description": "Nachrichten werden nach 2 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
+                        "description": "Nachrichten werden nach 4 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
                     },
                     "anonymous": {
                         "title": "Anonyme Nutzung",
@@ -575,7 +575,7 @@
                     },
                     "autoDeletion": {
                         "title": "Automatische Nachrichtenlöschung",
-                        "description": "Nachrichten werden nach 2 Stunden automatisch gelöscht."
+                        "description": "Nachrichten werden nach 4 Stunden automatisch gelöscht."
                     }
                 }
             }
@@ -662,7 +662,7 @@
         },
         "autoDeletion": {
           "title": "Automatische Löschung",
-          "description": "Nachrichten werden nach 2 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
+          "description": "Nachrichten werden nach 4 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
         },
         "noBackups": {
           "title": "Keine Backups",

@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Auto Delete",
-                "description": "Messages are deleted after 2 hours for security."
+                "description": "Messages are deleted after 4 hours for security."
             },
             "openSource": {
                 "title": "Open Source",
@@ -106,7 +106,7 @@
             },
             "security": {
                 "question": "How secure is my data?",
-                "answer": "All messages are protected with end-to-end encryption and are automatically deleted after 2 hours."
+                "answer": "All messages are protected with end-to-end encryption and are automatically deleted after 4 hours."
             },
             "account": {
                 "question": "Do I need to create an account?",
@@ -114,7 +114,7 @@
             },
             "storage": {
                 "question": "How long are messages stored?",
-                "answer": "Messages are automatically deleted after 2 hours for maximum security."
+                "answer": "Messages are automatically deleted after 4 hours for maximum security."
             },
             "openSource": {
                 "question": "Is K9Crypt open source?",
@@ -517,7 +517,7 @@
                     },
                     "autoDelete": {
                         "title": "Auto Message Deletion",
-                        "description": "Messages are automatically deleted after 2 hours for enhanced security."
+                        "description": "Messages are automatically deleted after 4 hours for enhanced security."
                     },
                     "anonymous": {
                         "title": "Anonymous Usage",
@@ -575,7 +575,7 @@
                     },
                     "autoDeletion": {
                         "title": "Automatic Message Deletion",
-                        "description": "Messages are automatically deleted after 2 hours."
+                        "description": "Messages are automatically deleted after 4 hours."
                     }
                 }
             }
@@ -662,7 +662,7 @@
         },
         "autoDeletion": {
           "title": "Auto Deletion",
-          "description": "Messages are automatically deleted after 2 hours for enhanced security."
+          "description": "Messages are automatically deleted after 4 hours for enhanced security."
         },
         "noBackups": {
           "title": "No Backups",
