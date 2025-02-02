@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Auto Delete",
-                "description": "Messages are deleted after 4 hours for security."
+                "description": "Rooms are automatically deleted after a certain time."
             },
             "openSource": {
                 "title": "Open Source",

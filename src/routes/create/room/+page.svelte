@@ -241,6 +241,7 @@
 
             <div class="space-y-2">
                 <label class="block text-sm font-medium">{$_('room.create.form.lifetime')}</label>
+                <span class="text-white/50 text-xs">{$_('room.create.form.lifetimeHint')}</span>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {#each lifetimeOptions as option}
                         <button 

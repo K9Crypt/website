@@ -39,8 +39,8 @@
                 "description": "Tüm mesajlar uçtan uca şifreleme kullanılarak şifrelenir."
             },
             "autoDelete": {
-                "title": "Otomatik Silme",
-                "description": "Mesajlar güvenlik için 4 saat sonra silinir."
+                "title": "Belirlenen zamanda silinir",
+                "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
             },
             "openSource": {
                 "title": "Açık Kaynak",
@@ -361,7 +361,7 @@
                 "private": "Özel",
                 "password": "Oda Şifresi",
                 "passwordHint": "Şifre en az 6 karakter uzunluğunda olmalıdır.",
-                "lifetime": "Oda'nın Silinme Süresi",
+                "lifetime": "Odanın Silinme Süresi",
                 "lifetimeHint": "Odayı ne kadar süreyle açık tutmak istiyorsunuz?",
                 "oneDay": "1 Gün",
                 "oneMonth": "1 Ay",

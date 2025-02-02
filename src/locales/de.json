@@ -39,8 +39,8 @@
                 "description": "Alle Nachrichten werden mit Ende-zu-Ende-Verschlüsselung verschlüsselt."
             },
             "autoDelete": {
-                "title": "Automatische Löschung",
-                "description": "Nachrichten werden aus Sicherheitsgründen nach 4 Stunden gelöscht."
+                "title": "Automatisch gelöscht",
+                "description": "Räume werden nach einer bestimmten Zeit automatisch gelöscht."
             },
             "openSource": {
                 "title": "Open Source",
@@ -361,7 +361,7 @@
                 "private": "Privat",
                 "password": "Raum-Passwort",
                 "passwordHint": "Das Passwort muss mindestens 6 Zeichen lang sein.",
-                "lifetime": "Raum-Lebensdauer",
+                "lifetime": "Raum Lebensdauer",
                 "lifetimeHint": "Wie lange soll der Raum geöffnet bleiben?",
                 "oneDay": "1 Tag",
                 "oneMonth": "1 Monat",

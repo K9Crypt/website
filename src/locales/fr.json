@@ -40,7 +40,7 @@
             },
             "autoDelete": {
                 "title": "Suppression automatique",
-                "description": "Les messages sont supprimés après 4 heures pour des raisons de sécurité."
+                "description": "Les fenêtres sont automatiquement supprimées après un certain temps."
             },
             "openSource": {
                 "title": "Open Source",
