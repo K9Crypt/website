@@ -10,20 +10,8 @@
             isOpen: false
         },
         {
-            question: $_('faq.questions.security.question'),
-            answer: $_('faq.questions.security.answer'),
-            icon: "ri-question-mark",
-            isOpen: false
-        },
-        {
             question: $_('faq.questions.account.question'),
             answer: $_('faq.questions.account.answer'),
-            icon: "ri-question-mark",
-            isOpen: false
-        },
-        {
-            question: $_('faq.questions.storage.question'),
-            answer: $_('faq.questions.storage.answer'),
             icon: "ri-question-mark",
             isOpen: false
         },

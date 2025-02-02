@@ -104,17 +104,9 @@
                 "question": "K9Crypt est-il vraiment gratuit?",
                 "answer": "Oui, K9Crypt est entièrement gratuit et ne nécessite aucun paiement ni abonnement."
             },
-            "security": {
-                "question": "Mes données sont-elles sécurisées?",
-                "answer": "Tous les messages sont protégés par un cryptage de bout en bout et sont automatiquement supprimés après 4 heures."
-            },
             "account": {
                 "question": "Dois-je créer un compte?",
                 "answer": "Non, K9Crypt ne nécessite aucune création de compte ni information personnelle."
-            },
-            "storage": {
-                "question": "Combien de temps les messages sont-ils stockés?",
-                "answer": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité maximale."
             },
             "openSource": {
                 "question": "K9Crypt est-il open source?",
@@ -527,8 +519,8 @@
                         "description": "Un chiffrement de niveau militaire garantit que vos messages restent privés et sécurisés."
                     },
                     "autoDelete": {
-                        "title": "Suppression automatique des messages",
-                        "description": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité accrue."
+                        "title": "Suppression automatique",
+                        "description": "Les salles sont automatiquement supprimées à l'intervalle que vous spécifiez."
                     },
                     "anonymous": {
                         "title": "Utilisation anonyme",
@@ -647,7 +639,7 @@
     "privacyPage": {
     "title": "Politique de confidentialité",
     "description": "Chez K9Crypt, nous prenons votre vie privée au sérieux. Notre service est construit sur le principe d'un anonymat et d'une sécurité complets.",
-    "lastUpdated": "Dernière mise à jour : 15.11.2024",
+    "lastUpdated": "Dernière mise à jour : 02.02.2025",
     "dataCollection": {
       "title": "Collecte de données",
       "description": "Nous ne collectons aucune information personnelle. K9Crypt fonctionne de manière totalement anonyme.",
@@ -682,7 +674,7 @@
         },
         "autoDeletion": {
           "title": "Suppression automatique",
-          "description": "Les messages sont automatiquement supprimés après 4 heures pour une sécurité renforcée."
+          "description": "Les salons sont automatiquement supprimés à l'intervalle de temps que vous avez défini."
         },
         "noBackups": {
           "title": "Pas de sauvegardes",

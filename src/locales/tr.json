@@ -104,17 +104,9 @@
                 "question": "K9Crypt gerçekten ücretsiz mi?",
                 "answer": "Evet, K9Crypt tamamen ücretsizdir ve herhangi bir ödeme veya abonelik gerektirmez."
             },
-            "security": {
-                "question": "Verilerim ne kadar güvende?",
-                "answer": "Tüm mesajlar uçtan uca şifreleme ile korunur ve 4 saat sonra otomatik olarak silinir."
-            },
             "account": {
                 "question": "Hesap oluşturmam gerekiyor mu?",
                 "answer": "Hayır, K9Crypt herhangi bir hesap oluşturma veya kişisel bilgi gerektirmez."
-            },
-            "storage": {
-                "question": "Mesajlar ne kadar süre saklanıyor?",
-                "answer": "Mesajlar maksimum güvenlik için 4 saat sonra otomatik olarak silinir."
             },
             "openSource": {
                 "question": "K9Crypt açık kaynak mı?",
@@ -528,8 +520,8 @@
                         "description": "Askeri düzeyde şifreleme, mesajlarınızın gizli ve güvende kalmasını sağlar."
                     },
                     "autoDelete": {
-                        "title": "Mesaj Otomatik Silme",
-                        "description": "Mesajlar, gelişmiş güvenlik için 4 saat sonra otomatik olarak silinir."
+                        "title": "Belirlenen zamanda silinir",
+                        "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
                     },
                     "anonymous": {
                         "title": "Anonim Kullanım",
@@ -648,7 +640,7 @@
     "privacyPage": {
     "title": "Gizlilik Politikası",
     "description": "K9Crypt olarak gizliliğinizi ciddiye alıyoruz. Hizmetimiz, tam anonimlik ve güvenlik ilkesi üzerine kurulmuştur.",
-    "lastUpdated": "Son güncelleme: 15.11.2024",
+    "lastUpdated": "Son güncelleme: 02.02.2025",
     "dataCollection": {
       "title": "Veri Toplama",
       "description": "Herhangi bir kişisel bilgi toplamıyoruz. K9Crypt tamamen anonim olarak çalışır.",
@@ -682,8 +674,8 @@
           "description": "Tüm mesajlar, iletilmeden önce cihazınızda şifrelenir."
         },
         "autoDeletion": {
-          "title": "Otomatik Silme",
-          "description": "Mesajlar, gelişmiş güvenlik için 4 saat sonra otomatik olarak silinir."
+          "title": "Belirlenen zamanda silinir",
+          "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
         },
         "noBackups": {
           "title": "Yedekleme Yok",

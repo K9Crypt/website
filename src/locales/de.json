@@ -104,17 +104,9 @@
                 "question": "Ist K9Crypt wirklich kostenlos?",
                 "answer": "Ja, K9Crypt ist völlig kostenlos und erfordert keine Zahlung oder ein Abonnement."
             },
-            "security": {
-                "question": "Wie sicher sind meine Daten?",
-                "answer": "Alle Nachrichten sind mit End-to-End-Verschlüsselung geschützt und werden nach 4 Stunden automatisch gelöscht."
-            },
             "account": {
                 "question": "Muss ich ein Konto erstellen?",
                 "answer": "Nein, K9Crypt erfordert keine Kontoerstellung oder persönliche Informationen."
-            },
-            "storage": {
-                "question": "Wie lange werden Nachrichten gespeichert?",
-                "answer": "Nachrichten werden aus Sicherheitsgründen nach 4 Stunden automatisch gelöscht."
             },
             "openSource": {
                 "question": "Ist K9Crypt Open Source?",
@@ -527,8 +519,8 @@
                         "description": "Die Verschlüsselung auf Militärniveau stellt sicher, dass Ihre Nachrichten privat und sicher bleiben."
                     },
                     "autoDelete": {
-                        "title": "Automatische Nachrichtenlöschung",
-                        "description": "Nachrichten werden nach 4 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
+                        "title": "Automatische Löschung",
+                        "description": "Räume werden automatisch nach einem von Ihnen festgelegten Zeitraum gelöscht."
                     },
                     "anonymous": {
                         "title": "Anonyme Nutzung",
@@ -647,7 +639,7 @@
     "privacyPage": {
       "title": "Datenschutzrichtlinie",
       "description": "Bei K9Crypt nehmen wir Ihre Privatsphäre ernst. Unser Service basiert auf dem Prinzip der vollständigen Anonymität und Sicherheit.",
-      "lastUpdated": "Letzte Aktualisierung: 15.11.2024",
+      "lastUpdated": "Zuletzt aktualisiert: 02.02.2025",
       "dataCollection": {
         "title": "Datenerfassung",
         "description": "Wir erfassen keine persönlichen Daten. K9Crypt arbeitet völlig anonym.",
@@ -682,7 +674,7 @@
         },
         "autoDeletion": {
           "title": "Automatische Löschung",
-          "description": "Nachrichten werden nach 4 Stunden automatisch gelöscht, um die Sicherheit zu erhöhen."
+          "description": "Räume werden automatisch nach dem von Ihnen festgelegten Zeitraum gelöscht."
         },
         "noBackups": {
           "title": "Keine Backups",
