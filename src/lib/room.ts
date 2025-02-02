@@ -1,26 +1,39 @@
+export const ROOM_LIFETIMES = {
+    ONE_DAY: 24 * 60 * 60 * 1000,
+    ONE_MONTH: 30 * 24 * 60 * 60 * 1000,
+    ONE_YEAR: 365 * 24 * 60 * 60 * 1000,
+    PERMANENT: -1
+} as const;
+
+export type RoomLifetime = typeof ROOM_LIFETIMES[keyof typeof ROOM_LIFETIMES];
+
 export async function createRoom(
     userId: string,
     type: "public" | "private",
     password?: string,
-    roomName?: string
-): Promise<string> {
+    roomName?: string,
+    lifetime: RoomLifetime = ROOM_LIFETIMES.ONE_DAY
+): Promise<{ roomId: string; expiresAt: string | null }> {
     try {
         const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId, type, password, roomName }),
+            body: JSON.stringify({ userId, type, password, roomName, lifetime }),
         });
 
         if (!response.ok) {
-            return '';
+            throw new Error('Failed to create room');
         }
 
         const data = await response.json();
-        return data.roomId || '';
+        return {
+            roomId: data.roomId || '',
+            expiresAt: data.expiresAt || null
+        };
     } catch (error) {
-        return '';
+        throw error;
     }
 }
 

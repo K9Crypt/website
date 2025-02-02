@@ -2,7 +2,7 @@
     import Navbar from '../../../components/Navbar.svelte';
     import Footer from '../../../components/Footer.svelte';
     import { goto } from '$app/navigation';
-    import { createRoom } from '$lib/room';
+    import { createRoom, ROOM_LIFETIMES, type RoomLifetime } from '$lib/room';
     import { onMount } from 'svelte';
     import toast, { Toaster } from 'svelte-french-toast';
     import { checkLink } from '$lib/check';
@@ -10,6 +10,7 @@
     import  { _ } from 'svelte-i18n';
 
     let selectedType: "public" | "private" = 'public';
+    let selectedLifetime: RoomLifetime = ROOM_LIFETIMES.ONE_DAY;
     let showPassword = false;
     let status: boolean | null = null;
     let userId = '';
@@ -20,9 +21,17 @@
     let isRoomCreated = false;
     let isValidating = false;
     let roomName = '';
+    let expiresAt: string | null = null;
     const restrictedUsernames = [...blockedNames.blockedNames, ...blockedNames.religiousTerms].map(name => 
         name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     );
+
+    const lifetimeOptions = [
+        { value: ROOM_LIFETIMES.ONE_DAY, label: $_('room.create.form.oneDay') },
+        { value: ROOM_LIFETIMES.ONE_MONTH, label: $_('room.create.form.oneMonth') },
+        { value: ROOM_LIFETIMES.ONE_YEAR, label: $_('room.create.form.oneYear') },
+        { value: ROOM_LIFETIMES.PERMANENT, label: $_('room.create.form.permanent') }
+    ];
 
     onMount(async () => {
         try {
@@ -134,7 +143,9 @@
         isLoading = true;
 
         try {
-            roomId = await createRoom(userId, selectedType, roomPassword, roomName);
+            const result = await createRoom(userId, selectedType, roomPassword, roomName, selectedLifetime);
+            roomId = result.roomId;
+            expiresAt = result.expiresAt;
             
             localStorage.setItem('userId', userId);
             localStorage.setItem(`hasJoinedRoom_${roomId}`, 'true');
@@ -228,6 +239,20 @@
                 </div>
             </div>
 
+            <div class="space-y-2">
+                <label class="block text-sm font-medium">{$_('room.create.form.lifetime')}</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {#each lifetimeOptions as option}
+                        <button 
+                            class="px-4 py-2.5 rounded-lg border {selectedLifetime === option.value ? 'bg-cYellow/10 border-cYellow text-cYellow' : 'border-white/5 text-white/50'} font-medium transition-all duration-300" 
+                            on:click={() => selectedLifetime = option.value}
+                        >
+                            {option.label}
+                        </button>
+                    {/each}
+                </div>
+            </div>
+
             {#if showPassword}
             <div class="space-y-2">
                 <label class="block text-sm font-medium">{$_('room.create.form.password')}</label>
@@ -254,6 +279,9 @@
             <div class="flex items-center justify-between mb-4">
                 <p class="text-white text-sm">{roomId}</p>
             </div>
+            {#if expiresAt}
+                <p class="text-white/50 text-sm mb-4">{$_('room.create.success.expiresAt')}: {new Date(expiresAt).toLocaleString()}</p>
+            {/if}
             <div class="flex flex-col sm:flex-row gap-4">
                 <button class="w-full bg-cYellow text-black py-2.5 px-4 rounded-lg font-medium" on:click={copyToClipboard}>{$_('room.create.success.copy')}</button>
                 <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-2.5 px-4 rounded-lg font-medium" on:click={handleJoinRoom}>{$_('room.create.success.join')}</button>

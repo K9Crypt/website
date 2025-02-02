@@ -361,6 +361,12 @@
                 "private": "Privé",
                 "password": "Mot de passe de la salle",
                 "passwordHint": "Le mot de passe doit comporter au moins 6 caractères.",
+                "lifetime": "Durée de vie de la salle",
+                "lifetimeHint": "Combien de temps voulez-vous garder la salle ouverte ?",
+                "oneDay": "1 Jour",
+                "oneMonth": "1 Mois",
+                "oneYear": "1 An",
+                "permanent": "Permanent",
                 "creating": "Création en cours...",
                 "create": "Créer une salle"
             },
@@ -627,7 +633,16 @@
         "copyRoomId": "Copier l'ID de la pièce",
         "previous": "Précédent",
         "next": "Suivant",
-        "page": "Page {current} / {total}"
+        "page": "Page {current} / {total}",
+        "expiresAt":"Ablaufdatum",
+        "remainingTime": {
+          "permanent": "Dauerhaft",
+          "hours": "{hours} Stunden",
+          "minutes": "{minutes} Minuten",
+          "seconds": "{seconds} Sekunden",
+          "days": "{days} Tage",
+          "expired": "Abgelaufen"
+        }
     },
     "privacyPage": {
     "title": "Politique de confidentialité",

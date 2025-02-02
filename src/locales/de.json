@@ -361,6 +361,12 @@
                 "private": "Privat",
                 "password": "Raum-Passwort",
                 "passwordHint": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+                "lifetime": "Raum-Lebensdauer",
+                "lifetimeHint": "Wie lange soll der Raum geöffnet bleiben?",
+                "oneDay": "1 Tag",
+                "oneMonth": "1 Monat",
+                "oneYear": "1 Jahr",
+                "permanent": "Permanent",
                 "creating": "Erstellen...",
                 "create": "Raum erstellen"
             },
@@ -627,7 +633,16 @@
         "copyRoomId": "Raum-ID kopieren",
         "previous": "Vorherige",
         "next": "Nächste",
-        "page": "Seite {current} / {total}"
+        "page": "Seite {current} / {total}",
+        "expiresAt":"Ablaufdatum",
+        "remainingTime": {
+          "permanent": "Dauerhaft",
+          "hours": "{hours} Stunden",
+          "minutes": "{minutes} Minuten",
+          "seconds": "{seconds} Sekunden",
+          "days": "{days} Tage",
+          "expired": "Abgelaufen"
+        }
     },
     "privacyPage": {
       "title": "Datenschutzrichtlinie",

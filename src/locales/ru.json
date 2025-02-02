@@ -361,6 +361,12 @@
                 "private": "Приватная",
                 "password": "Пароль комнаты",
                 "passwordHint": "Пароль должен быть не менее 6 символов.",
+                "lifetime": "Время жизни комнаты",
+                "lifetimeHint": "Как долго вы хотите, чтобы комната оставалась открытой?",
+                "oneDay": "1 День",
+                "oneMonth": "1 Месяц",
+                "oneYear": "1 Год",
+                "permanent": "Бессрочно",
                 "creating": "Создается...",
                 "create": "Создать комнату"
             },
@@ -627,7 +633,16 @@
         "copyRoomId": "Копировать ID комнаты",
         "previous": "Предыдущая",
         "next": "Следующая",
-        "page": "Страница {current} / {total}"
+        "page": "Страница {current} / {total}",
+        "expiresAt":"Истекает в",
+        "remainingTime": {
+          "permanent": "Бессрочно",
+          "hours": "{hours} часов",
+          "minutes": "{minutes} минут",
+          "seconds": "{seconds} секунд",
+          "days": "{days} дней",
+          "expired": "Истекло"
+        }
     },
     "privacyPage": {
     "title": "Политика конфиденциальности",

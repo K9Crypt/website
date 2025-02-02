@@ -17,6 +17,29 @@
     $: canGoNext = currentPage * roomsPerPage < totalRoomsCount;
     $: canGoPrev = currentPage > 1;
 
+    function formatRemainingTime(expiresAt: string | null, isPermanent: boolean): string {
+        if (isPermanent) return $_('list.remainingTime.permanent');
+        if (!expiresAt) return $_('list.remainingTime.expired');
+
+        const now = new Date().getTime();
+        const expiry = new Date(expiresAt).getTime();
+        const remaining = expiry - now;
+
+        if (remaining <= 0) return $_('list.remainingTime.expired');
+
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+
+        let timeString = [];
+        
+        if (days > 0) timeString.push(`${days}d`);
+        if (hours > 0) timeString.push(`${hours}h`);
+        if (minutes > 0 || timeString.length === 0) timeString.push(`${minutes}m`);
+
+        return timeString.join(' ');
+    }
+
     onMount(async () => {
         try {
             rooms = await listRooms();
@@ -124,8 +147,19 @@
                                 <p class="text-xs sm:text-sm">{new Date(room.lastActivity).toLocaleString()}</p>
                             </div>
                             {/if}
+                            <div class="flex items-center justify-between gap-2 text-white/50">
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-hourglass-fill text-base sm:text-lg"></i>
+                                    <p class="text-xs sm:text-sm">{formatRemainingTime(room.expiresAt, room.isPermanent)}</p>
+                                </div>
+                                {#if !room.isPermanent && room.expiresAt}
+                                    <p class="text-xs text-white/30">
+                                        {new Date(room.expiresAt).toLocaleDateString()}
+                                    </p>
+                                {/if}
+                            </div>
                             <hr class="border border-white/10" />
-                            <div class="items-center gap-3">
+                            <div class="flex flex-col gap-2">
                                 <button on:click={() => copy(room.roomName)} class="flex items-center gap-2 text-white/50 hover:text-white/80 transition-colors">
                                     <i class="ri-file-copy-line text-base sm:text-lg"></i>
                                     <span class="text-xs sm:text-sm">{$_('list.copyRoomName')}</span>

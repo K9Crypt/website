@@ -361,13 +361,20 @@
                 "private": "Private",
                 "password": "Room Password",
                 "passwordHint": "Password must be at least 6 characters long.",
+                "lifetime": "Room Lifetime",
+                "lifetimeHint": "How long do you want to keep the room open?",
+                "oneDay": "1 Day",
+                "oneMonth": "1 Month",
+                "oneYear": "1 Year",
+                "permanent": "Permanent",
                 "creating": "Creating...",
                 "create": "Create Room"
             },
             "success": {
                 "roomId": "Room ID",
                 "copy": "Copy",
-                "join": "Join Room"
+                "join": "Join Room",
+                "expiresAt": "Room expires at"
             },
             "copySuccess": "Room ID copied to clipboard.",
             "copyError": "Could not copy Room ID. Please try again.",
@@ -627,7 +634,16 @@
         "copyRoomId": "Copy Room ID",
         "previous": "Previous",
         "next": "Next",
-        "page": "Page {current} / {total}"
+        "page": "Page {current} / {total}",
+        "expiresAt":"Expires At",
+        "remainingTime": {
+          "permanent": "Permanent",
+          "hours": "{hours} hours",
+          "minutes": "{minutes} minutes",
+          "seconds": "{seconds} seconds",
+          "days": "{days} days",
+          "expired": "Expired"
+        }
     },
     "privacyPage": {
       "title": "Privacy Policy",

@@ -361,13 +361,20 @@
                 "private": "Özel",
                 "password": "Oda Şifresi",
                 "passwordHint": "Şifre en az 6 karakter uzunluğunda olmalıdır.",
+                "lifetime": "Oda'nın Silinme Süresi",
+                "lifetimeHint": "Odayı ne kadar süreyle açık tutmak istiyorsunuz?",
+                "oneDay": "1 Gün",
+                "oneMonth": "1 Ay",
+                "oneYear": "1 Yıl",
+                "permanent": "Süresiz",
                 "creating": "Oluşturuluyor...",
                 "create": "Oda Oluştur"
             },
             "success": {
                 "roomId": "Oda ID",
                 "copy": "Kopyala",
-                "join": "Odaya Katıl"
+                "join": "Odaya Katıl",
+                "expiresAt": "Oda Sona Erme Tarihi"
             },
             "copySuccess": "Oda ID'si panoya kopyalandı.",
             "copyError": "Oda ID'si kopyalanamadı. Lütfen tekrar deneyin.",
@@ -627,7 +634,16 @@
         "copyRoomId": "Oda ID'sini Kopyala",
         "previous": "Önceki",
         "next": "Sonraki",
-        "page": "Sayfa {current} / {total}"
+        "page": "Sayfa {current} / {total}",
+        "expiresAt":"Oda Sona Erme Tarihi",
+        "remainingTime": {
+          "permanent": "Süresiz",
+          "hours": "{hours} saat",
+          "minutes": "{minutes} dakika",
+          "seconds": "{seconds} saniye",
+          "days": "{days} gün",
+          "expired": "Süresi Doldu"
+        }
     },
     "privacyPage": {
     "title": "Gizlilik Politikası",
@@ -958,19 +974,19 @@
       },
       "rateLimiting": {
         "question": "Ne tür hız sınırlama seçenekleri mevcuttur?",
-        "answer": "K9Shield, rota özelinde limitler, esnek zaman aralıkları, kısıtlama desteği, yasaklama süresi yönetimi ve dağıtık sistem desteği sunar. Çeşitli uç noktalar ve HTTP metotları için özelleştirilebilir eşiklerle farklı limitler yapılandırabilirsiniz."
+        "answer": "K9Shield, rota özelinde limitler, esnek zaman aralıkları, kısıtlama desteği ve dağıtık sistem uyumluluğu sunar. Çeşitli uç noktalar ve HTTP metotları için özelleştirilebilir eşiklerle farklı limitler yapılandırabilirsiniz."
       },
       "ipManagement": {
         "question": "IP yönetim sistemi nasıl çalışır?",
-        "answer": "IP yönetim sistemi, CIDR notasyonunu, IPv4 eşlemesi ile IPv6'yı, özel IP algılamayı, beyaz liste/kara liste işlevselliğini ve proxy desteğini destekler. Sağlanan API aracılığıyla IP adreslerini kolayca yönetebilir ve izleyebilirsiniz."
+        "answer": "IP yönetim sistemi, CIDR notasyonunu, IPv6 desteği, özel IP algılamayı, beyaz liste/kara liste işlevselliğini ve proxy desteğini destekler. Sağlanan API aracılığıyla IP adreslerini kolayca yönetebilir ve izleyebilirsiniz."
       },
       "securityHeaders": {
         "question": "Hangi güvenlik başlıkları desteklenir?",
-        "answer": "K9Shield, İçerik Güvenlik Politikası (CSP), İzinler Politikası, HSTS, XSS koruması, çerçeve seçenekleri ve içerik türü seçeneklerini destekler. Bu başlıklar, uygulamanızın güvenlik duruşunu iyileştirmek için yapılandırılabilir."
+        "answer": "K9Shield, İçerik Güvenlik Politikası (CSP), İzinler Politikası, HSTS desteği, XSS koruması ve çerçeve seçenekleri destekler. Bu başlıklar, uygulamanızın güvenlik duruşunu iyileştirmek için yapılandırılabilir."
       },
       "patternDetection": {
         "question": "Kalıp algılama sistemi nasıl çalışır?",
-        "answer": "Kalıp algılama sistemi, SQL enjeksiyon kalıplarını, XSS kalıplarını, yol geçişi girişimlerini tanımlar ve özel kalıpları destekler. Kendi algılama kalıplarınızı ekleyebilir ve yanıt eylemlerini yapılandırabilirsiniz."
+        "answer": "Kalıp algılama sistemi, SQL enjeksiyon kalıplarını, XSS kalıplarını, yol geçişi girişimleri tanımlar ve özel kalıpları destekler. Kendi algılama kalıplarınızı ekleyebilir ve yanıt eylemlerini yapılandırabilirsiniz."
       },
       "monitoring": {
         "question": "Hangi izleme ve günlük kaydı özellikleri mevcuttur?",
@@ -996,7 +1012,7 @@
       },
       "ipManagement": {
         "title": "IP Yönetimi",
-        "description": "CIDR notasyonu, IPv6 desteği, özel IP algılama, beyaz liste/kara liste işlevselliği ve proxy desteği"
+        "description": "CIDR notasyonu, IPv6 desteği, özel IP algılamayı, beyaz liste/kara liste işlevselliği ve proxy desteği"
       },
       "requestValidation": {
         "title": "İstek Doğrulama",
