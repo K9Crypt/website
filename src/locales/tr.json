@@ -349,6 +349,11 @@
                 "tryAgain": "Tekrar deneyiniz",
                 "support": "Destek"
             },
+            "placeholder": {
+              "enterUsername": "Kullanıcı adı",
+              "enterRoomName": "Oda adı",
+              "enterPassword": "Oda şifresi (en az 6 karakter)"
+            },
             "form": {
                 "username": "Kullanıcı Adı",
                 "roomName": "Oda Adı",

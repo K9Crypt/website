@@ -349,6 +349,11 @@
                 "tryAgain": "Erneut versuchen",
                 "support": "Support"
             },
+            "placeholder": {
+              "enterUsername": "Benutzername",
+              "enterRoomName": "Raumname",
+              "enterPassword": "Raum-Passwort (mindestens 6 Zeichen)"
+            },
             "form": {
                 "username": "Benutzername",
                 "roomName": "Raumname",

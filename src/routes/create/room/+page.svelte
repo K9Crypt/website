@@ -203,7 +203,7 @@
                 <label class="block text-sm font-medium">{$_('room.create.form.username')}</label>
                 <div class="relative">
                     <i class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
-                    <input type="text" bind:value={userId} placeholder="Enter username" class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                    <input type="text" bind:value={userId} placeholder={$_('room.create.placeholder.enterUsername')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
                 </div>
             </div>
 
@@ -211,7 +211,7 @@
                 <label class="block text-sm font-medium">{$_('room.create.form.roomName')}</label>
                 <div class="relative">
                     <i class="ri-chat-3-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
-                    <input type="text" bind:value={roomName} placeholder="Enter room name" class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                    <input type="text" bind:value={roomName} placeholder={$_('room.create.placeholder.enterRoomName')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
                 </div>
             </div>
 
@@ -233,7 +233,7 @@
                 <label class="block text-sm font-medium">{$_('room.create.form.password')}</label>
                 <div class="relative">
                     <i class="ri-lock-password-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
-                    <input type="password" bind:value={roomPassword} placeholder="Enter room password (min. 6 characters)" class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"/>
+                    <input type="password" bind:value={roomPassword} placeholder={$_('room.create.placeholder.enterPassword')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30"/>
                 </div>
                 <p class="text-xs text-white/50">{$_('room.create.form.passwordHint')}</p>
             </div>

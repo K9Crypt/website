@@ -349,6 +349,11 @@
                 "tryAgain": "Попробовать снова",
                 "support": "Поддержка"
             },
+            "placeholder": {
+              "enterUsername": "Имя пользователя",
+              "enterRoomName": "Название комнаты",
+              "enterPassword": "Пароль комнаты (не менее 6 символов)"
+            },
             "form": {
                 "username": "Имя пользователя",
                 "roomName": "Название комнаты",

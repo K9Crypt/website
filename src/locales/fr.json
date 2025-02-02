@@ -349,6 +349,11 @@
                 "tryAgain": "Réessayer",
                 "support": "Assistance"
             },
+            "placeholder": {
+              "enterUsername": "Nom d'utilisateur",
+              "enterRoomName": "Nom de la salle",
+              "enterPassword": "Mot de passe de la salle (au moins 6 caractères)"
+            },
             "form": {
                 "username": "Nom d'utilisateur",
                 "roomName": "Nom de la salle",

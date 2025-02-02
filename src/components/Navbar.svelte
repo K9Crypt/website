@@ -189,45 +189,58 @@
 </nav>
 
 {#if isMenuOpen}
-    <div class="fixed inset-0 bg-[#121212] flex flex-col items-center justify-between z-[100] pb-12 pt-16" transition:fade={{ duration: 300, easing: quintOut }} on:click|self={toggleMenu}>
-        <div class="absolute top-4 right-4 z-[101]" transition:fly={{ x: 20, duration: 500, easing: quintOut }}>
-            <button class="text-white" on:click={toggleMenu}>
-                <i class="ri-close-line text-2xl"></i>
+    <div class="fixed inset-0 bg-black flex flex-col items-center justify-between z-[100] pb-12 pt-16 overflow-y-auto" transition:fade={{ duration: 400, easing: quintOut }} on:click|self={toggleMenu}>
+        <div class="absolute top-6 right-6 z-[101]" transition:fly={{ x: 20, duration: 600, easing: quintOut }}>
+            <button class="text-white/80 hover:text-white bg-white/5 hover:bg-white/20 p-3 rounded-lg transition-all duration-300 backdrop-blur-md shadow-lg" 
+                    on:click={toggleMenu}>
+                <i class="ri-close-line text-xl"></i>
             </button>
         </div>
 
-        <div></div>
-
-        <div class="flex flex-col space-y-4 relative z-[101]" transition:fly={{ y: -20, duration: 500, easing: quintOut }}>
+        <div class="flex flex-col space-y-8 relative z-[101] w-full px-8 max-w-md mx-auto" transition:fly={{ y: -20, duration: 500, easing: quintOut }}>
             {#each menuItems as item, index}
                 {#if !item.isDropdown}
                     <a href={item.href} 
-                       class="text-white text-2xl text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn" 
+                       class="text-white/90 text-lg font-medium text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn py-4 relative group backdrop-blur-sm hover:backdrop-blur-lg rounded-lg hover:bg-white/5" 
                        style="animation-delay: {index * 100}ms; animation-fill-mode: forwards;" 
                        on:click={toggleMenu}>
-                        <span>{item.label}</span>
+                        <span class="relative inline-block">
+                            {item.label}
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cYellow to-cYellow/50 group-hover:w-full transition-all duration-300"></span>
+                        </span>
                     </a>
                 {/if}
             {/each}
 
             {#each menuItems as item}
                 {#if item.isDropdown}
-                    {#each item.items as subItem, subIndex}
-                        <a href={subItem.href} 
-                           class="text-white text-2xl text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn flex items-center justify-center gap-2" 
-                           style="animation-delay: {(menuItems.length + subIndex) * 100}ms; animation-fill-mode: forwards;" 
-                           on:click={toggleMenu}>
-                            <span>{subItem.label}</span>
-                        </a>
-                    {/each}
+                    <div class="border-t border-white/10 pt-6 mt-2 backdrop-blur-sm rounded-lg p-4">
+                        <h3 class="text-white/50 text-lg font-medium uppercase tracking-wider mb-6 text-center">{item.label}</h3>
+                        <div class="grid gap-4">
+                            {#each item.items as subItem, subIndex}
+                                <a href={subItem.href} 
+                                   class="text-white/80 text-lg font-medium text-center hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn flex items-center justify-center gap-2 py-3 px-4 rounded-lg hover:bg-white/5 group" 
+                                   style="animation-delay: {(menuItems.length + subIndex) * 100}ms; animation-fill-mode: forwards;" 
+                                   on:click={toggleMenu}>
+                                    <span class="relative">
+                                        {subItem.label}
+                                        <span class="absolute bottom-0 left-0 w-0 h-px bg-cYellow/50 group-hover:w-full transition-all duration-300"></span>
+                                    </span>
+                                </a>
+                            {/each}
+                        </div>
+                    </div>
                 {/if}
             {/each}
         </div>
 
-        <div class="flex justify-center space-x-4 relative z-[50]" transition:fly={{ y: 20, duration: 500, easing: quintOut }}>
+        <div class="flex justify-center gap-4 relative z-[50] mt-12 px-6 flex-wrap" 
+             transition:fly={{ y: 20, duration: 500, easing: quintOut }}>
             {#each socialLinks as link, index}
                 <a href={link.href} 
-                   class="text-white text-xl hover:text-cYellow transition-all duration-300 opacity-0 animate-fadeIn bg-cWhiteGray py-1.5 px-2.5 rounded-lg" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="text-white/80 hover:text-white text-lg transition-all duration-300 opacity-0 animate-fadeIn bg-white/5 hover:bg-white/20 p-4 rounded-lg backdrop-blur-sm hover:scale-110 hover:-translate-y-1" 
                    style="animation-delay: {(menuItems.length + menuItems.find(item => item.isDropdown)?.items.length + index) * 100}ms; animation-fill-mode: forwards;">
                     <i class={link.icon}></i>
                 </a>
