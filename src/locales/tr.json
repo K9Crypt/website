@@ -377,7 +377,8 @@
                 "noRoomName": "Lütfen bir oda adı girin",
                 "roomNameLength": "Oda adı 3 ile 50 karakter arasında olmalıdır",
                 "noPassword": "Lütfen bir oda şifresi girin",
-                "passwordTooShort": "Oda şifresi en az 6 karakter olmalıdır"
+                "passwordTooShort": "Oda şifresi en az 6 karakter olmalıdır",
+                "usernameTaken": "Bu kullanıcı adı zaten oda da kullanılmış"
             }
         },
         "join": {
@@ -424,6 +425,9 @@
                 "description": "Bu oda özeldir ve şifreyi girmek zorunludur.",
                 "password": "Şifre"
             },
+            "sending": "Gönderiliyor...",
+            "sent": "Gönderildi",
+            "failed": "Gönderilemedi",
             "roomName": "Oda Adı",
             "roomType": "Oda Türü",
             "searchButton": "Ara",

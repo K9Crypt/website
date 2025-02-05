@@ -376,7 +376,8 @@
                 "noRoomName": "Veuillez saisir un nom de salle",
                  "roomNameLength": "Le nom de la salle doit comporter entre 3 et 50 caractères",
                 "noPassword": "Veuillez saisir un mot de passe de salle",
-                "passwordTooShort": "Le mot de passe de la salle doit comporter au moins 6 caractères"
+                "passwordTooShort": "Le mot de passe de la salle doit comporter au moins 6 caractères",
+                "usernameTaken": "Ce nom d'utilisateur est déjà utilisé dans une autre salle"
             }
         },
         "join": {
@@ -423,6 +424,9 @@
                 "description": "Cette salle est privée et il est obligatoire de saisir le mot de passe.",
                 "password": "Mot de passe"
             },
+            "sending": "Envoi en cours...",
+            "sent": "Envoyé",
+            "failed": "Échec de l'envoi",
             "roomName": "Nom de la salle",
             "roomType": "Type de salle",
             "searchButton": "Rechercher",

@@ -376,7 +376,8 @@
                 "noRoomName": "Bitte geben Sie einen Raumnamen ein",
                 "roomNameLength": "Der Raumname muss zwischen 3 und 50 Zeichen lang sein",
                 "noPassword": "Bitte geben Sie ein Raum-Passwort ein",
-                "passwordTooShort": "Das Raum-Passwort muss mindestens 6 Zeichen lang sein"
+                "passwordTooShort": "Das Raum-Passwort muss mindestens 6 Zeichen lang sein",
+                "usernameTaken": "Dieser Benutzername ist bereits in einem anderen Raum vorhanden"
             }
         },
         "join": {
@@ -423,6 +424,9 @@
                 "description": "Dieser Raum ist privat und erfordert ein Passwort, um beizutreten.",
                 "password": "Passwort"
             },
+            "sending": "Wird gesendet...",
+            "sent": "Gesendet",
+            "failed": "Senden fehlgeschlagen",
             "roomName": "Raumname",
             "roomType": "Raumtyp",
             "searchButton": "Suchen",

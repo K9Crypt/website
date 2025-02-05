@@ -377,7 +377,8 @@
                 "noRoomName": "Please enter a room name",
                 "roomNameLength": "Room name must be between 3 and 50 characters",
                 "noPassword": "Please enter a room password",
-                "passwordTooShort": "Room password must be at least 6 characters"
+                "passwordTooShort": "Room password must be at least 6 characters",
+                "usernameTaken": "This username is already taken in another room"
             }
         },
         "join": {
@@ -424,6 +425,9 @@
                 "description": "This room is private and requires a password to enter.",
                 "password": "Password"
             },
+            "sending": "Sending...",
+            "sent": "Sent",
+            "failed": "Failed to send",
             "roomName": "Room Name",
             "roomType": "Room Type",
             "searchButton": "Search",
