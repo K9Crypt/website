@@ -45,7 +45,8 @@
         { code: 'en', name: 'English' },
         { code: 'de', name: 'Deutsch' },
         { code: 'fr', name: 'Français' },
-        { code: 'ru', name: 'Русский' }
+        { code: 'ru', name: 'Русский' },
+        { code: 'es', name: 'Español' }
     ];
 
     function switchLanguage(langCode) {

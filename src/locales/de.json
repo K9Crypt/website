@@ -409,7 +409,7 @@
                 "title": "Bild wird hochgeladen",
                 "description": "Ihr Bild wird hochgeladen...",
                 "error": {
-                    "sizeLimit": "Die Bildgröße muss kleiner als 5 MB sein",
+                    "sizeLimit": "Die Bildgröße muss kleiner als 1 GB sein",
                     "uploadFailed": "Bild konnte nicht verarbeitet werden"
                 }
             },
@@ -437,7 +437,8 @@
             "messageNotFound": "Nachricht nicht gefunden",
             "searchNotFoundDescription": "Keine Nachrichten gefunden, die Ihren Kriterien entsprechen.",
             "imageUnavailable": "Bild nicht verfügbar",
-            "gotoMessage": "Zur Nachricht gehen",
+            "copyMessage": "Kopieren",
+            "gotoMessage": "Gehe zu",
             "copyPopup": {
                 "id": "Raum-ID kopieren",
                 "description": "Verwenden Sie diese Raum-ID, um dem Raum beizutreten."

@@ -256,7 +256,7 @@
         const file = (event.target as HTMLInputElement).files?.[0];
         if (!file) return;
         
-        if (file.size > 5 * 1024 * 1024) {
+        if (file.size > 1024 * 1024 * 1024) {
             toast.error($_('room.chat.imageUpload.error.sizeLimit'));
             return;
         }
@@ -1103,43 +1103,62 @@
                     </div>
                     {:else}
                     {#each searchResults as result}
-                    <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
-                        <div class="flex items-start justify-between gap-2 mb-1">
-                            <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 bg-cYellow rounded-lg flex items-center justify-center text-black text-xs font-bold">
+                    <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
                                     {result.userId.slice(0, 2).toUpperCase()}
                                 </div>
-                                <span class="text-sm font-medium text-white opacity-90">{result.userId}</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-medium text-white opacity-90">{result.userId}</span>
+                                    <span class="text-xs text-white opacity-50">{new Date(result.timestamp).toLocaleString()}</span>
+                                </div>
                             </div>
                         </div>
+
                         {#if result.message.startsWith('[IMAGE]')}
-                        <div class="relative pl-8">
-                            <img 
-                                src={decodeBase64Image(result.message.slice(7))} 
-                                alt="Search result image" 
-                                class="max-w-full w-[150px] rounded-lg object-contain"
-                                on:error={handleImageError}
-                            />
-                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-full min-h-[50px]">
-                                <div class="flex flex-col items-center gap-2">
-                                    <i class="ri-error-warning-line text-xl"></i>
-                                    <span class="text-xs">{$_("room.chat.imageUploadFailed")}</span>
+                        <div class="relative ml-10">
+                            <div class="relative group/image">
+                                <img 
+                                    src={decodeBase64Image(result.message.slice(7))} 
+                                    alt="Search result image" 
+                                    class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                    on:error={handleImageError}
+                                />
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                    <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                        <i class="ri-zoom-in-line text-white text-xl"></i>
+                                    </button>
                                 </div>
+                            </div>
+                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
+                                <i class="ri-image-line text-xl"></i>
+                                <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
                             </div>
                         </div>
                         {:else}
-                        <p class="text-sm text-white opacity-70 mb-2 break-words pl-8">{result.message}</p>
+                        <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{result.message}</p>
                         {/if}
-                        <button 
-                            on:click={() => {
-                                scrollToMessage(result.id);
-                                showSearchPanel = false;
-                            }}
-                            class="text-xs text-cYellow hover:text-cYellow opacity-80 transition-all duration-300 flex items-center gap-1.5 ml-8"
-                        >
-                            <i class="ri-arrow-right-line"></i>
-                            {$_("room.chat.gotoMessage")}
-                        </button>
+
+                        <div class="flex items-center gap-2 mt-3 ml-10">
+                            <button 
+                                on:click={() => {
+                                    scrollToMessage(result.id);
+                                    showSearchPanel = false;
+                                }}
+                                class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                            >
+                                <i class="ri-arrow-right-line"></i>
+                                {$_("room.chat.gotoMessage")}
+                            </button>
+                            <button 
+                                on:click={() => copyMessage(result.message)}
+                                class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                            >
+                                <i class="ri-file-copy-line"></i>
+                                {$_("room.chat.copyMessage")}
+                            </button>
+                        </div>
                     </div>
                     {/each}
                     {/if}
@@ -1410,53 +1429,80 @@
 
                 <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
                     {#if bookmarks.length === 0}
-                    <div class="flex flex-col items-center justify-center py-12 text-white opacity-30">
-                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
-                            <i class="ri-bookmark-line text-3xl"></i>
+                    <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                            <i class="ri-bookmark-line text-4xl"></i>
                         </div>
-                        <p class="text-sm font-medium">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
-                        <p class="text-xs text-white opacity-20 mt-1">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
+                        <p class="text-base font-medium text-white opacity-70">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
+                        <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
                     </div>
                     {:else}
                     {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
-                    <div class="bg-[#2C2C2C] rounded-lg p-3 group hover:bg-[#363636] transition-colors duration-200">
-                        <div class="flex items-start justify-between gap-2 mb-1">
-                            <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 bg-cYellow rounded-lg flex items-center justify-center text-black text-xs font-bold">
+                    <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
                                     {bookmark.userId.slice(0, 2).toUpperCase()}
                                 </div>
-                                <span class="text-sm font-medium text-white opacity-90">{bookmark.userId}</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-medium text-white opacity-90">{bookmark.userId}</span>
+                                    <span class="text-xs text-white opacity-50">{new Date(bookmark.timestamp).toLocaleString()}</span>
+                                </div>
                             </div>
+                            <button 
+                                class="p-1.5 hover:bg-white/10 rounded-lg text-white opacity-0 group-hover:opacity-50 hover:opacity-100 transition-all duration-300"
+                                on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })}
+                            >
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
                         </div>
+
                         {#if bookmark.message.startsWith('[IMAGE]')}
-                        <div class="relative pl-8">
-                            <img 
-                                src={decodeBase64Image(bookmark.message.slice(7))} 
-                                alt="Bookmarked image" 
-                                class="max-w-full w-[150px] rounded-lg object-contain"
-                                on:error={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                    e.currentTarget.nextElementSibling.style.display = 'flex';
-                                }}
-                            />
-                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[150px]">
+                        <div class="relative ml-10">
+                            <div class="relative group/image">
+                                <img 
+                                    src={decodeBase64Image(bookmark.message.slice(7))} 
+                                    alt="Bookmarked image" 
+                                    class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                    on:error={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                                    }}
+                                />
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                    <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                        <i class="ri-zoom-in-line text-white text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
                                 <i class="ri-image-line text-xl"></i>
                                 <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
                             </div>
                         </div>
                         {:else}
-                        <p class="text-sm text-white opacity-70 mb-2 break-words pl-8">{bookmark.message}</p>
+                        <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{bookmark.message}</p>
                         {/if}
-                        <button 
-                            on:click={() => {
-                                scrollToMessage(bookmark.messageId);
-                                showBookmarkPanel = false;
-                            }}
-                            class="text-xs text-cYellow hover:text-cYellow opacity-80 transition-all duration-300 flex items-center gap-1.5 ml-8"
-                        >
-                            <i class="ri-arrow-right-line"></i>
-                            {$_("room.chat.gotoMessage")}
-                        </button>
+
+                        <div class="flex items-center gap-2 mt-3 ml-10">
+                            <button 
+                                on:click={() => {
+                                    scrollToMessage(bookmark.messageId);
+                                    showBookmarkPanel = false;
+                                }}
+                                class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                            >
+                                <i class="ri-arrow-right-line"></i>
+                                {$_("room.chat.gotoMessage")}
+                            </button>
+                            <button 
+                                on:click={() => copyMessage(bookmark.message)}
+                                class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                            >
+                                <i class="ri-file-copy-line"></i>
+                                {$_("room.chat.copyMessage")}
+                            </button>
+                        </div>
                     </div>
                     {/each}
                     {/if}
@@ -1633,9 +1679,15 @@
                                     handleSendMessage();
                                 }
                             }} 
-                            class="w-full h-12 bg-[#2C2C2C]/90 border border-white/10 rounded-lg px-4 py-2.5 focus:outline-none focus:border-cYellow focus:ring-2 focus:ring-cYellow/20 placeholder-white opacity-30 transition-all duration-300 text-white text-sm resize-none overflow-hidden"
+                            class="w-full min-h-[48px] max-h-[120px] bg-[#2C2C2C]/90 border border-white/10 
+                                rounded-lg px-4 py-3 text-sm text-white
+                                placeholder:text-white/30 placeholder:text-sm
+                                focus:outline-none focus:border-cYellow focus:ring-2 
+                                focus:ring-cYellow/20 focus:shadow-lg focus:shadow-cYellow/5
+                                transition-all duration-300 ease-in-out
+                                resize-none overflow-hidden
+                                hover:bg-[#2C2C2C]/95 hover:border-white/20"
                             rows="1"
-                            style="min-height: 48px; max-height: 120px;"
                         ></textarea>
                         
                         {#if showUserDropdown && filteredUsers.length > 0}

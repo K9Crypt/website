@@ -409,7 +409,7 @@
                 "title": "Téléchargement de l'image",
                 "description": "Votre image est en cours de téléchargement...",
                 "error": {
-                    "sizeLimit": "La taille de l'image doit être inférieure à 5 Mo",
+                    "sizeLimit": "La taille de l'image doit être inférieure à 1 Go",
                     "uploadFailed": "Impossible de traiter l'image"
                 }
             },
@@ -437,7 +437,8 @@
             "messageNotFound": "Message introuvable",
             "searchNotFoundDescription": "Aucun message ne correspond à vos critères de recherche.",
             "imageUnavailable": "Image non disponible",
-            "gotoMessage": "Aller au message",
+            "copyMessage": "Copier",
+            "gotoMessage": "Aller",
             "copyPopup": {
                 "id": "Copier l'ID de la salle",
                 "description": "Utilisez cet ID de salle pour rejoindre la salle."

@@ -410,7 +410,7 @@
                 "title": "Uploading image",
                 "description": "Your image is being uploaded...",
                 "error": {
-                    "sizeLimit": "Image size must be less than 5MB",
+                    "sizeLimit": "Image size must be less than 1GB",
                     "uploadFailed": "Image could not be processed"
                 }
             },
@@ -438,7 +438,8 @@
             "messageNotFound": "Message not found",
             "searchNotFoundDescription": "No messages found matching your criteria.",
             "imageUnavailable": "Image unavailable",
-            "gotoMessage": "Go to Message",
+            "copyMessage": "Copy",
+            "gotoMessage": "Go to",
             "copyPopup": {
                 "id": "Copy Room ID",
                 "description": "Use this room ID to join the room."

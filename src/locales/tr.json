@@ -410,7 +410,7 @@
                 "title": "Görüntü yükleniyor",
                 "description": "Görüntünüz yükleniyor...",
                 "error": {
-                    "sizeLimit": "Görüntü boyutu 5MB'dan küçük olmalıdır",
+                    "sizeLimit": "Görüntü boyutu 1GB'dan küçük olmalıdır",
                     "uploadFailed": "Görüntü işlenemedi"
                 }
             },
@@ -438,7 +438,8 @@
             "messageNotFound": "Mesaj bulunamadı",
             "searchNotFoundDescription": "Aradığınız kriterde mesaj bulunamadı.",
             "imageUnavailable": "Görüntü kullanılamıyor",
-            "gotoMessage": "Mesaja Git",
+            "copyMessage": "Kopyala",
+            "gotoMessage": "Git",
             "copyPopup": {
                 "id": "Oda ID'sini kopyalayın",
                 "description": "Odaya katılmak için bu oda ID'sini kullanın."
