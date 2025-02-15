@@ -47,11 +47,11 @@ export async function joinRoom(roomId: string, userId: string, password?: string
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
         throw new Error(data.error);
     }
-    
+
     return data.message || 'Joined room successfully';
 }
 
@@ -92,9 +92,13 @@ export async function leaveRoom(roomId: string, userId: string): Promise<string>
     }
 }
 
-export async function listRooms(): Promise<any> {
+export async function listRooms(queryString: string = ''): Promise<any[]> {
     try {
-        const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/list`, {
+        const url = queryString
+          ? `${import.meta.env.VITE_APP_APIURL}/room/list?${queryString}`
+          : `${import.meta.env.VITE_APP_APIURL}/room/list`;
+
+        const response = await fetch(url, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -102,13 +106,14 @@ export async function listRooms(): Promise<any> {
         });
 
         if (!response.ok) {
-            return [];
+            throw new Error(`Failed to fetch rooms: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
         return data.rooms || [];
     } catch (error) {
-        return [];
+        console.error("Error in listRooms:", error);
+        throw error;
     }
 }
 

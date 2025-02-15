@@ -1,6 +1,6 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import { leaveRoom, joinRoom, checkRoom, checkPassword } from '$lib/room';
+    import { leaveRoom, joinRoom, checkRoom, checkPassword, listRooms } from '$lib/room';
     import { sendMessage, getMessages, markMessageAsRead, reactToMessage } from '$lib/message';
     import toast, { Toaster } from 'svelte-french-toast';
     import { onMount, onDestroy } from 'svelte';
@@ -480,12 +480,11 @@
         if (!force && now - lastFetchTimestamp < FETCH_COOLDOWN) return;
 
         try {
-            const [newMessages, { users = [], type = roomType, roomName: newRoomName = roomName }] = await Promise.all([
+            const [newMessages, { users = [], type = roomType, roomName: newRoomName = roomName, roomOwner: owner }] = await Promise.all([
                 getMessages(roomId),
                 checkRoom(roomId).catch(() => ({}))
             ]);
 
-            lastFetchTimestamp = now;
             roomUsers = users;
             roomType = type;
             roomName = newRoomName;
@@ -704,14 +703,11 @@
     });
 
     onDestroy(() => {
-        if (typeof document !== 'undefined') {
-            stopPolling();
-            clearTimeout(loadTimeout);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            if (clickOutsideHandler) {
-                document.removeEventListener('click', clickOutsideHandler);
-            }
-        }
+        stopPolling();
+        clearTimeout(loadTimeout);
+        observer?.disconnect();
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        document.removeEventListener('click', clickOutsideHandler);
     });
 
     async function handleSendMessage(isImage = false) {
@@ -1059,109 +1055,219 @@
 
         {#if showSearchPanel}
         <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
-            <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
-                <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
-                            <i class="ri-search-line text-cYellow text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold">{$_("room.chat.searchMessage")}</h3>
-                        </div>
-                        <button on:click={() => showSearchPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
-                            <i class="ri-close-line text-xl"></i>
-                        </button>
-                    </div>
-
-                    <div class="relative">
-                        <input 
-                            type="text" 
-                            bind:value={messageSearchQuery}
-                            placeholder="Search messages..." 
-                            class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2.5 pl-9 text-sm placeholder:text-white opacity-30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
-                        >
-                        <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-30"></i>
-                    </div>
-                </div>
-
-                <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
-                    {#if messageSearchQuery.length === 0}
-                    <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
-                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
-                            <i class="ri-search-line text-4xl"></i>
-                        </div>
-                        <p class="text-base font-medium text-white opacity-70">{$_("room.chat.searchMessage")}</p>
-                        <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchMessageDescription")}</p>
-                    </div>
-                    {:else if searchResults.length === 0}
-                    <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
-                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
-                            <i class="ri-file-search-line text-4xl"></i>
-                        </div>
-                        <p class="text-base font-medium text-white opacity-70">{$_("room.chat.messageNotFound")}</p>
-                        <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchNotFoundDescription")}</p>
-                    </div>
-                    {:else}
-                    {#each searchResults as result}
-                    <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
-                        <div class="flex items-start justify-between gap-3 mb-2">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
-                                    {result.userId.slice(0, 2).toUpperCase()}
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-medium text-white opacity-90">{result.userId}</span>
-                                    <span class="text-xs text-white opacity-50">{new Date(result.timestamp).toLocaleString()}</span>
-                                </div>
+            <div class="hidden md:block">
+                <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
+                    <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                                <i class="ri-search-line text-cYellow text-xl"></i>
                             </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold">{$_("room.chat.searchMessage")}</h3>
+                            </div>
+                            <button on:click={() => showSearchPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
+                                <i class="ri-close-line text-xl"></i>
+                            </button>
                         </div>
 
-                        {#if result.message.startsWith('[IMAGE]')}
-                        <div class="relative ml-10">
-                            <div class="relative group/image">
-                                <img 
-                                    src={decodeBase64Image(result.message.slice(7))} 
-                                    alt="Search result image" 
-                                    class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
-                                    on:error={handleImageError}
-                                />
-                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                                    <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
-                                        <i class="ri-zoom-in-line text-white text-xl"></i>
-                                    </button>
-                                </div>
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                bind:value={messageSearchQuery}
+                                placeholder="Search messages..." 
+                                class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2.5 pl-9 text-sm placeholder:text-white opacity-30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
+                            >
+                            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-30"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                        {#if messageSearchQuery.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-search-line text-4xl"></i>
                             </div>
-                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
-                                <i class="ri-image-line text-xl"></i>
-                                <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.searchMessage")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchMessageDescription")}</p>
+                        </div>
+                        {:else if searchResults.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-file-search-line text-4xl"></i>
                             </div>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.messageNotFound")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchNotFoundDescription")}</p>
                         </div>
                         {:else}
-                        <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{result.message}</p>
-                        {/if}
+                        {#each searchResults as result}
+                        <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                            <div class="flex items-start justify-between gap-3 mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
+                                        {result.userId.slice(0, 2).toUpperCase()}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium text-white opacity-90">{result.userId}</span>
+                                        <span class="text-xs text-white opacity-50">{new Date(result.timestamp).toLocaleString()}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="flex items-center gap-2 mt-3 ml-10">
-                            <button 
-                                on:click={() => {
-                                    scrollToMessage(result.id);
-                                    showSearchPanel = false;
-                                }}
-                                class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
-                            >
-                                <i class="ri-arrow-right-line"></i>
-                                {$_("room.chat.gotoMessage")}
-                            </button>
-                            <button 
-                                on:click={() => copyMessage(result.message)}
-                                class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
-                            >
-                                <i class="ri-file-copy-line"></i>
-                                {$_("room.chat.copyMessage")}
+                            {#if result.message.startsWith('[IMAGE]')}
+                            <div class="relative ml-10">
+                                <div class="relative group/image">
+                                    <img 
+                                        src={decodeBase64Image(result.message.slice(7))} 
+                                        alt="Search result image" 
+                                        class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                        on:error={handleImageError}
+                                    />
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                            <i class="ri-zoom-in-line text-white text-xl"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
+                                    <i class="ri-image-line text-xl"></i>
+                                    <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
+                                </div>
+                            </div>
+                            {:else}
+                            <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{result.message}</p>
+                            {/if}
+
+                            <div class="flex items-center gap-2 mt-3 ml-10">
+                                <button 
+                                    on:click={() => {
+                                        scrollToMessage(result.id);
+                                        showSearchPanel = false;
+                                    }}
+                                    class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                                >
+                                    <i class="ri-arrow-right-line"></i>
+                                    {$_("room.chat.gotoMessage")}
+                                </button>
+                                <button 
+                                    on:click={() => copyMessage(result.message)}
+                                    class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                                >
+                                    <i class="ri-file-copy-line"></i>
+                                    {$_("room.chat.copyMessage")}
+                                </button>
+                            </div>
+                        </div>
+                        {/each}
+                        {/if}
+                    </div>
+                </div>
+            </div>
+
+            <div class="block md:hidden">
+                <div class="fixed bottom-0 left-0 right-0 h-[80vh] bg-cWhiteGray border-t border-white/10 shadow-xl z-50 rounded-t-xl" transition:slide={{ duration: 300, axis: 'y', easing: quintOut }}>
+                    <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                                <i class="ri-search-line text-cYellow text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold">{$_("room.chat.searchMessage")}</h3>
+                            </div>
+                            <button on:click={() => showSearchPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
+                                <i class="ri-close-line text-xl"></i>
                             </button>
                         </div>
+
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                bind:value={messageSearchQuery}
+                                placeholder="Search messages..." 
+                                class="w-full bg-[#2C2C2C] border border-white/10 rounded-lg px-4 py-2.5 pl-9 text-sm placeholder:text-white opacity-30 focus:outline-none focus:border-cYellow focus:ring-1 focus:ring-cYellow/20"
+                            >
+                            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-30"></i>
+                        </div>
                     </div>
-                    {/each}
-                    {/if}
+
+                    <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                        {#if messageSearchQuery.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-search-line text-4xl"></i>
+                            </div>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.searchMessage")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchMessageDescription")}</p>
+                        </div>
+                        {:else if searchResults.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-file-search-line text-4xl"></i>
+                            </div>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.messageNotFound")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.searchNotFoundDescription")}</p>
+                        </div>
+                        {:else}
+                        {#each searchResults as result}
+                        <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                            <div class="flex items-start justify-between gap-3 mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
+                                        {result.userId.slice(0, 2).toUpperCase()}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium text-white opacity-90">{result.userId}</span>
+                                        <span class="text-xs text-white opacity-50">{new Date(result.timestamp).toLocaleString()}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {#if result.message.startsWith('[IMAGE]')}
+                            <div class="relative ml-10">
+                                <div class="relative group/image">
+                                    <img 
+                                        src={decodeBase64Image(result.message.slice(7))} 
+                                        alt="Search result image" 
+                                        class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                        on:error={handleImageError}
+                                    />
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                            <i class="ri-zoom-in-line text-white text-xl"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
+                                    <i class="ri-image-line text-xl"></i>
+                                    <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
+                                </div>
+                            </div>
+                            {:else}
+                            <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{result.message}</p>
+                            {/if}
+
+                            <div class="flex items-center gap-2 mt-3 ml-10">
+                                <button 
+                                    on:click={() => {
+                                        scrollToMessage(result.id);
+                                        showSearchPanel = false;
+                                    }}
+                                    class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                                >
+                                    <i class="ri-arrow-right-line"></i>
+                                    {$_("room.chat.gotoMessage")}
+                                </button>
+                                <button 
+                                    on:click={() => copyMessage(result.message)}
+                                    class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                                >
+                                    <i class="ri-file-copy-line"></i>
+                                    {$_("room.chat.copyMessage")}
+                                </button>
+                            </div>
+                        </div>
+                        {/each}
+                        {/if}
+                    </div>
                 </div>
             </div>
         </div>
@@ -1407,105 +1513,211 @@
 
         {#if showBookmarkPanel}
         <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" transition:fade={{ duration: 200 }}>
-            <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
-                <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
-                            <i class="ri-bookmark-fill text-cYellow text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold">{$_("room.chat.bookmarkPanel.title")}</h3>
-                        </div>
-                        <button on:click={() => showBookmarkPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
-                            <i class="ri-close-line text-xl"></i>
-                        </button>
-                    </div>
-                    <p class="text-xs text-white opacity-20 mt-5">
-                        <span class="text-white opacity-50">
-                            {$_("room.chat.bookmarkPanel.description")}
-                        </span>
-                    </p>
-                </div>
-
-                <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
-                    {#if bookmarks.length === 0}
-                    <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
-                        <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
-                            <i class="ri-bookmark-line text-4xl"></i>
-                        </div>
-                        <p class="text-base font-medium text-white opacity-70">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
-                        <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
-                    </div>
-                    {:else}
-                    {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
-                    <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
-                        <div class="flex items-start justify-between gap-3 mb-2">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
-                                    {bookmark.userId.slice(0, 2).toUpperCase()}
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-medium text-white opacity-90">{bookmark.userId}</span>
-                                    <span class="text-xs text-white opacity-50">{new Date(bookmark.timestamp).toLocaleString()}</span>
-                                </div>
+            <div class="hidden md:block">
+                <div class="fixed right-0 top-0 bottom-0 w-80 bg-cWhiteGray border-l border-white/10 shadow-xl z-50" transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}>
+                    <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                                <i class="ri-bookmark-fill text-cYellow text-xl"></i>
                             </div>
-                            <button 
-                                class="p-1.5 hover:bg-white/10 rounded-lg text-white opacity-0 group-hover:opacity-50 hover:opacity-100 transition-all duration-300"
-                                on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })}
-                            >
-                                <i class="ri-delete-bin-line"></i>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold">{$_("room.chat.bookmarkPanel.title")}</h3>
+                            </div>
+                            <button on:click={() => showBookmarkPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
+                                <i class="ri-close-line text-xl"></i>
                             </button>
                         </div>
+                        <p class="text-xs text-white opacity-20 mt-5">
+                            <span class="text-white opacity-50">
+                                {$_("room.chat.bookmarkPanel.description")}
+                            </span>
+                        </p>
+                    </div>
 
-                        {#if bookmark.message.startsWith('[IMAGE]')}
-                        <div class="relative ml-10">
-                            <div class="relative group/image">
-                                <img 
-                                    src={decodeBase64Image(bookmark.message.slice(7))} 
-                                    alt="Bookmarked image" 
-                                    class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
-                                    on:error={(e) => {
-                                        e.currentTarget.style.display = 'none';
-                                        e.currentTarget.nextElementSibling.style.display = 'flex';
-                                    }}
-                                />
-                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                                    <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
-                                        <i class="ri-zoom-in-line text-white text-xl"></i>
-                                    </button>
-                                </div>
+                    <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                        {#if bookmarks.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-bookmark-line text-4xl"></i>
                             </div>
-                            <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
-                                <i class="ri-image-line text-xl"></i>
-                                <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
-                            </div>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
                         </div>
                         {:else}
-                        <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{bookmark.message}</p>
-                        {/if}
+                        {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
+                        <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                            <div class="flex items-start justify-between gap-3 mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
+                                        {bookmark.userId.slice(0, 2).toUpperCase()}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium text-white opacity-90">{bookmark.userId}</span>
+                                        <span class="text-xs text-white opacity-50">{new Date(bookmark.timestamp).toLocaleString()}</span>
+                                    </div>
+                                </div>
+                                <button 
+                                    class="p-1.5 hover:bg-white/10 rounded-lg text-white opacity-0 group-hover:opacity-50 hover:opacity-100 transition-all duration-300"
+                                    on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })}
+                                >
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
 
-                        <div class="flex items-center gap-2 mt-3 ml-10">
-                            <button 
-                                on:click={() => {
-                                    scrollToMessage(bookmark.messageId);
-                                    showBookmarkPanel = false;
-                                }}
-                                class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
-                            >
-                                <i class="ri-arrow-right-line"></i>
-                                {$_("room.chat.gotoMessage")}
-                            </button>
-                            <button 
-                                on:click={() => copyMessage(bookmark.message)}
-                                class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
-                            >
-                                <i class="ri-file-copy-line"></i>
-                                {$_("room.chat.copyMessage")}
+                            {#if bookmark.message.startsWith('[IMAGE]')}
+                            <div class="relative ml-10">
+                                <div class="relative group/image">
+                                    <img 
+                                        src={decodeBase64Image(bookmark.message.slice(7))} 
+                                        alt="Bookmarked image" 
+                                        class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                        on:error={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                            <i class="ri-zoom-in-line text-white text-xl"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
+                                    <i class="ri-image-line text-xl"></i>
+                                    <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
+                                </div>
+                            </div>
+                            {:else}
+                            <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{bookmark.message}</p>
+                            {/if}
+
+                            <div class="flex items-center gap-2 mt-3 ml-10">
+                                <button 
+                                    on:click={() => {
+                                        scrollToMessage(bookmark.messageId);
+                                        showBookmarkPanel = false;
+                                    }}
+                                    class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                                >
+                                    <i class="ri-arrow-right-line"></i>
+                                    {$_("room.chat.gotoMessage")}
+                                </button>
+                                <button 
+                                    on:click={() => copyMessage(bookmark.message)}
+                                    class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                                >
+                                    <i class="ri-file-copy-line"></i>
+                                    {$_("room.chat.copyMessage")}
+                                </button>
+                            </div>
+                        </div>
+                        {/each}
+                        {/if}
+                    </div>
+                </div>
+            </div>
+
+            <div class="block md:hidden">
+                <div class="fixed bottom-0 left-0 right-0 h-[80vh] bg-cWhiteGray border-t border-white/10 shadow-xl z-50 rounded-t-xl" transition:slide={{ duration: 300, axis: 'y', easing: quintOut }}>
+                    <div class="p-4 border-b border-white/10 bg-[#2C2C2C]/30 backdrop-blur-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-cYellow/10 rounded-lg flex items-center justify-center">
+                                <i class="ri-bookmark-fill text-cYellow text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold">{$_("room.chat.bookmarkPanel.title")}</h3>
+                            </div>
+                            <button on:click={() => showBookmarkPanel = false} class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded-lg text-white opacity-50 hover:text-white transition-all duration-300">
+                                <i class="ri-close-line text-xl"></i>
                             </button>
                         </div>
+                        <p class="text-xs text-white opacity-20 mt-5">
+                            <span class="text-white opacity-50">
+                                {$_("room.chat.bookmarkPanel.description")}
+                            </span>
+                        </p>
                     </div>
-                    {/each}
-                    {/if}
+
+                    <div class="p-4 space-y-3 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+                        {#if bookmarks.length === 0}
+                        <div class="flex flex-col items-center justify-center py-16 text-white opacity-30">
+                            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-5">
+                                <i class="ri-bookmark-line text-4xl"></i>
+                            </div>
+                            <p class="text-base font-medium text-white opacity-70">{$_("room.chat.bookmarkPanel.noBookmarksYet")}</p>
+                            <p class="text-sm text-white opacity-40 text-center mt-2">{$_("room.chat.bookmarkPanel.noBookmarksYetDescription")}</p>
+                        </div>
+                        {:else}
+                        {#each bookmarks.sort((a, b) => b.timestamp - a.timestamp) as bookmark}
+                        <div class="bg-[#2C2C2C] rounded-lg p-4 group hover:bg-[#363636] transition-all duration-300 border border-white/5 hover:border-white/10 hover:shadow-lg">
+                            <div class="flex items-start justify-between gap-3 mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 bg-cYellow rounded-lg flex items-center justify-center text-black text-sm font-bold shadow-md">
+                                        {bookmark.userId.slice(0, 2).toUpperCase()}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-medium text-white opacity-90">{bookmark.userId}</span>
+                                        <span class="text-xs text-white opacity-50">{new Date(bookmark.timestamp).toLocaleString()}</span>
+                                    </div>
+                                </div>
+                                <button 
+                                    class="p-1.5 hover:bg-white/10 rounded-lg text-white opacity-0 group-hover:opacity-50 hover:opacity-100 transition-all duration-300"
+                                    on:click={() => toggleBookmark({ id: bookmark.messageId, message: bookmark.message })}
+                                >
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
+
+                            {#if bookmark.message.startsWith('[IMAGE]')}
+                            <div class="relative ml-10">
+                                <div class="relative group/image">
+                                    <img 
+                                        src={decodeBase64Image(bookmark.message.slice(7))} 
+                                        alt="Bookmarked image" 
+                                        class="max-w-full w-[200px] rounded-lg object-contain hover:shadow-xl transition-all duration-300"
+                                        on:error={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-all duration-300">
+                                            <i class="ri-zoom-in-line text-white text-xl"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hidden items-center justify-center gap-2 text-red-500 p-4 bg-red-500/10 rounded-lg w-[200px]">
+                                    <i class="ri-image-line text-xl"></i>
+                                    <span class="text-xs">{$_("room.chat.imageUnavailable")}</span>
+                                </div>
+                            </div>
+                            {:else}
+                            <p class="text-sm text-white opacity-70 break-words ml-10 bg-black/20 p-3 rounded-lg">{bookmark.message}</p>
+                            {/if}
+
+                            <div class="flex items-center gap-2 mt-3 ml-10">
+                                <button 
+                                    on:click={() => {
+                                        scrollToMessage(bookmark.messageId);
+                                        showBookmarkPanel = false;
+                                    }}
+                                    class="text-xs bg-cYellow/10 hover:bg-cYellow/20 text-cYellow px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg"
+                                >
+                                    <i class="ri-arrow-right-line"></i>
+                                    {$_("room.chat.gotoMessage")}
+                                </button>
+                                <button 
+                                    on:click={() => copyMessage(bookmark.message)}
+                                    class="text-xs bg-white/5 hover:bg-white/10 text-white opacity-70 hover:opacity-90 px-3 py-1.5 rounded-lg transition-all duration-300 flex items-center gap-1.5"
+                                >
+                                    <i class="ri-file-copy-line"></i>
+                                    {$_("room.chat.copyMessage")}
+                                </button>
+                            </div>
+                        </div>
+                        {/each}
+                        {/if}
+                    </div>
                 </div>
             </div>
         </div>
