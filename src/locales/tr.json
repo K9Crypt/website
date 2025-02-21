@@ -1,0 +1,1250 @@
+{
+    "nav": {
+        "home": "Ana Sayfa",
+        "about": "Hakkında",
+        "blog": "Blog",
+        "updates": "Güncellemeler",
+        "products": {
+            "title": "Ürünler",
+            "k9shield": "K9Shield",
+            "k9vault": "K9Vault",
+            "k9cli": "K9CLI"
+        },
+        "actions": {
+            "title": "İşlemler",
+            "createRoom": "Oda Oluştur",
+            "joinRoom": "Odaya Katıl",
+            "createMessage": "Mesaj Oluştur",
+            "viewMessage": "Mesajları Görüntüle",
+            "listRooms": "Odaları Listele"
+        }
+    },
+    "banner": {
+        "title": "Mesajlarınız, Sadece Sizin!",
+        "description": "Düşüncelerinizi dünya ile güvenle paylaşın, mesajlarınıza yalnızca sizin erişebileceğinizi bilerek.",
+        "buttons": {
+            "getStarted": "Başla",
+            "support": "Destek"
+        }
+    },
+    "why": {
+        "title": "Neden K9Crypt?",
+        "subtitle": "Çünkü tutkulu ekibimizle güvenli ve güvenilir mesajlaşma çözümleri sunuyoruz.",
+        "features": {
+            "noAccount": {
+                "title": "Hesap Gerektirmez",
+                "description": "K9Crypt kullanmak için hesap oluşturmanız gerekmez."
+            },
+            "encryption": {
+                "title": "Uçtan Uca Şifreleme",
+                "description": "Tüm mesajlar uçtan uca şifreleme kullanılarak şifrelenir."
+            },
+            "autoDelete": {
+                "title": "Belirlenen zamanda silinir",
+                "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
+            },
+            "openSource": {
+                "title": "Açık Kaynak",
+                "description": "K9Crypt açık kaynaklıdır ve GitHub'da mevcuttur."
+            }
+        }
+    },
+    "hitw": {
+        "title": "Nasıl Çalışır",
+        "subtitle": "K9Crypt ile güvenli mesaj göndermeyi ve oda oluşturmayı öğrenin.",
+        "sections": {
+            "messages": {
+                "title": "Mesajlar",
+                "steps": {
+                    "write": {
+                        "title": "Mesajınızı Yazın",
+                        "description": "Güvenli bir şekilde göndermek istediğiniz mesajı girin."
+                    },
+                    "password": {
+                        "title": "Rastgele Şifre Alın",
+                        "description": "Sistem mesajınız için rastgele bir şifre oluşturur."
+                    },
+                    "share": {
+                        "title": "Bağlantıyı Paylaşın",
+                        "description": "Oluşturulan güvenli bağlantıyı alıcıyla paylaşın."
+                    },
+                    "access": {
+                        "title": "Alıcı Erişimi",
+                        "description": "Alıcı, mesaja erişmek için bağlantıyı ve şifreyi kullanır."
+                    }
+                }
+            },
+            "rooms": {
+                "title": "Odalar",
+                "steps": {
+                    "create": {
+                        "title": "Oda Oluşturun",
+                        "description": "Konuşmalarınız için güvenli bir oda kurun."
+                    },
+                    "invite": {
+                        "title": "Üyeleri Davet Edin",
+                        "description": "Benzersiz bir bağlantıyla üyeleri odanıza davet edin."
+                    },
+                    "chat": {
+                        "title": "Sohbete Başlayın",
+                        "description": "Odanızda güvenli konuşmalara başlayın."
+                    },
+                    "delete": {
+                        "title": "Otomatik Silme",
+                        "description": "Odadaki mesajlar belirli bir süre sonra otomatik olarak silinir."
+                    }
+                }
+            }
+        }
+    },
+    "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "subtitle": "K9Crypt'in hizmetleri ve özellikleri hakkında sık sorulan soruların cevaplarını bulun.",
+        "questions": {
+            "isFree": {
+                "question": "K9Crypt gerçekten ücretsiz mi?",
+                "answer": "Evet, K9Crypt tamamen ücretsizdir ve herhangi bir ödeme veya abonelik gerektirmez."
+            },
+            "account": {
+                "question": "Hesap oluşturmam gerekiyor mu?",
+                "answer": "Hayır, K9Crypt herhangi bir hesap oluşturma veya kişisel bilgi gerektirmez."
+            },
+            "openSource": {
+                "question": "K9Crypt açık kaynak mı?",
+                "answer": "Evet, K9Crypt açık kaynaklıdır ve GitHub'da mevcuttur."
+            },
+            "connection": {
+                "question": "Bağlantımı kaybedersem ne olur?",
+                "answer": "K9Crypt, bağlantınız geri geldiğinde otomatik olarak yeniden bağlanmayı dener. Gönderilmemiş mesajlar bağlantı yeniden kurulana kadar korunur."
+            },
+            "messageLimit": {
+                "question": "Mesaj boyut sınırı var mı?",
+                "answer": "Hayır, kısıtlama olmadan sohbet edin. Herhangi bir odada sınırsız mesaj gönderin ve başkalarıyla özgürce iletişim kurun."
+            }
+        }
+    },
+    "footer": {
+        "description": "Güvenli, hızlı ve güvenilir mesajlaşma platformu. Şifrelenmiş mesajları güvenle gönderin.",
+        "quickLinks": {
+            "title": "Hızlı Bağlantılar",
+            "home": "Ana Sayfa",
+            "about": "Hakkında",
+            "features": "Özellikler",
+            "contact": "İletişim",
+            "brand": "Marka Varlıkları"
+        },
+        "support": {
+            "title": "Destek",
+            "privacy": "Gizlilik Politikası",
+            "terms": "Kullanım Koşulları",
+            "docs": "Dökümanlar"
+        },
+        "copyright": "© {year} K9Crypt. Tüm hakları saklıdır."
+    },
+    "about": {
+        "title": "K9Crypt Hakkında",
+        "subtitle": "Güvenli iletişimi herkes için erişilebilir kılmaya adanmış.",
+        "tabs": {
+            "company": "Şirket",
+            "values": "Değerlerimiz",
+            "team": "Ekibimiz",
+            "contact": "İletişim"
+        },
+        "company": {
+            "title": "Şirket",
+            "description": "K9Crypt'in misyonu ve vizyonu hakkında bilgi edinin",
+            "introduction": "Haziran 2024'te kurulan K9Crypt, basit bir fikirden doğdu: iletişim varsayılan olarak gizli olmalıdır. Geliştirici ekibimiz, güvenli mesajlaşmayı herkes için erişilebilir kılan bir platform oluşturmak için bir araya geldi.",
+            "features": {
+                "mission": {
+                    "title": "Misyonumuz",
+                    "description": "Basitlik ve erişilebilirliği korurken en güvenli ve gizli mesajlaşma platformunu sağlamak."
+                },
+                "vision": {
+                    "title": "Vizyonumuz",
+                    "description": "Özel iletişimin bir lüks değil, temel bir hak olduğu bir dünya yaratmak."
+                },
+                "privacy": {
+                    "title": "Önce Gizlilik",
+                    "description": "Gizliliğin bir özellik değil, temel bir hak olduğuna inanıyoruz."
+                },
+                "security": {
+                    "title": "Tasarımda Güvenlik",
+                    "description": "Güvenlik, platformumuzun her yönüne entegre edilmiştir."
+                }
+            }
+        },
+        "values": {
+            "title": "Değerlerimiz",
+            "description": "Çalışmalarımıza yön veren ilkeler",
+            "introduction": "K9Crypt'te, değerlerimiz yaptığımız her şeyi şekillendirir. Kararlarımıza rehberlik eder, ürün geliştirmemizi etkiler ve şirket kültürümüzü tanımlar.",
+            "items": {
+                "privacy": {
+                    "title": "Önce Gizlilik",
+                    "description": "Her kararımızda kullanıcı gizliliğine öncelik veriyoruz."
+                },
+                "security": {
+                    "title": "Tasarımda Güvenlik",
+                    "description": "Güvenlik asla sonradan düşünülen bir şey değil, platformumuzun temelidir."
+                },
+                "empowerment": {
+                    "title": "Kullanıcı Güçlendirme",
+                    "description": "Kullanıcılara iletişimleri üzerinde tam kontrol sağlıyoruz."
+                },
+                "transparency": {
+                    "title": "Şeffaflık",
+                    "description": "Kullanıcılarımızla açık ve dürüst iletişim kuruyoruz."
+                }
+            }
+        },
+        "team": {
+            "title": "Ekibimiz",
+            "description": "K9Crypt'in arkasındaki insanlarla tanışın",
+            "introduction": "Ekibimiz, güvenli iletişimi herkes için erişilebilir kılmaya adanmış tutkulu bireylerden oluşuyor.",
+            "members": {
+                "fatih": {
+                    "name": "Fatih Yılmaz",
+                    "role": "Kurucu & CEO",
+                    "description": "K9Crypt'in kurucusu ve CEO'su Fatih Yılmaz, kullanıcı deneyimini ön planda tutarak yenilikçi web çözümleri geliştiren bir teknoloji lideridir."
+                },
+                "emin": {
+                    "name": "Emin Bıyıkçı",
+                    "role": "CEO & Front-end Geliştirici",
+                    "description": "Emin, görsel açıdan çekici ve kullanıcı dostu arayüzler oluşturma konusunda tutkulu, deneyimli bir front-end geliştiricisidir."
+                }
+            }
+        },
+        "contact": {
+            "title": "İletişim",
+            "description": "Bizimle iletişime geçin",
+            "introduction": "Sorularınız, önerileriniz var mı veya ekibimize katılmak mı istiyorsunuz? Sizden haber almaktan mutluluk duyarız.",
+            "types": {
+                "general": {
+                    "title": "Genel Sorular",
+                    "email": "hi@k9crypt.xyz"
+                },
+                "support": {
+                    "title": "Destek",
+                    "email": "support@k9crypt.xyz"
+                }
+            }
+        }
+    },
+    "blog": {
+        "title": "Blog & Haberler",
+        "description": "K9Crypt'ten en son haberler, güvenlik ipuçları ve özellik güncellemeleri hakkında bilgi alın.",
+        "filters": {
+            "all": "Tümü",
+            "popular": "Popüler",
+            "recent": "Son"
+        },
+        "noPosts": {
+            "title": "Blog Yazısı Bulunamadı",
+            "description": "Şu anda mevcut blog yazısı bulunmamaktadır. Lütfen daha sonra tekrar kontrol edin."
+        },
+        "readMore": "Devamını Oku",
+        "post": {
+            "readTime": "{minutes} dk okuma",
+            "share": "Yazıyı paylaş",
+            "backToBlog": "Blog'a Dön"
+        }
+    },
+    "brand": {
+        "title": "Marka Varlıkları",
+        "banner": {
+            "title": "Banner",
+            "description": "Güvenli mesajlaşma ve gizlilik konusundaki kararlılığımızı gösteren resmi K9Crypt tanıtım banner'ı"
+        },
+        "logos": {
+            "standard": {
+                "name": "K9Crypt Standart Logo",
+                "description": "K9Crypt'in güvenli mesajlaşma ve veri gizliliğine modern yaklaşımını temsil eden ana logomuz"
+            },
+            "icon": {
+                "name": "K9Crypt İkon",
+                "description": "Uygulama ikonları, favicon'lar ve küçük ölçekli uygulamalar için mükemmel olan kompakt logo versiyonu"
+            },
+            "light": {
+                "name": "K9Crypt Açık Logo",
+                "description": "Koyu arka planlar için optimize edilmiş ve marka görünürlüğünü koruyan beyaz logo versiyonu"
+            },
+            "dark": {
+                "name": "K9Crypt Koyu Logo",
+                "description": "Açık arka planlar ve basılı materyaller için tasarlanmış siyah logo versiyonu"
+            }
+        },
+        "colors": {
+            "title": "Renk Paleti",
+            "background": {
+                "name": "Arka Plan",
+                "usage": "Ana arka plan rengi"
+            },
+            "accent": {
+                "name": "Vurgu Yeşili",
+                "usage": "Birincil vurgu rengi"
+            },
+            "whiteGray": {
+                "name": "Beyaz Gri",
+                "usage": "Konteyner arka plan rengi"
+            },
+            "lightGray": {
+                "name": "Açık Gri",
+                "usage": "İkincil konteyner ve yükleme elementleri"
+            }
+        },
+        "typography": {
+            "title": "Tipografi",
+            "primary": {
+                "title": "Birincil Yazı Tipi",
+                "description": "Web sitesi genelinde metin gövdesi ve başlıklar için kullanılan ana yazı tipi"
+            },
+            "secondary": {
+                "title": "İkincil Yazı Tipi",
+                "description": "Tanıtım banner'ında ve özel başlıklarda kullanılan dekoratif yazı tipi"
+            }
+        }
+    },
+    "contact": {
+        "title": "İletişime Geçin",
+        "description": "Yardıma mı ihtiyacınız var veya sohbet etmek mi istiyorsunuz? Bize ulaşın.",
+        "social": {
+            "github": {
+                "title": "GitHub",
+                "description": "Açık kaynak kod ve sorunlar."
+            },
+            "twitter": {
+                "title": "X (Twitter)",
+                "description": "Güncellemeler ve haberler için bizi takip edin."
+            },
+            "telegram": {
+                "title": "Telegram",
+                "description": "Bizimle sohbet edin ve destek alın."
+            },
+            "discord": {
+                "title": "Discord",
+                "description": "Topluluğumuza katılın ve destek alın."
+            }
+        }
+    },
+    "room": {
+        "create": {
+            "title": "Oda Oluştur",
+            "description": "Güvenli bir sohbet odası kurun ve diğerleriyle sohbete başlayın.",
+            "error": {
+                "connectionTitle": "Bağlantı Hatası",
+                "connectionDesc": "Sunucuya bağlanılamıyor. Lütfen bağlantınızı kontrol edin ve tekrar deneyin.",
+                "serverStatus": "Sunucu Durumu: Çevrimdışı",
+                "serverDesc": "Sunucu şu anda kullanılamıyor. Ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.",
+                "tryAgain": "Tekrar deneyiniz",
+                "support": "Destek"
+            },
+            "placeholder": {
+              "enterUsername": "Kullanıcı adı",
+              "enterRoomName": "Oda adı",
+              "enterPassword": "Oda şifresi (en az 6 karakter)"
+            },
+            "form": {
+                "username": "Kullanıcı Adı",
+                "roomName": "Oda Adı",
+                "public": "Herkese Açık",
+                "private": "Özel",
+                "password": "Oda Şifresi",
+                "passwordHint": "Şifre en az 6 karakter uzunluğunda olmalıdır.",
+                "lifetime": "Odanın Silinme Süresi",
+                "lifetimeHint": "Odayı ne kadar süreyle açık tutmak istiyorsunuz?",
+                "oneDay": "1 Gün",
+                "oneMonth": "1 Ay",
+                "oneYear": "1 Yıl",
+                "permanent": "Süresiz",
+                "creating": "Oluşturuluyor...",
+                "create": "Oda Oluştur",
+                "noCategory": "Kategori seçin",
+                "category": "Kategori",
+                "categories": {
+                  "general": "Genel",
+                  "software": "Yazılım",
+                  "chat": "Sohbet",
+                  "gaming": "Oyun",
+                  "support": "Sohbet",
+                  "other": "Diğer"
+                }
+            },
+            "success": {
+                "roomId": "Oda ID",
+                "copy": "Kopyala",
+                "join": "Odaya Katıl",
+                "expiresAt": "Oda Sona Erme Tarihi"
+            },
+            "copySuccess": "Oda ID'si panoya kopyalandı.",
+            "copyError": "Oda ID'si kopyalanamadı. Lütfen tekrar deneyin.",
+            "errors": {
+                "noUsername": "Lütfen bir kullanıcı adı girin",
+                "usernameTooShort": "Kullanıcı adı en az 3 karakter olmalıdır",
+                "usernameRestricted": "Bu kullanıcı adı kısıtlanmış. Lütfen başka bir tane seçin.",
+                "noRoomName": "Lütfen bir oda adı girin",
+                "roomNameLength": "Oda adı 3 ile 50 karakter arasında olmalıdır",
+                "noPassword": "Lütfen bir oda şifresi girin",
+                "passwordTooShort": "Oda şifresi en az 6 karakter olmalıdır",
+                "usernameTaken": "Bu kullanıcı adı zaten oda da kullanılmış"
+            }
+        },
+        "join": {
+            "title": "Odaya Katıl",
+            "description": "Güvenli bir sohbet odasına katılın ve başkalarıyla sohbete başlayın.",
+            "success": "Odaya başarıyla katıldınız!",
+            "form": {
+                "roomId": "Oda ID",
+                "password": "Oda Şifresi",
+                "passwordHint": "Özel odalar için şifre gereklidir",
+                "checkingRoom": "Oda kontrol ediliyor...",
+                "joining": "Katılıyor...",
+                "joinRoom": "Odaya Katıl"
+            },
+            "errors": {
+                "invalidPassword": "Geçersiz şifre. Lütfen tekrar deneyin.",
+                "failedToJoin": "Odaya katılamadı. Lütfen tekrar deneyin.",
+                "failedToCheck": "Oda türü kontrol edilemedi. Lütfen tekrar deneyin."
+            }
+        },
+        "chat": {
+            "error": {
+                "notFoundTitle": "Oda bulunamadı",
+                "notFoundDesc": "Oda bulunamadı. Lütfen başka bir odaya katılın.",
+                "goBack": "Geri Dön",
+                "support": "Destek"
+            },
+            "imageUpload": {
+                "title": "Görüntü yükleniyor",
+                "description": "Görüntünüz yükleniyor...",
+                "error": {
+                    "sizeLimit": "Görüntü boyutu 1GB'dan küçük olmalıdır",
+                    "uploadFailed": "Görüntü işlenemedi"
+                }
+            },
+            "messages": {
+                "imageUnavailable": {
+                    "title": "Görüntü yüklenemedi",
+                    "icon": "Görüntü kullanılamıyor"
+                }
+            },
+            "passReq": {
+                "title": "Şifreyi girin",
+                "description": "Bu oda özeldir ve şifreyi girmek zorunludur.",
+                "password": "Şifre"
+            },
+            "sending": "Gönderiliyor...",
+            "sent": "Gönderildi",
+            "failed": "Gönderilemedi",
+            "roomName": "Oda Adı",
+            "roomType": "Oda Türü",
+            "searchButton": "Ara",
+            "bookmarksButton": "Yer İşaretleri",
+            "leaveButton": "Odadan Ayrıl",
+            "searchMessage": "Mesaj Arayın",
+            "searchMessageDescription": "Bulmak istediğiniz mesajı girin",
+            "messageNotFound": "Mesaj bulunamadı",
+            "searchNotFoundDescription": "Aradığınız kriterde mesaj bulunamadı.",
+            "imageUnavailable": "Görüntü kullanılamıyor",
+            "copyMessage": "Kopyala",
+            "gotoMessage": "Git",
+            "copyPopup": {
+                "id": "Oda ID'sini kopyalayın",
+                "description": "Odaya katılmak için bu oda ID'sini kullanın."
+            },
+            "imageUploadFailed": "Görüntü yüklenemedi",
+            "messageInfo": {
+                "title": "Mesaj Bilgisi",
+                "readBy": "Okundu",
+                "people": "Kişi",
+                "noReadersYet": "Henüz okunmadı"
+            },
+            "bookmarkPanel": {
+                "title": "Yer İşaretleri",
+                "description": "Önemli mesajlarını yer imlerinize ekleyin.",
+                "noBookmarksYet": "Henüz bir yer imi yok",
+                "noBookmarksYetDescription": "Yer imlerinize mesajlar ekleyin ve kolayca erişin."
+            },
+            "replyingMessage": "Bu mesaja yanıt veriliyor",
+            "emojiPicker": {
+                "placeholder": "Emoji ara...",
+                "smileysAndemotion": "Gülümseme & Duygular",
+                "peopleAndbody": "İnsanlar & Vücut",
+                "animalsAndnature": "Hayvanlar & Doğa",
+                "foodAnddrink": "Yiyecek & İçecek",
+                "activities": "Aktiviteler",
+                "travelAndplaces": "Seyahat & Yerler",
+                "objects": "Nesneler",
+                "symbols": "Semboller",
+                "noEmojisFound": "Emoji bulunamadı",
+                "insert": "Eklemek için tıkla",
+                "length": "Emoji"
+            },
+            "imageSelector": {
+                "uploading": "Görüntü yükleniyor..."
+            },
+            "messageInput": {
+                "placeholder": "Mesaj yazın..."
+            }
+        }
+    },
+    "message": {
+        "create": {
+            "title": "Şifreli Mesaj Oluştur",
+            "description": "Mesajınızı uçtan uca şifreleme ile güvence altına alın.",
+            "error": {
+                "connectionTitle": "Bağlantı Hatası",
+                "connectionDesc": "Sunucuya bağlanılamıyor. Lütfen bağlantınızı kontrol edin ve tekrar deneyin.",
+                "serverStatus": "Sunucu Durumu: Çevrimdışı",
+                "serverDesc": "Sunucu şu anda kullanılamıyor. Ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.",
+                "tryAgain": "Tekrar Deneyin",
+                "support": "Destek"
+            },
+            "form": {
+                "messageLabel": "Mesajınız",
+                "messagePlaceholder": "Mesajınızı buraya girin...",
+                "encrypting": "Şifreleniyor...",
+                "encrypt": "Mesajı Şifrele"
+            },
+            "result": {
+                "title": "Şifrelenmiş Mesaj:",
+                "copy": "Kopyala",
+                "view": "Mesajı Görüntüle"
+            },
+             "copySuccess": "Şifrelenmiş mesaj panoya kopyalandı.",
+            "copyError": "Şifrelenmiş mesaj kopyalanamadı. Lütfen tekrar deneyin.",
+            "errors": {
+                "noMessage": "Lütfen bir mesaj girin",
+                "failedToCreate": "Mesaj oluşturulamadı. Lütfen tekrar deneyin."
+            }
+        }
+    },
+    "features": {
+        "title": "Özellikler",
+        "subtitle": "K9Crypt'i en güvenli mesajlaşma platformu yapan güçlü özellikleri keşfedin.",
+        "overview": {
+            "title": "Genel Bakış",
+            "description": "K9Crypt'in temel özellikleri",
+            "content": {
+                "introduction": "K9Crypt, en güvenli mesajlaşma deneyimini sağlamak için güçlü güvenlik özelliklerini kullanım kolaylığıyla birleştirir.",
+                "features": {
+                    "encryption": {
+                        "title": "Uçtan Uca Şifreleme",
+                        "description": "Askeri düzeyde şifreleme, mesajlarınızın gizli ve güvende kalmasını sağlar."
+                    },
+                    "autoDelete": {
+                        "title": "Belirlenen zamanda silinir",
+                        "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
+                    },
+                    "anonymous": {
+                        "title": "Anonim Kullanım",
+                        "description": "Bir hesap oluşturmadan veya kişisel bilgilerinizi paylaşmadan K9Crypt'i kullanın."
+                    },
+                     "secureRooms": {
+                        "title": "Güvenli Odalar",
+                        "description": "Grup konuşmaları için şifreli sohbet odaları oluşturun."
+                    }
+                }
+            }
+        },
+        "security": {
+            "title": "Güvenlik",
+            "description": "Gelişmiş şifreleme özellikleri",
+            "content": {
+                "introduction": "Güvenlik özelliklerimiz, iletişimleriniz için en yüksek düzeyde koruma sağlamak üzere tasarlanmıştır.",
+                "features": {
+                    "aes": {
+                        "title": "AES-256 Şifreleme",
+                        "description": "Maksimum güvenlik için endüstri standardı şifreleme algoritması."
+                    },
+                    "zeroKnowledge": {
+                        "title": "Sıfır Bilgi Mimarisi",
+                         "description": "Mesajlarınızı okuyamayız - yalnızca siz ve alıcılarınız okuyabilir."
+                    },
+                    "noPlaintext": {
+                        "title": "Düz Metin Depolama Yok",
+                        "description": "Mesajlar sunucularımızda asla okunabilir biçimde saklanmaz."
+                    },
+                    "secureKey": {
+                        "title": "Güvenli Anahtar Değişimi",
+                        "description": "Gelişmiş anahtar değişim protokolleri güvenli iletişimi sağlar."
+                    }
+                }
+            }
+        },
+        "privacy": {
+            "title": "Gizlilik",
+            "description": "Gizliliğiniz önceliğimizdir",
+            "content": {
+                "introduction": "K9Crypt'i gizliliği temel alarak inşa ettik ve kişisel bilgilerinizin gizli kalmasını sağlıyoruz.",
+                "features": {
+                    "noRegistration": {
+                        "title": "Kayıt Gerekmez",
+                        "description": "Bir hesap oluşturmadan platformu kullanın."
+                    },
+                    "noDataCollection": {
+                        "title": "Kişisel Veri Toplama Yok",
+                        "description": "Hiçbir kişisel bilgi toplamıyor veya saklamıyoruz."
+                    },
+                    "anonymity": {
+                        "title": "Tam Anonimlik",
+                        "description": "Kullanımınız boyunca kimliğiniz gizli kalır."
+                    },
+                    "autoDeletion": {
+                        "title": "Otomatik Mesaj Silme",
+                        "description": "Mesajlar 4 saat sonra otomatik olarak silinir."
+                    }
+                }
+            }
+        },
+        "rooms": {
+            "title": "Güvenli Odalar",
+            "description": "Grup mesajlaşma özellikleri",
+            "content": {
+                "introduction": "Tam şifreleme ile özel grup konuşmaları için güvenli odalar oluşturun ve yönetin.",
+                "features": {
+                    "privateRoom": {
+                        "title": "Özel Oda Oluşturma",
+                        "description": "Güvenli grup sohbetleri için şifreli odalar oluşturun."
+                    },
+                    "secureInvitations": {
+                        "title": "Güvenli Davetler",
+                        "description": "Şifreli davet bağlantılarını kullanarak üye davet edin."
+                    },
+                    "groupEncryption": {
+                        "title": "Grup Şifrelemesi",
+                        "description": "Tüm grup mesajları uçtan uca şifrelenir."
+                    },
+                    "memberPrivacy": {
+                        "title": "Üye Gizliliği",
+                        "description": "Grup üyeleri birbirlerine karşı anonim kalır."
+                    }
+                }
+            }
+        },
+        "readyToStart": {
+            "title": "Başlamaya Hazır mısınız?",
+            "description": "En güvenli mesajlaşma platformunu bugün deneyimleyin.",
+            "getStarted": "Başla",
+            "learnMore": "Daha Fazla Bilgi"
+        }
+    },
+    "list": {
+        "noRooms": "Oda bulunmamaktadır",
+        "noActiveRooms": "Aktif oda bulunamadı",
+        "availableRooms": "Mevcut Odalar",
+        "activeRoomsList": "Şu anda aktif olan odaların listesi.",
+        "totalRooms": "Şu anda {total} oda bulunmaktadır.",
+        "copyRoomName": "Oda Adını Kopyala",
+        "copyRoomId": "Oda ID'sini Kopyala",
+        "previous": "Önceki",
+        "next": "Sonraki",
+        "page": "Sayfa {current} / {total}",
+        "expiresAt":"Oda Sona Erme Tarihi",
+        "roomType": "Oda Türü",
+        "all": "Tümü",
+        "private": "Özel",
+        "public": "Herkese Açık",
+        "sortBy": "Sırala",
+        "none": "Yok",
+        "users": "Kullanıcılar",
+        "messages": "Mesajlar",
+        "newest": "En Yeni",
+        "activity": "Etkinlik",
+        "minUsers": "Min. Kullanıcı Sayısı",
+        "remainingTime": {
+          "permanent": "Süresiz",
+          "hours": "{hours} saat",
+          "minutes": "{minutes} dakika",
+          "seconds": "{seconds} saniye",
+          "days": "{days} gün",
+          "expired": "Süresi Doldu"
+        },
+        "category": "Kategori",
+        "categories": {
+          "general": "Genel",
+          "software": "Yazılım",
+          "chat": "Sohbet",
+          "gaming": "Oyun",
+          "support": "Destek",
+          "other": "Diğer"
+        },
+        "searchPlaceholder": "Oda ara..."
+    },
+    "privacyPage": {
+    "title": "Gizlilik Politikası",
+    "description": "K9Crypt olarak gizliliğinizi ciddiye alıyoruz. Hizmetimiz, tam anonimlik ve güvenlik ilkesi üzerine kurulmuştur.",
+    "lastUpdated": "Son güncelleme: 02.02.2025",
+    "dataCollection": {
+      "title": "Veri Toplama",
+      "description": "Herhangi bir kişisel bilgi toplamıyoruz. K9Crypt tamamen anonim olarak çalışır.",
+      "introduction": "K9Crypt, gizlilik ve anonimlik temeli üzerine kurulmuştur. Kullanıcı gizliliğinden ödün vermeden güvenli iletişim sağlamaya inanıyoruz.",
+      "features": {
+        "noPersonalData": {
+          "title": "Kişisel Veri Yok",
+          "description": "IP adresleri veya cihaz verileri dahil olmak üzere herhangi bir kişisel bilgi toplamıyor veya saklamıyoruz."
+        },
+        "noCookies": {
+          "title": "Çerez Yok",
+          "description": "Hizmetimiz herhangi bir çerez veya izleme mekanizması kullanmadan çalışır."
+        },
+        "noUserTracking": {
+          "title": "Kullanıcı İzleme Yok",
+          "description": "Kullanıcı davranışını izlemek için herhangi bir analiz veya izleme komut dosyası uygulamıyoruz."
+        },
+        "noRegistration": {
+          "title": "Kayıt Yok",
+          "description": "Bir hesap oluşturmadan veya herhangi bir kişisel bilgi vermeden hizmetimizi kullanın."
+        }
+      }
+    },
+    "messageSecurity": {
+      "title": "Mesaj Güvenliği",
+      "description": "Mesajlarınız endüstri standardı şifreleme yöntemleriyle korunmaktadır.",
+      "introduction": "Mesajlarınızın yaşam döngüsü boyunca gizli ve güvende kalmasını sağlamak için güçlü güvenlik önlemleri uyguluyoruz.",
+      "features": {
+        "endToEndEncryption": {
+          "title": "Uçtan Uca Şifreleme",
+          "description": "Tüm mesajlar, iletilmeden önce cihazınızda şifrelenir."
+        },
+        "autoDeletion": {
+          "title": "Belirlenen zamanda silinir",
+          "description": "Odalar sizin belirlediğiniz zaman aralığında otomatik olarak silinir."
+        },
+        "noBackups": {
+          "title": "Yedekleme Yok",
+          "description": "Mesajlarınızın herhangi bir yedeğini veya kopyasını tutmuyoruz."
+        },
+        "secureProtocol": {
+          "title": "Güvenli Protokol",
+          "description": "Tüm iletişimler, TLS şifrelemesi ile güvenli WebSocket bağlantıları kullanır."
+        }
+      }
+    },
+    "thirdParties": {
+      "title": "Üçüncü Taraflar",
+      "description": "Herhangi bir bilgiyi üçüncü taraflarla paylaşmıyoruz.",
+      "introduction": "Gizliliğiniz önceliğimizdir. Bağımsız olarak çalışıyoruz ve herhangi bir veriyi üçüncü taraflarla paylaşmıyoruz.",
+      "features": {
+        "noDataSharing": {
+          "title": "Veri Paylaşımı Yok",
+          "description": "Herhangi bir bilgiyi üçüncü taraflarla asla paylaşmayız veya satmayız."
+        },
+        "noAnalytics": {
+          "title": "Analiz Yok",
+          "description": "Üçüncü taraf analiz hizmetleri kullanmıyoruz."
+        },
+        "noAds": {
+          "title": "Reklam Yok",
+          "description": "Hizmetimiz reklam ve izleme komut dosyalarından arındırılmıştır."
+        },
+        "independentOperation": {
+          "title": "Bağımsız Çalışma",
+          "description": "Altyapımız ve hizmetlerimiz üzerinde tam kontrol sahibiyiz."
+        }
+      }
+    },
+    "yourRights": {
+      "title": "Haklarınız",
+      "description": "Verileriniz ve mesajlarınız üzerinde tam kontrole sahipsiniz.",
+      "introduction": "Dijital haklarınıza saygı duyuyor ve koruyoruz, iletişiminiz üzerinde kontrol sahibi olmanızı sağlıyoruz.",
+      "features": {
+        "messageControl": {
+          "title": "Mesaj Kontrolü",
+          "description": "Otomatik silme süresinden önce mesajlarınızı istediğiniz zaman silin."
+        },
+        "anonymity": {
+          "title": "Anonimlik",
+          "description": "Hizmetimizi kullanımınız boyunca anonimliğinizi koruyun."
+        },
+        "secureCommunication": {
+          "title": "Güvenli İletişim",
+          "description": "Gözetim olmadan şifreli, özel iletişim hakkı."
+        },
+        "dataPortability": {
+          "title": "Veri Taşınabilirliği",
+          "description": "Gerektiğinde aktif mesajlarınızı dışa aktarın."
+        }
+      }
+    },
+     "contactUs": {
+      "title": "Bize Ulaşın",
+      "description": "Gizlilik politikamız hakkında sorularınız mı var? Yardım etmek için buradayız.",
+       "emailUs": {
+        "title": "Bize E-posta Gönderin",
+        "description": "hi@k9crypt.xyz"
+      },
+      "github": {
+        "title": "GitHub",
+        "description": "Depomuzu ziyaret edin"
+      }
+    }
+  },
+  "startPage": {
+    "roomSectionTitle": "Oda Kategorisi",
+    "messageSectionTitle": "Mesaj Kategorisi",
+    "connectionError": {
+      "title": "Bağlantı Hatası",
+      "description": "Sunucuya bağlanılamıyor. Lütfen bağlantınızı kontrol edin ve tekrar deneyin.",
+      "serverStatus": "Sunucu Durumu: Çevrimdışı",
+      "serverDescription": "Sunucu şu anda kullanılamıyor. Ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.",
+      "tryAgainButton": "Tekrar Dene",
+      "supportButton": "Destek"
+    },
+    "mainContent": {
+      "title": "Nereye Gitmek İstersiniz?",
+      "description": "Doğru hedefe geri dönmenize yardımcı olalım."
+    },
+    "steps": [
+      {
+        "title": "Oda Oluştur",
+        "description": "Yeni bir oda oluşturun ve arkadaşlarınızı size katılmaya davet edin."
+      },
+      {
+        "title": "Odaya Katıl",
+        "description": "Mevcut bir odaya katılın ve mesaj göndermeye başlayın."
+      },
+      {
+        "title": "Şifreli Mesaj Oluştur",
+        "description": "Şifreli bir mesaj oluşturun ve insanlarla paylaşın."
+      },
+      {
+        "title": "Mesajı Çöz",
+        "description": "Şifrelediğiniz mesajı veya şifreli mesajı çözün."
+      },
+      {
+        "title": "Odaların Listesi",
+        "description": "Tüm odaları görüntüleyin."
+      }
+    ]
+  },
+  "termsPage": {
+    "title": "Kullanım Koşulları",
+    "description": "K9Crypt'i kullanarak bu koşulları kabul etmiş olursunuz. Lütfen hizmetlerimizi kullanmadan önce dikkatlice okuyun.",
+    "lastUpdated": "Son güncelleme: 15.11.2024",
+    "serviceUsage": {
+      "title": "Hizmet Kullanımı",
+      "description": "K9Crypt'in mesajlaşma hizmetlerini kullanma yönergeleri.",
+      "introduction": "K9Crypt, güvenli ve özel mesajlaşma hizmetleri sağlamak için tasarlanmıştır. Platformumuzun bütünlüğünü ve güvenliğini korumak için kullanıcılar bu kullanım yönergelerine uymalıdır.",
+      "features": {
+        "ageRequirement": {
+          "title": "Yaş Şartı",
+          "description": "Kullanıcılar, K9Crypt'in hizmetlerini kullanmak için 13 yaşında veya daha büyük olmalıdır."
+        },
+        "legalUsage": {
+          "title": "Yasal Kullanım",
+          "description": "Yasa dışı içerik, faaliyetler veya geçerli yasaların ihlali yasaktır."
+        },
+        "fairUsage": {
+          "title": "Adil Kullanım",
+          "description": "Spam, otomatik kullanım veya hizmetin kötüye kullanılması yasaktır."
+        },
+        "serviceIntegrity": {
+          "title": "Hizmet Bütünlüğü",
+          "description": "Hizmet operasyonlarına veya güvenlik önlemlerine müdahale etmek yasaktır."
+        }
+      }
+    },
+    "userResponsibilities": {
+      "title": "Kullanıcı Sorumlulukları",
+      "description": "K9Crypt hizmetlerini kullanırken yükümlülükleriniz.",
+      "introduction": "K9Crypt kullanıcıları, hizmetin güvenliğini ve bütünlüğünü korumak için belirli sorumluluklara sahiptir. Bu sorumluluklar, tüm kullanıcılar için güvenli bir ortam sağlamaya yardımcı olur.",
+      "features": {
+        "securityPractices": {
+          "title": "Güvenlik Uygulamaları",
+          "description": "Mesaj güvenliğini sağlayın ve önerilen şifreleme uygulamalarını takip edin."
+        },
+        "vulnerabilityReporting": {
+          "title": "Güvenlik Açığı Bildirimi",
+          "description": "Herhangi bir güvenlik açığını veya hatayı ekibimize bildirin."
+        },
+        "accessControl": {
+          "title": "Erişim Kontrolü",
+          "description": "Yetkisiz erişim girişimleri veya erişim bilgilerinin paylaşılması yasaktır."
+        },
+        "responsibleUsage": {
+          "title": "Sorumlu Kullanım",
+          "description": "Şifreleme özelliklerini sorumlu ve etik bir şekilde kullanın."
+        }
+      }
+    },
+    "serviceChanges": {
+      "title": "Hizmet Değişiklikleri",
+      "description": "Hizmet değişiklikleri ile ilgili haklarımız.",
+      "introduction": "K9Crypt, kaliteyi ve güvenliği korumak için hizmetimizin bazı yönlerini değiştirme, güncelleme veya değiştirme hakkını saklı tutar. Önemli değişiklikleri kullanıcılarımıza bildirmeye çalışıyoruz.",
+      "features": {
+        "featureModifications": {
+          "title": "Özellik Değişiklikleri",
+          "description": "Gerektiğinde özellik ekleme, değiştirme veya kaldırma hakkı."
+        },
+        "serviceAvailability": {
+          "title": "Hizmet Erişilebilirliği",
+          "description": "Hizmetin kullanılabilirliğini veya erişim yöntemlerini değiştirebiliriz."
+        },
+        "termsUpdates": {
+          "title": "Koşul Güncellemeleri",
+          "description": "Bildirimde bulunarak şartları ve koşulları güncelleme hakkı."
+        },
+         "systemMaintenance": {
+          "title": "Sistem Bakımı",
+          "description": "Gerekli bakım ve iyileştirmeleri yapma hakkı."
+        }
+      }
+    },
+    "limitations": {
+      "title": "Sınırlamalar",
+      "description": "Hizmet sınırlamaları ve sorumluluk reddi beyanları.",
+      "introduction": "Mümkün olan en iyi hizmeti sunmaya çalışırken, K9Crypt'i kullanırken kullanıcıların bilmesi gereken belirli sınırlamalar ve sorumluluk reddi beyanları vardır.",
+      "features": {
+        "serviceUptime": {
+          "title": "Hizmet Çalışma Süresi",
+          "description": "%100 hizmet çalışma süresi veya kullanılabilirliği garantisi yoktur."
+        },
+        "forceMajeure": {
+          "title": "Mücbir Sebep",
+          "description": "Kontrolümüz dışındaki durumlardan sorumlu değiliz."
+        },
+         "technicalConstraints": {
+          "title": "Teknik Kısıtlamalar",
+          "description": "Hizmet, teknik ve operasyonel sınırlamalara tabidir."
+        },
+        "securityMeasures": {
+          "title": "Güvenlik Önlemleri",
+          "description": "Kullanıcılar, optimum koruma için güvenlik en iyi uygulamalarını takip etmelidir."
+        }
+      }
+    },
+    "questionsAboutTerms": {
+      "title": "Koşullar Hakkında Sorularınız mı Var?",
+      "description": "Hizmet koşullarımızı anlamanıza yardımcı olmak için buradayız.",
+      "emailUs": {
+        "title": "Bize E-posta Gönderin",
+        "description": "hi@k9crypt.xyz"
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Topluluğumuza katılın"
+      }
+    }
+  },
+  "updatesPage": {
+    "title": "Güncellemeler & Haberler",
+    "description": "K9Crypt'ten en son haberler, güvenlik ipuçları ve özellik güncellemeleri hakkında bilgi alın.",
+    "filters": {
+      "all": "Tümü",
+      "popular": "Popüler",
+      "recent": "Son"
+    },
+    "noUpdates": {
+      "title": "Güncelleme Bulunamadı",
+      "description": "Şu anda mevcut güncelleme bulunmamaktadır. Lütfen daha sonra tekrar kontrol edin."
+    },
+    "readMore": "Devamını Oku",
+    "post": {
+        "readTime": "{minutes} dk okuma",
+        "backToBlog": "Güncellemeler'e Dön"
+    }
+  },
+  "viewMessagePage": {
+    "title": "Mesajı Çöz",
+    "description": "Şifrelenmiş mesajınızı güvenli bir şekilde görüntüleyin.",
+    "form": {
+      "label": "Şifrelenmiş Mesaj",
+      "placeholder": "Şifrelenmiş mesajı buraya girin...",
+      "decryptButton": "Mesajı Çöz",
+      "decrypting": "Çözülüyor..."
+    },
+     "error": {
+        "noMessage": "Lütfen bir mesaj girin",
+        "failedToDecrypt": "Mesaj çözülemedi. Lütfen tekrar deneyin."
+    },
+    "result": {
+      "title": "Çözülmüş Mesaj:",
+      "copyButton": "Kopyala",
+      "downloadButton": "İndir",
+      "copySuccess": "Kopyalandı!",
+      "copyError": "Kopyalanamadı. Lütfen tekrar deneyin.",
+      "downloadSuccess": "İndirildi!"
+    },
+    "connectionError": {
+        "title": "Bağlantı Hatası",
+        "description": "Sunucuya bağlanılamıyor. Lütfen bağlantınızı kontrol edin ve tekrar deneyin.",
+        "serverStatus": "Sunucu Durumu: Çevrimdışı",
+        "serverDescription": "Sunucu şu anda kullanılamıyor. Ekibimiz bilgilendirildi ve sorunu çözmek için çalışıyor.",
+        "tryAgainButton": "Tekrar Dene",
+        "supportButton": "Destek"
+    }
+  },
+  "errorPage": {
+    "title": "404",
+    "subtitle": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir.",
+    "goHome": "Ana Sayfa",
+    "support": "Destek"
+  },
+  "k9shieldBanner": {
+    "title": "K9Shield: Kapsamlı Güvenlik Ara Katmanı",
+    "description": "Node.js uygulamaları için gelişmiş güvenlik ara katmanı, DDoS saldırılarına, hız sınırlamasına, IP yönetimine ve kapsamlı güvenlik özelliklerine karşı güçlü koruma sağlar",
+    "getStarted": "Başla",
+    "npmPackage": "NPM Paketi"
+  },
+  "k9shieldFaq": {
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "K9Shield'in özellikleri ve uygulanması hakkında detaylı bilgiler.",
+    "questions": {
+      "coreFeatures": {
+        "question": "K9Shield'in temel güvenlik özellikleri nelerdir?",
+        "answer": "K9Shield, aşamalı ceza sistemi ile DDoS koruması, rota özelinde limitlerle hız sınırlaması, CIDR notasyonu desteği ile IP yönetimi, istek doğrulama, güvenlik başlıkları yönetimi, kalıp algılama ve kapsamlı izleme ve günlük kaydı yetenekleri dahil olmak üzere kapsamlı güvenlik özellikleri sunar."
+      },
+      "ddosProtection": {
+        "question": "DDoS koruması nasıl çalışır?",
+        "answer": "K9Shield'in DDoS koruması, aşamalı ceza sistemi, bağlantı takibi, ani artış algılama, yol tabanlı hız sınırlaması ve yapılandırılabilir eşikler içerir. Bağlantı oranlarını izler, şüpheli IP'leri otomatik olarak engeller ve maksimum bağlantılar ve engelleme süreleri için esnek yapılandırma seçenekleri sunar."
+      },
+      "rateLimiting": {
+        "question": "Ne tür hız sınırlama seçenekleri mevcuttur?",
+        "answer": "K9Shield, rota özelinde limitler, esnek zaman aralıkları, kısıtlama desteği ve dağıtık sistem uyumluluğu sunar. Çeşitli uç noktalar ve HTTP metotları için özelleştirilebilir eşiklerle farklı limitler yapılandırabilirsiniz."
+      },
+      "ipManagement": {
+        "question": "IP yönetim sistemi nasıl çalışır?",
+        "answer": "IP yönetim sistemi, CIDR notasyonunu, IPv6 desteği, özel IP algılamayı, beyaz liste/kara liste işlevselliğini ve proxy desteğini destekler. Sağlanan API aracılığıyla IP adreslerini kolayca yönetebilir ve izleyebilirsiniz."
+      },
+      "securityHeaders": {
+        "question": "Hangi güvenlik başlıkları desteklenir?",
+        "answer": "K9Shield, İçerik Güvenlik Politikası (CSP), İzinler Politikası, HSTS desteği, XSS koruması ve çerçeve seçenekleri destekler. Bu başlıklar, uygulamanızın güvenlik duruşunu iyileştirmek için yapılandırılabilir."
+      },
+      "patternDetection": {
+        "question": "Kalıp algılama sistemi nasıl çalışır?",
+        "answer": "Kalıp algılama sistemi, SQL enjeksiyon kalıplarını, XSS kalıplarını, yol geçişi girişimleri tanımlar ve özel kalıpları destekler. Kendi algılama kalıplarınızı ekleyebilir ve yanıt eylemlerini yapılandırabilirsiniz."
+      },
+      "monitoring": {
+        "question": "Hangi izleme ve günlük kaydı özellikleri mevcuttur?",
+        "answer": "K9Shield, çoklu günlük seviyeleri, otomatik döndürme, arşiv yönetimi, performans metrikleri ve güvenlik olayı takibi sağlar. Günlük sistemi, IP takibi, istek süresi izleme, yol izleme ve ayrıntılı istek bilgilerini içerir."
+      },
+      "configuration": {
+        "question": "K9Shield'i uygulamam için nasıl yapılandırırım?",
+        "answer": "K9Shield, güvenlik, hız sınırlaması, DDoS koruması, günlük kaydı ve hata işleme ayarlarını içeren kapsamlı bir yapılandırma nesnesi aracılığıyla yapılandırılabilir. Bu ayarları uygulamanızın ihtiyaçlarına göre özelleştirebilirsiniz."
+      }
+    }
+  },
+  "k9shieldFeatures": {
+    "title": "Kapsamlı Güvenlik Özellikleri",
+    "subtitle": "Node.js uygulamaları için güçlü koruma sağlayan gelişmiş güvenlik ara yazılımı",
+    "items": {
+      "ddos": {
+        "title": "DDoS Koruması",
+        "description": "Aşamalı ceza sistemi, bağlantı takibi, ani artış algılama ve yapılandırılabilir eşiklerle yol tabanlı hız sınırlaması"
+      },
+      "rateLimiting": {
+        "title": "Hız Sınırlama",
+        "description": "Rota özelinde limitler, esnek zaman aralıkları, kısıtlama desteği ve dağıtık sistem uyumluluğu"
+      },
+      "ipManagement": {
+        "title": "IP Yönetimi",
+        "description": "CIDR notasyonu, IPv6 desteği, özel IP algılamayı, beyaz liste/kara liste işlevselliği ve proxy desteği"
+      },
+      "requestValidation": {
+        "title": "İstek Doğrulama",
+        "description": "Metot doğrulama, yük limitleri, başlık doğrulama ve SQL Enjeksiyonu, XSS, Yol Geçişi için kalıp algılama"
+      },
+      "securityHeaders": {
+        "title": "Güvenlik Başlıkları",
+        "description": "İçerik Güvenlik Politikası (CSP), İzinler Politikası, HSTS desteği, XSS koruması ve çerçeve seçenekleri"
+      },
+      "patternDetection": {
+        "title": "Kalıp Algılama",
+        "description": "SQL Enjeksiyon kalıpları, XSS kalıpları, yol geçişi girişimleri ve özel kalıp desteği"
+      },
+      "monitoring": {
+        "title": "İzleme ve Günlük Kaydı",
+        "description": "Çoklu günlük seviyeleri, otomatik döndürme, arşiv yönetimi ve güvenlik olayı takibi"
+      },
+      "requestTracking": {
+        "title": "İstek Takibi",
+        "description": "IP takibi, istek süresi, yol izleme ve ayrıntılı istek bilgileri"
+      }
+    }
+  },
+  "k9shieldSteps": {
+    "title": "Uygulama Adımları",
+    "subtitle": "Node.js uygulamanızda K9Shield'i uygulamak için eksiksiz kılavuz",
+    "items": {
+      "installation": {
+        "title": "Kurulum",
+        "description": "K9Shield'i npm kullanarak kurun: 'npm install k9shield' ve Node.js uygulamanıza içe aktarın",
+        "step": 1
+      },
+      "basicConfig": {
+        "title": "Temel Yapılandırma",
+        "description": "trustProxy, allowPrivateIPs, maxBodySize ve izin verilen metotlar dahil olmak üzere temel güvenlik ayarlarını yapılandırın",
+        "step": 2
+      },
+      "securityHeaders": {
+        "title": "Güvenlik Başlıkları Kurulumu",
+        "description": "Gelişmiş koruma için İçerik Güvenlik Politikası, İzinler Politikası, HSTS ve diğer güvenlik başlıklarını ayarlayın",
+        "step": 3
+      },
+      "rateLimiting": {
+        "title": "Hız Sınırlama Yapılandırması",
+        "description": "Farklı uç noktalar için rotaya özel hız limitlerini, zaman aralıklarını ve kısıtlama ayarlarını yapılandırın",
+        "step": 4
+      },
+      "ddosProtection": {
+        "title": "DDoS Koruması Kurulumu",
+        "description": "Yapılandırılabilir eşiklerle bağlantı takibi, ani artış algılama ve yol tabanlı hız sınırlaması ayarlayın",
+        "step": 5
+      },
+      "patternDetection": {
+        "title": "Kalıp Algılama",
+        "description": "Özel kalıp desteğiyle SQL enjeksiyonu, XSS ve yol geçişi kalıp algılamasını yapılandırın",
+        "step": 6
+      },
+      "logging": {
+        "title": "Günlük Kaydı Yapılandırması",
+        "description": "Güvenlik olayları ve istek takibi için günlük seviyelerini, döndürme ayarlarını ve izlemeyi ayarlayın",
+        "step": 7
+      },
+      "errorHandling": {
+        "title": "Hata İşleme",
+        "description": "Farklı güvenlik olayları için özel hata işleyicileri ve yanıt biçimlerini yapılandırın",
+        "step": 8
+      }
+    }
+  },
+  "k9cli": {
+    "banner": {
+      "title": "K9CLI: Terminalinizde ki Güvenli İletişim",
+      "description": "Terminalinizi güvenli iletişimin kalesine dönüştürün. Uçtan uca şifrelenmiş sohbet odaları parmaklarınızın ucunda.",
+      "npmPackage": "npm i k9cli",
+      "github": "K9Crypt/k9cli"
+    },
+    "features": {
+      "title": "Komut Satırı Gücü",
+      "subtitle": "Güvenli iletişim için güçlü CLI araçları",
+      "cli": {
+        "title": "CLI Arayüzü",
+        "description": "Hızlı işlemler için basit ve sezgisel komut satırı arayüzü"
+      },
+      "encryption": {
+        "title": "Uçtan Uca Şifreleme",
+        "description": "Güvenli mesaj ve oda yönetimi için askeri düzeyde şifreleme"
+      },
+      "commands": {
+        "title": "Zengin Komutlar",
+        "description": "Oda ve mesaj işlemleri için kapsamlı komut seti"
+      },
+      "crossPlatform": {
+        "title": "Çapraz Platform",
+        "description": "Tüm büyük işletim sistemlerinde sorunsuz çalışır"
+      }
+    },
+    "faq": {
+      "title": "Sıkça Sorulan Sorular",
+      "subtitle": "k9cli kullanımı ve özellikleri hakkında sıkça sorulan sorular",
+      "installation": {
+        "question": "k9cli'yi nasıl kurarım?",
+        "answer": "k9cli'yi npm kullanarak global olarak kurabilirsiniz: npm install -g k9cli. Sisteminizde Node.js'nin kurulu olduğundan emin olun."
+      },
+      "requirements": {
+        "question": "Sistem gereksinimleri nelerdir?",
+        "answer": "k9cli, Node.js sürüm 14 veya üstünü gerektirir. Windows, macOS ve Linux işletim sistemlerinde çalışır."
+      },
+      "commands": {
+        "question": "Mevcut ana komutlar nelerdir?",
+        "answer": "k9cli, oda yönetimi (oluşturma, katılma, listeleme) ve mesaj işlemleri (gönderme, görüntüleme) için komutlar sağlar. Tüm komutları görmek için k9cli --help kullanın."
+      },
+      "encryption": {
+        "question": "Şifreleme ne kadar güvenli?",
+        "answer": "k9cli, mesajlarınızın ve odalarınızın güvenli olmasını sağlamak için endüstri standardı uçtan uca şifreleme protokollerini kullanır."
+      },
+      "updates": {
+        "question": "k9cli'yi nasıl güncellerim?",
+        "answer": "k9cli'yi en son sürüme güncellemek için şunu kullanabilirsiniz: npm update -g k9cli"
+      },
+      "moreQuestions": "Hala sorularınız mı var?",
+      "openIssue": "GitHub'da bir sorun açın"
+    }
+  },
+  "k9vault": {
+    "banner": {
+      "title": "K9Vault: Verilerinizi Yerel Olarak Güvence Altına Alın",
+      "description": "K9Vault, hassas bilgilerinizi korumak ve gizliliğinizi sağlamak için gelişmiş güvenlik özellikleri sunar.",
+      "buttons": {
+        "getStarted": "Başla",
+        "download": "İndir"
+      }
+    },
+    "faq": {
+      "title": "Sıkça Sorulan Sorular",
+      "subtitle": "K9Vault'un özellikleri ve uygulaması hakkında detaylı bilgiler.",
+      "items": {
+        "isFree": {
+          "question": "K9Vault tamamen ücretsiz mi?",
+          "answer": "Evet, K9Vault tamamen ücretsizdir ve kullanıcıların kullanımına açıktır."
+        },
+        "isOpenSource": {
+          "question": "K9Vault açık kaynak mı?",
+          "answer": "Evet, K9Vault açık kaynaktır. Kaynak kodu Github'da mevcuttur."
+        },
+        "dataStorage": {
+          "question": "K9Vault verileri nerede saklar?",
+          "answer": "K9Vault verileri kullanıcının bilgisayarında saklar. Kullanıcı verileri yalnızca kullanıcının bilgisayarında saklanır ve herhangi bir sunucu ile iletişim kurmaz."
+        },
+        "encryption": {
+          "question": "K9Vault uçtan uca şifreli mi?",
+          "answer": "Evet, K9Vault uçtan uca şifrelidir."
+        }
+      }
+    },
+    "features": {
+      "title": "Kapsamlı Güvenlik Özellikleri",
+      "subtitle": "Node.js uygulamaları için güçlü koruma sağlayan gelişmiş güvenlik ara yazılımı",
+      "items": {
+        "free": {
+          "title": "Ücretsiz",
+          "description": "K9Vault kullanıcıların fotoğraflarını ücretsiz olarak şifrelemelerine olanak tanır."
+        },
+        "encryption": {
+          "title": "Uçtan Uca Şifreleme",
+          "description": "Kullanıcı fotoğrafları uçtan uca şifrelenir."
+        },
+        "local": {
+          "title": "Yerel Çalışma",
+          "description": "K9Vault tamamen kullanıcıların bilgisayarlarında çalışır, asla üçüncü parti bir sunucu ile iletişim kurmaz."
+        },
+        "openSource": {
+          "title": "Açık Kaynak",
+          "description": "K9Vault bir açık kaynak projesidir ve GitHub'da yayınlanmıştır."
+        }
+      }
+    },
+    "steps": {
+      "title": "Uygulama Adımları",
+      "subtitle": "K9Vault'u bilgisayarınızda uygulamak için kapsamlı rehber",
+      "items": {
+        "installation": {
+          "title": "Kurulum",
+          "description": "İlk olarak, K9Vault uygulamasını bilgisayarınıza yükleyin.",
+          "step": 1
+        },
+        "photoEncryption": {
+          "title": "Fotoğraf Şifreleme",
+          "description": "Uygulamayı açın ve Dosya Yükle düğmesine tıklayarak fotoğrafınızı yükleyin.",
+          "step": 2
+        },
+        "copyKey": {
+          "title": "Anahtarı Kopyalayın",
+          "description": "Fotoğrafınızı yükledikten sonra, konsolda sağlanan anahtarı kopyalayın.",
+          "step": 3
+        },
+        "photoDecryption": {
+          "title": "Fotoğraf Şifre Çözme (İsteğe Bağlı)",
+          "description": "Anahtarı kopyaladığınızdan emin olun ve K9Vault uygulamasına geri dönüp anahtarı girin ve şifrelenmiş fotoğrafınızı yükleyin.",
+          "step": 4
+        },
+        "complete": {
+          "title": "Bu Kadar",
+          "description": "K9Vault uygulaması artık bilgisayarınıza yüklendi ve fotoğrafınız güvenli bir şekilde şifrelendi ve depolandı.",
+          "step": 5
+        }
+      }
+    }
+  }
+}

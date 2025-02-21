@@ -1,0 +1,1248 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "blog": "Blog",
+        "updates": "Mises à jour",
+        "products": {
+            "title": "Produits",
+            "k9shield": "K9Shield",
+            "k9vault": "K9Vault"
+        },
+        "actions": {
+            "title": "Actions",
+            "createRoom": "Créer une salle",
+            "joinRoom": "Rejoindre une salle",
+            "createMessage": "Créer un message",
+            "viewMessage": "Afficher les messages",
+            "listRooms": "Lister les salles"
+        }
+    },
+    "banner": {
+        "title": "Vos messages, rien qu'à vous !",
+        "description": "Partagez vos pensées avec le monde en toute sécurité, en sachant que vous seul pouvez accéder à vos messages.",
+        "buttons": {
+            "getStarted": "Commencer",
+            "support": "Soutien"
+        }
+    },
+    "why": {
+        "title": "Pourquoi K9Crypt ?",
+        "subtitle": "Parce que nous fournissons des solutions de messagerie sécurisées et fiables avec notre équipe passionnée.",
+        "features": {
+            "noAccount": {
+                "title": "Aucun compte requis",
+                "description": "Vous n'avez pas besoin de créer de compte pour utiliser K9Crypt."
+            },
+            "encryption": {
+                "title": "Chiffrement de bout en bout",
+                "description": "Tous les messages sont chiffrés à l'aide du chiffrement de bout en bout."
+            },
+            "autoDelete": {
+                "title": "Suppression automatique",
+                "description": "Les fenêtres sont automatiquement supprimées après un certain temps."
+            },
+            "openSource": {
+                "title": "Open Source",
+                "description": "K9Crypt est open source et disponible sur GitHub."
+            }
+        }
+    },
+    "hitw": {
+        "title": "Comment ça marche",
+        "subtitle": "Apprenez à envoyer des messages sécurisés et à créer des salles avec K9Crypt.",
+        "sections": {
+            "messages": {
+                "title": "Messages",
+                "steps": {
+                    "write": {
+                        "title": "Écrivez votre message",
+                        "description": "Saisissez le message que vous souhaitez envoyer en toute sécurité."
+                    },
+                    "password": {
+                        "title": "Obtenez un mot de passe aléatoire",
+                        "description": "Le système génère un mot de passe aléatoire pour votre message."
+                    },
+                    "share": {
+                        "title": "Partagez le lien",
+                        "description": "Partagez le lien sécurisé généré avec le destinataire."
+                    },
+                    "access": {
+                        "title": "Accès du destinataire",
+                        "description": "Le destinataire utilise le lien et le mot de passe pour accéder au message."
+                    }
+                }
+            },
+            "rooms": {
+                "title": "Salles",
+                "steps": {
+                    "create": {
+                        "title": "Créer une salle",
+                        "description": "Configurez une salle sécurisée pour vos conversations."
+                    },
+                    "invite": {
+                        "title": "Inviter des membres",
+                        "description": "Invitez des membres dans votre salle avec un lien unique."
+                    },
+                    "chat": {
+                        "title": "Commencer à discuter",
+                        "description": "Commencez des conversations sécurisées dans votre salle."
+                    },
+                    "delete": {
+                        "title": "Suppression automatique",
+                        "description": "Les messages de la salle sont automatiquement supprimés après un certain temps."
+                    }
+                }
+            }
+        }
+    },
+    "faq": {
+        "title": "Questions Fréquemment Posées",
+        "subtitle": "Trouvez les réponses aux questions fréquemment posées sur les services et fonctionnalités de K9Crypt.",
+        "questions": {
+            "isFree": {
+                "question": "K9Crypt est-il vraiment gratuit?",
+                "answer": "Oui, K9Crypt est entièrement gratuit et ne nécessite aucun paiement ni abonnement."
+            },
+            "account": {
+                "question": "Dois-je créer un compte?",
+                "answer": "Non, K9Crypt ne nécessite aucune création de compte ni information personnelle."
+            },
+            "openSource": {
+                "question": "K9Crypt est-il open source?",
+                "answer": "Oui, K9Crypt est open source et disponible sur GitHub."
+            },
+            "connection": {
+                "question": "Que se passe-t-il si je perds ma connexion?",
+                 "answer": "K9Crypt essaie automatiquement de se reconnecter lorsque votre connexion est rétablie. Les messages non envoyés sont conservés jusqu'à ce que la connexion soit rétablie."
+            },
+            "messageLimit": {
+                "question": "Y a-t-il une limite de taille pour les messages?",
+                "answer": "Non, discutez sans restriction. Envoyez des messages illimités dans n'importe quelle salle et communiquez librement avec les autres."
+            }
+        }
+    },
+    "footer": {
+        "description": "Plateforme de messagerie sécurisée, rapide et fiable. Envoyez des messages chiffrés en toute confiance.",
+        "quickLinks": {
+            "title": "Liens Rapides",
+            "home": "Accueil",
+            "about": "À Propos",
+            "features": "Fonctionnalités",
+            "contact": "Contact",
+            "brand": "Ressources de Marque"
+        },
+        "support": {
+            "title": "Support",
+            "privacy": "Politique de Confidentialité",
+            "terms": "Conditions d'Utilisation",
+            "docs": "Documents"
+        },
+        "copyright": "© {year} K9Crypt. Tous droits réservés."
+    },
+    "about": {
+        "title": "À Propos de K9Crypt",
+        "subtitle": "Dédié à rendre la communication sécurisée accessible à tous.",
+        "tabs": {
+            "company": "Entreprise",
+            "values": "Nos Valeurs",
+            "team": "Notre Équipe",
+            "contact": "Contact"
+        },
+        "company": {
+            "title": "Entreprise",
+            "description": "Découvrez la mission et la vision de K9Crypt",
+            "introduction": "Fondée en juin 2024, K9Crypt est née d'une idée simple : la communication doit être privée par défaut. Notre équipe de développeurs s'est réunie pour créer une plateforme qui rend la messagerie sécurisée accessible à tous.",
+            "features": {
+                "mission": {
+                    "title": "Notre Mission",
+                    "description": "Fournir la plateforme de messagerie la plus sécurisée et privée, tout en maintenant la simplicité et l'accessibilité."
+                },
+                "vision": {
+                    "title": "Notre Vision",
+                    "description": "Créer un monde où la communication privée est un droit fondamental, et non un luxe."
+                },
+                "privacy": {
+                    "title": "Confidentialité d'Abord",
+                    "description": "Nous croyons que la confidentialité est un droit fondamental, pas une fonctionnalité."
+                },
+                "security": {
+                    "title": "Sécurité Intégrée",
+                    "description": "La sécurité est intégrée à tous les aspects de notre plateforme."
+                }
+            }
+        },
+        "values": {
+            "title": "Nos Valeurs",
+            "description": "Les principes qui guident notre travail",
+            "introduction": "Chez K9Crypt, nos valeurs façonnent tout ce que nous faisons. Elles guident nos décisions, influencent le développement de nos produits et définissent notre culture d'entreprise.",
+            "items": {
+                "privacy": {
+                    "title": "Confidentialité d'Abord",
+                    "description": "Nous priorisons la confidentialité des utilisateurs dans chaque décision."
+                },
+                "security": {
+                    "title": "Sécurité Intégrée",
+                    "description": "La sécurité n'est jamais une réflexion après coup, c'est le fondement de notre plateforme."
+                },
+                "empowerment": {
+                    "title": "Autonomisation des Utilisateurs",
+                    "description": "Nous donnons aux utilisateurs un contrôle total sur leurs communications."
+                },
+                "transparency": {
+                    "title": "Transparence",
+                    "description": "Nous communiquons ouvertement et honnêtement avec nos utilisateurs."
+                }
+            }
+        },
+        "team": {
+            "title": "Notre Équipe",
+            "description": "Rencontrez les personnes derrière K9Crypt",
+            "introduction": "Notre équipe est composée d'individus passionnés, dédiés à rendre la communication sécurisée accessible à tous.",
+            "members": {
+                "fatih": {
+                    "name": "Fatih Yılmaz",
+                    "role": "Fondateur & PDG",
+                    "description": "Fondateur et PDG de K9Crypt, Fatih Yılmaz est un leader technologique qui développe des solutions web innovantes en mettant l'accent sur l'expérience utilisateur."
+                },
+                "emin": {
+                    "name": "Emin Bıyıkçı",
+                    "role": "PDG & Développeur Front-end",
+                    "description": "Emin est un développeur front-end expérimenté, passionné par la création d'interfaces visuellement attrayantes et conviviales."
+                }
+            }
+        },
+        "contact": {
+            "title": "Contact",
+            "description": "Contactez-nous",
+            "introduction": "Vous avez des questions, des suggestions ou souhaitez rejoindre notre équipe ? Nous serions ravis de vous entendre.",
+            "types": {
+                "general": {
+                    "title": "Questions Générales",
+                    "email": "hi@k9crypt.xyz"
+                },
+                "support": {
+                    "title": "Support",
+                    "email": "support@k9crypt.xyz"
+                }
+            }
+        }
+    },
+    "blog": {
+        "title": "Blog & Actualités",
+        "description": "Restez informé des dernières nouvelles, des conseils de sécurité et des mises à jour de fonctionnalités de K9Crypt.",
+        "filters": {
+            "all": "Tous",
+            "popular": "Populaire",
+            "recent": "Récent"
+        },
+        "noPosts": {
+            "title": "Aucun Article de Blog Trouvé",
+            "description": "Il n'y a pas d'articles de blog disponibles pour le moment. Veuillez vérifier à nouveau plus tard."
+        },
+        "readMore": "Lire la Suite",
+        "post": {
+            "readTime": "{minutes} min de lecture",
+            "share": "Partager l'article",
+            "backToBlog": "Retour au Blog"
+        }
+    },
+    "brand": {
+        "title": "Ressources de la Marque",
+        "banner": {
+            "title": "Bannière",
+            "description": "La bannière promotionnelle officielle de K9Crypt qui démontre notre engagement envers la messagerie sécurisée et la confidentialité."
+        },
+        "logos": {
+            "standard": {
+                "name": "Logo Standard K9Crypt",
+                "description": "Notre logo principal qui représente l'approche moderne de K9Crypt en matière de messagerie sécurisée et de confidentialité des données."
+            },
+            "icon": {
+                "name": "Icône K9Crypt",
+                "description": "Version compacte du logo, parfaite pour les icônes d'application, les favicons et les applications à petite échelle."
+            },
+            "light": {
+                "name": "Logo Clair K9Crypt",
+                "description": "Version blanche du logo, optimisée pour les arrière-plans sombres et conservant la visibilité de la marque."
+            },
+            "dark": {
+                "name": "Logo Sombre K9Crypt",
+                "description": "Version noire du logo, conçue pour les arrière-plans clairs et les supports imprimés."
+            }
+        },
+        "colors": {
+            "title": "Palette de Couleurs",
+            "background": {
+                "name": "Arrière-plan",
+                "usage": "Couleur principale de l'arrière-plan."
+            },
+            "accent": {
+                "name": "Vert d'Accentuation",
+                "usage": "Couleur d'accentuation principale."
+            },
+            "whiteGray": {
+                "name": "Gris Blanc",
+                "usage": "Couleur de l'arrière-plan du conteneur."
+            },
+            "lightGray": {
+                "name": "Gris Clair",
+                "usage": "Conteneur secondaire et éléments de chargement."
+            }
+        },
+        "typography": {
+            "title": "Typographie",
+            "primary": {
+                "title": "Police Primaire",
+                "description": "La police principale utilisée pour le corps du texte et les titres sur l'ensemble du site web."
+            },
+            "secondary": {
+                "title": "Police Secondaire",
+                "description": "La police décorative utilisée dans la bannière promotionnelle et les titres spéciaux."
+            }
+        }
+    },
+    "contact": {
+        "title": "Contactez-nous",
+        "description": "Besoin d'aide ou envie de discuter ? Contactez-nous.",
+        "social": {
+            "github": {
+                "title": "GitHub",
+                "description": "Code source ouvert et problèmes."
+            },
+            "twitter": {
+                "title": "X (Twitter)",
+                "description": "Suivez-nous pour les mises à jour et les actualités."
+            },
+            "telegram": {
+                "title": "Telegram",
+                "description": "Discutez avec nous et obtenez de l'aide."
+            },
+            "discord": {
+                "title": "Discord",
+                "description": "Rejoignez notre communauté et obtenez de l'aide."
+            }
+        }
+    },
+    "room": {
+        "create": {
+            "title": "Créer une salle",
+            "description": "Configurez une salle de chat sécurisée et commencez à discuter avec d'autres.",
+            "error": {
+                "connectionTitle": "Erreur de connexion",
+                "connectionDesc": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion et réessayer.",
+                "serverStatus": "État du serveur : Hors ligne",
+                "serverDesc": "Le serveur est actuellement indisponible. Notre équipe a été informée et travaille à la résolution du problème.",
+                "tryAgain": "Réessayer",
+                "support": "Assistance"
+            },
+            "placeholder": {
+              "enterUsername": "Nom d'utilisateur",
+              "enterRoomName": "Nom de la salle",
+              "enterPassword": "Mot de passe de la salle (au moins 6 caractères)"
+            },
+            "form": {
+                "username": "Nom d'utilisateur",
+                "roomName": "Nom de la salle",
+                "public": "Public",
+                "private": "Privé",
+                "password": "Mot de passe de la salle",
+                "passwordHint": "Le mot de passe doit comporter au moins 6 caractères.",
+                "lifetime": "Durée de vie de la salle",
+                "lifetimeHint": "Combien de temps voulez-vous garder la salle ouverte ?",
+                "oneDay": "1 Jour",
+                "oneMonth": "1 Mois",
+                "oneYear": "1 An",
+                "permanent": "Permanent",
+                "creating": "Création en cours...",
+                "create": "Créer une salle",
+                "noCategory": "Sélectionnez une catégorie",
+                "category": "Catégorie",
+                "categories": {
+                  "general": "Général",
+                  "software": "Logiciel",
+                  "chat": "Discussion",
+                  "gaming": "Jeux",
+                  "support": "Support",
+                  "other": "Autre"
+                }
+              },
+            "success": {
+                "roomId": "ID de la salle",
+                "copy": "Copier",
+                "join": "Rejoindre la salle"
+            },
+            "copySuccess": "L'ID de la salle a été copié dans le presse-papiers.",
+            "copyError": "Impossible de copier l'ID de la salle. Veuillez réessayer.",
+            "errors": {
+                "noUsername": "Veuillez saisir un nom d'utilisateur",
+                "usernameTooShort": "Le nom d'utilisateur doit comporter au moins 3 caractères",
+                "usernameRestricted": "Ce nom d'utilisateur est restreint. Veuillez en choisir un autre.",
+                "noRoomName": "Veuillez saisir un nom de salle",
+                 "roomNameLength": "Le nom de la salle doit comporter entre 3 et 50 caractères",
+                "noPassword": "Veuillez saisir un mot de passe de salle",
+                "passwordTooShort": "Le mot de passe de la salle doit comporter au moins 6 caractères",
+                "usernameTaken": "Ce nom d'utilisateur est déjà utilisé dans une autre salle"
+            }
+        },
+        "join": {
+            "title": "Rejoindre une salle",
+            "description": "Rejoignez une salle de chat sécurisée et commencez à discuter avec d'autres.",
+             "success": "Vous avez rejoint la salle avec succès !",
+            "form": {
+                "roomId": "ID de la salle",
+                "password": "Mot de passe de la salle",
+                "passwordHint": "Un mot de passe est requis pour les salles privées",
+                "checkingRoom": "Vérification de la salle...",
+                "joining": "Adhésion en cours...",
+                "joinRoom": "Rejoindre la salle"
+            },
+            "errors": {
+                "invalidPassword": "Mot de passe invalide. Veuillez réessayer.",
+                "failedToJoin": "Impossible de rejoindre la salle. Veuillez réessayer.",
+                "failedToCheck": "Impossible de vérifier le type de salle. Veuillez réessayer."
+            }
+        },
+        "chat": {
+            "error": {
+                "notFoundTitle": "Salle introuvable",
+                "notFoundDesc": "La salle est introuvable. Veuillez rejoindre une autre salle.",
+                "goBack": "Retour",
+                "support": "Assistance"
+            },
+            "imageUpload": {
+                "title": "Téléchargement de l'image",
+                "description": "Votre image est en cours de téléchargement...",
+                "error": {
+                    "sizeLimit": "La taille de l'image doit être inférieure à 1 Go",
+                    "uploadFailed": "Impossible de traiter l'image"
+                }
+            },
+            "messages": {
+                "imageUnavailable": {
+                    "title": "Impossible de charger l'image",
+                    "icon": "Image non disponible"
+                }
+            },
+            "passReq": {
+                "title": "Saisir le mot de passe",
+                "description": "Cette salle est privée et il est obligatoire de saisir le mot de passe.",
+                "password": "Mot de passe"
+            },
+            "sending": "Envoi en cours...",
+            "sent": "Envoyé",
+            "failed": "Échec de l'envoi",
+            "roomName": "Nom de la salle",
+            "roomType": "Type de salle",
+            "searchButton": "Rechercher",
+            "bookmarksButton": "Favoris",
+            "leaveButton": "Quitter la salle",
+            "searchMessage": "Rechercher un message",
+            "searchMessageDescription": "Saisissez le message que vous souhaitez trouver",
+            "messageNotFound": "Message introuvable",
+            "searchNotFoundDescription": "Aucun message ne correspond à vos critères de recherche.",
+            "imageUnavailable": "Image non disponible",
+            "copyMessage": "Copier",
+            "gotoMessage": "Aller",
+            "copyPopup": {
+                "id": "Copier l'ID de la salle",
+                "description": "Utilisez cet ID de salle pour rejoindre la salle."
+            },
+            "imageUploadFailed": "Impossible de télécharger l'image",
+            "messageInfo": {
+                "title": "Informations sur le message",
+                "readBy": "Lu par",
+                "people": "Personnes",
+                "noReadersYet": "Pas encore lu"
+            },
+            "bookmarkPanel": {
+                "title": "Favoris",
+                "description": "Ajoutez vos messages importants à vos favoris.",
+                "noBookmarksYet": "Aucun favori pour le moment",
+                "noBookmarksYetDescription": "Ajoutez des messages à vos favoris et accédez-y facilement."
+            },
+            "replyingMessage": "Réponse à ce message",
+            "emojiPicker": {
+                "placeholder": "Rechercher un emoji...",
+                "smileysAndemotion": "Smileys et émotions",
+                "peopleAndbody": "Personnes et corps",
+                "animalsAndnature": "Animaux et nature",
+                "foodAnddrink": "Nourriture et boissons",
+                "activities": "Activités",
+                "travelAndplaces": "Voyages et lieux",
+                "objects": "Objets",
+                "symbols": "Symboles",
+                "noEmojisFound": "Aucun emoji trouvé",
+                "insert": "Cliquer pour insérer",
+                "length": "Emoji"
+            },
+            "imageSelector": {
+                "uploading": "Téléchargement de l'image..."
+            },
+            "messageInput": {
+                "placeholder": "Écrire un message..."
+            }
+        }
+    },
+    "message": {
+        "create": {
+            "title": "Créer un message chiffré",
+            "description": "Sécurisez votre message avec un chiffrement de bout en bout.",
+            "error": {
+                "connectionTitle": "Erreur de connexion",
+                "connectionDesc": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion et réessayer.",
+                "serverStatus": "État du serveur : Hors ligne",
+                "serverDesc": "Le serveur est actuellement indisponible. Notre équipe a été informée et travaille à la résolution du problème.",
+                "tryAgain": "Réessayer",
+                "support": "Assistance"
+            },
+            "form": {
+                "messageLabel": "Votre message",
+                "messagePlaceholder": "Saisissez votre message ici...",
+                "encrypting": "Chiffrement en cours...",
+                "encrypt": "Chiffrer le message"
+            },
+            "result": {
+                "title": "Message chiffré :",
+                "copy": "Copier",
+                "view": "Afficher le message"
+            },
+             "copySuccess": "Le message chiffré a été copié dans le presse-papiers.",
+            "copyError": "Impossible de copier le message chiffré. Veuillez réessayer.",
+            "errors": {
+                "noMessage": "Veuillez saisir un message",
+                "failedToCreate": "Impossible de créer le message. Veuillez réessayer."
+            }
+        }
+    },
+    "features": {
+        "title": "Fonctionnalités",
+        "subtitle": "Découvrez les puissantes fonctionnalités qui font de K9Crypt la plateforme de messagerie la plus sécurisée.",
+        "overview": {
+            "title": "Aperçu",
+            "description": "Fonctionnalités de base de K9Crypt",
+            "content": {
+                "introduction": "K9Crypt combine de puissantes fonctionnalités de sécurité avec la facilité d'utilisation pour offrir l'expérience de messagerie la plus sécurisée.",
+                "features": {
+                    "encryption": {
+                        "title": "Chiffrement de bout en bout",
+                        "description": "Un chiffrement de niveau militaire garantit que vos messages restent privés et sécurisés."
+                    },
+                    "autoDelete": {
+                        "title": "Suppression automatique",
+                        "description": "Les salles sont automatiquement supprimées à l'intervalle que vous spécifiez."
+                    },
+                    "anonymous": {
+                        "title": "Utilisation anonyme",
+                        "description": "Utilisez K9Crypt sans créer de compte ni partager d'informations personnelles."
+                    },
+                     "secureRooms": {
+                        "title": "Salles sécurisées",
+                        "description": "Créez des salles de discussion chiffrées pour les conversations de groupe."
+                    }
+                }
+            }
+        },
+        "security": {
+            "title": "Sécurité",
+            "description": "Fonctionnalités de chiffrement avancées",
+            "content": {
+                "introduction": "Nos fonctionnalités de sécurité sont conçues pour offrir le plus haut niveau de protection pour vos communications.",
+                "features": {
+                    "aes": {
+                        "title": "Chiffrement AES-256",
+                        "description": "Algorithme de chiffrement standard de l'industrie pour une sécurité maximale."
+                    },
+                    "zeroKnowledge": {
+                        "title": "Architecture Zero-Knowledge",
+                         "description": "Nous ne pouvons pas lire vos messages - vous et vos destinataires uniquement le pouvez."
+                    },
+                    "noPlaintext": {
+                        "title": "Pas de stockage en texte clair",
+                        "description": "Les messages ne sont jamais stockés sous une forme lisible sur nos serveurs."
+                    },
+                    "secureKey": {
+                        "title": "Échange de clés sécurisé",
+                        "description": "Des protocoles d'échange de clés avancés garantissent une communication sécurisée."
+                    }
+                }
+            }
+        },
+        "privacy": {
+            "title": "Confidentialité",
+            "description": "Votre confidentialité est notre priorité",
+            "content": {
+                "introduction": "Nous avons construit K9Crypt en gardant la confidentialité à l'esprit, en veillant à ce que vos informations personnelles restent privées.",
+                "features": {
+                    "noRegistration": {
+                        "title": "Aucune inscription requise",
+                        "description": "Utilisez la plateforme sans créer de compte."
+                    },
+                    "noDataCollection": {
+                        "title": "Aucune collecte de données personnelles",
+                        "description": "Nous ne collectons ni ne stockons aucune information personnelle."
+                    },
+                    "anonymity": {
+                        "title": "Anonymat complet",
+                        "description": "Votre identité reste cachée tout au long de votre utilisation."
+                    },
+                    "autoDeletion": {
+                        "title": "Suppression automatique des messages",
+                        "description": "Les messages sont automatiquement supprimés après 4 heures."
+                    }
+                }
+            }
+        },
+        "rooms": {
+            "title": "Salles sécurisées",
+            "description": "Fonctionnalités de messagerie de groupe",
+            "content": {
+                "introduction": "Créez et gérez des salles sécurisées pour des conversations de groupe privées avec un chiffrement complet.",
+                "features": {
+                    "privateRoom": {
+                        "title": "Création de salles privées",
+                        "description": "Créez des salles chiffrées pour des discussions de groupe sécurisées."
+                    },
+                    "secureInvitations": {
+                        "title": "Invitations sécurisées",
+                        "description": "Invitez des membres en utilisant des liens d'invitation chiffrés."
+                    },
+                    "groupEncryption": {
+                        "title": "Chiffrement de groupe",
+                        "description": "Tous les messages de groupe sont chiffrés de bout en bout."
+                    },
+                    "memberPrivacy": {
+                        "title": "Confidentialité des membres",
+                        "description": "Les membres du groupe restent anonymes les uns envers les autres."
+                    }
+                }
+            }
+        },
+        "readyToStart": {
+            "title": "Prêt à commencer ?",
+            "description": "Découvrez la plateforme de messagerie la plus sécurisée dès aujourd'hui.",
+            "getStarted": "Commencer",
+            "learnMore": "En savoir plus"
+        }
+    },
+    "list": {
+        "noRooms": "Aucune pièce trouvée",
+        "noActiveRooms": "Aucune pièce active trouvée",
+        "availableRooms": "Pièces disponibles",
+        "activeRoomsList": "Liste des pièces actuellement actives.",
+        "totalRooms": "Il y a actuellement {total} pièces.",
+        "copyRoomName": "Copier le nom de la pièce",
+        "copyRoomId": "Copier l'ID de la pièce",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "page": "Page {current} / {total}",
+        "expiresAt":"Ablaufdatum",
+        "roomType": "Type de salle",
+        "all": "Tout",
+        "private": "Privé",
+        "public": "Publique",
+        "sortBy": "Trier par",
+        "none": "Aucun",
+        "users": "Utilisateurs",
+        "messages": "Messages",
+        "newest": "Le plus récent",
+        "activity": "Activité",
+        "minUsers": "Nombre minimal d'utilisateurs",
+        "remainingTime": {
+          "permanent": "Dauerhaft",
+          "hours": "{hours} Stunden",
+          "minutes": "{minutes} Minuten",
+          "seconds": "{seconds} Sekunden",
+          "days": "{days} Tage",
+          "expired": "Abgelaufen"
+        },
+        "category": "Catégorie",
+        "categories": {
+          "general": "Général",
+          "software": "Logiciel",
+          "chat": "Discussion",
+          "gaming": "Jeux",
+          "support": "Support",
+          "other": "Autre"
+        },
+        "searchPlaceholder": "Rechercher une salle..."
+      },
+    "privacyPage": {
+    "title": "Politique de confidentialité",
+    "description": "Chez K9Crypt, nous prenons votre vie privée au sérieux. Notre service est construit sur le principe d'un anonymat et d'une sécurité complets.",
+    "lastUpdated": "Dernière mise à jour : 02.02.2025",
+    "dataCollection": {
+      "title": "Collecte de données",
+      "description": "Nous ne collectons aucune information personnelle. K9Crypt fonctionne de manière totalement anonyme.",
+      "introduction": "K9Crypt est construit sur la base de la confidentialité et de l'anonymat. Nous croyons qu'il faut fournir une communication sécurisée sans compromettre la confidentialité des utilisateurs.",
+      "features": {
+        "noPersonalData": {
+          "title": "Aucune donnée personnelle",
+          "description": "Nous ne collectons ni ne stockons aucune information personnelle, y compris les adresses IP ou les données de l'appareil."
+        },
+        "noCookies": {
+          "title": "Pas de cookies",
+          "description": "Notre service fonctionne sans utiliser de cookies ni de mécanismes de suivi."
+        },
+        "noUserTracking": {
+          "title": "Pas de suivi des utilisateurs",
+          "description": "Nous n'implémentons aucun script d'analyse ou de suivi pour surveiller le comportement des utilisateurs."
+        },
+        "noRegistration": {
+          "title": "Aucune inscription",
+          "description": "Utilisez notre service sans créer de compte ni fournir d'informations personnelles."
+        }
+      }
+    },
+    "messageSecurity": {
+      "title": "Sécurité des messages",
+      "description": "Vos messages sont protégés par des méthodes de chiffrement standard.",
+      "introduction": "Nous mettons en œuvre des mesures de sécurité robustes pour garantir que vos messages restent privés et sécurisés tout au long de leur cycle de vie.",
+      "features": {
+        "endToEndEncryption": {
+          "title": "Chiffrement de bout en bout",
+          "description": "Tous les messages sont chiffrés sur votre appareil avant d'être transmis."
+        },
+        "autoDeletion": {
+          "title": "Suppression automatique",
+          "description": "Les salons sont automatiquement supprimés à l'intervalle de temps que vous avez défini."
+        },
+        "noBackups": {
+          "title": "Pas de sauvegardes",
+          "description": "Nous ne conservons aucune sauvegarde ni copie de vos messages."
+        },
+        "secureProtocol": {
+          "title": "Protocole sécurisé",
+          "description": "Toutes les communications utilisent des connexions WebSocket sécurisées avec le chiffrement TLS."
+        }
+      }
+    },
+    "thirdParties": {
+      "title": "Tiers",
+      "description": "Nous ne partageons aucune information avec des tiers.",
+      "introduction": "Votre vie privée est notre priorité. Nous opérons de manière indépendante et ne partageons aucune donnée avec des tiers.",
+      "features": {
+        "noDataSharing": {
+          "title": "Aucun partage de données",
+          "description": "Nous ne partageons ni ne vendons jamais aucune information à des tiers."
+        },
+        "noAnalytics": {
+          "title": "Pas d'analyse",
+          "description": "Nous n'utilisons pas de services d'analyse tiers."
+        },
+        "noAds": {
+          "title": "Pas de publicités",
+          "description": "Notre service est exempt de publicités et de scripts de suivi."
+        },
+        "independentOperation": {
+          "title": "Fonctionnement indépendant",
+          "description": "Nous avons un contrôle total sur notre infrastructure et nos services."
+        }
+      }
+    },
+    "yourRights": {
+      "title": "Vos droits",
+      "description": "Vous avez un contrôle total sur vos données et vos messages.",
+      "introduction": "Nous respectons et protégeons vos droits numériques, en veillant à ce que vous ayez le contrôle de votre communication.",
+      "features": {
+        "messageControl": {
+          "title": "Contrôle des messages",
+          "description": "Supprimez vos messages à tout moment avant la suppression automatique."
+        },
+        "anonymity": {
+          "title": "Anonymat",
+          "description": "Préservez votre anonymat tout au long de votre utilisation de notre service."
+        },
+        "secureCommunication": {
+          "title": "Communication sécurisée",
+          "description": "Droit à une communication privée et chiffrée sans surveillance."
+        },
+        "dataPortability": {
+          "title": "Portabilité des données",
+          "description": "Exportez vos messages actifs si nécessaire."
+        }
+      }
+    },
+     "contactUs": {
+      "title": "Contactez-nous",
+      "description": "Vous avez des questions sur notre politique de confidentialité ? Nous sommes là pour vous aider.",
+       "emailUs": {
+        "title": "Envoyez-nous un e-mail",
+        "description": "hi@k9crypt.xyz"
+      },
+      "github": {
+        "title": "GitHub",
+        "description": "Visitez notre dépôt"
+      }
+    }
+  },
+  "startPage": {
+    "roomSectionTitle": "Catégorie de salle",
+    "messageSectionTitle": "Catégorie de message",
+    "connectionError": {
+      "title": "Erreur de connexion",
+      "description": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion et réessayer.",
+      "serverStatus": "État du serveur : Hors ligne",
+      "serverDescription": "Le serveur est actuellement indisponible. Notre équipe a été informée et travaille à la résolution du problème.",
+      "tryAgainButton": "Réessayer",
+      "supportButton": "Assistance"
+    },
+    "mainContent": {
+      "title": "Où voulez-vous aller ?",
+      "description": "Laissez-nous vous aider à revenir à la bonne destination."
+    },
+    "steps": [
+      {
+        "title": "Créer une salle",
+        "description": "Créez une nouvelle salle et invitez vos amis à vous rejoindre."
+      },
+      {
+        "title": "Rejoindre une salle",
+        "description": "Rejoignez une salle existante et commencez à envoyer des messages."
+      },
+      {
+        "title": "Créer un message chiffré",
+        "description": "Créez un message chiffré et partagez-le avec des personnes."
+      },
+      {
+        "title": "Déchiffrer un message",
+        "description": "Déchiffrez votre message chiffré ou un message chiffré."
+      },
+      {
+        "title": "Liste des salles",
+        "description": "Afficher toutes les salles."
+      }
+    ]
+  },
+  "termsPage": {
+    "title": "Conditions d'utilisation",
+    "description": "En utilisant K9Crypt, vous acceptez ces conditions. Veuillez les lire attentivement avant d'utiliser nos services.",
+    "lastUpdated": "Dernière mise à jour : 15/11/2024",
+    "serviceUsage": {
+      "title": "Utilisation du service",
+      "description": "Directives pour l'utilisation des services de messagerie de K9Crypt.",
+      "introduction": "K9Crypt est conçu pour fournir des services de messagerie sécurisés et privés. Pour maintenir l'intégrité et la sécurité de notre plateforme, les utilisateurs doivent respecter ces directives d'utilisation.",
+      "features": {
+        "ageRequirement": {
+          "title": "Condition d'âge",
+          "description": "Les utilisateurs doivent être âgés de 13 ans ou plus pour utiliser les services de K9Crypt."
+        },
+        "legalUsage": {
+          "title": "Utilisation légale",
+          "description": "Le contenu illégal, les activités ou les violations des lois applicables sont interdits."
+        },
+        "fairUsage": {
+          "title": "Utilisation équitable",
+          "description": "Le spam, l'utilisation automatisée ou l'abus du service sont interdits."
+        },
+        "serviceIntegrity": {
+          "title": "Intégrité du service",
+          "description": "Il est interdit d'interférer avec les opérations du service ou les mesures de sécurité."
+        }
+      }
+    },
+    "userResponsibilities": {
+      "title": "Responsabilités de l'utilisateur",
+      "description": "Vos obligations lors de l'utilisation des services K9Crypt.",
+      "introduction": "Les utilisateurs de K9Crypt ont certaines responsabilités pour maintenir la sécurité et l'intégrité du service. Ces responsabilités aident à assurer un environnement sûr pour tous les utilisateurs.",
+      "features": {
+        "securityPractices": {
+          "title": "Pratiques de sécurité",
+          "description": "Assurez la sécurité des messages et suivez les pratiques de chiffrement recommandées."
+        },
+        "vulnerabilityReporting": {
+          "title": "Signalement des vulnérabilités",
+          "description": "Signalez toute vulnérabilité ou erreur à notre équipe."
+        },
+        "accessControl": {
+          "title": "Contrôle d'accès",
+          "description": "Les tentatives d'accès non autorisé ou le partage des informations d'accès sont interdits."
+        },
+        "responsibleUsage": {
+          "title": "Utilisation responsable",
+          "description": "Utilisez les fonctionnalités de chiffrement de manière responsable et éthique."
+        }
+      }
+    },
+    "serviceChanges": {
+      "title": "Modifications du service",
+      "description": "Nos droits concernant les modifications du service.",
+      "introduction": "K9Crypt se réserve le droit de modifier, mettre à jour ou changer certains aspects de notre service afin de maintenir la qualité et la sécurité. Nous nous efforçons d'informer nos utilisateurs de tout changement important.",
+      "features": {
+        "featureModifications": {
+          "title": "Modifications des fonctionnalités",
+          "description": "Droit d'ajouter, de modifier ou de supprimer des fonctionnalités si nécessaire."
+        },
+        "serviceAvailability": {
+          "title": "Disponibilité du service",
+          "description": "Nous pouvons modifier la disponibilité du service ou les méthodes d'accès."
+        },
+        "termsUpdates": {
+          "title": "Mises à jour des conditions",
+          "description": "Droit de mettre à jour les termes et conditions avec notification."
+        },
+         "systemMaintenance": {
+          "title": "Maintenance du système",
+          "description": "Droit d'effectuer la maintenance et les améliorations nécessaires."
+        }
+      }
+    },
+    "limitations": {
+      "title": "Limitations",
+      "description": "Limitations du service et clauses de non-responsabilité.",
+      "introduction": "Bien que nous nous efforcions de fournir le meilleur service possible, il existe certaines limitations et clauses de non-responsabilité que les utilisateurs doivent connaître lors de l'utilisation de K9Crypt.",
+      "features": {
+        "serviceUptime": {
+          "title": "Temps de fonctionnement du service",
+          "description": "Aucune garantie de temps de fonctionnement ou de disponibilité du service à 100 %."
+        },
+        "forceMajeure": {
+          "title": "Force majeure",
+          "description": "Nous ne sommes pas responsables des situations indépendantes de notre volonté."
+        },
+         "technicalConstraints": {
+          "title": "Contraintes techniques",
+          "description": "Le service est soumis à des limitations techniques et opérationnelles."
+        },
+        "securityMeasures": {
+          "title": "Mesures de sécurité",
+          "description": "Les utilisateurs doivent suivre les meilleures pratiques de sécurité pour une protection optimale."
+        }
+      }
+    },
+    "questionsAboutTerms": {
+      "title": "Des questions sur les conditions?",
+      "description": "Nous sommes là pour vous aider à comprendre nos conditions d'utilisation.",
+      "emailUs": {
+        "title": "Envoyez-nous un e-mail",
+        "description": "hi@k9crypt.xyz"
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Rejoignez notre communauté"
+      }
+    }
+  },
+  "updatesPage": {
+    "title": "Mises à jour et actualités",
+    "description": "Restez informé des dernières nouvelles, des conseils de sécurité et des mises à jour des fonctionnalités de K9Crypt.",
+    "filters": {
+      "all": "Tous",
+      "popular": "Populaire",
+      "recent": "Récent"
+    },
+    "noUpdates": {
+      "title": "Aucune mise à jour trouvée",
+      "description": "Il n'y a pas de mise à jour disponible pour le moment. Veuillez vérifier plus tard."
+    },
+    "readMore": "Lire la suite",
+    "post": {
+        "readTime": "{minutes} min de lecture",
+        "backToBlog": "Retour aux mises à jour"
+    }
+  },
+  "viewMessagePage": {
+    "title": "Décrypter le message",
+    "description": "Visualisez votre message chiffré en toute sécurité.",
+    "form": {
+      "label": "Message chiffré",
+      "placeholder": "Saisissez le message chiffré ici...",
+      "decryptButton": "Décrypter le message",
+      "decrypting": "Décryptage en cours..."
+    },
+     "error": {
+        "noMessage": "Veuillez saisir un message",
+        "failedToDecrypt": "Impossible de décrypter le message. Veuillez réessayer."
+    },
+    "result": {
+      "title": "Message décrypté:",
+      "copyButton": "Copier",
+      "downloadButton": "Télécharger",
+      "copySuccess": "Copié!",
+      "copyError": "Impossible de copier. Veuillez réessayer.",
+      "downloadSuccess": "Téléchargé!"
+    },
+    "connectionError": {
+        "title": "Erreur de connexion",
+        "description": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion et réessayer.",
+        "serverStatus": "État du serveur: Hors ligne",
+        "serverDescription": "Le serveur est actuellement indisponible. Notre équipe a été informée et travaille à la résolution du problème.",
+        "tryAgainButton": "Réessayer",
+        "supportButton": "Support"
+    }
+  },
+  "errorPage": {
+    "title": "404",
+    "subtitle": "Page non trouvée",
+    "description": "La page que vous recherchez a peut-être été déplacée, supprimée ou n'a jamais existé.",
+    "goHome": "Accueil",
+    "support": "Support"
+  },
+  "k9shieldBanner": {
+    "title": "K9Shield : Intergiciel de sécurité complet",
+    "description": "Intergiciel de sécurité avancé pour les applications Node.js, offrant une protection robuste contre les attaques DDoS, la limitation du débit, la gestion des adresses IP et des fonctionnalités de sécurité complètes",
+    "getStarted": "Commencer",
+    "npmPackage": "Package NPM"
+  },
+  "k9shieldFaq": {
+    "title": "Foire aux questions",
+    "subtitle": "Informations détaillées sur les fonctionnalités et la mise en œuvre de K9Shield.",
+    "questions": {
+      "coreFeatures": {
+        "question": "Quelles sont les principales fonctionnalités de sécurité de K9Shield ?",
+        "answer": "K9Shield offre des fonctionnalités de sécurité complètes, notamment la protection DDoS avec un système de pénalité progressive, la limitation du débit avec des limites spécifiques à l'itinéraire, la gestion des adresses IP avec prise en charge de la notation CIDR, la validation des requêtes, la gestion des en-têtes de sécurité, la détection de modèles et des capacités complètes de surveillance et de journalisation."
+      },
+      "ddosProtection": {
+        "question": "Comment fonctionne la protection DDoS ?",
+        "answer": "La protection DDoS de K9Shield comprend un système de pénalité progressive, le suivi des connexions, la détection des pics, la limitation du débit basée sur l'itinéraire et des seuils configurables. Il surveille les taux de connexion, bloque automatiquement les adresses IP suspectes et offre des options de configuration flexibles pour les connexions maximales et les durées de blocage."
+      },
+      "rateLimiting": {
+        "question": "Quels types d'options de limitation du débit sont disponibles ?",
+        "answer": "K9Shield offre des limites spécifiques à l'itinéraire, des intervalles de temps flexibles, la prise en charge de la limitation, la gestion de la durée d'interdiction et la prise en charge des systèmes distribués. Vous pouvez configurer différentes limites avec des seuils personnalisables pour divers points de terminaison et méthodes HTTP."
+      },
+      "ipManagement": {
+        "question": "Comment fonctionne le système de gestion des adresses IP ?",
+        "answer": "Le système de gestion des adresses IP prend en charge la notation CIDR, IPv6 avec mappage IPv4, la détection des adresses IP privées, la fonctionnalité de liste blanche/liste noire et la prise en charge des proxys. Vous pouvez facilement gérer et surveiller les adresses IP via l'API fournie."
+      },
+      "securityHeaders": {
+        "question": "Quels en-têtes de sécurité sont pris en charge ?",
+        "answer": "K9Shield prend en charge la politique de sécurité du contenu (CSP), la politique d'autorisations, HSTS, la protection XSS, les options de trame et les options de type de contenu. Ces en-têtes sont configurables pour améliorer la posture de sécurité de votre application."
+      },
+      "patternDetection": {
+        "question": "Comment fonctionne le système de détection de modèles ?",
+        "answer": "Le système de détection de modèles identifie les modèles d'injection SQL, les modèles XSS, les tentatives de traversée de chemin et prend en charge les modèles personnalisés. Vous pouvez ajouter vos propres modèles de détection et configurer les actions de réponse."
+      },
+      "monitoring": {
+        "question": "Quelles fonctionnalités de surveillance et de journalisation sont disponibles ?",
+        "answer": "K9Shield fournit plusieurs niveaux de journalisation, une rotation automatique, la gestion des archives, des mesures de performance et le suivi des événements de sécurité. Le système de journalisation comprend le suivi des adresses IP, la surveillance de la durée des requêtes, le suivi des itinéraires et des informations détaillées sur les requêtes."
+      },
+      "configuration": {
+        "question": "Comment configurer K9Shield pour mon application ?",
+        "answer": "K9Shield est configurable via un objet de configuration complet qui inclut les paramètres de sécurité, de limitation du débit, de protection DDoS, de journalisation et de gestion des erreurs. Vous pouvez personnaliser ces paramètres en fonction des besoins de votre application."
+      }
+    }
+  },
+  "k9shieldFeatures": {
+    "title": "Fonctionnalités de sécurité complètes",
+    "subtitle": "Intergiciel de sécurité avancé pour les applications Node.js, offrant une protection robuste",
+    "items": {
+      "ddos": {
+        "title": "Protection DDoS",
+        "description": "Système de pénalité progressive, suivi des connexions, détection des pics et limitation du débit basée sur l'itinéraire avec des seuils configurables"
+      },
+      "rateLimiting": {
+        "title": "Limitation du débit",
+        "description": "Limites spécifiques à l'itinéraire, intervalles de temps flexibles, prise en charge de la limitation et compatibilité avec les systèmes distribués"
+      },
+      "ipManagement": {
+        "title": "Gestion des adresses IP",
+        "description": "Notation CIDR, prise en charge d'IPv6, détection d'IP privées, fonctionnalité de liste blanche/liste noire et prise en charge des proxys"
+      },
+      "requestValidation": {
+        "title": "Validation des requêtes",
+        "description": "Validation de la méthode, limites de charge utile, validation des en-têtes et détection de modèles pour l'injection SQL, XSS, traversée de chemin"
+      },
+      "securityHeaders": {
+        "title": "En-têtes de sécurité",
+        "description": "Politique de sécurité du contenu (CSP), politique d'autorisations, prise en charge de HSTS, protection XSS et options de trame"
+      },
+      "patternDetection": {
+        "title": "Détection de modèles",
+        "description": "Modèles d'injection SQL, modèles XSS, tentatives de traversée de chemin et prise en charge de modèles personnalisés"
+      },
+      "monitoring": {
+        "title": "Surveillance et journalisation",
+        "description": "Plusieurs niveaux de journalisation, rotation automatique, gestion des archives et suivi des événements de sécurité"
+      },
+      "requestTracking": {
+        "title": "Suivi des requêtes",
+        "description": "Suivi IP, durée des requêtes, suivi des itinéraires et informations détaillées sur les requêtes"
+      }
+    }
+  },
+  "k9shieldSteps": {
+    "title": "Étapes d'implémentation",
+    "subtitle": "Guide complet pour implémenter K9Shield dans votre application Node.js",
+    "items": {
+      "installation": {
+        "title": "Installation",
+        "description": "Installez K9Shield en utilisant npm : 'npm install k9shield' et importez-le dans votre application Node.js",
+        "step": 1
+      },
+      "basicConfig": {
+        "title": "Configuration de base",
+        "description": "Configurez les paramètres de sécurité de base, notamment trustProxy, allowPrivateIPs, maxBodySize et les méthodes autorisées",
+        "step": 2
+      },
+      "securityHeaders": {
+        "title": "Configuration des en-têtes de sécurité",
+        "description": "Définissez la politique de sécurité du contenu, la politique d'autorisations, HSTS et d'autres en-têtes de sécurité pour une protection améliorée",
+        "step": 3
+      },
+      "rateLimiting": {
+        "title": "Configuration de la limitation du débit",
+        "description": "Configurez des limites de débit spécifiques à l'itinéraire, des intervalles de temps et des paramètres de limitation pour différents points de terminaison",
+        "step": 4
+      },
+      "ddosProtection": {
+        "title": "Configuration de la protection DDoS",
+        "description": "Définissez le suivi des connexions, la détection des pics et la limitation du débit basée sur l'itinéraire avec des seuils configurables",
+        "step": 5
+      },
+      "patternDetection": {
+        "title": "Détection de modèles",
+        "description": "Configurez la détection de modèles d'injection SQL, XSS et de traversée de chemin avec prise en charge de modèles personnalisés",
+        "step": 6
+      },
+      "logging": {
+        "title": "Configuration de la journalisation",
+        "description": "Définissez les niveaux de journalisation, les paramètres de rotation et la surveillance pour les événements de sécurité et le suivi des requêtes",
+        "step": 7
+      },
+      "errorHandling": {
+        "title": "Gestion des erreurs",
+        "description": "Configurez des gestionnaires d'erreurs personnalisés et des formats de réponse pour différents événements de sécurité",
+        "step": 8
+      }
+    }
+  },
+  "k9cli": {
+    "banner": {
+      "title": "K9CLI: communication sécurisée dans votre terminal",
+      "description": "Transformez votre terminal en une forteresse de communication sécurisée. Des salons de discussion chiffrés de bout en bout à portée de main.",
+      "npmPackage": "npm i k9cli",
+      "github": "K9Crypt/k9cli"
+    },
+    "features": {
+      "title": "Puissance de la ligne de commande",
+      "subtitle": "Des outils CLI puissants pour une communication sécurisée",
+      "cli": {
+        "title": "Interface CLI",
+        "description": "Interface de ligne de commande simple et intuitive pour des opérations rapides"
+      },
+      "encryption": {
+        "title": "Chiffrement de bout en bout",
+        "description": "Chiffrement de niveau militaire pour une gestion sécurisée des messages et des salons"
+      },
+      "commands": {
+        "title": "Commandes riches",
+        "description": "Ensemble complet de commandes pour les opérations de salon et de message"
+      },
+      "crossPlatform": {
+        "title": "Multiplateforme",
+        "description": "Fonctionne parfaitement sur tous les principaux systèmes d'exploitation"
+      }
+    },
+    "faq": {
+      "title": "Foire aux questions",
+      "subtitle": "Questions fréquemment posées sur l'utilisation et les fonctionnalités de k9cli",
+      "installation": {
+        "question": "Comment installer k9cli ?",
+        "answer": "Vous pouvez installer k9cli globalement en utilisant npm : npm install -g k9cli. Assurez-vous que Node.js est installé sur votre système."
+      },
+      "requirements": {
+        "question": "Quelles sont les exigences système ?",
+        "answer": "k9cli nécessite Node.js version 14 ou supérieure. Il fonctionne sur les systèmes d'exploitation Windows, macOS et Linux."
+      },
+      "commands": {
+        "question": "Quelles sont les principales commandes disponibles ?",
+        "answer": "k9cli fournit des commandes pour la gestion des salons (création, যোগদান, liste) et les opérations de message (envoi, affichage). Utilisez k9cli --help pour voir toutes les commandes disponibles."
+      },
+      "encryption": {
+        "question": "Dans quelle mesure le chiffrement est-il sécurisé ?",
+        "answer": "k9cli utilise des protocoles de chiffrement de bout en bout standard de l'industrie pour garantir la sécurité de vos messages et de vos salons."
+      },
+      "updates": {
+        "question": "Comment mettre à jour k9cli ?",
+        "answer": "Vous pouvez mettre à jour k9cli vers la dernière version en utilisant : npm update -g k9cli"
+      },
+      "moreQuestions": "Vous avez encore des questions ?",
+      "openIssue": "Ouvrez un ticket sur GitHub"
+    }
+  },
+  "k9vault": {
+    "banner": {
+      "title": "K9Vault : Sécurisez vos données localement",
+      "description": "K9Vault offre des fonctionnalités de sécurité avancées pour protéger vos informations sensibles et garantir votre confidentialité.",
+      "buttons": {
+        "getStarted": "Commencer",
+        "download": "Télécharger"
+      }
+    },
+    "faq": {
+      "title": "Foire aux questions",
+      "subtitle": "Informations détaillées sur les fonctionnalités et la mise en œuvre de K9Vault.",
+      "items": {
+        "isFree": {
+          "question": "K9Vault est-il totalement gratuit ?",
+          "answer": "Oui, K9Vault est totalement gratuit et disponible pour les utilisateurs."
+        },
+        "isOpenSource": {
+          "question": "K9Vault est-il open source ?",
+          "answer": "Oui, K9Vault est open source. Le code source est disponible sur Github."
+        },
+        "dataStorage": {
+          "question": "Où K9Vault stocke-t-il les données ?",
+          "answer": "K9Vault stocke les données sur l'ordinateur de l'utilisateur. Les données de l'utilisateur sont stockées uniquement sur l'ordinateur de l'utilisateur et ne communiquent avec aucun serveur."
+        },
+        "encryption": {
+          "question": "K9Vault est-il chiffré de bout en bout ?",
+          "answer": "Oui, K9Vault est chiffré de bout en bout."
+        }
+      }
+    },
+    "features": {
+      "title": "Fonctionnalités de sécurité complètes",
+      "subtitle": "Middleware de sécurité avancé offrant une protection robuste pour les applications Node.js",
+      "items": {
+        "free": {
+          "title": "Gratuit",
+          "description": "K9Vault permet aux utilisateurs de chiffrer leurs photos gratuitement."
+        },
+        "encryption": {
+          "title": "Chiffrement de bout en bout",
+          "description": "Les photos des utilisateurs sont chiffrées de bout en bout."
+        },
+        "local": {
+          "title": "Fonctionnement local",
+          "description": "K9Vault fonctionne entièrement sur les ordinateurs des utilisateurs, sans jamais communiquer avec un serveur tiers."
+        },
+        "openSource": {
+          "title": "Open Source",
+          "description": "K9Vault est un projet open source et est publié sur GitHub."
+        }
+      }
+    },
+    "steps": {
+      "title": "Étapes d'implémentation",
+      "subtitle": "Guide complet pour implémenter K9Vault sur votre ordinateur",
+      "items": {
+        "installation": {
+          "title": "Installation",
+          "description": "Tout d'abord, installez l'application K9Vault sur votre ordinateur.",
+          "step": 1
+        },
+        "photoEncryption": {
+          "title": "Chiffrement de photos",
+          "description": "Ouvrez l'application et téléchargez votre photo en cliquant sur le bouton Télécharger un fichier.",
+          "step": 2
+        },
+        "copyKey": {
+          "title": "Copier la clé",
+          "description": "Après avoir téléchargé votre photo, copiez la clé fournie dans la console.",
+          "step": 3
+        },
+        "photoDecryption": {
+          "title": "Déchiffrement de photos (facultatif)",
+          "description": "Assurez-vous d'avoir copié la clé, puis retournez à l'application K9Vault, entrez la clé et téléchargez votre photo chiffrée.",
+          "step": 4
+        },
+        "complete": {
+          "title": "C'est tout",
+          "description": "L'application K9Vault est maintenant installée sur votre ordinateur et votre photo est chiffrée et stockée en toute sécurité.",
+          "step": 5
+        }
+      }
+    }
+  }
+}

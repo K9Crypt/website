@@ -1,0 +1,25 @@
+{
+    "name": "K9Crypt",
+    "short_name": "K9Crypt",
+    "description": "Secure and private messaging platform",
+    "theme_color": "#121212",
+    "background_color": "#121212",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "https://www.upload.ee/image/16942773/Logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "https://www.upload.ee/image/16942773/Logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

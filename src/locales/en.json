@@ -1,0 +1,1249 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "blog": "Blog",
+        "updates": "Updates",
+        "products": {
+            "title": "Products",
+            "k9shield": "K9Shield",
+            "k9vault": "K9Vault"
+        },
+        "actions": {
+            "title": "Actions",
+            "createRoom": "Create Room",
+            "joinRoom": "Join Room",
+            "createMessage": "Create Message",
+            "viewMessage": "View Messages",
+            "listRooms": "List Rooms"
+        }
+    },
+    "banner": {
+        "title": "Your Messages, Only Yours!",
+        "description": "Share your thoughts with the world securely, knowing that only you can access your messages.",
+        "buttons": {
+            "getStarted": "Get Started",
+            "support": "Support"
+        }
+    },
+    "why": {
+        "title": "Why K9Crypt?",
+        "subtitle": "Because we offer secure and reliable messaging solutions with our passionate team.",
+        "features": {
+            "noAccount": {
+                "title": "No Account Required",
+                "description": "You don't need to create an account to use K9Crypt."
+            },
+            "encryption": {
+                "title": "End-to-End Encryption",
+                "description": "All messages are encrypted using end-to-end encryption."
+            },
+            "autoDelete": {
+                "title": "Auto Delete",
+                "description": "Rooms are automatically deleted after a certain time."
+            },
+            "openSource": {
+                "title": "Open Source",
+                "description": "K9Crypt is open source and available on GitHub."
+            }
+        }
+    },
+    "hitw": {
+        "title": "How It Works",
+        "subtitle": "Learn how to send secure messages and create rooms with K9Crypt.",
+        "sections": {
+            "messages": {
+                "title": "Messages",
+                "steps": {
+                    "write": {
+                        "title": "Write Your Message",
+                        "description": "Enter the message you want to send securely."
+                    },
+                    "password": {
+                        "title": "Get Random Password",
+                        "description": "The system generates a random password for your message."
+                    },
+                    "share": {
+                        "title": "Share the Link",
+                        "description": "Share the generated secure link with the recipient."
+                    },
+                    "access": {
+                        "title": "Recipient Access",
+                        "description": "The recipient uses the link and password to access the message."
+                    }
+                }
+            },
+            "rooms": {
+                "title": "Rooms",
+                "steps": {
+                    "create": {
+                        "title": "Create a Room",
+                        "description": "Set up a secure room for your conversations."
+                    },
+                    "invite": {
+                        "title": "Invite Members",
+                        "description": "Invite members to your room with a unique link."
+                    },
+                    "chat": {
+                        "title": "Start Chatting",
+                        "description": "Start secure conversations in your room."
+                    },
+                    "delete": {
+                        "title": "Auto Delete",
+                        "description": "Messages in the room are automatically deleted after a certain time."
+                    }
+                }
+            }
+        }
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Find answers to frequently asked questions about K9Crypt's services and features.",
+        "questions": {
+            "isFree": {
+                "question": "Is K9Crypt really free?",
+                "answer": "Yes, K9Crypt is completely free and does not require any payment or subscription."
+            },
+            "account": {
+                "question": "Do I need to create an account?",
+                "answer": "No, K9Crypt does not require any account creation or personal information."
+            },
+            "openSource": {
+                "question": "Is K9Crypt open source?",
+                "answer": "Yes, K9Crypt is open source and available on GitHub."
+            },
+            "connection": {
+                "question": "What happens if I lose my connection?",
+                 "answer": "K9Crypt automatically tries to reconnect when your connection is restored. Unsent messages are preserved until the connection is re-established."
+            },
+             "messageLimit": {
+                "question": "Is there a message size limit?",
+                "answer": "No, chat without restrictions. Send unlimited messages in any room and communicate freely with others."
+            }
+        }
+    },
+    "footer": {
+        "description": "Secure, fast, and reliable messaging platform. Send encrypted messages with confidence.",
+        "quickLinks": {
+            "title": "Quick Links",
+            "home": "Home",
+            "about": "About",
+            "features": "Features",
+            "contact": "Contact",
+            "brand": "Brand Assets"
+        },
+        "support": {
+            "title": "Support",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "docs": "Documentation"
+        },
+        "copyright": "© {year} K9Crypt. All rights reserved."
+    },
+    "about": {
+        "title": "About K9Crypt",
+        "subtitle": "Dedicated to making secure communication accessible to everyone.",
+        "tabs": {
+            "company": "Company",
+            "values": "Our Values",
+            "team": "Our Team",
+            "contact": "Contact"
+        },
+        "company": {
+            "title": "Company",
+            "description": "Learn about K9Crypt's mission and vision",
+            "introduction": "Founded in June 2024, K9Crypt was born from a simple idea: communication should be private by default. Our team of developers came together to create a platform that makes secure messaging accessible to everyone.",
+            "features": {
+                "mission": {
+                    "title": "Our Mission",
+                    "description": "To provide the most secure and private messaging platform while maintaining simplicity and accessibility."
+                },
+                "vision": {
+                    "title": "Our Vision",
+                    "description": "To create a world where private communication is not a luxury, but a fundamental right."
+                },
+                "privacy": {
+                    "title": "Privacy First",
+                    "description": "We believe that privacy is not a feature, but a fundamental right."
+                },
+                "security": {
+                    "title": "Security by Design",
+                    "description": "Security is integrated into every aspect of our platform."
+                }
+            }
+        },
+        "values": {
+            "title": "Our Values",
+            "description": "The principles that guide our work",
+            "introduction": "At K9Crypt, our values shape everything we do. They guide our decisions, influence our product development, and define our company culture.",
+            "items": {
+                "privacy": {
+                    "title": "Privacy First",
+                    "description": "We prioritize user privacy in every decision we make."
+                },
+                "security": {
+                    "title": "Security by Design",
+                    "description": "Security is never an afterthought, it's the foundation of our platform."
+                },
+                "empowerment": {
+                    "title": "User Empowerment",
+                    "description": "We give users complete control over their communications."
+                },
+                "transparency": {
+                    "title": "Transparency",
+                    "description": "We maintain open and honest communication with our users."
+                }
+            }
+        },
+        "team": {
+            "title": "Our Team",
+            "description": "Meet the people behind K9Crypt",
+            "introduction": "Our team is made up of passionate individuals dedicated to making secure communication accessible to everyone.",
+            "members": {
+                "fatih": {
+                    "name": "Fatih Yılmaz",
+                    "role": "Founder & CEO",
+                    "description": "Fatih Yılmaz, the founder and CEO of K9Crypt, is a technology leader who develops innovative web solutions, prioritizing user experience."
+                },
+                "emin": {
+                    "name": "Emin Bıyıkçı",
+                    "role": "CEO & Front-end Developer",
+                    "description": "Emin is an experienced front-end developer passionate about creating visually appealing and user-friendly interfaces."
+                }
+            }
+        },
+        "contact": {
+            "title": "Contact",
+            "description": "Get in touch with us",
+            "introduction": "Have questions, suggestions, or want to join our team? We'd love to hear from you.",
+            "types": {
+                "general": {
+                    "title": "General Inquiries",
+                    "email": "hi@k9crypt.xyz"
+                },
+                "support": {
+                    "title": "Support",
+                    "email": "support@k9crypt.xyz"
+                }
+            }
+        }
+    },
+    "blog": {
+        "title": "Blog & News",
+        "description": "Stay updated with the latest news, security tips, and feature updates from K9Crypt.",
+        "filters": {
+            "all": "All",
+            "popular": "Popular",
+            "recent": "Recent"
+        },
+        "noPosts": {
+            "title": "No Blog Posts Found",
+            "description": "There are currently no blog posts available. Please check back later."
+        },
+        "readMore": "Read More",
+        "post": {
+            "readTime": "{minutes} min read",
+            "share": "Share this post",
+            "backToBlog": "Back to Blog"
+        }
+    },
+    "brand": {
+        "title": "Brand Assets",
+        "banner": {
+            "title": "Banner",
+            "description": "The official K9Crypt promotional banner showcasing our commitment to secure messaging and privacy"
+        },
+        "logos": {
+            "standard": {
+                "name": "K9Crypt Standard Logo",
+                "description": "Our main logo representing K9Crypt's modern approach to secure messaging and data privacy"
+            },
+            "icon": {
+                "name": "K9Crypt Icon",
+                "description": "A compact logo version perfect for app icons, favicons, and small-scale applications"
+            },
+            "light": {
+                "name": "K9Crypt Light Logo",
+                "description": "A white logo version optimized for dark backgrounds, maintaining brand visibility"
+            },
+            "dark": {
+                "name": "K9Crypt Dark Logo",
+                "description": "A black logo version designed for light backgrounds and print materials"
+            }
+        },
+        "colors": {
+            "title": "Color Palette",
+            "background": {
+                "name": "Background",
+                "usage": "Main background color"
+            },
+            "accent": {
+                "name": "Accent Green",
+                "usage": "Primary accent color"
+            },
+            "whiteGray": {
+                "name": "White Gray",
+                "usage": "Container background color"
+            },
+            "lightGray": {
+                "name": "Light Gray",
+                "usage": "Secondary container and loading elements"
+            }
+        },
+        "typography": {
+            "title": "Typography",
+            "primary": {
+                "title": "Primary Font",
+                "description": "The main font used for body text and headings across the website"
+            },
+            "secondary": {
+                "title": "Secondary Font",
+                "description": "A decorative font used in the promotional banner and special headings"
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "Need help or want to chat? Reach out to us.",
+        "social": {
+            "github": {
+                "title": "GitHub",
+                "description": "Open source code and issues."
+            },
+            "twitter": {
+                "title": "X (Twitter)",
+                "description": "Follow us for updates and news."
+            },
+            "telegram": {
+                "title": "Telegram",
+                "description": "Chat with us and get support."
+            },
+            "discord": {
+                "title": "Discord",
+                "description": "Join our community and get support."
+            }
+        }
+    },
+    "room": {
+        "create": {
+            "title": "Create Room",
+            "description": "Set up a secure chat room and start chatting with others.",
+            "error": {
+                "connectionTitle": "Connection Error",
+                "connectionDesc": "Could not connect to the server. Please check your connection and try again.",
+                "serverStatus": "Server Status: Offline",
+                "serverDesc": "The server is currently unavailable. Our team has been notified and is working to resolve the issue.",
+                "tryAgain": "Try Again",
+                "support": "Support"
+            },
+            "placeholder": {
+              "enterUsername": "Username",
+              "enterRoomName": "Room Name",
+              "enterPassword": "Room Password (at least 6 characters)"
+            },
+            "form": {
+                "username": "Username",
+                "roomName": "Room Name",
+                "public": "Public",
+                "private": "Private",
+                "password": "Room Password",
+                "passwordHint": "Password must be at least 6 characters long.",
+                "lifetime": "Room Lifetime",
+                "lifetimeHint": "How long do you want to keep the room open?",
+                "oneDay": "1 Day",
+                "oneMonth": "1 Month",
+                "oneYear": "1 Year",
+                "permanent": "Permanent",
+                "creating": "Creating...",
+                "create": "Create Room",
+                "noCategory": "Select category",
+                "category": "Category",
+                "categories": {
+                  "general": "General",
+                  "software": "Software",
+                  "chat": "Chat",
+                  "gaming": "Gaming",
+                  "support": "Support",
+                  "other": "Other"
+                }
+              },
+            "success": {
+                "roomId": "Room ID",
+                "copy": "Copy",
+                "join": "Join Room",
+                "expiresAt": "Room expires at"
+            },
+            "copySuccess": "Room ID copied to clipboard.",
+            "copyError": "Could not copy Room ID. Please try again.",
+            "errors": {
+                "noUsername": "Please enter a username",
+                "usernameTooShort": "Username must be at least 3 characters",
+                "usernameRestricted": "This username is restricted. Please choose another one.",
+                "noRoomName": "Please enter a room name",
+                "roomNameLength": "Room name must be between 3 and 50 characters",
+                "noPassword": "Please enter a room password",
+                "passwordTooShort": "Room password must be at least 6 characters",
+                "usernameTaken": "This username is already taken in another room"
+            }
+        },
+        "join": {
+            "title": "Join Room",
+            "description": "Join a secure chat room and start chatting with others.",
+            "success": "Successfully joined the room!",
+            "form": {
+                "roomId": "Room ID",
+                "password": "Room Password",
+                "passwordHint": "Password is required for private rooms",
+                "checkingRoom": "Checking room...",
+                "joining": "Joining...",
+                "joinRoom": "Join Room"
+            },
+            "errors": {
+                "invalidPassword": "Invalid password. Please try again.",
+                "failedToJoin": "Failed to join the room. Please try again.",
+                 "failedToCheck": "Failed to check room type. Please try again."
+            }
+        },
+        "chat": {
+            "error": {
+                "notFoundTitle": "Room not found",
+                "notFoundDesc": "The room could not be found. Please join another room.",
+                "goBack": "Go Back",
+                "support": "Support"
+            },
+            "imageUpload": {
+                "title": "Uploading image",
+                "description": "Your image is being uploaded...",
+                "error": {
+                    "sizeLimit": "Image size must be less than 1GB",
+                    "uploadFailed": "Image could not be processed"
+                }
+            },
+            "messages": {
+                "imageUnavailable": {
+                    "title": "Image failed to load",
+                    "icon": "Image unavailable"
+                }
+            },
+            "passReq": {
+                "title": "Enter password",
+                "description": "This room is private and requires a password to enter.",
+                "password": "Password"
+            },
+            "sending": "Sending...",
+            "sent": "Sent",
+            "failed": "Failed to send",
+            "roomName": "Room Name",
+            "roomType": "Room Type",
+            "searchButton": "Search",
+            "bookmarksButton": "Bookmarks",
+            "leaveButton": "Leave Room",
+            "searchMessage": "Search Message",
+            "searchMessageDescription": "Enter the message you want to find",
+            "messageNotFound": "Message not found",
+            "searchNotFoundDescription": "No messages found matching your criteria.",
+            "imageUnavailable": "Image unavailable",
+            "copyMessage": "Copy",
+            "gotoMessage": "Go to",
+            "copyPopup": {
+                "id": "Copy Room ID",
+                "description": "Use this room ID to join the room."
+            },
+            "imageUploadFailed": "Image upload failed",
+            "messageInfo": {
+                "title": "Message Info",
+                "readBy": "Read By",
+                "people": "People",
+                "noReadersYet": "Not read yet"
+            },
+            "bookmarkPanel": {
+                "title": "Bookmarks",
+                "description": "Bookmark your important messages.",
+                "noBookmarksYet": "No bookmarks yet",
+                "noBookmarksYetDescription": "Add messages to your bookmarks and access them easily."
+            },
+            "replyingMessage": "Replying to this message",
+            "emojiPicker": {
+                "placeholder": "Search emoji...",
+                "smileysAndemotion": "Smileys & Emotion",
+                "peopleAndbody": "People & Body",
+                "animalsAndnature": "Animals & Nature",
+                "foodAnddrink": "Food & Drink",
+                "activities": "Activities",
+                "travelAndplaces": "Travel & Places",
+                "objects": "Objects",
+                "symbols": "Symbols",
+                "noEmojisFound": "No emojis found",
+                "insert": "Click to insert",
+                "length": "Emoji"
+            },
+            "imageSelector": {
+                "uploading": "Uploading image..."
+            },
+            "messageInput": {
+                "placeholder": "Write a message..."
+            }
+        }
+    },
+    "message": {
+        "create": {
+            "title": "Create Encrypted Message",
+            "description": "Secure your message with end-to-end encryption.",
+            "error": {
+                "connectionTitle": "Connection Error",
+                "connectionDesc": "Unable to connect to the server. Please check your connection and try again.",
+                "serverStatus": "Server Status: Offline",
+                "serverDesc": "The server is currently unavailable. Our team has been notified and is working to resolve the issue.",
+                "tryAgain": "Try Again",
+                "support": "Support"
+            },
+            "form": {
+                "messageLabel": "Your Message",
+                "messagePlaceholder": "Enter your message here...",
+                "encrypting": "Encrypting...",
+                "encrypt": "Encrypt Message"
+            },
+            "result": {
+                "title": "Encrypted Message:",
+                "copy": "Copy",
+                "view": "View Message"
+            },
+             "copySuccess": "Encrypted message copied to clipboard.",
+            "copyError": "Failed to copy encrypted message. Please try again.",
+            "errors": {
+                "noMessage": "Please enter a message",
+                "failedToCreate": "Failed to create message. Please try again."
+            }
+        }
+    },
+    "features": {
+        "title": "Features",
+        "subtitle": "Explore the powerful features that make K9Crypt the most secure messaging platform.",
+        "overview": {
+            "title": "Overview",
+            "description": "Key features of K9Crypt",
+            "content": {
+                "introduction": "K9Crypt combines powerful security features with ease of use to provide the most secure messaging experience.",
+                "features": {
+                    "encryption": {
+                        "title": "End-to-End Encryption",
+                        "description": "Military-grade encryption ensures your messages remain private and secure."
+                    },
+                    "autoDelete": {
+                        "title": "Auto Delete",
+                        "description": "Rooms are automatically deleted after the specified time interval."
+                    },
+                    "anonymous": {
+                        "title": "Anonymous Usage",
+                        "description": "Use K9Crypt without creating an account or sharing your personal information."
+                    },
+                     "secureRooms": {
+                        "title": "Secure Rooms",
+                        "description": "Create encrypted chat rooms for group conversations."
+                    }
+                }
+            }
+        },
+        "security": {
+            "title": "Security",
+            "description": "Advanced encryption features",
+            "content": {
+                "introduction": "Our security features are designed to provide the highest level of protection for your communications.",
+                "features": {
+                    "aes": {
+                        "title": "AES-256 Encryption",
+                        "description": "Industry-standard encryption algorithm for maximum security."
+                    },
+                    "zeroKnowledge": {
+                        "title": "Zero-Knowledge Architecture",
+                         "description": "We cannot read your messages - only you and your recipients can."
+                    },
+                    "noPlaintext": {
+                        "title": "No Plaintext Storage",
+                        "description": "Messages are never stored in readable form on our servers."
+                    },
+                    "secureKey": {
+                        "title": "Secure Key Exchange",
+                        "description": "Advanced key exchange protocols ensure secure communication."
+                    }
+                }
+            }
+        },
+        "privacy": {
+            "title": "Privacy",
+            "description": "Your privacy is our priority",
+            "content": {
+                "introduction": "We built K9Crypt with privacy in mind, ensuring your personal information remains confidential.",
+                "features": {
+                    "noRegistration": {
+                        "title": "No Registration",
+                        "description": "Use the platform without creating an account."
+                    },
+                    "noDataCollection": {
+                        "title": "No Personal Data Collection",
+                        "description": "We do not collect or store any personal information."
+                    },
+                    "anonymity": {
+                        "title": "Full Anonymity",
+                        "description": "Your identity remains hidden throughout your usage."
+                    },
+                    "autoDeletion": {
+                        "title": "Automatic Message Deletion",
+                        "description": "Messages are automatically deleted after 4 hours."
+                    }
+                }
+            }
+        },
+        "rooms": {
+            "title": "Secure Rooms",
+            "description": "Group messaging features",
+            "content": {
+                "introduction": "Create and manage secure rooms for private group conversations with full encryption.",
+                "features": {
+                    "privateRoom": {
+                        "title": "Private Room Creation",
+                        "description": "Create encrypted rooms for secure group chats."
+                    },
+                    "secureInvitations": {
+                        "title": "Secure Invitations",
+                        "description": "Invite members using encrypted invite links."
+                    },
+                    "groupEncryption": {
+                        "title": "Group Encryption",
+                        "description": "All group messages are end-to-end encrypted."
+                    },
+                    "memberPrivacy": {
+                        "title": "Member Privacy",
+                        "description": "Group members remain anonymous to each other."
+                    }
+                }
+            }
+        },
+        "readyToStart": {
+            "title": "Ready to Start?",
+            "description": "Experience the most secure messaging platform today.",
+            "getStarted": "Get Started",
+            "learnMore": "Learn More"
+        }
+    },
+    "list": {
+        "noRooms": "No rooms found",
+        "noActiveRooms": "No active rooms found",
+        "availableRooms": "Available Rooms",
+        "activeRoomsList": "List of currently active rooms.",
+        "totalRooms": "There are currently {total} rooms.",
+        "copyRoomName": "Copy Room Name",
+        "copyRoomId": "Copy Room ID",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {current} / {total}",
+        "expiresAt":"Expires At",
+        "roomType": "Room Type",
+        "all": "All",
+        "private": "Private",
+        "public": "Public",
+        "sortBy": "Sort By",
+        "none": "None",
+        "users": "Users",
+        "messages": "Messages",
+        "newest": "Newest",
+        "activity": "Activity",
+        "minUsers": "Min. User Count",
+        "remainingTime": {
+          "permanent": "Permanent",
+          "hours": "{hours} hours",
+          "minutes": "{minutes} minutes",
+          "seconds": "{seconds} seconds",
+          "days": "{days} days",
+          "expired": "Expired"
+        },
+        "category": "Category",
+        "categories": {
+          "general": "General",
+          "software": "Software",
+          "chat": "Chat",
+          "gaming": "Gaming",
+          "support": "Support",
+          "other": "Other"
+        },
+        "searchPlaceholder": "Search rooms..."
+      },
+    "privacyPage": {
+      "title": "Privacy Policy",
+      "description": "At K9Crypt, we take your privacy seriously. Our service is built on the principle of complete anonymity and security.",
+      "lastUpdated": "Last updated: 02.02.2025",
+      "dataCollection": {
+        "title": "Data Collection",
+        "description": "We do not collect any personal information. K9Crypt operates completely anonymously.",
+        "introduction": "K9Crypt is built on the foundation of privacy and anonymity. We believe in providing secure communication without compromising user privacy.",
+        "features": {
+          "noPersonalData": {
+            "title": "No Personal Data",
+            "description": "We do not collect or store any personal information, including IP addresses or device data."
+          },
+          "noCookies": {
+            "title": "No Cookies",
+            "description": "Our service operates without using any cookies or tracking mechanisms."
+          },
+          "noUserTracking": {
+            "title": "No User Tracking",
+            "description": "We do not implement any analytics or tracking scripts to monitor user behavior."
+          },
+          "noRegistration": {
+            "title": "No Registration",
+            "description": "Use our service without creating an account or providing any personal information."
+          }
+      }
+    },
+    "messageSecurity": {
+      "title": "Message Security",
+      "description": "Your messages are protected with industry-standard encryption methods.",
+      "introduction": "We implement strong security measures to ensure your messages remain private and secure throughout their lifecycle.",
+      "features": {
+        "endToEndEncryption": {
+          "title": "End-to-End Encryption",
+          "description": "All messages are encrypted on your device before being transmitted."
+        },
+        "autoDeletion": {
+          "title": "Auto Deletion",
+          "description": "Rooms are automatically deleted after the time you specify."
+        },
+        "noBackups": {
+          "title": "No Backups",
+          "description": "We do not keep any backups or copies of your messages."
+        },
+        "secureProtocol": {
+          "title": "Secure Protocol",
+          "description": "All communications use secure WebSocket connections with TLS encryption."
+        }
+      }
+    },
+    "thirdParties": {
+      "title": "Third Parties",
+      "description": "We do not share any information with third parties.",
+      "introduction": "Your privacy is our priority. We operate independently and do not share any data with third parties.",
+      "features": {
+        "noDataSharing": {
+          "title": "No Data Sharing",
+          "description": "We never share or sell any information with third parties."
+        },
+        "noAnalytics": {
+          "title": "No Analytics",
+          "description": "We do not use third-party analytics services."
+        },
+        "noAds": {
+          "title": "No Ads",
+          "description": "Our service is free from ads and tracking scripts."
+        },
+        "independentOperation": {
+          "title": "Independent Operation",
+          "description": "We have full control over our infrastructure and services."
+        }
+      }
+    },
+    "yourRights": {
+      "title": "Your Rights",
+      "description": "You have full control over your data and messages.",
+      "introduction": "We respect and protect your digital rights, ensuring you have control over your communication.",
+      "features": {
+        "messageControl": {
+          "title": "Message Control",
+          "description": "Delete your messages anytime before the auto-deletion period."
+        },
+        "anonymity": {
+          "title": "Anonymity",
+          "description": "Maintain your anonymity throughout your use of our service."
+        },
+        "secureCommunication": {
+          "title": "Secure Communication",
+          "description": "The right to encrypted, private communication without surveillance."
+        },
+        "dataPortability": {
+          "title": "Data Portability",
+          "description": "Export your active messages when needed."
+        }
+      }
+    },
+     "contactUs": {
+      "title": "Contact Us",
+      "description": "Do you have questions about our privacy policy? We are here to help.",
+       "emailUs": {
+        "title": "Email Us",
+        "description": "hi@k9crypt.xyz"
+      },
+      "github": {
+        "title": "GitHub",
+        "description": "Visit our repository"
+      }
+    }
+  },
+  "startPage": {
+    "roomSectionTitle": "Room Category",
+    "messageSectionTitle": "Message Category",
+    "connectionError": {
+      "title": "Connection Error",
+      "description": "Could not connect to the server. Please check your connection and try again.",
+      "serverStatus": "Server Status: Offline",
+      "serverDescription": "The server is currently unavailable. Our team has been notified and is working to resolve the issue.",
+      "tryAgainButton": "Try Again",
+      "supportButton": "Support"
+    },
+    "mainContent": {
+      "title": "Where Do You Want to Go?",
+      "description": "Let us help you get back to the right destination."
+    },
+    "steps": [
+      {
+        "title": "Create Room",
+        "description": "Create a new room and invite your friends to join you."
+      },
+      {
+        "title": "Join Room",
+        "description": "Join an existing room and start messaging."
+      },
+      {
+        "title": "Create Encrypted Message",
+        "description": "Create an encrypted message and share it with people."
+      },
+      {
+        "title": "Decrypt Message",
+        "description": "Decrypt the message you encrypted or a message that is encrypted."
+      },
+      {
+        "title": "List of Rooms",
+        "description": "View all rooms."
+      }
+    ]
+  },
+  "termsPage": {
+    "title": "Terms of Service",
+    "description": "By using K9Crypt, you agree to these terms. Please read them carefully before using our services.",
+    "lastUpdated": "Last updated: 11/15/2024",
+    "serviceUsage": {
+      "title": "Service Usage",
+      "description": "Guidelines for using K9Crypt's messaging services.",
+      "introduction": "K9Crypt is designed to provide secure and private messaging services. To maintain the integrity and security of our platform, users must adhere to these usage guidelines.",
+      "features": {
+        "ageRequirement": {
+          "title": "Age Requirement",
+          "description": "Users must be 13 years or older to use K9Crypt's services."
+        },
+        "legalUsage": {
+          "title": "Legal Usage",
+          "description": "Illegal content, activities, or violations of applicable laws are prohibited."
+        },
+        "fairUsage": {
+          "title": "Fair Usage",
+          "description": "Spam, automated usage, or abuse of the service is prohibited."
+        },
+        "serviceIntegrity": {
+          "title": "Service Integrity",
+          "description": "Interfering with service operations or security measures is prohibited."
+        }
+      }
+    },
+    "userResponsibilities": {
+      "title": "User Responsibilities",
+      "description": "Your obligations when using K9Crypt services.",
+      "introduction": "K9Crypt users have certain responsibilities to maintain the security and integrity of the service. These responsibilities help ensure a safe environment for all users.",
+      "features": {
+        "securityPractices": {
+          "title": "Security Practices",
+          "description": "Ensure message security and follow recommended encryption practices."
+        },
+        "vulnerabilityReporting": {
+          "title": "Vulnerability Reporting",
+          "description": "Report any security vulnerabilities or bugs to our team."
+        },
+        "accessControl": {
+          "title": "Access Control",
+          "description": "Unauthorized access attempts or sharing of access information is prohibited."
+        },
+        "responsibleUsage": {
+          "title": "Responsible Usage",
+          "description": "Use encryption features responsibly and ethically."
+        }
+      }
+    },
+    "serviceChanges": {
+      "title": "Service Changes",
+      "description": "Our rights regarding service changes.",
+      "introduction": "K9Crypt reserves the right to modify, update, or change aspects of our service to maintain quality and security. We strive to notify our users of significant changes.",
+      "features": {
+        "featureModifications": {
+          "title": "Feature Modifications",
+          "description": "Right to add, modify, or remove features as needed."
+        },
+        "serviceAvailability": {
+          "title": "Service Availability",
+          "description": "We may change the availability of the service or methods of access."
+        },
+        "termsUpdates": {
+          "title": "Terms Updates",
+          "description": "Right to update terms and conditions with notice."
+        },
+         "systemMaintenance": {
+          "title": "System Maintenance",
+          "description": "Right to perform necessary maintenance and improvements."
+        }
+      }
+    },
+    "limitations": {
+      "title": "Limitations",
+      "description": "Service limitations and disclaimers.",
+      "introduction": "While we strive to provide the best possible service, there are certain limitations and disclaimers that users should be aware of when using K9Crypt.",
+      "features": {
+        "serviceUptime": {
+          "title": "Service Uptime",
+          "description": "No guarantee of 100% service uptime or availability."
+        },
+        "forceMajeure": {
+          "title": "Force Majeure",
+          "description": "We are not responsible for situations beyond our control."
+        },
+         "technicalConstraints": {
+          "title": "Technical Constraints",
+          "description": "The service is subject to technical and operational limitations."
+        },
+        "securityMeasures": {
+          "title": "Security Measures",
+          "description": "Users should follow security best practices for optimal protection."
+        }
+      }
+    },
+    "questionsAboutTerms": {
+      "title": "Questions About Terms?",
+      "description": "We are here to help you understand our terms of service.",
+      "emailUs": {
+        "title": "Email Us",
+        "description": "hi@k9crypt.xyz"
+      },
+      "discord": {
+        "title": "Discord",
+        "description": "Join our community"
+      }
+    }
+  },
+  "updatesPage": {
+    "title": "Updates & News",
+    "description": "Stay informed about the latest news, security tips, and feature updates from K9Crypt.",
+    "filters": {
+      "all": "All",
+      "popular": "Popular",
+      "recent": "Recent"
+    },
+    "noUpdates": {
+      "title": "No Updates Found",
+      "description": "There are no updates available at the moment. Please check back later."
+    },
+    "readMore": "Read More",
+    "post": {
+        "readTime": "{minutes} min read",
+        "backToBlog": "Back to Updates"
+    }
+  },
+  "viewMessagePage": {
+    "title": "Decrypt Message",
+    "description": "Securely view your encrypted message.",
+    "form": {
+      "label": "Encrypted Message",
+      "placeholder": "Enter the encrypted message here...",
+      "decryptButton": "Decrypt Message",
+      "decrypting": "Decrypting..."
+    },
+     "error": {
+        "noMessage": "Please enter a message",
+        "failedToDecrypt": "Failed to decrypt message. Please try again."
+    },
+    "result": {
+      "title": "Decrypted Message:",
+      "copyButton": "Copy",
+      "downloadButton": "Download",
+      "copySuccess": "Copied!",
+      "copyError": "Failed to copy. Please try again.",
+      "downloadSuccess": "Downloaded!"
+    },
+    "connectionError": {
+        "title": "Connection Error",
+        "description": "Unable to connect to the server. Please check your connection and try again.",
+        "serverStatus": "Server Status: Offline",
+        "serverDescription": "The server is currently unavailable. Our team has been notified and is working to resolve the issue.",
+        "tryAgainButton": "Try Again",
+        "supportButton": "Support"
+    }
+  },
+  "errorPage": {
+    "title": "404",
+    "subtitle": "Page Not Found",
+    "description": "The page you are looking for might have been moved, deleted, or never existed.",
+    "goHome": "Go Home",
+    "support": "Support"
+  },
+  "k9shieldBanner": {
+    "title": "K9Shield: Comprehensive Security Middleware",
+    "description": "Advanced security middleware for Node.js applications, providing robust protection against DDoS attacks, rate limiting, IP management, and comprehensive security features",
+    "getStarted": "Get Started",
+    "npmPackage": "NPM Package"
+  },
+  "k9shieldFaq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Detailed information about K9Shield's features and implementation.",
+    "questions": {
+      "coreFeatures": {
+        "question": "What are the core security features of K9Shield?",
+        "answer": "K9Shield offers comprehensive security features including DDoS protection with a progressive penalty system, rate limiting with route-specific limits, IP management with CIDR notation support, request validation, security headers management, pattern detection, and comprehensive monitoring and logging capabilities."
+      },
+      "ddosProtection": {
+        "question": "How does DDoS protection work?",
+        "answer": "K9Shield's DDoS protection includes a progressive penalty system, connection tracking, surge detection, path-based rate limiting, and configurable thresholds. It monitors connection rates, automatically blocks suspicious IPs, and offers flexible configuration options for maximum connections and blocking durations."
+      },
+      "rateLimiting": {
+        "question": "What kind of rate limiting options are available?",
+        "answer": "K9Shield offers route-specific limits, flexible time windows, throttling support, ban duration management, and distributed system support. You can configure different limits with customizable thresholds for various endpoints and HTTP methods."
+      },
+      "ipManagement": {
+        "question": "How does the IP management system work?",
+        "answer": "The IP management system supports CIDR notation, IPv6 with IPv4 mapping, private IP detection, whitelist/blacklist functionality, and proxy support. You can easily manage and monitor IP addresses through the provided API."
+      },
+      "securityHeaders": {
+        "question": "Which security headers are supported?",
+        "answer": "K9Shield supports Content Security Policy (CSP), Permissions Policy, HSTS, XSS protection, frame options, and content type options. These headers are configurable to improve your application's security posture."
+      },
+      "patternDetection": {
+        "question": "How does the pattern detection system work?",
+        "answer": "The pattern detection system identifies SQL injection patterns, XSS patterns, path traversal attempts, and supports custom patterns. You can add your own detection patterns and configure response actions."
+      },
+      "monitoring": {
+        "question": "What monitoring and logging features are available?",
+        "answer": "K9Shield provides multiple log levels, automatic rotation, archive management, performance metrics, and security event tracking. The logging system includes IP tracking, request duration monitoring, path tracking, and detailed request information."
+      },
+      "configuration": {
+        "question": "How do I configure K9Shield for my application?",
+        "answer": "K9Shield is configurable through a comprehensive configuration object that includes settings for security, rate limiting, DDoS protection, logging, and error handling. You can customize these settings to fit your application's needs."
+      }
+    }
+  },
+  "k9shieldFeatures": {
+    "title": "Comprehensive Security Features",
+    "subtitle": "Advanced security middleware for Node.js applications, providing robust protection",
+    "items": {
+      "ddos": {
+        "title": "DDoS Protection",
+        "description": "Progressive penalty system, connection tracking, surge detection, and path-based rate limiting with configurable thresholds"
+      },
+      "rateLimiting": {
+        "title": "Rate Limiting",
+        "description": "Route-specific limits, flexible time windows, throttling support, and distributed system compatibility"
+      },
+      "ipManagement": {
+        "title": "IP Management",
+        "description": "CIDR notation, IPv6 support, private IP detection, whitelist/blacklist functionality, and proxy support"
+      },
+      "requestValidation": {
+        "title": "Request Validation",
+        "description": "Method validation, payload limits, header validation, and pattern detection for SQL Injection, XSS, Path Traversal"
+      },
+      "securityHeaders": {
+        "title": "Security Headers",
+        "description": "Content Security Policy (CSP), Permissions Policy, HSTS support, XSS protection, and frame options"
+      },
+      "patternDetection": {
+        "title": "Pattern Detection",
+        "description": "SQL Injection patterns, XSS patterns, path traversal attempts, and custom pattern support"
+      },
+      "monitoring": {
+        "title": "Monitoring and Logging",
+        "description": "Multiple log levels, automatic rotation, archive management, and security event tracking"
+      },
+      "requestTracking": {
+        "title": "Request Tracking",
+        "description": "IP tracking, request duration, path tracking, and detailed request information"
+      }
+    }
+  },
+  "k9shieldSteps": {
+    "title": "Implementation Steps",
+    "subtitle": "Complete guide to implementing K9Shield in your Node.js application",
+    "items": {
+      "installation": {
+        "title": "Installation",
+        "description": "Install K9Shield using npm: 'npm install k9shield' and import it into your Node.js application",
+        "step": 1
+      },
+      "basicConfig": {
+        "title": "Basic Configuration",
+        "description": "Configure basic security settings including trustProxy, allowPrivateIPs, maxBodySize, and allowed methods",
+        "step": 2
+      },
+      "securityHeaders": {
+        "title": "Security Headers Setup",
+        "description": "Set up Content Security Policy, Permissions Policy, HSTS, and other security headers for enhanced protection",
+        "step": 3
+      },
+      "rateLimiting": {
+        "title": "Rate Limiting Configuration",
+        "description": "Configure route-specific rate limits, time windows, and throttling settings for different endpoints",
+        "step": 4
+      },
+      "ddosProtection": {
+        "title": "DDoS Protection Setup",
+        "description": "Set up connection tracking, surge detection, and path-based rate limiting with configurable thresholds",
+        "step": 5
+      },
+      "patternDetection": {
+        "title": "Pattern Detection",
+        "description": "Configure SQL injection, XSS, and path traversal pattern detection with custom pattern support",
+        "step": 6
+      },
+      "logging": {
+        "title": "Logging Configuration",
+        "description": "Set up log levels, rotation settings, and monitoring for security events and request tracking",
+        "step": 7
+      },
+      "errorHandling": {
+        "title": "Error Handling",
+        "description": "Configure custom error handlers and response formats for different security events",
+        "step": 8
+      }
+    }
+  },
+  "k9cli": {
+    "banner": {
+      "title": "K9CLI: Secure Communication in Your Terminal",
+      "description": "Transform your terminal into a fortress of secure communication. End-to-end encrypted chat rooms at your fingertips.",
+      "npmPackage": "npm i k9cli",
+      "github": "K9Crypt/k9cli"
+    },
+    "features": {
+      "title": "Command Line Power",
+      "subtitle": "Powerful CLI tools for secure communication",
+      "cli": {
+        "title": "CLI Interface",
+        "description": "Simple and intuitive command-line interface for quick operations"
+      },
+      "encryption": {
+        "title": "End-to-End Encryption",
+        "description": "Military-grade encryption for secure message and room management"
+      },
+      "commands": {
+        "title": "Rich Commands",
+        "description": "Comprehensive command set for room and message operations"
+      },
+      "crossPlatform": {
+        "title": "Cross Platform",
+        "description": "Runs seamlessly on all major operating systems"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Frequently asked questions about k9cli usage and features",
+      "installation": {
+        "question": "How do I install k9cli?",
+        "answer": "You can install k9cli globally using npm: npm install -g k9cli. Make sure you have Node.js installed on your system."
+      },
+      "requirements": {
+        "question": "What are the system requirements?",
+        "answer": "k9cli requires Node.js version 14 or higher. It works on Windows, macOS, and Linux operating systems."
+      },
+      "commands": {
+        "question": "What are the main available commands?",
+        "answer": "k9cli provides commands for room management (create, join, list) and message operations (send, view). Use k9cli --help to see all available commands."
+      },
+      "encryption": {
+        "question": "How secure is the encryption?",
+        "answer": "k9cli uses industry-standard end-to-end encryption protocols to ensure your messages and rooms are secure."
+      },
+      "updates": {
+        "question": "How do I update k9cli?",
+        "answer": "You can update k9cli to the latest version by running: npm update -g k9cli"
+      },
+      "moreQuestions": "Still have questions?",
+      "openIssue": "Open an issue on GitHub"
+    }
+  },
+  "k9vault": {
+    "banner": {
+      "title": "K9Vault: Secure Your Data Locally",
+      "description": "K9Vault offers advanced security features to protect your sensitive information and ensure your privacy.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "download": "Download"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Detailed information about K9Vault's features and implementation.",
+      "items": {
+        "isFree": {
+          "question": "Is K9Vault completely free?",
+          "answer": "Yes, K9Vault is completely free and available for users to use."
+        },
+        "isOpenSource": {
+          "question": "Is K9Vault open source?",
+          "answer": "Yes, K9Vault is open source. The source code is available on Github."
+        },
+        "dataStorage": {
+          "question": "Where does K9Vault store data?",
+          "answer": "K9Vault stores data on the user's computer. User data is only stored on the user's computer and does not communicate with any server."
+        },
+        "encryption": {
+          "question": "Is K9Vault end-to-end encrypted?",
+          "answer": "Yes, K9Vault is end-to-end encrypted."
+        }
+      }
+    },
+    "features": {
+      "title": "Comprehensive Security Features",
+      "subtitle": "Advanced security middleware that provides robust protection for Node.js applications",
+      "items": {
+        "free": {
+          "title": "Free",
+          "description": "K9Vault allows users to encrypt their photos for free."
+        },
+        "encryption": {
+          "title": "End-to-End Encryption",
+          "description": "User photos are end-to-end encrypted."
+        },
+        "local": {
+          "title": "Local Operation",
+          "description": "K9Vault runs entirely on users' computers, never communicating with a third-party server."
+        },
+        "openSource": {
+          "title": "Open Source",
+          "description": "K9Vault is an open-source project and is published on GitHub."
+        }
+      }
+    },
+    "steps": {
+      "title": "Implementation Steps",
+      "subtitle": "Comprehensive guide to implementing K9Vault on your computer",
+      "items": {
+        "installation": {
+          "title": "Installation",
+          "description": "First, install the K9Vault application on your computer.",
+          "step": 1
+        },
+        "photoEncryption": {
+          "title": "Photo Encryption",
+          "description": "Open the application and upload your photo by clicking the Upload File button.",
+          "step": 2
+        },
+        "copyKey": {
+          "title": "Copy the Key",
+          "description": "After uploading your photo, copy the key provided in the console.",
+          "step": 3
+        },
+        "photoDecryption": {
+          "title": "Photo Decryption (Optional)",
+          "description": "Make sure you have copied the key and go back to the K9Vault application, enter the key, and upload your encrypted photo.",
+          "step": 4
+        },
+        "complete": {
+          "title": "That's It",
+          "description": "The K9Vault application is now installed on your computer, and your photo is securely encrypted and stored.",
+          "step": 5
+        }
+      }
+    }
+  }
+}
