@@ -339,7 +339,8 @@
             "placeholder": {
               "enterUsername": "Username",
               "enterRoomName": "Room Name",
-              "enterPassword": "Room Password (at least 6 characters)"
+              "enterPassword": "Room Password (at least 6 characters)",
+              "enterRoomId": "Room ID"
             },
             "form": {
                 "username": "Username",
@@ -358,6 +359,7 @@
                 "create": "Create Room",
                 "noCategory": "Select category",
                 "category": "Category",
+                "roomId": "Room ID",
                 "categories": {
                   "general": "General",
                   "software": "Software",
@@ -383,7 +385,8 @@
                 "roomNameLength": "Room name must be between 3 and 50 characters",
                 "noPassword": "Please enter a room password",
                 "passwordTooShort": "Room password must be at least 6 characters",
-                "usernameTaken": "This username is already taken in another room"
+                "usernameTaken": "This username is already taken in another room",
+                "roomIdLength": "Room ID must be between 3 and 20 characters"
             }
         },
         "join": {
@@ -664,7 +667,8 @@
           "chat": "Chat",
           "gaming": "Gaming",
           "support": "Support",
-          "other": "Other"
+          "other": "Other",
+          "official": "Official"
         },
         "searchPlaceholder": "Search rooms..."
       },

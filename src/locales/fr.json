@@ -339,7 +339,8 @@
             "placeholder": {
               "enterUsername": "Nom d'utilisateur",
               "enterRoomName": "Nom de la salle",
-              "enterPassword": "Mot de passe de la salle (au moins 6 caractères)"
+              "enterPassword": "Mot de passe de la salle (au moins 6 caractères)",
+              "enterRoomId": "ID de la salle"
             },
             "form": {
                 "username": "Nom d'utilisateur",
@@ -358,6 +359,7 @@
                 "create": "Créer une salle",
                 "noCategory": "Sélectionnez une catégorie",
                 "category": "Catégorie",
+                "roomId": "ID de la salle",
                 "categories": {
                   "general": "Général",
                   "software": "Logiciel",
@@ -382,7 +384,8 @@
                  "roomNameLength": "Le nom de la salle doit comporter entre 3 et 50 caractères",
                 "noPassword": "Veuillez saisir un mot de passe de salle",
                 "passwordTooShort": "Le mot de passe de la salle doit comporter au moins 6 caractères",
-                "usernameTaken": "Ce nom d'utilisateur est déjà utilisé dans une autre salle"
+                "usernameTaken": "Ce nom d'utilisateur est déjà utilisé dans une autre salle",
+                "roomIdLength": "L'ID de la salle doit comporter entre 3 et 20 caractères"
             }
         },
         "join": {
@@ -663,7 +666,8 @@
           "chat": "Discussion",
           "gaming": "Jeux",
           "support": "Support",
-          "other": "Autre"
+          "other": "Autre",
+          "official": "Officiel"
         },
         "searchPlaceholder": "Rechercher une salle..."
       },

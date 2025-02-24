@@ -220,6 +220,7 @@
                     <div class="flex flex-col items-center justify-center min-h-[20vh] mt-4">
                         <div class="text-center bg-white/5 p-8 rounded-lg mb-6 w-96">
                             <div class="mb-4 text-white/30">
+                                <!-- svelte-ignore element_invalid_self_closing_tag -->
                                 <i class="ri-team-fill text-6xl" />
                             </div>
                             <p class="text-white/50 text-xl font-medium">{$_('list.noRooms')}</p>
@@ -238,8 +239,17 @@
                                         </span>
                                     </div>
                                     <div class="flex justify-between items-center">
-                                        <h3 class="text-xl font-bold tracking-tight truncate mb-1 flex-1">{room.roomName?.length > 20 ? room.roomName.substring(0,20) + '...' : room.roomName || 'Unnamed Room'}</h3>
-                                        <span class="text-white/50 text-sm ml-2 bg-white/5 py-1 px-3 rounded-lg border border-white/10"><i class="ri-user-3-fill"></i> {room.userCount || 0} users</span>
+                                        <div class="flex items-center gap-2 flex-1">
+                                            <h3 class="text-xl font-bold tracking-tight truncate mb-1">
+                                                {room.roomName?.length > 20 ? room.roomName.substring(0,20) + '...' : room.roomName || 'Unnamed Room'}
+                                                {#if room.verified}
+                                                    <i class="ri-verified-badge-fill text-cYellow" title="Verified Room"></i>
+                                                {/if}
+                                            </h3>
+                                        </div>
+                                        <span class="text-white/50 text-sm ml-2 bg-white/5 py-1 px-3 rounded-lg border border-white/10">
+                                            <i class="ri-user-3-fill"></i> {room.userCount || 0} users
+                                        </span>
                                     </div>
                                     <div>
                                         <p class="text-sm text-white/50 font-mono truncate">ID: {room.id}</p>
@@ -287,7 +297,7 @@
                                 <div class="flex flex-col space-y-2">
                                     <button
                                         on:click={() => copy(room.id)}
-                                        class="flex items-center justify-center gap-2 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300 text-white/50 hover:text-white/80"
+                                        class="flex items-center justify-center gap-2 py-2 rounded-lg border border-white/5 bg-white/5 transition-colors duration-300 text-white/50 hover:text-white/80"
                                     >
                                         <i class="ri-file-copy-line text-lg"></i>
                                         <span class="text-sm">{$_('list.copyRoomId')}</span>
@@ -306,6 +316,7 @@
 							class="flex items-center gap-2 bg-cWhiteGray border border-white/5 rounded-lg px-4 py-2.5 text-white/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 							disabled={!canGoPrev}
 						>
+							<!-- svelte-ignore element_invalid_self_closing_tag -->
 							<i class="ri-arrow-left-fill" />
 							{$_('list.previous')}
 						</button>
@@ -318,6 +329,7 @@
 							disabled={!canGoNext}
 						>
 							{$_('list.next')}
+							<!-- svelte-ignore element_invalid_self_closing_tag -->
 							<i class="ri-arrow-right-fill" />
 						</button>
 					</div>

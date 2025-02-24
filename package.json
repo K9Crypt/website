@@ -28,6 +28,8 @@
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "^5.5.2",
 		"axios": "^1.7.9",
+		"chart.js": "^4.4.8",
+		"date-fns": "^4.1.0",
 		"k9crypt": "^1.0.8",
 		"pocketbase": "^0.24.0",
 		"svelte-french-toast": "^1.2.0",

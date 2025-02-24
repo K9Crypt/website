@@ -13,7 +13,8 @@ export async function createRoom(
     password?: string,
     roomName?: string,
     lifetime: RoomLifetime = ROOM_LIFETIMES.ONE_DAY,
-    category?: string
+    category?: string,
+    customId?: string
 ): Promise<{ roomId: string; expiresAt: string | null; category: string | null }> {
     try {
         const response = await fetch(`${import.meta.env.VITE_APP_APIURL}/room/create`, {
@@ -21,7 +22,15 @@ export async function createRoom(
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId, type, password, roomName, lifetime, category }),
+            body: JSON.stringify({ 
+                userId, 
+                type, 
+                password, 
+                roomName, 
+                lifetime, 
+                category,
+                customId 
+            }),
         });
 
         if (!response.ok) {

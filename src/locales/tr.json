@@ -340,7 +340,8 @@
             "placeholder": {
               "enterUsername": "Kullanıcı adı",
               "enterRoomName": "Oda adı",
-              "enterPassword": "Oda şifresi (en az 6 karakter)"
+              "enterPassword": "Oda şifresi (en az 6 karakter)",
+              "enterRoomId": "Oda ID"
             },
             "form": {
                 "username": "Kullanıcı Adı",
@@ -359,6 +360,7 @@
                 "create": "Oda Oluştur",
                 "noCategory": "Kategori seçin",
                 "category": "Kategori",
+                "roomId":"Oda ID",
                 "categories": {
                   "general": "Genel",
                   "software": "Yazılım",
@@ -384,7 +386,8 @@
                 "roomNameLength": "Oda adı 3 ile 50 karakter arasında olmalıdır",
                 "noPassword": "Lütfen bir oda şifresi girin",
                 "passwordTooShort": "Oda şifresi en az 6 karakter olmalıdır",
-                "usernameTaken": "Bu kullanıcı adı zaten oda da kullanılmış"
+                "usernameTaken": "Bu kullanıcı adı zaten oda da kullanılmış",
+                "roomIdLength": "Oda ID'si en az 3, en fazla 20 karakter uzunluğunda olmalıdır"
             }
         },
         "join": {
@@ -665,7 +668,8 @@
           "chat": "Sohbet",
           "gaming": "Oyun",
           "support": "Destek",
-          "other": "Diğer"
+          "other": "Diğer",
+          "official": "Resmi"
         },
         "searchPlaceholder": "Oda ara..."
     },

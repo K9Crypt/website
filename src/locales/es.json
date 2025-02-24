@@ -339,7 +339,8 @@
             "placeholder": {
               "enterUsername": "Nombre de usuario",
               "enterRoomName": "Nombre de la sala",
-              "enterPassword": "Contraseña de la sala (mínimo 6 caracteres)"
+              "enterPassword": "Contraseña de la sala (mínimo 6 caracteres)",
+              "enterRoomId": "ID de la sala"
             },
             "form": {
                 "username": "Nombre de Usuario",
@@ -358,6 +359,7 @@
                 "create": "Crear Sala",
                 "noCategory": "Seleccionar categoría",
                 "category": "Categoría",
+                "roomId": "ID de la Sala",
                 "categories": {
                   "general": "General",
                   "software": "Software",
@@ -383,7 +385,8 @@
                 "roomNameLength": "El nombre de la sala debe tener entre 3 y 50 caracteres",
                 "noPassword": "Por favor ingrese una contraseña para la sala",
                 "passwordTooShort": "La contraseña de la sala debe tener al menos 6 caracteres",
-                "usernameTaken": "Este nombre de usuario ya está en uso en la sala"
+                "usernameTaken": "Este nombre de usuario ya está en uso en la sala",
+                "roomIdLength": "El ID de la sala debe tener entre 3 y 20 caracteres"
             }
         },
         "join": {
@@ -664,7 +667,8 @@
           "chat": "Chat",
           "gaming": "Juegos",
           "support": "Soporte",
-          "other": "Otros"
+          "other": "Otros",
+          "official": "Oficial"
         },
         "searchPlaceholder": "Buscar sala..."
       },

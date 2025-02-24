@@ -339,7 +339,8 @@
             "placeholder": {
               "enterUsername": "Benutzername",
               "enterRoomName": "Raumname",
-              "enterPassword": "Raum-Passwort (mindestens 6 Zeichen)"
+              "enterPassword": "Raum-Passwort (mindestens 6 Zeichen)",
+              "enterRoomId": "Raum-ID"
             },
             "form": {
                 "username": "Benutzername",
@@ -358,6 +359,7 @@
                 "create": "Raum erstellen",
                 "noCategory": "Kategorie auswählen",
                 "category": "Kategorie",
+                "roomId": "Raum-ID",
                 "categories": {
                   "general": "Allgemein",
                   "software": "Software",
@@ -382,7 +384,8 @@
                 "roomNameLength": "Der Raumname muss zwischen 3 und 50 Zeichen lang sein",
                 "noPassword": "Bitte geben Sie ein Raum-Passwort ein",
                 "passwordTooShort": "Das Raum-Passwort muss mindestens 6 Zeichen lang sein",
-                "usernameTaken": "Dieser Benutzername ist bereits in einem anderen Raum vorhanden"
+                "usernameTaken": "Dieser Benutzername ist bereits in einem anderen Raum vorhanden",
+                "roomIdLength": "Die Raum-ID muss zwischen 3 und 20 Zeichen lang sein"
             }
         },
         "join": {
@@ -663,7 +666,8 @@
           "chat": "Chat",
           "gaming": "Spiele",
           "support": "Support",
-          "other": "Sonstiges"
+          "other": "Sonstiges",
+          "official": "Offiziell"
         },
         "searchPlaceholder": "Suche..."
       },

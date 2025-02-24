@@ -7,7 +7,7 @@
     import toast, { Toaster } from 'svelte-french-toast';
     import { checkLink } from '$lib/check';
     import { blockedNames } from '$lib/config/blockedNames';
-    import  { _ } from 'svelte-i18n';
+    import { _ } from 'svelte-i18n';
 
     let selectedType: "public" | "private" = 'public';
     let selectedLifetime: RoomLifetime = ROOM_LIFETIMES.ONE_DAY;
@@ -23,6 +23,7 @@
     let roomName = '';
     let expiresAt: string | null = null;
     let selectedCategory: string | null = null;
+    let customId = '';
 
     const restrictedUsernames = [...blockedNames.blockedNames, ...blockedNames.religiousTerms].map(name =>
         name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -44,7 +45,6 @@
         { value: 'support', label: $_('room.create.form.categories.support') },
         { value: 'other', label: $_('room.create.form.categories.other') }
     ];
-
 
     onMount(async () => {
         try {
@@ -97,6 +97,7 @@
         userId = userId.trim();
         roomPassword = roomPassword.trim();
         roomName = roomName.trim();
+        customId = customId.trim();
 
         const normalizedUserId = userId.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
@@ -162,7 +163,8 @@
                 roomPassword,
                 roomName,
                 selectedLifetime,
-                selectedCategory || undefined
+                selectedCategory || undefined,
+                customId
             );
             roomId = result.roomId;
             expiresAt = result.expiresAt;
@@ -231,18 +233,26 @@
 
         <div class="bg-cWhiteGray border border-white/5 rounded-lg p-6 space-y-6">
             <div class="space-y-2">
-                <label class="block text-sm font-medium">{$_('room.create.form.username')}</label>
+                <label class="block text-sm font-medium">{$_('room.create.form.username')}*</label>
                 <div class="relative">
                     <i class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
-                    <input type="text" bind:value={userId} placeholder={$_('room.create.placeholder.enterUsername')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                    <input type="text" required bind:value={userId} placeholder={$_('room.create.placeholder.enterUsername')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
                 </div>
             </div>
 
             <div class="space-y-2">
-                <label class="block text-sm font-medium">{$_('room.create.form.roomName')}</label>
+                <label class="block text-sm font-medium">{$_('room.create.form.roomName')}*</label>
                 <div class="relative">
                     <i class="ri-chat-3-line absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
-                    <input type="text" bind:value={roomName} placeholder={$_('room.create.placeholder.enterRoomName')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                    <input type="text" required bind:value={roomName} placeholder={$_('room.create.placeholder.enterRoomName')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium">{$_('room.create.form.roomId')}</label>
+                <div class="relative">
+                    <i class="ri-hashtag absolute left-3 top-1/2 -translate-y-1/2 text-white/50"></i>
+                    <input type="text" bind:value={customId} placeholder={$_('room.create.placeholder.enterRoomId')} class="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-lg focus:outline-none focus:border-cYellow text-white placeholder:text-white/30" />
                 </div>
             </div>
 
@@ -269,7 +279,7 @@
             </div>
 
             <div class="space-y-2">
-                <label class="block text-sm font-medium">{$_('room.create.form.lifetime')}</label>
+                <label class="block text-sm font-medium">{$_('room.create.form.lifetime')}*</label>
                 <span class="text-white/50 text-xs">{$_('room.create.form.lifetimeHint')}</span>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {#each lifetimeOptions as option}
@@ -304,17 +314,37 @@
         </div>
 
         {#if isRoomCreated}
-        <div class="mt-6 bg-cWhiteGray rounded-lg border border-white/5 p-4">
-            <h3 class="text-lg font-semibold">{$_('room.create.success.roomId')}:</h3>
-            <div class="flex items-center justify-between mb-4">
-                <p class="text-white text-sm">{roomId}</p>
+        <div class="mt-6 bg-cWhiteGray rounded-lg border border-white/5 p-6 mb-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-semibold text-white">{$_('room.create.success.roomId')}</h3>
             </div>
-            {#if expiresAt}
-                <p class="text-white/50 text-sm mb-4">{$_('room.create.success.expiresAt')}: {new Date(expiresAt).toLocaleString()}</p>
-            {/if}
-            <div class="flex flex-col sm:flex-row gap-4">
-                <button class="w-full bg-cYellow text-black py-2.5 px-4 rounded-lg font-medium" on:click={copyToClipboard}>{$_('room.create.success.copy')}</button>
-                <button class="w-full bg-cYellow/10 border border-cYellow text-cYellow py-2.5 px-4 rounded-lg font-medium" on:click={handleJoinRoom}>{$_('room.create.success.join')}</button>
+            
+            <div class="bg-black/20 rounded-lg p-4 mb-6">
+                <div class="flex items-center justify-between">
+                    <p class="text-white text-base font-medium select-all">{roomId}</p>
+                    <i class="ri-file-copy-line text-white/50 hover:text-cYellow cursor-pointer transition-colors" on:click={copyToClipboard}></i>
+                </div>
+                {#if expiresAt}
+                    <p class="text-white/50 text-sm mt-2">
+                        <i class="ri-time-line mr-2"></i>
+                        {$_('room.create.success.expiresAt')}: {new Date(expiresAt).toLocaleString()}
+                    </p>
+                {/if}
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button 
+                    class="flex items-center justify-center bg-cYellow text-black py-3 px-6 rounded-lg font-medium transition-opacity" 
+                    on:click={copyToClipboard}
+                >
+                    {$_('room.create.success.copy')}
+                </button>
+                <button 
+                    class="flex items-center justify-center bg-cYellow/10 border border-cYellow text-cYellow py-3 px-6 rounded-lg font-medium transition-all" 
+                    on:click={handleJoinRoom}
+                >
+                    {$_('room.create.success.join')}
+                </button>
             </div>
         </div>
         {/if}
